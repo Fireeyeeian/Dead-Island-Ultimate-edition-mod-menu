@@ -9,7 +9,11 @@ THANK YOU FOR USING DIUE BY FireEyeEian.
 
 ## >NO INSTALATION REQUIRED. 
 
-** >Just run the DIUE_2.0.exe and follow the direction in the window then select the modifications you would like to enable **
-** >When you have the options you'd like to enable selected all you have to do then is hit the "Confirm modifications" button in the top right of the window... **
-** >BOOM your game is modded and ready to play. **
-** >Enjoy :) **
+>Just run the DIUE_2.0.exe and follow the direction in the window then select the modifications you would like to enable.  
+
+>When you have the options you'd like to enable selected all you have to do then is hit the "Confirm modifications" button in the top right of the window...  
+
+>BOOM your game is modded and ready to play.  
+
+>Enjoy :)  
+
