@@ -1,0 +1,1 @@
+Expand-Archive -LiteralPath '.\loose_files\ai_norm.zip' -DestinationPath '.\EXTRACTED_DATA0\data'
