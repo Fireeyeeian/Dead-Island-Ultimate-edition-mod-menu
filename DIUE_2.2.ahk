@@ -6,6 +6,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 DetectHiddenWindows, On
 SetBatchLines, -1
 #include tf.ahk
+#include smartzip.ahk
 #include AddTooltip.ahk
 AddToolTip("AutoPopDelay",32)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -86,7 +87,7 @@ ExitFunc(ExitReason, ExitCode)
 {
     Exiting()
     {
-    	SplashTextOn, 400,30,Script Shutdown,Shutting down.....
+    	SplashTextOn, 400,50,Script Shutdown,Shutting down.....`n(Cleaning up files)
     	;Run,%A_Temp%\survival_extinguisher.ahk,,,
 		Process, close,Background_music.exe
 		Process, close,play_scream_sound_then_quit.exe ;shouldn't be running but whatever
@@ -111,50 +112,40 @@ FileCreateDir, %A_Temp%\@DIUE_TEMPFILES\loose_files\
 FileCreateDir, %A_Temp%\@DIUE_TEMPFILES\sounds\
 FileCreateDir, %A_Temp%\@DIUE_TEMPFILES\scripts\
 
-;FileInstall, Required_files_and_scripts\scripts\overseer.ahk, %A_Temp%\@overseer.ahk,1
-;FileInstall, Required_files_and_scripts\scripts\overseer.exe, %A_Temp%\@overseer.exe,1
-;FileInstall, Required_files_and_scripts\scripts\survival_extinguisher.ahk, %A_Temp%\@survival_extinguisher.ahk,1
-FileInstall, Required_files_and_scripts\scripts\survival_extinguisher.exe, %A_Temp%\@survival_extinguisher.exe,1 ;installed to the root of temp for process termination reasons 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;VvVcode below recovered from overwritten saveVvV;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+FileInstall, Required_files_and_scripts\scripts\survival_extinguisher.exe, %A_Temp%\@survival_extinguisher.exe,1
 FileInstall, Required_files_and_scripts\scripts\Background_music.exe, %A_Temp%\@DIUE_TEMPFILES\scripts\Background_music.exe,1
 FileInstall, Required_files_and_scripts\scripts\play_scream_sound_then_quit.exe, %A_Temp%\@DIUE_TEMPFILES\scripts\play_scream_sound_then_quit.exe,1
-
 FileInstall, Required_files_and_scripts\game.ini, %A_Temp%\@DIUE_TEMPFILES\loose_files\game.ini , 1
-FileInstall, Required_files_and_scripts\menumain_pc.xui_version_2.0, %A_Temp%\@DIUE_TEMPFILES\loose_files\menumain_pc.xui , 1
-
-FileInstall, Required_files_and_scripts\infected_data.scr.oneshot_infected, %A_Temp%\@DIUE_TEMPFILES\loose_files\infected_data.scr.oneshot_infected , 1
+FileInstall, Required_files_and_scripts\menumain_pc.xui_version, %A_Temp%\@DIUE_TEMPFILES\loose_files\menumain_pc.xui , 1
 FileInstall, Required_files_and_scripts\vessel_data.scr.oneshot_zombie, %A_Temp%\@DIUE_TEMPFILES\loose_files\vessel_data.scr.oneshot_zombie , 1
-
 FileInstall, Required_files_and_scripts\ai_norm.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\ai_norm.zip,1
 FileInstall, Required_files_and_scripts\ai_hard.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\ai_hard.zip,1
 FileInstall, Required_files_and_scripts\ai_Headshot.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\ai_Headshot.zip,1
 FileInstall, Required_files_and_scripts\ai_Onehit.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\ai_Onehit.zip,1
-
-
-FileInstall, Required_files_and_scripts\AI-NORM_unzipper.exe, %A_Temp%\@DIUE_TEMPFILES\AI-NORM_unzipper.exe ,1
-FileInstall, Required_files_and_scripts\AI-headshot_unzipper.exe, %A_Temp%\@DIUE_TEMPFILES\AI-headshot_unzipper.exe ,1
-FileInstall, Required_files_and_scripts\AI-onehit_unzipper.exe, %A_Temp%\@DIUE_TEMPFILES\AI-onehit_unzipper.exe ,1
-FileInstall, Required_files_and_scripts\AI-Hard_unzipper.exe, %A_Temp%\@DIUE_TEMPFILES\AI-Hard_unzipper.exe ,1
-
-
-
+FileInstall, Required_files_and_scripts\PRESETS_LARGE_ZOMSIZE.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\PRESETS_LARGE_ZOMSIZE.zip,1
+FileInstall, Required_files_and_scripts\PRESETS_MIDGET_ZOMSIZE.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\PRESETS_MIDGET_ZOMSIZE.zip,1
+FileInstall, Required_files_and_scripts\PRESETS_NORM_ZOMSIZE.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\PRESETS_NORM_ZOMSIZE.zip,1
+FileInstall, Required_files_and_scripts\PRESETS_SUPASIZE_ZOMSIZE.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\PRESETS_SUPASIZE_ZOMSIZE.zip,1
+FileInstall, Required_files_and_scripts\PRESETS_XTRASMOL_ZOMSIZE.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\PRESETS_XTRASMOL_ZOMSIZE.zip,1
+FileInstall, Required_files_and_scripts\Force_bloater_spawn.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Force_bloater_spawn.zip,1
+FileInstall, Required_files_and_scripts\force_butcher_spawn.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\force_butcher_spawn.zip,1
+FileInstall, Required_files_and_scripts\Force_thug_spawn.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Force_thug_spawn.zip,1
+FileInstall, Required_files_and_scripts\Force_suicide_spawn.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Force_suicide_spawn.zip,1
+FileInstall, Required_files_and_scripts\Force_ram_spawn.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Force_ram_spawn.zip,1
 FileInstall, Required_files_and_scripts\gameaudioeffects.scr.modded, %A_Temp%\@DIUE_TEMPFILES\loose_files\gameaudioeffects.scr.modded , 1
 FileInstall, Required_files_and_scripts\gameaudioeffects.scr.nomod, %A_Temp%\@DIUE_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , 1
 FileInstall, UI\steps5.png, %A_Temp%\@DIUE_TEMPFILES\steps5.png , 1
 FileInstall, Data0.pak, %A_Temp%\@DIUE_TEMPFILES\Data0.zip,1
-FileInstall, Required_files_and_scripts\Data0_unzipper.exe, %A_Temp%\@DIUE_TEMPFILES\Data0_unzipper.exe,1
-FileInstall, Required_files_and_scripts\FileZipUp.exe, %A_Temp%\@DIUE_TEMPFILES\FileZipUp.exe,1
-
 FileInstall, Required_files_and_scripts\sounds\menu_click.wav, %A_Temp%\@DIUE_TEMPFILES\sounds\menu_click.wav,1
 FileInstall, Required_files_and_scripts\sounds\DI_music.wav, %A_Temp%\@DIUE_TEMPFILES\sounds\DI_music.wav,1
 FileInstall, Required_files_and_scripts\sounds\menu_highlight.wav, %A_Temp%\@DIUE_TEMPFILES\sounds\menu_highlight.wav,1
 FileInstall, Required_files_and_scripts\sounds\scream_final.wav, %A_Temp%\@DIUE_TEMPFILES\sounds\scream_final.wav,1
 FileInstall, Required_files_and_scripts\sounds\napalm.wav, %A_Temp%\@DIUE_TEMPFILES\sounds\napalm.wav,1
-;FileCreateDir, %A_Temp%\@DIUE_TEMPFILES\TEMPORARY_1
-;;;;;;;
-Run, %A_Temp%\@DIUE_TEMPFILES\scripts\play_scream_sound_then_quit.exe,,, ;sound plays when I want it if this is ran at this point of the script....I know...
-;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;TF_AHK setup;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Run, %A_Temp%\@DIUE_TEMPFILES\scripts\play_scream_sound_then_quit.exe,,,
 INV_GEN=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\inventory_gen.scr
 INV_spec=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\inventory_special.scr
 INV_patch=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\inventory_patch.scr
@@ -164,7 +155,6 @@ INTRO_MOV=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\menu\movies\intromovies
 sunglow_scd=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_glow.scd
 sunglow_scr=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_glow.scr
 def_loot=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\default.loot
-;gameini=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\game.ini
 Logan_skills=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\skills\logan_skills.xml
 Purna_skills=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\skills\purna_skills.xml
 Samb_skills=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\skills\samb_skills.xml
@@ -175,50 +165,30 @@ inv_scr=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\inventory.scr
 var_amb_scd=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
 var_amb_scr=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
 var_weather=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;My Functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+playerdi_pre=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\playerdi.pre
+aispawnbox_pre_def=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 play_click_sound_func(){
 SoundPlay, %A_Temp%\@DIUE_TEMPFILES\sounds\menu_click.wav
 }
-
-;play_start_sound_func(){ ;this was moved to Survival_extinguisher.exe because it was being cut-off by the enable music click sound
-;SoundPlay, %A_Temp%\@DIUE_TEMPFILES\sounds\scream_final.wav
-;}
-
 play_final_sound_func(){
 SoundPlay, %A_Temp%\@DIUE_TEMPFILES\sounds\napalm.wav
 }
-;play_music_func(){   ;moved to its own .exe as to not interfere with other sounds such as click function
-;	Loop
-;{
-;soundplay, %A_Temp%\@DIUE_TEMPFILES\sounds\DI_music.wav
-;Sleep 103000
-;}
-;}
-
-;play_menu_highlight_func(){   ;This was supposed to be a sound that played whenever the muse went over a button but it's not implemented as it wouldn't be worth the time. maybe it could be merged into addtooltip.ahk somehow but I'm not trying ATM.
-;SoundPlay, %A_Temp%\@DIUE_TEMPFILES\sounds\menu_highlight.wav
-;}
-
 DisableCloseButton(hWnd) {
-	hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE)
-	nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu)
-	DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-1,"Uint","0x400")
-	DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-2,"Uint","0x400")
-	DllCall("DrawMenuBar","Int",hWnd)
+hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE)
+nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu)
+DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-1,"Uint","0x400")
+DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-2,"Uint","0x400")
+DllCall("DrawMenuBar","Int",hWnd)
 Return ""
 }
-
 EnableCloseButton(hWnd="") {
- If hWnd=
-    hWnd:=WinExist("A")
- DllCall("GetSystemMenu","Int",hWnd,"Int",TRUE)
- DllCall("DrawMenuBar","Int",hWnd)
+If hWnd=
+hWnd:=WinExist("A")
+DllCall("GetSystemMenu","Int",hWnd,"Int",TRUE)
+DllCall("DrawMenuBar","Int",hWnd)
 Return ""
 }
-
 DISABLE_BUTTONS_Function(){
-;GuiControl,Disable,enable_music_var ;this button is always accessible
 GuiControl,Disable,SUBMIT_FINAL
 GuiControl,Disable,Even_Deeper_pockets_var
 GuiControl,Disable,more_ammo_var
@@ -239,17 +209,18 @@ GuiControl,Disable,improved_loot_var
 GuiControl,Disable,better_movement_var
 GuiControl,Disable,custom_wep_var
 GuiControl,Disable,Bullet_pen_var
+GuiControl,Disable,Zombie_size_var
 GuiControl,Disable,confirm_zom_var
+GuiControl,Disable,confirm_zom_size_var
 GuiControl,Disable,Zombie_tweaks_var
 GuiControl,Disable,NightTime_var
+GuiControl,Disable,Zombie_spawn_var
+GuiControl,Disable,confirm_zom_spawn_var
 }
-
 Enable_BUTTONS_Function(){
 GuiControl,enabled,NightTime_var
-;GuiControl,Enabled,enable_music_var ;this button is always accessible
-GuiControl,Enabled,confirm_zom_var
-GuiControl,Enabled,Zombie_tweaks_var
-;GuiControl, Disable,SELECT FOLDER ;this button is different than the others and is controlled elsewhere
+GuiControl,Enabled,Zombie_spawn_var
+GuiControl,Enabled,confirm_zom_spawn_var
 GuiControl,Enabled,better_wep_pov_var
 GuiControl,Enabled,Even_Deeper_pockets_var
 GuiControl,Enabled,more_ammo_var
@@ -258,8 +229,6 @@ GuiControl,enable,better_wep_upgrades_var
 GuiControl,Enabled,SUBMIT_FINAL
 GuiControl,enabled,Remove_reverb_sound_var
 GuiControl,show,DI_LOC_TEXT
-;GuiControl,Enabled,DDl ;this button is different than the others and is controlled elsewhere
-;GuiControl,Enabled,confirm_fov ;this button is different than the others and is controlled elsewhere
 GuiControl,Enabled,Bullet_pen_var
 GuiControl,Enabled,Recoil_hfov_fix
 GuiControl,Enabled,Skip_intros_var
@@ -270,119 +239,133 @@ GuiControl,Enabled,Run_WITH_WEP_VAR
 GuiControl,Enabled,improved_loot_var
 GuiControl,Enabled,better_movement_var
 GuiControl,Enabled,custom_wep_var
+GuiControl,Enabled,Zombie_size_var
+GuiControl,Enabled,confirm_zom_var
+GuiControl,Enabled,confirm_zom_size_var
+GuiControl,Enabled,Zombie_tweaks_var
 }
-
-;func_check_backups_size(){
-	;I gave up on this, it was part of a sequence that made backups of the data0.pak and named them after the date and time but for some reason you cant call variables correctly from a function and its actually impractical/not good anyway because if the time changes between the saving process it will break things so whatever
-;}
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;^^My Functions^^;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;IF YOUR READING THIS.... I'M SORRY.. THIS CODE IS SPAGHETTI. I started working top down but as sub-sections were added and changed it got messy. READER BEWARE: NOT EVERY THING IS IN ORDER :| 
-
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S11 BOLD Cblack , Segoe ui
 Gui, Add, Picture, x2 y-1 w1000 h570 , %A_Temp%\@DIUE_TEMPFILES\steps5.png
-Gui, Add, Button, x602 y209 w120 h30 hWndhButton2 vselect_folder_button gselectfolder_button, SELECT FOLDER
-		GuiControlGet, SF_HWND, Hwnd, select_folder_button
-		AddTooltip(SF_HWND,"select Your DIDE folder")
+Gui, Add, Button, x602 y230 w120 h30 hWndhButton2 vselect_folder_button gselectfolder_button, SELECT FOLDER
+GuiControlGet, SF_HWND, Hwnd, select_folder_button
+AddTooltip(SF_HWND,"select Your DIDE folder")
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S7 BOLD Cblack , Segoe ui
-Gui, Add, text, x732 y209 w240 h50 vuser_Deadisland_DIRECTORY, [NO FOLDER SELECTED]
+Gui, Add, text, x732 y220 w240 h50 vuser_Deadisland_DIRECTORY, [NO FOLDER SELECTED]
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S11 BOLD Cblack , Segoe ui
 Gui, Add, CheckBox, x15 y419 w190 h30 vSkip_intros_var gskiptheintros,Skip intro videos
-		GuiControlGet, SKP_INTRO_HWND, Hwnd, Skip_intros_var
-		AddTooltip(SKP_INTRO_HWND,"Disables the Intro movies/logos that play when the game starts")
+GuiControlGet, SKP_INTRO_HWND, Hwnd, Skip_intros_var
+AddTooltip(SKP_INTRO_HWND,"Disables the Intro movies/logos that play when the game starts")
 Gui, Add, CheckBox, x15 y489 w190 h30 vReduce_sun_var greducethesunflare,Reduce sunflare by 90`%
-		GuiControlGet, SUN_FLARE_HWND, Hwnd, Reduce_sun_var
-		AddTooltip(SUN_FLARE_HWND,"Increases the transparency of the sun flare texture")
+GuiControlGet, SUN_FLARE_HWND, Hwnd, Reduce_sun_var
+AddTooltip(SUN_FLARE_HWND,"Increases the transparency of the sun flare texture")
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S10 BOLD Cblack , Segoe ui
 Gui, Add, CheckBox, x15 y454 w190 h30 vReducesprint_stamina_cost_var greducethesprintstaminacost,Reduce sprinting stamina cost
-		GuiControlGet, SPRINT_STAM_HWND, Hwnd, Reducesprint_stamina_cost_var
-		AddTooltip(SPRINT_STAM_HWND,"Allows you to sprint for a longer duration before exhaustion")
+GuiControlGet, SPRINT_STAM_HWND, Hwnd, Reducesprint_stamina_cost_var
+AddTooltip(SPRINT_STAM_HWND,"Allows you to sprint for a longer duration before exhaustion")
 Fov_list:="62 default||72|82|"
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S8 BOLD Cblack , Segoe ui
-Gui, Add, DropDownList, x260 y255 w90 h70 vDDL, % Fov_list
-		GuiControlGet, DDL_HWND, Hwnd, DDL
-		AddTooltip(DDL_HWND,"FOV stands for Field Of View")
-Gui, Add, button, x360 y255 w120 h21 vconfirm_fov gSubmit_fov, Confirm FOV
+Gui, Add, DropDownList, x260 y268 w90 h70 vDDL, % Fov_list
+GuiControlGet, DDL_HWND, Hwnd, DDL
+AddTooltip(DDL_HWND,"FOV stands for Field Of View`nBasically how wide your vision`nA lower number zooms in the camera, while a higher number zooms out the camera")
+Gui, Add, button, x360 y268 w120 h21 vconfirm_fov gSubmit_fov, Confirm FOV
 Gui, Font, S10 BOLD Cblack , Segoe ui
 Gui, Add, button, x862 y14 w120 h110 vSUBMIT_FINAL gSubmit_FINAL, CLICK TO CONFIRM MODIFICATIONS
-		GuiControlGet, FINAL_HWND, Hwnd, SUBMIT_FINAL
-		AddTooltip(FINAL_HWND,"Confirm selected mods/changes and write changes to a new Data0.pak")
+GuiControlGet, FINAL_HWND, Hwnd, SUBMIT_FINAL
+AddTooltip(FINAL_HWND,"Confirm selected mods/changes and write changes to a new Data0.pak")
 Gui, Add, CheckBox, Checked x862 y130 w120 h27 venable_music_var genable_music, Enable music?
-		GuiControlGet, MUSIC_HWND, Hwnd, enable_music_var
-		AddTooltip(MUSIC_HWND,"toggles the playing of dead island music while running this application")
+GuiControlGet, MUSIC_HWND, Hwnd, enable_music_var
+AddTooltip(MUSIC_HWND,"toggles the playing of dead island music while running this application")
 Gui, Add, CheckBox, x15 y524 w190 h30 vRecoil_hfov_fix gRecoil_hfov_fix,high fov recoil fix
-		GuiControlGet, HFOV_HWND, Hwnd, Recoil_hfov_fix
-		AddTooltip(HFOV_HWND,"Reduces recoil animations for`n•Shotguns`nThis option can help if you get motion sick easily or have a high field of view")
+GuiControlGet, HFOV_HWND, Hwnd, Recoil_hfov_fix
+AddTooltip(HFOV_HWND,"Reduces recoil animations for`n•Shotguns`nThis option can help if you get motion sick easily or have a high field of view")
 Gui, Add, CheckBox, x210 y524 w190 h30 vJump_stamina_var greducejumpstaminacost,Reduce jump stamina cost
-		GuiControlGet, JUMP_STAM_HWND, Hwnd, Jump_stamina_var
-		AddTooltip(JUMP_STAM_HWND,"Allows you to jump more times before exhaustion")
+GuiControlGet, JUMP_STAM_HWND, Hwnd, Jump_stamina_var
+AddTooltip(JUMP_STAM_HWND,"Allows you to jump more times before exhaustion")
 Gui, Add, CheckBox, x210 y489 w190 h30 vRun_WITH_WEP_VAR gEnableRunningwithwep,Enable running w/weapons
-		GuiControlGet, SPRINT_WEP_HWND, Hwnd, Run_WITH_WEP_VAR
-		AddTooltip(SPRINT_WEP_HWND,"Keeps weapons in hand visible in hand when sprinting (Does not apply to firearms)")
+GuiControlGet, SPRINT_WEP_HWND, Hwnd, Run_WITH_WEP_VAR
+AddTooltip(SPRINT_WEP_HWND,"Keeps weapons in hand visible in hand when sprinting (Does not apply to firearms)")
 Gui, Add, CheckBox, x210 y454 w190 h30 vimproved_loot_var gimproved_loot,Improved Loot
-		GuiControlGet, LOOT_HWND, Hwnd, improved_loot_var
-		AddTooltip(LOOT_HWND,"Reduces the amount of ""white"" weapons you get from locked chests`nAlso give better odds for loot dropped by:`n•Butchers`n•Rams")
+GuiControlGet, LOOT_HWND, Hwnd, improved_loot_var
+AddTooltip(LOOT_HWND,"Reduces the amount of ""white"" weapons you get from locked chests`nAlso give better odds for loot dropped by:`n•Butchers`n•Rams")
 Gui, Add, CheckBox, x210 y419 w190 h30 vbetter_movement_var gmovment_tweaks,better movement tweaks
-		GuiControlGet, MOVEMENT_HWND, Hwnd, better_movement_var
-		AddTooltip(MOVEMENT_HWND,"No more sluggish movement, This tweak will make movement feel more responsive")
-Gui, Add, CheckBox, x405 y419 w190 h30 vbetter_wep_pov_var gbetterweppov,Better firearms POV ;fixes blur on weapons (removes blur from sights), pushes  weapons out to more realistic positions,fixes sight alignment, fixes hip-fire holding position  
-		GuiControlGet, WEPPOV_HWND, Hwnd, better_wep_pov_var
-		AddTooltip(WEPPOV_HWND,"Originally part of my ""Firearms overhaul"" mod`n•fixes blur on weapons (removes blur from sights)`n•Pushes weapons out to more realistic positions (Also improves hip-fire holding position)`n•Fixes iron sight misalignment bug") 
+GuiControlGet, MOVEMENT_HWND, Hwnd, better_movement_var
+AddTooltip(MOVEMENT_HWND,"No more sluggish movement, This tweak will make movement feel more responsive")
+Gui, Add, CheckBox, x405 y419 w190 h30 vbetter_wep_pov_var gbetterweppov,Better firearms POV
+GuiControlGet, WEPPOV_HWND, Hwnd, better_wep_pov_var
+AddTooltip(WEPPOV_HWND,"Originally part of my ""Firearms overhaul"" mod`n•fixes blur on weapons (removes blur from sights)`n•Pushes weapons out to more realistic positions (Also improves hip-fire holding position)`n•Fixes iron sight misalignment bug")
 Gui, Add, CheckBox, x405 y454 w190 h30 vcustom_wep_var gadd_weps, add custom weapons
-		GuiControlGet, CUST_WEP_HWND, Hwnd, custom_wep_var
-		AddTooltip(CUST_WEP_HWND,"Adds in the following weapons:`n•M72 launcher (With rigged animations)`n•M60 (with rigged animations)`n•Gives the users the option to reskin deo-bomb to look like a beach ball`n•Gives the user the option to add in explosive ammo mod for firearms (With this mod you can make the infamous Explosive crowd-pleaser)`n•Adds in a mod to craft ammo for M72 and M60`n•Also makes The Defender of the motherland & Crowd pleaser a bit more unique")
+GuiControlGet, CUST_WEP_HWND, Hwnd, custom_wep_var
+AddTooltip(CUST_WEP_HWND,"Adds in the following weapons:`n•M72 launcher (With rigged animations)`n•M60 (with rigged animations)`n•Gives the users the option to reskin deo-bomb to look like a beach ball`n•Gives the user the option to add in explosive ammo mod for firearms (With this mod you can make the infamous Explosive crowd-pleaser)`n•Adds in a mod to craft ammo for M72 and M60`n•Also makes The Defender of the motherland & Crowd pleaser a bit more unique")
 Gui, Add, CheckBox, x405 y489 w190 h30 vbetter_wep_upgrades_var gbetter_wep_upgrades,better firearms upgrading
-		GuiControlGet, WEP_UPGRADES_HWND, Hwnd, better_wep_upgrades_var
-		AddTooltip(WEP_UPGRADES_HWND,"Adds more functionality to the (firearms) weapon upgrade system.`nFirearms stats such as:`n•Reload speed`n•How fast it will fire`n•Recoil impulse`nWill get better with every upgrade you apply to the firearm.`n`nPLEASE NOTE: ONLY THE AUTOMATIC RELOAD SPEED IS AFFECTED (this is due to how dead island handles weapons generation its kinda out of my hands.`nJust know that the reload speed will be default if you hit the reload key manually) ")
+GuiControlGet, WEP_UPGRADES_HWND, Hwnd, better_wep_upgrades_var
+AddTooltip(WEP_UPGRADES_HWND,"Adds more functionality to the (firearms) weapon upgrade system.`nFirearms stats such as:`n•Reload speed`n•How fast it will fire`n•Recoil impulse`nWill get better with every upgrade you apply to the firearm.`n`nPLEASE NOTE: ONLY THE AUTOMATIC RELOAD SPEED IS AFFECTED (this is due to how dead island handles weapons generation its kinda out of my hands.`nJust know that the reload speed will be default if you hit the reload key manually) ")
 Gui, Add, CheckBox, x600 y524 w190 h30 vNightTime_var gnightTIME ,Night-time paradise
-		GuiControlGet, NIGHT_HWND, Hwnd, NightTime_var
-		AddTooltip(NIGHT_HWND,"Originally part of my ""Night-time paradise"" mod`n•Sets game time to night`nPLEASE NOTE: As of now I have been unsuccessful in making the flashlight infinite as well as being able to make the truck headlights work`nAlso night time can be extremely dark in jungle/laboratories areas")
+GuiControlGet, NIGHT_HWND, Hwnd, NightTime_var
+AddTooltip(NIGHT_HWND,"Originally part of my ""Night-time paradise"" mod`n•Sets game time to night`nPLEASE NOTE: As of now I have been unsuccessful in making the flashlight infinite as well as being able to make the truck headlights work`nAlso night time can be extremely dark in jungle/laboratories areas")
 Gui, Font, S8 BOLD Cblack , Segoe ui
 Gui, Add, CheckBox, x405 y524 w190 h30 vRemove_reverb_sound_var gremovereverb,Remove the weird reverb/echo sound (You know the one)
-		GuiControlGet, REVERB_HWND, Hwnd, Remove_reverb_sound_var
-		AddTooltip(REVERB_HWND,"If you know you know, I find the reverb sound to be jarring and it takes me out of the game`nIf you are not familiar with this sound its most prominent when shooting a firearm")
+GuiControlGet, REVERB_HWND, Hwnd, Remove_reverb_sound_var
+AddTooltip(REVERB_HWND,"If you know you know, I find the reverb sound to be jarring and it takes me out of the game`nIf you are not familiar with this sound its most prominent when shooting a firearm")
 Gui, Font, S10 BOLD Cblack , Segoe ui
 Gui, Add, CheckBox, x600 y419 w190 h30 vEven_Deeper_pockets_var gdeeper_pockets,Even Deeper pockets
-		GuiControlGet, DP_HWND, Hwnd, Even_Deeper_pockets_var
-		AddTooltip(DP_HWND,"Buffs the Deeper pockets skill`nGives more inventory slots per upgrade of the ""Deeper pockets skill""(max 30)`nPLEASE NOTE: if you are not starting a new play through (new character) then`n make sure you haven't got any of the ""Deeper pockets"" skill yet otherwise this is pointless to enable")
+GuiControlGet, DP_HWND, Hwnd, Even_Deeper_pockets_var
+AddTooltip(DP_HWND,"Buffs the Deeper pockets skill`nGives more inventory slots per upgrade of the ""Deeper pockets skill""(max 30)`nPLEASE NOTE: if you are not starting a new play through (new character) then`n make sure you haven't got any of the ""Deeper pockets"" skill yet otherwise this is pointless to enable")
 Gui, Add, CheckBox, x795 y419 w190 h30 vnoclip_truck_var gnoclip_truck,NoClip Truck
-		GuiControlGet, NOCLP_HWND, Hwnd, noclip_truck_var
-		AddTooltip(NOCLP_HWND,"Makes it so that you can drive through objects with the trucks")
+GuiControlGet, NOCLP_HWND, Hwnd, noclip_truck_var
+AddTooltip(NOCLP_HWND,"Makes it so that you can drive through objects with the trucks")
 Gui, Add, CheckBox, x600 y454 w190 h30 vmore_ammo_var gMore_ammo ,Hold more ammo
-		GuiControlGet, AMMO_HWND, Hwnd, more_ammo_var
-		AddTooltip(AMMO_HWND,"Allows you character to carry more ammo`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90")
+GuiControlGet, AMMO_HWND, Hwnd, more_ammo_var
+AddTooltip(AMMO_HWND,"Allows you character to carry more ammo`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90")
 Gui, Add, CheckBox, x600 y489 w190 h30 vBullet_pen_var gBullet_pen,Enable Bullet penetration (for zombies)
-		GuiControlGet, BP_HWND, Hwnd, Bullet_pen_var
-		AddTooltip(BP_HWND,"enables bullet penetration for zombies`n 95% chance to shoot through zombies and get collaterals")
+GuiControlGet, BP_HWND, Hwnd, Bullet_pen_var
+AddTooltip(BP_HWND,"enables bullet penetration for zombies`n 98% chance to shoot through zombies and get collaterals")
+zom_size_list:="Extra small|small ""Midget"" zombies|normal size zombies||large zombies|Supersize zombies|"
+Gui, Add, DropDownList, x490 y372 w170 h200 vZombie_size_var, % zom_size_list
+GuiControlGet, ZOM_size_HWND, Hwnd, Zombie_size_var
+AddTooltip(ZOM_size_HWND,"Select zombie size")
+Gui, Add, button, x670 y372 w90 h21 vconfirm_zom_size_var gSubmit_zombies_size,Confirm size
 zom_list:="Normal zombies||One hit kill zombies|hard zombies|Headshot only zombies|"
 Gui, Add, DropDownList, x180 y372 w170 h200 vZombie_tweaks_var, % zom_list
-		GuiControlGet, ZOM_HWND, Hwnd, Zombie_tweaks_var
-		AddTooltip(ZOM_HWND,"Select zombie difficulty")
+GuiControlGet, ZOM_HWND, Hwnd, Zombie_tweaks_var
+AddTooltip(ZOM_HWND,"Select zombie difficulty")
 Gui, Add, button, x360 y372 w120 h21 vconfirm_zom_var gSubmit_zombies,Confirm zombies
-Gui, Font, CYellow, 
+zom_spawn_list:="Normal spawns||Butchers|Rams|Bloaters|Thugs|Suiciders|"
+Gui, Add, DropDownList, x770 y372 w120 h200 vZombie_spawn_var, % zom_spawn_list
+GuiControlGet, ZOM_spawn_HWND, Hwnd, Zombie_spawn_var
+AddTooltip(ZOM_spawn_HWND,"force a specific zombie to spawn")
+Gui, Add, button, x895 y372 w90 h34 vconfirm_zom_spawn_var gSubmit_zombies_spawn,set spawn overide
+Gui, Font, S13 BOLD cred, Segoe ui
+Gui, Add, Text, x22 y165 w950 h59 +BackgroundTrans, -Tip: hover mouse over options to get more info
+Gui, Font, CYellow,
 Gui, Font, S16 Cblack Bold Underline, Segoe ui
-Gui, Add, Text, x22 y169 w870 h30 +BackgroundTrans, 1.  Please verify the game files/preform a clean install of "DeadIsland Definitive Edition"
-Gui, Add, Text, x22 y209 w590 h30 +BackgroundTrans, 2. Please select the location that your game is installed to>
-Gui, Add, Text, x22 y249 w240 h30 +BackgroundTrans, 3. Select preferred FOV:
+Gui, Add, Text, x22 y185 w870 h30 +BackgroundTrans, 1.  Please verify the game files/preform a clean install of "DeadIsland Definitive Edition"
+Gui, Add, Text, x22 y225 w590 h30 +BackgroundTrans, 2. Please select the location that your game is installed to>
+Gui, Add, Text, x22 y260 w240 h30 +BackgroundTrans, 3. Select preferred FOV:
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S12 BOLD Cblack , Segoe ui
-Gui, Add, Text, x42 y279 w920 h90 +BackgroundTrans, -Please note: Theoretically at a higher fov than 62 some weapon clipping might be visible. Also some recoil looks exagerated`; I recommend enabling "high fov recoil fix" if you select a FOV higher than 62.
+Gui, Add, Text, x25 y290 w1000 h90 +BackgroundTrans, -Please note: Theoretically at a higher fov than 62 some weapon clipping might be visible. Also some recoil looks exagerated.`nI recommend enabling "high fov recoil fix" if you select a FOV higher than 62.
 Gui, Font, S20 Cyellow Bold Underline, Segoe ui
 Gui, Font, S24 Cblack Bold Underline, Segoe ui
-Gui, Add, Text, x22 y310 w950 h50 +BackgroundTrans, 4. Select which modifications you would like to install below:
+Gui, Add, Text, x22 y326 w950 h50 +BackgroundTrans, 4. Select which modifications you would like to install below:
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
-Gui, Font, S13 BOLD Cblack , Segoe ui
-Gui, Add, Text, x42 y349 w950 h50 +BackgroundTrans, -Tip: hover mouse over options to get more info
+Gui, Font, CYellow
+;;;;;;;;;;;;;;;;;;;;;;;;VERSION NUMBER;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Gui, Add, Text, x750 y64 w100 h30 +BackgroundTrans,Version 2.2
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Generated using SmartGUI Creator 4.0
 Gui, Show, x127 y87 h581 w1014, New GUI Window
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+GuiControl,Disable,Zombie_size_var
+GuiControl,Disable,confirm_zom_var
+GuiControl,Disable,confirm_zom_size_var
+GuiControl,Disable,Zombie_tweaks_var
 DISABLE_BUTTONS_Function()
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Generated using SmartGUI Creator 4.0 ---> yes it was generated twice.. talk about inbreeding.
 Gui, Show, x127 y87 h577 w1010, DeadIslandUltimateEdition_By_FireEyeEian
 ;Run,%A_Temp%\@overseer.ahk,,, ;fuck overseer all my homies use survival_extinguisher.exe
@@ -394,13 +377,15 @@ Return
 GuiClose:
 ExitApp
 return
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;^^code above recovered from overwritten save^^;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 END::ExitApp,
 ;;;;;;;;;;;;;;;;;;DIR_CHECK;;;;;;;;;;;;;;;;;;;DIR_CHECK;;;;;;;;;;;;;;;;;;DIR_CHECK;;;;;;;;;;;;;;;;;;;DIR_CHECK;;;;;;;;;;;;;;;;;;DIR_CHECK;;;;;;;;;;;;;;;;;;;DIR_CHECK;;;;;;;;;;;;;;;;;;DIR_CHECK;;;;;;;;;;;;;;;;;;;DIR_CHECK
 selectfolder_button:
 play_click_sound_func()
-;for testing on my pc ;FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
+;FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
 FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
 SetWorkingDir, %Deadisland_dir%
 FileDelete, %A_Temp%\@DIUE_TEMPFILES\data ;don't really need this I don't think so but it doesn't seem to hurt things.
@@ -510,12 +495,13 @@ goto, SETUP_TEMPORARY_ENVIRONMENT
 return
 
 SETUP_TEMPORARY_ENVIRONMENT:
-SetWorkingDir %Deadisland_dir%/DI ;I feel better with this here
+SetWorkingDir %Deadisland_dir%/DI ;I feel better with this here ;I was going to remove this but tbh I do feel safer leaving this here.. I mean what is it hurting...
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-;FileDelete, %Deadisland_dir%/DI/data0.pak ;moved this to right before final data0.pak move
-SplashTextOn, 400,50,UN-PACKING PROGRAM,Please wait... `nUNzipping Data0.pak
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-RunWait, %A_Temp%\@DIUE_TEMPFILES\Data0_unzipper.exe,,Hide, Runwait_Unzip_OutputVar
+SplashTextOn, 700,105,UN-PACKING PROGRAM,Please wait... `nUNzipping Data0.pak`nNOTE: This could take up to 3 minutes, If you have a slow hard drive this might take longer.`n if you think this is stuck, simply press `"END`" on your keyboard or force close the application
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES ;Yup, I know....
+		SmartZip("Data0.zip", "EXTRACTED_DATA0")   ; Unpack
+	SetWorkingDir %Deadisland_dir%/DI ;again.. imma set it back... just to be safe...ya know?, right?
+;RunWait, %A_Temp%\@DIUE_TEMPFILES\Data0_unzipper.exe,,Hide, Runwait_Unzip_OutputVar ;depreciated
 SplashTextOff
 FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\game.ini
 FileCopy, %A_Temp%\@DIUE_TEMPFILES\loose_files\game.ini, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\game.ini
@@ -587,7 +573,7 @@ return
 NightTime_var_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(var_weather,"11",11," float time = TIME * 0.0; //Modified_by_FireEyeEian")
 TF_ReplaceLine(var_weather,"12",12," Set(""f_game_time"", (time - floor(time)) * 1.0); // time format hh.mmss h <00.0-23.0>, m <0.00-0.99>, s<0.0000-0.0099> //Modified_by_FireEyeEian")
 ;TF_ReplaceLine(var_amb_scd,"11",11,"VarFloat(""f_pp_lighting_indirect_factor"", 1.0)")
@@ -603,7 +589,7 @@ return
 NightTime_var_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(var_weather,"11",11," //float time = TIME * 0.0; //Modified_by_FireEyeEian //this_is_the_default_value")
 TF_ReplaceLine(var_weather,"12",12," //Set(""f_game_time"", (time - floor(time)) * 24.0); // time format hh.mmss h <00.0-23.0>, m <0.00-0.99>, s<0.0000-0.0099> //Modified_by_FireEyeEian //this_is_the_default_value")
 ;TF_ReplaceLine(var_amb_scd,"11",11,"VarFloat(""f_pp_lighting_indirect_factor"", 1.0)")
@@ -615,71 +601,243 @@ EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 MsgBox,4160,Night time?,➤Night time DISABLED
 Enable_BUTTONS_Function()
 return
-
-;zom_list:="Normal zombies||One hit kill zombies|hard zombies|Headshot only zombies|" 
-
+Submit_zombies_spawn:
+play_click_sound_func()
+Gui, Submit, NoHide
+If (Zombie_spawn_var = "Normal spawns")
+Goto,submit_norm_zom_spawn
+If (Zombie_spawn_var = "Butchers")
+Goto,submit_Butcher_zom_spawn
+If (Zombie_spawn_var = "Rams")
+Goto,submit_Ram_zom_spawn
+If (Zombie_spawn_var = "Bloaters")
+Goto,submit_Bloater_zom_spawn
+If (Zombie_spawn_var = "Thugs")
+Goto,submit_Thug_zom_spawn
+If (Zombie_spawn_var = "Suiciders")
+Goto,submit_suicide_zom_spawn
+return
+submit_norm_zom_spawn:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\Default_spawns.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Zombies spawns set to Normal (default),
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+submit_Butcher_zom_spawn:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\force_butcher_spawn.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Butchers""`n(May god have mercy on you),
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+submit_Ram_zom_spawn:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\Force_ram_spawn.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Rammers"",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+submit_Bloater_zom_spawn:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\Force_bloater_spawn.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bloaters"",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+submit_Thug_zom_spawn:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\Force_thug_spawn.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Thugs"",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+submit_suicide_zom_spawn:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\Force_suicide_spawn.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Suiciders"",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
 Submit_zombies:
 play_click_sound_func()
 Gui, Submit, NoHide
 If (Zombie_tweaks_var = "Normal zombies")
-    Goto,submit_norm_zom
+Goto,submit_norm_zom
 If (Zombie_tweaks_var = "One hit kill zombies")
-	Goto,submit_1hit_zom
+Goto,submit_1hit_zom
 If (Zombie_tweaks_var = "hard zombies")
-	Goto,submit_hard_zom
+Goto,submit_hard_zom
 If (Zombie_tweaks_var = "Headshot only zombies")
-	Goto,submit_headshot_zom
+Goto,submit_headshot_zom
 return
-
 submit_norm_zom:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
-SplashTextOn, 400,70,Writing to file,Please wait.... `n writing to files....`n       (EXTRACTING: AI folder contents)
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileRemoveDir, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-		RunWait, %A_Temp%\@DIUE_TEMPFILES\AI-NORM_unzipper.exe,,Hide, Runwait_Unzip_ai_norm_OutputVar
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\ai_norm.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤Zombies set to Normal (default),
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
-
 submit_1hit_zom:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
-SplashTextOn, 400,70,Writing to file,Please wait.... `n writing to files....`n       (EXTRACTING: AI folder contents)
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileRemoveDir, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-		RunWait, %A_Temp%\@DIUE_TEMPFILES\AI-onehit_unzipper.exe,,Hide, Runwait_Unzip_ai_onehit_OutputVar
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\ai_Onehit.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤Zombies set to One-hit mode,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
-
 submit_hard_zom:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
-SplashTextOn, 400,70,Writing to file,Please wait.... `n writing to files....`n       (EXTRACTING: AI folder contents)
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileRemoveDir, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-		RunWait, %A_Temp%\@DIUE_TEMPFILES\AI-hard_unzipper.exe,,Hide, Runwait_Unzip_ai_hard_OutputVar
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\ai_hard.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤Zombies set to Hard (30`% increase to health,Damage,and stamina multiplier also 60`% decrease to damage influences),
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
-
 submit_headshot_zom:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
-SplashTextOn, 400,70,Writing to file,Please wait.... `n writing to files....`n       (EXTRACTING: AI folder contents)
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileRemoveDir, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-		RunWait, %A_Temp%\@DIUE_TEMPFILES\AI-headshot_unzipper.exe,,Hide, Runwait_Unzip_ai_headshot_OutputVar
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\ai_Headshot.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤Zombies set to Headshot only mode,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
-
-
+Submit_zombies_size:
+play_click_sound_func()
+Gui, Submit, NoHide
+If (Zombie_size_var = "Extra small")
+Goto,submit_extrasmallzom
+If (Zombie_size_var = "small ""Midget"" zombies")
+Goto,submit_MIDGETZOM
+If (Zombie_size_var = "normal size zombies")
+Goto,submit_NORMSIZEZOM
+If (Zombie_size_var = "large zombies")
+Goto,submit_LARGESIZEZOM
+If (Zombie_size_var = "Supersize zombies")
+Goto,submit_SUPASIZEZOM
+return
+submit_NORMSIZEZOM:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\PRESETS_NORM_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to Normal (default),
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+submit_extrasmallzom:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\PRESETS_XTRASMOL_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to extra small,
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+submit_MIDGETZOM:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\PRESETS_MIDGET_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to midget,
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+submit_LARGESIZEZOM:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\PRESETS_LARGE_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to large,
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+submit_SUPASIZEZOM:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
+FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
+SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+SmartZip("loose_files\PRESETS_SUPASIZE_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to Supersize,
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
 Submit_fov:
 play_click_sound_func()
 Enable_BUTTONS_Function()
@@ -695,34 +853,37 @@ return
 fov_set_62:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""62.5""/>	<!--  This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV set to 62.5 (default),
-Enable_BUTTONS_Function()
+GuiControl,enabled,confirm_zom_var
+GuiControl,enabled,Zombie_tweaks_var
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
 
 fov_set_72:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""72""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV changed to 72 (+10),
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-Enable_BUTTONS_Function()
+GuiControl,enabled,confirm_zom_var
+GuiControl,enabled,Zombie_tweaks_var
 return
 
 fov_set_82:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""82""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV changed to 82 (+20),
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-Enable_BUTTONS_Function()
+GuiControl,enabled,confirm_zom_var
+GuiControl,enabled,Zombie_tweaks_var
 return
 
 
@@ -737,7 +898,7 @@ goto, skip_intro_no
 skip_intro_yes:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_InsertPrefix(INTRO_MOV,15,25, "//")
 SplashTextOff
 MsgBox,4160,Intro vid option,➤Intro videos will be disabled,
@@ -747,7 +908,7 @@ return
 skip_intro_no:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceInLines(INTRO_MOV,"15,16,17,18,19,20,21,22,23,24,25","","//","")
 SplashTextOff
 MsgBox,4160,Intro vid option,➤Intro videos wll play,
@@ -766,7 +927,7 @@ goto, reduce_stamina_no
 reduce_stamina_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"199",199,"	<prop n=""MoveSprintStaminaConsumption"" v=""0.03""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Stamina option,➤Sprint stamina cost set to reduced (0.03)
@@ -776,7 +937,7 @@ return
 reduce_stamina_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"199",199,"	<prop n=""MoveSprintStaminaConsumption"" v=""0.05""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Stamina option,➤Sprint stamina cost set to default (0.05),
@@ -795,7 +956,7 @@ goto, reduce_sun_no
 reduce_sun_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(sunglow_scd,"4",4,"VarFloat(""f_pp_glow_factor"", 0.1)	//  Modified by FireEyeEian")
 TF_ReplaceLine(sunglow_scr,"1",1,"VarFloat(""f_glow_factor"", 0.1)	//  Modified by FireEyeEian")
 SplashTextOff
@@ -806,7 +967,7 @@ return
 reduce_sun_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(sunglow_scd,"4",4,"VarFloat(""f_pp_glow_factor"", 1.0)	// This is the default value //Modified_by_FireEyeEian")
 TF_ReplaceLine(sunglow_scr,"1",1,"VarFloat(""f_glow_factor"", 1.0)	// This is the default value //Modified_by_FireEyeEian")
 SplashTextOff
@@ -857,10 +1018,12 @@ Goto, write_mods_to_file
 
 write_mods_to_file:
 FileCreateDir, %A_Temp%\@DIUE_TEMPFILES\compiled_mod
-SplashTextOn, 400,50,UN-PACKING PROGRAM,Please wait...`nRE-PACKING Data0.pak
+SplashTextOn, 700,105,UN-PACKING PROGRAM,Please wait... `nUNzipping Data0.pak`nNOTE: This could take up to 3 minutes, If you have a slow hard drive this might take longer.`n if you think this is stuck, simply press `"END`" on your keyboard or force close the application
+ WinSet, AlwaysOnTop, Off, UN-PACKING PROGRAM
 SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-RunWait, %A_Temp%\@DIUE_TEMPFILES\FileZipUp.exe,,Hide, Runwait_zip_OutputVar
-Sleep, 200
+;RunWait, %A_Temp%\@DIUE_TEMPFILES\FileZipUp.exe,,Hide, Runwait_zip_OutputVar ;depreciated
+SmartZip("EXTRACTED_DATA0\data", "compiled_mod\Data0.zip")
+Sleep, 300 ;whynot.jpg
 FileCopy, %A_Temp%\@DIUE_TEMPFILES\compiled_mod\Data0.zip, %Deadisland_dir%\DI\Data0.pak ,1
 Sleep, 200
 FileDelete, %A_Temp%\@DIUE_TEMPFILES\compiled_mod\Data0.zip
@@ -884,17 +1047,17 @@ return
 Bullet_pen_var_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
-TF_ReplaceLine(Def_lev,"48",48,"    <prop n=""BulletPenetrationChance"" v=""0.95""/> <!-- Modified_by_FireEyeEian -->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"48",48,"    <prop n=""BulletPenetrationChance"" v=""0.98""/> <!-- Modified_by_FireEyeEian -->")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-MsgBox,4160,Bullet penetration?,➤Bullet penetration enabled`n(95`% chance)
+MsgBox,4160,Bullet penetration?,➤Bullet penetration enabled`n(98`% chance)
 Enable_BUTTONS_Function()
 return
 Bullet_pen_var_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"48",48,"    <prop n=""BulletPenetrationChance"" v=""0.""/> <!-- this_is_the_default_value -->")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
@@ -915,7 +1078,7 @@ return
 better_wep_upgrades_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;;;colt_gen_upgrade_1
 TF_ReplaceLine(INV_GEN,"16523",16523,"        ShotTime(0.94); //Modified_by_FireEyeEian")
 TF_ReplaceLine(INV_GEN,"16524",16524,"        ReloadTime(3.8); //Modified_by_FireEyeEian")
@@ -1184,7 +1347,7 @@ return
 better_wep_upgrades_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;;;colt_gen_upgrade_1
 TF_ReplaceLine(INV_GEN,"16523",16523,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
 TF_ReplaceLine(INV_GEN,"16524",16524,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
@@ -1465,7 +1628,7 @@ return
 Remove_reverb_sound_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr
 FileCopy, %A_Temp%\@DIUE_TEMPFILES\loose_files\gameaudioeffects.scr.modded , %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr,1
 SplashTextOff
@@ -1477,7 +1640,7 @@ return
 Remove_reverb_sound_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr
 FileCopy, %A_Temp%\@DIUE_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr,1
 SplashTextOff
@@ -1499,7 +1662,7 @@ return
 custom_wep_var_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;Defender-----------------------------////////Defender\\\\\\\\\--------------------------------------------------------------------------------------------------
 ;better reload speed
 TF_ReplaceLine(INV_GEN,"20853",20853,"        ReloadTime(2.65);")
@@ -1660,7 +1823,7 @@ IfMsgBox, yes
     Goto, Add_beachBall_bomb_cust_wep
 return
 Add_beachBall_bomb_cust_wep:
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(inv_scr,"4899",4899,"        Mesh(""beach_ball_a.msh"");")
 goto,Continue_on_cust_wep
 return
@@ -1673,7 +1836,7 @@ IfMsgBox, yes
     Goto, Continue_on_cust_wep_final
     return
 Add_Cheat_ammo_no:
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(DLC_shop,"91",91,"	//Item(""Craftplan_HE_Rounds"", )")
 goto, Continue_on_cust_wep_final
 Continue_on_cust_wep_final:
@@ -1687,7 +1850,7 @@ return
 custom_wep_var_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;Defender-----------------------------////////Defender\\\\\\\\\--------------------------------------------------------------------------------------------------
 ;better reload speed
 TF_ReplaceLine(INV_GEN,"20853",20853,"        ReloadTime(3.25);")
@@ -1780,7 +1943,7 @@ goto, more_ammo_var_no
 more_ammo_var_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"246",246,"	<prop n=""MaxAmmoPistol"" v=""200""/>")
 TF_ReplaceLine(Def_lev,"247",247,"	<prop n=""MaxAmmoRifle"" v=""150""/>")
 TF_ReplaceLine(Def_lev,"248",248,"	<prop n=""MaxAmmoShotgun"" v=""90""/>")
@@ -1796,7 +1959,7 @@ is_cust_wep_enabled_yes:
 TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""400""/>")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-MsgBox,4160,more ammo,➤Hold more ammo enabled.
+MsgBox,4160,more ammo,➤Hold more ammo enabled.`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90
 Enable_BUTTONS_Function()
 return        
 is_cust_wep_enabled_no:
@@ -1811,7 +1974,7 @@ return
 more_ammo_var_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"246",246,"	<prop n=""MaxAmmoPistol"" v=""50""/>")
 TF_ReplaceLine(Def_lev,"247",247,"	<prop n=""MaxAmmoRifle"" v=""60""/>")
 TF_ReplaceLine(Def_lev,"248",248,"	<prop n=""MaxAmmoShotgun"" v=""20""/>")
@@ -1854,7 +2017,7 @@ goto, Even_Deeper_pockets_var_no
 Even_Deeper_pockets_var_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;logan
 TF_ReplaceLine(logan_skills,"165",165,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""1"" desc_params=""6;12;18"">")
 TF_ReplaceLine(logan_skills,"167",167,"            <effect id=""InventorySize"" change=""6""/>")
@@ -1869,13 +2032,13 @@ TF_ReplaceLine(purna_skills,"172",172,"            <effect id=""InventorySize"" 
  TF_ReplaceLine(xian_skills,"121",121,"            <effect id=""InventorySize"" change=""6""/>")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-MsgBox,4160,Even Deeper pockets,➤Even deeper pockets enabled`n  To use: Please purchase even deeper pockets skill.
+MsgBox,4160,Even Deeper pockets,➤Even deeper pockets enabled`n  To use: Please purchase `"deeper pockets`" skill.
 Enable_BUTTONS_Function()
 return
 Even_Deeper_pockets_var_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;logan
 TF_ReplaceLine(logan_skills,"165",165,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""1"" desc_params=""2;4;6"">")
 TF_ReplaceLine(logan_skills,"167",167,"            <effect id=""InventorySize"" change=""2""/>")
@@ -1930,7 +2093,7 @@ return
 
 betterweppov_62:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;---weapon positions 
 ;Fury_guns\\\\\\\\\\\\\\\\\\
 ;Fury revolver-----------------------------------------------------------------------///////colt\\\\\\\--------------------------------------------------------------------------------------------------
@@ -2238,7 +2401,7 @@ return
 
 betterweppov_72:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;---weapon positions
 ;Fury_guns\\\\\\\\\\\\\\\\\\
 ;Fury revolver-----------------------------------------------------------------------///////furycolt\\\\\\\--------------------------------------------------------------------------------------------------
@@ -2552,7 +2715,7 @@ return
 
 betterweppov_82:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;---weapon positions 
 ;Fury_guns\\\\\\\\\\\\\\\\\\
 ;Fury revolver-----------------------------------------------------------------------///////furycolt\\\\\\\--------------------------------------------------------------------------------------------------
@@ -3044,7 +3207,7 @@ return
 better_wep_pov_var_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;swayfix
 ;M9
 TF_ReplaceLine(INV_GEN,"16928",16928,"        SwayMaxAngle(0.02);  //this_is_the_default_value")
@@ -3414,7 +3577,7 @@ return
 improved_loot_yes:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;default chest
 TF_ReplaceLine(def_loot,"66",66,"		ColorWeight(Color_White, 55.0); //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"67",67,"		ColorWeight(Color_Green, 32.0); //Modified_by_FireEyeEian")
@@ -3459,7 +3622,7 @@ return
 improved_loot_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;default chest
 TF_ReplaceLine(def_loot,"66",66,"		ColorWeight(Color_White, 92.0); //this_is_the_default_value")
 TF_ReplaceLine(def_loot,"67",67,"		ColorWeight(Color_Green, 5.0);  //this_is_the_default_value")
@@ -3514,7 +3677,7 @@ goto, noclip_truck_no
 noclip_truck_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(cardi_phx,"77",77,"    Ignore(1) //Modified_by_FireEyeEian")
 TF_ReplaceLine(cardi_phx,"91",91,"    Ignore(1) //Modified_by_FireEyeEian")
 ;TF_ReplaceLine(truckdi_phx,"73",73,"    Ignore(1) //Modified_by_FireEyeEian")
@@ -3527,7 +3690,7 @@ return
 noclip_truck_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(cardi_phx,"77",77,"    Ignore(0) //Modified_by_FireEyeEian")
 TF_ReplaceLine(cardi_phx,"91",91,"    Ignore(0) //Modified_by_FireEyeEian")
 ;TF_ReplaceLine(truckdi_phx,"73",73,"    Ignore(0) //Modified_by_FireEyeEian")
@@ -3550,7 +3713,7 @@ return
 Recoil_hfov_fix_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;shotguns
 TF_ReplaceLine(INV_GEN,"17303",17303,"        ShootVertRecoil(0.01);       //Modified_by_FireEyeEian")
 TF_ReplaceLine(INV_GEN,"17485",17485,"        ShootVertRecoil(0.01);       //Modified_by_FireEyeEian")
@@ -3592,7 +3755,7 @@ return
 Recoil_hfov_fix_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;shotguns
 TF_ReplaceLine(INV_GEN,"17303",17303,"        ShootVertRecoil(0.1);       //this_is_the_default_value //Modified_by_FireEyeEian")
 TF_ReplaceLine(INV_GEN,"17485",17485,"        ShootVertRecoil(0.1);       //this_is_the_default_value //Modified_by_FireEyeEian")
@@ -3631,7 +3794,7 @@ goto, reduce_jump_stamina_no
 reduce_jump_stamina_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"236",236,"	<prop n=""JumpStaminaCost"" v=""0.03""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Jump stamina option,➤Jump stamina cost set to 50`% (0.03)
@@ -3641,7 +3804,7 @@ return
 reduce_jump_stamina_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"236",236,"	<prop n=""JumpStaminaCost"" v=""0.06""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Jump stamina option,➤Jump stamina cost set to default (0.06),
@@ -3660,7 +3823,7 @@ goto, Run_WITH_WEP_no
 Run_WITH_WEP_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"63",63,"	<prop n=""HideWeaponsDuringSprint"" v=""0.0""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Run w/weps,➤Weapons will be shown when sprinting
@@ -3670,7 +3833,7 @@ return
 Run_WITH_WEP_no:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"63",63,"	<prop n=""HideWeaponsDuringSprint"" v=""1.0""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Run w/weps,➤Weapons will be hidden when sprinting (vanilla),
@@ -3689,7 +3852,7 @@ goto, better_movement_no
 better_movement_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 ;Strafing will no longer slow you down increase by 1.2 (48%)
 TF_ReplaceLine(Def_lev,"197",197,"	<prop n=""MoveStrafeMaxSpeed"" v=""3.70""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
 ;instant acceleration also increases acceleration by 2.0
@@ -3706,7 +3869,7 @@ return
 better_movement_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 400,50,Writing to file,Please wait.... `n writing to files....
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"63",63,"	<prop n=""HideWeaponsDuringSprint"" v=""1.0""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Movement option,➤Movement set to vanilla values,
