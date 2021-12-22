@@ -216,12 +216,15 @@ GuiControl,Disable,Zombie_tweaks_var
 GuiControl,Disable,NightTime_var
 GuiControl,Disable,Zombie_spawn_var
 GuiControl,Disable,confirm_zom_spawn_var
+GuiControl,Disable,better_durability_var
+GuiControl,Disable,Instant_breakdoor_var
 }
 Enable_BUTTONS_Function(){
 GuiControl,enabled,NightTime_var
 GuiControl,Enabled,Zombie_spawn_var
 GuiControl,Enabled,confirm_zom_spawn_var
 GuiControl,Enabled,better_wep_pov_var
+GuiControl,Enabled,Instant_breakdoor_var
 GuiControl,Enabled,Even_Deeper_pockets_var
 GuiControl,Enabled,more_ammo_var
 GuiControl,Enabled,noclip_truck_var
@@ -243,97 +246,139 @@ GuiControl,Enabled,Zombie_size_var
 GuiControl,Enabled,confirm_zom_var
 GuiControl,Enabled,confirm_zom_size_var
 GuiControl,Enabled,Zombie_tweaks_var
+GuiControl,Enabled,better_durability_var
 }
+;GUIv
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S11 BOLD Cblack , Segoe ui
 Gui, Add, Picture, x2 y-1 w1000 h570 , %A_Temp%\@DIUE_TEMPFILES\steps5.png
+
 Gui, Add, Button, x602 y230 w120 h30 hWndhButton2 vselect_folder_button gselectfolder_button, SELECT FOLDER
 GuiControlGet, SF_HWND, Hwnd, select_folder_button
 AddTooltip(SF_HWND,"select Your DIDE folder")
+
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S7 BOLD Cblack , Segoe ui
+
 Gui, Add, text, x732 y220 w240 h50 vuser_Deadisland_DIRECTORY, [NO FOLDER SELECTED]
+
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S11 BOLD Cblack , Segoe ui
+
 Gui, Add, CheckBox, x15 y419 w190 h30 vSkip_intros_var gskiptheintros,Skip intro videos
 GuiControlGet, SKP_INTRO_HWND, Hwnd, Skip_intros_var
 AddTooltip(SKP_INTRO_HWND,"Disables the Intro movies/logos that play when the game starts")
+
 Gui, Add, CheckBox, x15 y489 w190 h30 vReduce_sun_var greducethesunflare,Reduce sunflare by 90`%
 GuiControlGet, SUN_FLARE_HWND, Hwnd, Reduce_sun_var
 AddTooltip(SUN_FLARE_HWND,"Increases the transparency of the sun flare texture")
+
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S10 BOLD Cblack , Segoe ui
+
 Gui, Add, CheckBox, x15 y454 w190 h30 vReducesprint_stamina_cost_var greducethesprintstaminacost,Reduce sprinting stamina cost
 GuiControlGet, SPRINT_STAM_HWND, Hwnd, Reducesprint_stamina_cost_var
 AddTooltip(SPRINT_STAM_HWND,"Allows you to sprint for a longer duration before exhaustion")
-Fov_list:="62 default||72|82|"
+
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S8 BOLD Cblack , Segoe ui
+
+Fov_list:="62 default||72|82|"
 Gui, Add, DropDownList, x260 y268 w90 h70 vDDL, % Fov_list
 GuiControlGet, DDL_HWND, Hwnd, DDL
-AddTooltip(DDL_HWND,"FOV stands for Field Of View`nBasically how wide your vision`nA lower number zooms in the camera, while a higher number zooms out the camera")
+AddTooltip(DDL_HWND,"FOV stands for Field Of View`nBasically how wide your vision is`nA lower number zooms in the camera, while a higher number zooms out the camera")
 Gui, Add, button, x360 y268 w120 h21 vconfirm_fov gSubmit_fov, Confirm FOV
+
 Gui, Font, S10 BOLD Cblack , Segoe ui
+
 Gui, Add, button, x862 y14 w120 h110 vSUBMIT_FINAL gSubmit_FINAL, CLICK TO CONFIRM MODIFICATIONS
 GuiControlGet, FINAL_HWND, Hwnd, SUBMIT_FINAL
 AddTooltip(FINAL_HWND,"Confirm selected mods/changes and write changes to a new Data0.pak")
+
 Gui, Add, CheckBox, Checked x862 y130 w120 h27 venable_music_var genable_music, Enable music?
 GuiControlGet, MUSIC_HWND, Hwnd, enable_music_var
 AddTooltip(MUSIC_HWND,"toggles the playing of dead island music while running this application")
+
 Gui, Add, CheckBox, x15 y524 w190 h30 vRecoil_hfov_fix gRecoil_hfov_fix,high fov recoil fix
 GuiControlGet, HFOV_HWND, Hwnd, Recoil_hfov_fix
 AddTooltip(HFOV_HWND,"Reduces recoil animations for`n•Shotguns`nThis option can help if you get motion sick easily or have a high field of view")
+
 Gui, Add, CheckBox, x210 y524 w190 h30 vJump_stamina_var greducejumpstaminacost,Reduce jump stamina cost
 GuiControlGet, JUMP_STAM_HWND, Hwnd, Jump_stamina_var
 AddTooltip(JUMP_STAM_HWND,"Allows you to jump more times before exhaustion")
+
 Gui, Add, CheckBox, x210 y489 w190 h30 vRun_WITH_WEP_VAR gEnableRunningwithwep,Enable running w/weapons
 GuiControlGet, SPRINT_WEP_HWND, Hwnd, Run_WITH_WEP_VAR
 AddTooltip(SPRINT_WEP_HWND,"Keeps weapons in hand visible in hand when sprinting (Does not apply to firearms)")
+
 Gui, Add, CheckBox, x210 y454 w190 h30 vimproved_loot_var gimproved_loot,Improved Loot
 GuiControlGet, LOOT_HWND, Hwnd, improved_loot_var
 AddTooltip(LOOT_HWND,"Reduces the amount of ""white"" weapons you get from locked chests`nAlso give better odds for loot dropped by:`n•Butchers`n•Rams")
+
 Gui, Add, CheckBox, x210 y419 w190 h30 vbetter_movement_var gmovment_tweaks,better movement tweaks
 GuiControlGet, MOVEMENT_HWND, Hwnd, better_movement_var
 AddTooltip(MOVEMENT_HWND,"No more sluggish movement, This tweak will make movement feel more responsive")
+
 Gui, Add, CheckBox, x405 y419 w190 h30 vbetter_wep_pov_var gbetterweppov,Better firearms POV
 GuiControlGet, WEPPOV_HWND, Hwnd, better_wep_pov_var
 AddTooltip(WEPPOV_HWND,"Originally part of my ""Firearms overhaul"" mod`n•fixes blur on weapons (removes blur from sights)`n•Pushes weapons out to more realistic positions (Also improves hip-fire holding position)`n•Fixes iron sight misalignment bug")
+
 Gui, Add, CheckBox, x405 y454 w190 h30 vcustom_wep_var gadd_weps, add custom weapons
 GuiControlGet, CUST_WEP_HWND, Hwnd, custom_wep_var
 AddTooltip(CUST_WEP_HWND,"Adds in the following weapons:`n•M72 launcher (With rigged animations)`n•M60 (with rigged animations)`n•Gives the users the option to reskin deo-bomb to look like a beach ball`n•Gives the user the option to add in explosive ammo mod for firearms (With this mod you can make the infamous Explosive crowd-pleaser)`n•Adds in a mod to craft ammo for M72 and M60`n•Also makes The Defender of the motherland & Crowd pleaser a bit more unique")
+
 Gui, Add, CheckBox, x405 y489 w190 h30 vbetter_wep_upgrades_var gbetter_wep_upgrades,better firearms upgrading
 GuiControlGet, WEP_UPGRADES_HWND, Hwnd, better_wep_upgrades_var
 AddTooltip(WEP_UPGRADES_HWND,"Adds more functionality to the (firearms) weapon upgrade system.`nFirearms stats such as:`n•Reload speed`n•How fast it will fire`n•Recoil impulse`nWill get better with every upgrade you apply to the firearm.`n`nPLEASE NOTE: ONLY THE AUTOMATIC RELOAD SPEED IS AFFECTED (this is due to how dead island handles weapons generation its kinda out of my hands.`nJust know that the reload speed will be default if you hit the reload key manually) ")
+
 Gui, Add, CheckBox, x600 y524 w190 h30 vNightTime_var gnightTIME ,Night-time paradise
 GuiControlGet, NIGHT_HWND, Hwnd, NightTime_var
 AddTooltip(NIGHT_HWND,"Originally part of my ""Night-time paradise"" mod`n•Sets game time to night`nPLEASE NOTE: As of now I have been unsuccessful in making the flashlight infinite as well as being able to make the truck headlights work`nAlso night time can be extremely dark in jungle/laboratories areas")
+
 Gui, Font, S8 BOLD Cblack , Segoe ui
+
 Gui, Add, CheckBox, x405 y524 w190 h30 vRemove_reverb_sound_var gremovereverb,Remove the weird reverb/echo sound (You know the one)
 GuiControlGet, REVERB_HWND, Hwnd, Remove_reverb_sound_var
 AddTooltip(REVERB_HWND,"If you know you know, I find the reverb sound to be jarring and it takes me out of the game`nIf you are not familiar with this sound its most prominent when shooting a firearm")
+
 Gui, Font, S10 BOLD Cblack , Segoe ui
+
 Gui, Add, CheckBox, x600 y419 w190 h30 vEven_Deeper_pockets_var gdeeper_pockets,Even Deeper pockets
 GuiControlGet, DP_HWND, Hwnd, Even_Deeper_pockets_var
 AddTooltip(DP_HWND,"Buffs the Deeper pockets skill`nGives more inventory slots per upgrade of the ""Deeper pockets skill""(max 30)`nPLEASE NOTE: if you are not starting a new play through (new character) then`n make sure you haven't got any of the ""Deeper pockets"" skill yet otherwise this is pointless to enable")
+
 Gui, Add, CheckBox, x795 y419 w190 h30 vnoclip_truck_var gnoclip_truck,NoClip Truck
 GuiControlGet, NOCLP_HWND, Hwnd, noclip_truck_var
 AddTooltip(NOCLP_HWND,"Makes it so that you can drive through objects with the trucks")
+
 Gui, Add, CheckBox, x600 y454 w190 h30 vmore_ammo_var gMore_ammo ,Hold more ammo
 GuiControlGet, AMMO_HWND, Hwnd, more_ammo_var
 AddTooltip(AMMO_HWND,"Allows you character to carry more ammo`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90")
+
+Gui, Add, CheckBox, x795 y489 w190 h30 vInstant_breakdoor_var gInstant_breakdoor,Instantly break doors
+GuiControlGet, breakdoor_HWND, Hwnd, better_durability_var
+AddTooltip(breakdoor_HWND,"Makes the break door mini-game pretty much an instant break every time")
+
+Gui, Add, CheckBox, x795 y454 w190 h30 vbetter_durability_var gbetter_durability,Increase wep durability
+GuiControlGet, durab_HWND, Hwnd, better_durability_var
+AddTooltip(durab_HWND,"reduces durability loss from 1.0 to 0.5")
+
 Gui, Add, CheckBox, x600 y489 w190 h30 vBullet_pen_var gBullet_pen,Enable Bullet penetration (for zombies)
 GuiControlGet, BP_HWND, Hwnd, Bullet_pen_var
 AddTooltip(BP_HWND,"enables bullet penetration for zombies`n 98% chance to shoot through zombies and get collaterals")
+
 zom_size_list:="Extra small|small ""Midget"" zombies|normal size zombies||large zombies|Supersize zombies|"
 Gui, Add, DropDownList, x490 y372 w170 h200 vZombie_size_var, % zom_size_list
 GuiControlGet, ZOM_size_HWND, Hwnd, Zombie_size_var
 AddTooltip(ZOM_size_HWND,"Select zombie size")
 Gui, Add, button, x670 y372 w90 h21 vconfirm_zom_size_var gSubmit_zombies_size,Confirm size
+
 zom_list:="Normal zombies||One hit kill zombies|hard zombies|Headshot only zombies|"
 Gui, Add, DropDownList, x180 y372 w170 h200 vZombie_tweaks_var, % zom_list
 GuiControlGet, ZOM_HWND, Hwnd, Zombie_tweaks_var
 AddTooltip(ZOM_HWND,"Select zombie difficulty")
 Gui, Add, button, x360 y372 w120 h21 vconfirm_zom_var gSubmit_zombies,Confirm zombies
+
 zom_spawn_list:="Normal spawns||Butchers|Rams|Bloaters|Thugs|Suiciders|"
 Gui, Add, DropDownList, x770 y372 w120 h200 vZombie_spawn_var, % zom_spawn_list
 GuiControlGet, ZOM_spawn_HWND, Hwnd, Zombie_spawn_var
@@ -360,10 +405,6 @@ Gui, Add, Text, x750 y64 w100 h30 +BackgroundTrans,Version 2.2
 ; Generated using SmartGUI Creator 4.0
 Gui, Show, x127 y87 h581 w1014, New GUI Window
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-GuiControl,Disable,Zombie_size_var
-GuiControl,Disable,confirm_zom_var
-GuiControl,Disable,confirm_zom_size_var
-GuiControl,Disable,Zombie_tweaks_var
 DISABLE_BUTTONS_Function()
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Generated using SmartGUI Creator 4.0 ---> yes it was generated twice.. talk about inbreeding.
@@ -857,8 +898,7 @@ SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nN
 TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""62.5""/>	<!--  This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV set to 62.5 (default),
-GuiControl,enabled,confirm_zom_var
-GuiControl,enabled,Zombie_tweaks_var
+Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
 
@@ -869,9 +909,8 @@ SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nN
 TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""72""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV changed to 72 (+10),
+Enable_BUTTONS_Function()
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-GuiControl,enabled,confirm_zom_var
-GuiControl,enabled,Zombie_tweaks_var
 return
 
 fov_set_82:
@@ -881,9 +920,8 @@ SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nN
 TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""82""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV changed to 82 (+20),
+Enable_BUTTONS_Function()
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-GuiControl,enabled,confirm_zom_var
-GuiControl,enabled,Zombie_tweaks_var
 return
 
 
@@ -3873,6 +3911,74 @@ SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nN
 TF_ReplaceLine(Def_lev,"63",63,"	<prop n=""HideWeaponsDuringSprint"" v=""1.0""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Movement option,➤Movement set to vanilla values,
+Enable_BUTTONS_Function()
+enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+
+
+better_durability:
+play_click_sound_func()
+gui,Submit,nohide
+GuiControlGet,better_durability_var
+IfEqual, better_durability_var, 1
+goto, better_durability_yes
+IfEqual,better_durability_var,0
+goto, better_durability_no
+
+better_durability_yes:
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"104",104,"    <prop n=""BluntWpnDurabilityLoss"" v=""-6.0""/>	<!--  Modified by FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"113",113,"    <prop n=""CutWpnDurabilityLoss"" v=""-6.0""/>	<!--  Modified by FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"123",123,"    <prop n=""RangedWpnDurabilityLoss"" v=""-6.0""/>	<!--  Modified by FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"133",133,"    <prop n=""BulletWpnDurabilityLoss"" v=""-6.0""/>	<!--  Modified by FireEyeEian-->")
+SplashTextOff
+MsgBox,4160,Wep durability,➤Weapons deteriorate at a slower rate`nChanged from 1.0 durability loss to -6.0,
+Enable_BUTTONS_Function()
+enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+better_durability_no:
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"104",104,"    <prop n=""BluntWpnDurabilityLoss"" v=""1.0""/>	")
+TF_ReplaceLine(Def_lev,"113",113,"    <prop n=""CutWpnDurabilityLoss"" v=""1.0""/>	")
+TF_ReplaceLine(Def_lev,"123",123,"    <prop n=""RangedWpnDurabilityLoss"" v=""1.0""/>	")
+TF_ReplaceLine(Def_lev,"133",133,"    <prop n=""BulletWpnDurabilityLoss"" v=""1.0""/>	")
+SplashTextOff
+MsgBox,4160,Wep durability,➤Weapons deteriorate at vanilla rate,
+Enable_BUTTONS_Function()
+enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+
+
+Instant_breakdoor:
+play_click_sound_func()
+gui,Submit,nohide
+GuiControlGet,Instant_breakdoor_var
+IfEqual, Instant_breakdoor_var, 1
+goto, Instant_breakdoor_yes
+IfEqual,better_durability_var,0
+goto, Instant_breakdoor_no
+
+Instant_breakdoor_yes:
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"100",100,"	<prop n=""BreakDoorEffectivens"" v=""99""/>	<!--  Modified by FireEyeEian-->")
+SplashTextOff
+MsgBox,4160,Break door,➤breaking doors set to quick/easy,
+Enable_BUTTONS_Function()
+enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+Instant_breakdoor_no:
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"END`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"100",100,"	<prop n=""BreakDoorEffectivens"" v=""0""/>	")
+SplashTextOff
+MsgBox,4160,Break doors,➤breaking doors set to vanilla,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
