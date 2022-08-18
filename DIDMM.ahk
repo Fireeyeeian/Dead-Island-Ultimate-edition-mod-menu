@@ -91,15 +91,15 @@ ExitFunc(ExitReason, ExitCode)
     	;Run,%A_Temp%\survival_extinguisher.ahk,,,
 		Process, close,background_music.exe
 		Process, close,play_scream_sound_then_quit.exe ;shouldn't be running but whatever
-		FileDelete, %A_Temp%\@DIUE_TEMPFILES\scripts\play_scream_sound_then_quit.exe
+		FileDelete, %A_Temp%\@DIDMM_TEMPFILES\scripts\play_scream_sound_then_quit.exe
 		Sleep, 1000
-		FileDelete, %A_Temp%\@DIUE_TEMPFILES\sounds\menu_click.wav
-		FileDelete, %A_Temp%\@DIUE_TEMPFILES\sounds\menu_highlight.wav
-		FileDelete, %A_Temp%\@DIUE_TEMPFILES\sounds\napalm.wav
-		FileDelete, %A_Temp%\@DIUE_TEMPFILES\sounds\scream_final.wav
+		FileDelete, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_click.wav
+		FileDelete, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_highlight.wav
+		FileDelete, %A_Temp%\@DIDMM_TEMPFILES\sounds\napalm.wav
+		FileDelete, %A_Temp%\@DIDMM_TEMPFILES\sounds\scream_final.wav
 		Disable_BUTTONS_Function()
 		;MsgBox,cleaning files
-		FileRemoveDir,%A_Temp%\@DIUE_TEMPFILES\,1
+		FileRemoveDir,%A_Temp%\@DIDMM_TEMPFILES\,1
 		SplashTextOff
     }
 }
@@ -112,87 +112,86 @@ ExitFunc(ExitReason, ExitCode)
 
 SetWorkingDir, %A_ScriptDir%
 ;setup temp files
-FileCreateDir, %A_Temp%\@DIUE_TEMPFILES\
-FileCreateDir, %A_Temp%\@DIUE_TEMPFILES\loose_files\
-FileCreateDir, %A_Temp%\@DIUE_TEMPFILES\sounds\
-FileCreateDir, %A_Temp%\@DIUE_TEMPFILES\scripts\
+FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\
+FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\loose_files\
+FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\sounds\
+FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\scripts\
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;VvVcode below recovered from overwritten saveVvV;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 FileInstall, Required_files_and_scripts\scripts\survival_extinguisher.exe, %A_Temp%\@survival_extinguisher.exe,1
-FileInstall, Required_files_and_scripts\scripts\background_music.exe, %A_Temp%\@DIUE_TEMPFILES\scripts\background_music.exe,1
-FileInstall, Required_files_and_scripts\scripts\play_scream_sound_then_quit.exe, %A_Temp%\@DIUE_TEMPFILES\scripts\play_scream_sound_then_quit.exe,1
-FileInstall, Required_files_and_scripts\game.ini, %A_Temp%\@DIUE_TEMPFILES\loose_files\game.ini , 1
-FileInstall, Required_files_and_scripts\menumain_pc.xui_version, %A_Temp%\@DIUE_TEMPFILES\loose_files\menumain_pc.xui , 1
-;FileInstall, Required_files_and_scripts\vessel_data.scr.oneshot_zombie, %A_Temp%\@DIUE_TEMPFILES\loose_files\vessel_data.scr.oneshot_zombie , 1 ;unused?
-FileInstall, Required_files_and_scripts\ai_norm.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\ai_norm.zip,1
-FileInstall, Required_files_and_scripts\ai_hard.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\ai_hard.zip,1
-FileInstall, Required_files_and_scripts\ai_Headshot.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\ai_Headshot.zip,1
-FileInstall, Required_files_and_scripts\ai_Onehit.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\ai_Onehit.zip,1
-FileInstall, Required_files_and_scripts\PRESETS_LARGE_ZOMSIZE.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\PRESETS_LARGE_ZOMSIZE.zip,1
-FileInstall, Required_files_and_scripts\PRESETS_MIDGET_ZOMSIZE.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\PRESETS_MIDGET_ZOMSIZE.zip,1
-FileInstall, Required_files_and_scripts\PRESETS_NORM_ZOMSIZE.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\PRESETS_NORM_ZOMSIZE.zip,1
-FileInstall, Required_files_and_scripts\PRESETS_SUPASIZE_ZOMSIZE.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\PRESETS_SUPASIZE_ZOMSIZE.zip,1
-FileInstall, Required_files_and_scripts\PRESETS_XTRASMOL_ZOMSIZE.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\PRESETS_XTRASMOL_ZOMSIZE.zip,1
-FileInstall, Required_files_and_scripts\Force_bloater_spawn.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Force_bloater_spawn.zip,1
-FileInstall, Required_files_and_scripts\force_butcher_spawn.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\force_butcher_spawn.zip,1
-FileInstall, Required_files_and_scripts\Force_thug_spawn.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Force_thug_spawn.zip,1
-FileInstall, Required_files_and_scripts\Force_suicide_spawn.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Force_suicide_spawn.zip,1
-FileInstall, Required_files_and_scripts\Force_ram_spawn.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Force_ram_spawn.zip,1
-FileInstall, Required_files_and_scripts\Force_bandits_spawn_with_guns.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Force_bandits_spawn_with_guns.zip,1
-FileInstall, Required_files_and_scripts\Force_bandits_spawn_with_no_guns.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Force_bandits_spawn_with_no_guns.zip,1
-FileInstall, Required_files_and_scripts\Default_spawns.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Default_spawns.zip,1
-FileInstall, Required_files_and_scripts\gameaudioeffects.scr.modded, %A_Temp%\@DIUE_TEMPFILES\loose_files\gameaudioeffects.scr.modded , 1
-FileInstall, Required_files_and_scripts\gameaudioeffects.scr.nomod, %A_Temp%\@DIUE_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , 1
-FileInstall, UI\DIDMM_main.png, %A_Temp%\@DIUE_TEMPFILES\DIDMM_main.png , 1
-FileInstall, Data0.pak, %A_Temp%\@DIUE_TEMPFILES\Data0.zip,1
-FileInstall, Required_files_and_scripts\sounds\menu_click.wav, %A_Temp%\@DIUE_TEMPFILES\sounds\menu_click.wav,1
-FileInstall, Required_files_and_scripts\sounds\DI_music.wav, %A_Temp%\@DIUE_TEMPFILES\sounds\DI_music.wav,1
-FileInstall, Required_files_and_scripts\sounds\menu_highlight.wav, %A_Temp%\@DIUE_TEMPFILES\sounds\menu_highlight.wav,1
-FileInstall, Required_files_and_scripts\sounds\scream_final.wav, %A_Temp%\@DIUE_TEMPFILES\sounds\scream_final.wav,1
-FileInstall, Required_files_and_scripts\sounds\napalm.wav, %A_Temp%\@DIUE_TEMPFILES\sounds\napalm.wav,1
-FileInstall, Required_files_and_scripts\Time-weather_vanilla.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\Time-weather_vanilla.zip,1
-FileInstall, Required_files_and_scripts\time-weather_Just_night.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\time-weather_Just_night.zip,1
-FileInstall, Required_files_and_scripts\time-weather_Just_night_darker.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\time-weather_Just_night_darker.zip,1
-FileInstall, Required_files_and_scripts\time-weather_Rain_night.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\time-weather_Rain_night.zip,1
-FileInstall, Required_files_and_scripts\time-weather_Rain_day.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\time-weather_Rain_day.zip,1
-FileInstall, Required_files_and_scripts\time-weather_Rain_night_darker.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\time-weather_Rain_night_darker.zip,1
-FileInstall, Required_files_and_scripts\time-weather_storm_day.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\time-weather_storm_day.zip,1
-FileInstall, Required_files_and_scripts\time-weather_storm_night.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\time-weather_storm_night.zip,1
-FileInstall, Required_files_and_scripts\time-weather_storm_night_darker.zip, %A_Temp%\@DIUE_TEMPFILES\loose_files\time-weather_storm_night_darker.zip,1
+FileInstall, Required_files_and_scripts\scripts\background_music.exe, %A_Temp%\@DIDMM_TEMPFILES\scripts\background_music.exe,1
+FileInstall, Required_files_and_scripts\scripts\play_scream_sound_then_quit.exe, %A_Temp%\@DIDMM_TEMPFILES\scripts\play_scream_sound_then_quit.exe,1
+FileInstall, Required_files_and_scripts\game.ini, %A_Temp%\@DIDMM_TEMPFILES\loose_files\game.ini , 1
+FileInstall, Required_files_and_scripts\menumain_pc.xui_version, %A_Temp%\@DIDMM_TEMPFILES\loose_files\menumain_pc.xui , 1
+;FileInstall, Required_files_and_scripts\vessel_data.scr.oneshot_zombie, %A_Temp%\@DIDMM_TEMPFILES\loose_files\vessel_data.scr.oneshot_zombie , 1 ;unused?
+FileInstall, Required_files_and_scripts\ai_norm.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\ai_norm.zip,1
+FileInstall, Required_files_and_scripts\ai_hard.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\ai_hard.zip,1
+FileInstall, Required_files_and_scripts\ai_Headshot.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\ai_Headshot.zip,1
+FileInstall, Required_files_and_scripts\ai_Onehit.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\ai_Onehit.zip,1
+FileInstall, Required_files_and_scripts\PRESETS_LARGE_ZOMSIZE.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\PRESETS_LARGE_ZOMSIZE.zip,1
+FileInstall, Required_files_and_scripts\PRESETS_MIDGET_ZOMSIZE.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\PRESETS_MIDGET_ZOMSIZE.zip,1
+FileInstall, Required_files_and_scripts\PRESETS_NORM_ZOMSIZE.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\PRESETS_NORM_ZOMSIZE.zip,1
+FileInstall, Required_files_and_scripts\PRESETS_SUPASIZE_ZOMSIZE.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\PRESETS_SUPASIZE_ZOMSIZE.zip,1
+FileInstall, Required_files_and_scripts\PRESETS_XTRASMOL_ZOMSIZE.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\PRESETS_XTRASMOL_ZOMSIZE.zip,1
+FileInstall, Required_files_and_scripts\Force_bloater_spawn.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_bloater_spawn.zip,1
+FileInstall, Required_files_and_scripts\force_butcher_spawn.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\force_butcher_spawn.zip,1
+FileInstall, Required_files_and_scripts\Force_thug_spawn.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_thug_spawn.zip,1
+FileInstall, Required_files_and_scripts\Force_suicide_spawn.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_suicide_spawn.zip,1
+FileInstall, Required_files_and_scripts\Force_ram_spawn.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_ram_spawn.zip,1
+FileInstall, Required_files_and_scripts\Force_bandits_spawn_with_guns.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_bandits_spawn_with_guns.zip,1
+FileInstall, Required_files_and_scripts\Force_bandits_spawn_with_no_guns.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_bandits_spawn_with_no_guns.zip,1
+FileInstall, Required_files_and_scripts\Default_spawns.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Default_spawns.zip,1
+FileInstall, Required_files_and_scripts\gameaudioeffects.scr.modded, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.modded , 1
+FileInstall, Required_files_and_scripts\gameaudioeffects.scr.nomod, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , 1
+FileInstall, UI\DIDMM_main.png, %A_Temp%\@DIDMM_TEMPFILES\DIDMM_main.png , 1
+FileInstall, Data0.pak, %A_Temp%\@DIDMM_TEMPFILES\Data0.zip,1
+FileInstall, Required_files_and_scripts\sounds\menu_click.wav, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_click.wav,1
+FileInstall, Required_files_and_scripts\sounds\DI_music.wav, %A_Temp%\@DIDMM_TEMPFILES\sounds\DI_music.wav,1
+FileInstall, Required_files_and_scripts\sounds\menu_highlight.wav, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_highlight.wav,1
+FileInstall, Required_files_and_scripts\sounds\scream_final.wav, %A_Temp%\@DIDMM_TEMPFILES\sounds\scream_final.wav,1
+FileInstall, Required_files_and_scripts\sounds\napalm.wav, %A_Temp%\@DIDMM_TEMPFILES\sounds\napalm.wav,1
+FileInstall, Required_files_and_scripts\Time-weather_vanilla.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Time-weather_vanilla.zip,1
+FileInstall, Required_files_and_scripts\time-weather_Just_night.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_Just_night.zip,1
+FileInstall, Required_files_and_scripts\time-weather_Just_night_darker.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_Just_night_darker.zip,1
+FileInstall, Required_files_and_scripts\time-weather_Rain_night.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_Rain_night.zip,1
+FileInstall, Required_files_and_scripts\time-weather_Rain_day.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_Rain_day.zip,1
+FileInstall, Required_files_and_scripts\time-weather_Rain_night_darker.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_Rain_night_darker.zip,1
+FileInstall, Required_files_and_scripts\time-weather_storm_day.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_day.zip,1
+FileInstall, Required_files_and_scripts\time-weather_storm_night.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_night.zip,1
+FileInstall, Required_files_and_scripts\time-weather_storm_night_darker.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_night_darker.zip,1
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Run, %A_Temp%\@DIDMM_TEMPFILES\scripts\play_scream_sound_then_quit.exe,,,
+INV_GEN=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\inventory_gen.scr
+INV_spec=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\inventory_special.scr
+INV_patch=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\inventory_patch.scr
+DLC_shop=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\dlc\shopsdlc1.scr
+Def_lev=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\skills\default_levels.xml
+INTRO_MOV=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\menu\movies\intromovies.scr
+sunglow_scd=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_glow.scd
+sunglow_scr=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_glow.scr
+def_loot=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\default.loot
+Logan_skills=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\skills\logan_skills.xml
+Purna_skills=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\skills\purna_skills.xml
+Samb_skills=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\skills\samb_skills.xml
+Xian_skills=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\skills\xian_skills.xml
+John_skills=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\skills\john_skills.xml
+cardi_phx=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\odephysics\vehicle\cardi.phx
+truckdi_phx=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\odephysics\vehicle\truckdi.phx
+oldboat_phx=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\odephysics\vehicle\old_boat_a.phx
+inv_scr=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\inventory.scr
+var_amb_scd=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+var_amb_scr=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+var_weather=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+playerdi_pre=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\playerdi.pre
+aispawnbox_pre_def=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 
-
-
-
-Run, %A_Temp%\@DIUE_TEMPFILES\scripts\play_scream_sound_then_quit.exe,,,
-INV_GEN=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\inventory_gen.scr
-INV_spec=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\inventory_special.scr
-INV_patch=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\inventory_patch.scr
-DLC_shop=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\dlc\shopsdlc1.scr
-Def_lev=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\skills\default_levels.xml
-INTRO_MOV=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\menu\movies\intromovies.scr
-sunglow_scd=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_glow.scd
-sunglow_scr=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_glow.scr
-def_loot=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\default.loot
-Logan_skills=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\skills\logan_skills.xml
-Purna_skills=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\skills\purna_skills.xml
-Samb_skills=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\skills\samb_skills.xml
-Xian_skills=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\skills\xian_skills.xml
-John_skills=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\skills\john_skills.xml
-cardi_phx=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\odephysics\vehicle\cardi.phx
-truckdi_phx=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\odephysics\vehicle\truckdi.phx
-oldboat_phx=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\odephysics\vehicle\old_boat_a.phx
-inv_scr=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\inventory.scr
-var_amb_scd=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-var_amb_scr=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-var_weather=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-playerdi_pre=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\playerdi.pre
-aispawnbox_pre_def=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
-
-AI_Zombie_vessel=!%A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data.scr
+AI_Zombie_vessel=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data.scr
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -231,10 +230,10 @@ GetClientSize(hwnd, ByRef w, ByRef h)
 }
 
 play_click_sound_func(){
-SoundPlay, %A_Temp%\@DIUE_TEMPFILES\sounds\menu_click.wav
+SoundPlay, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_click.wav
 }
 play_final_sound_func(){
-SoundPlay, %A_Temp%\@DIUE_TEMPFILES\sounds\napalm.wav
+SoundPlay, %A_Temp%\@DIDMM_TEMPFILES\sounds\napalm.wav
 }
 DisableCloseButton(hWnd) {
 hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE)
@@ -319,7 +318,7 @@ GuiControl,Enabled,better_durability_var
 ;GUIv
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S11 BOLD Cblack , Segoe ui
-Gui, Add, Picture, x2 y-1 w1000 h570 , %A_Temp%\@DIUE_TEMPFILES\DIDMM_main.png
+Gui, Add, Picture, x2 y-1 w1000 h570 , %A_Temp%\@DIDMM_TEMPFILES\DIDMM_main.png
 
 Gui, Add, Button, x602 y230 w120 h30 hWndhButton2 vselect_folder_button gselectfolder_button, SELECT FOLDER
 GuiControlGet, SF_HWND, Hwnd, select_folder_button
@@ -523,7 +522,7 @@ play_click_sound_func()
 ;FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
 FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
 SetWorkingDir, %Deadisland_dir%
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\data ;don't really need this I don't think so but it doesn't seem to hurt things.
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\data ;don't really need this I don't think so but it doesn't seem to hurt things.
 if FileExist("DeadIslandGame.exe")
 {	;MsgBox, success! DeadIslandGame.exe found :)
 	Goto, look_for_DIDE_folder
@@ -556,7 +555,7 @@ check_for_enginex64:
 if FileExist("engine_x64_rwdi.dll")
 {	;SplashTextOff
 	;MsgBox, success! engine_x64_rwdi.dll found
-	Goto, ALL_PASS_CONFIRMED_DIRDE_DIR
+	Goto, ALL_PASS_CONFIRMED_DIDE_DIR
 	}
 else
 	;SplashTextOff
@@ -565,7 +564,7 @@ else
 	MsgBox, 8240,CAN'NOT CONFIRM INSTALLATION DIRECTORY, This mod will not work for OG DeadIsland please select DIRDE
 	return
 
-	ALL_PASS_CONFIRMED_DIRDE_DIR:
+	ALL_PASS_CONFIRMED_DIDE_DIR:
 	MsgBox ,4160,Installation directory confirmed :), success!-- DeadIslandGame.exe found `nsuccess!-- DI folder found `nsuccess!-- engine_x64_rwdi.dll found
 	Goto, AFTER_DIR_CONFIRMED
 	return
@@ -588,7 +587,7 @@ SETUP_TEMPORARY_ENVIRONMENT:
 SetWorkingDir %Deadisland_dir%/DIR ;I feel better with this here ;I was going to remove this but tbh I do feel safer leaving this here.. I mean what is it hurting...
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 SplashTextOn, 700,105,UN-PACKING PROGRAM,Please wait... `nUNzipping Data0.pak`nNOTE: This could take up to 3 minutes, If you have a slow hard drive this might take longer.`n if you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES ;Yup, I know....
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES ;Yup, I know....
 		SmartZip("Data0.zip", "EXTRACTED_DATA0")   ; Unpack
 		Goto, check__temp_copy
 check__temp_copy:
@@ -600,12 +599,12 @@ else
 return
 yes_data0_in_temp:
 	SetWorkingDir %Deadisland_dir%/DIR ;again.. imma set it back... just to be safe...ya know?, right?
-;RunWait, %A_Temp%\@DIUE_TEMPFILES\Data0_unzipper.exse,,Hide, Runwait_Unzip_OutputVar ;depreciated
+;RunWait, %A_Temp%\@DIDMM_TEMPFILES\Data0_unzipper.exse,,Hide, Runwait_Unzip_OutputVar ;depreciated
 SplashTextOff
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\game.ini
-FileCopy, %A_Temp%\@DIUE_TEMPFILES\loose_files\game.ini, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\game.ini
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\menu\scr\menumain_pc.xui
-FileCopy, %A_Temp%\@DIUE_TEMPFILES\loose_files\menumain_pc.xui, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\menu\scr\menumain_pc.xui
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\game.ini
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\game.ini, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\game.ini
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\menu\scr\menumain_pc.xui
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\menumain_pc.xui, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\menu\scr\menumain_pc.xui
 ;TF_ReplaceLine(gameini,"10",10,"GameName(""Dead Island - Definitive Edition, modded by FireEyeEian"");")
 ;TF_ReplaceInLines(gameini,"15","","//","") ;encoding issue, probably can be solved through some tf.ahk thing but whatever, instead copy pre-made file to datapak
 ;TF_ReplaceInLines(gameini,"15","","0","1")
@@ -629,7 +628,7 @@ goto, playmusic_no
     Goto, playmusic_yes
 return
 playmusic_yes:
-Run, %A_Temp%\@DIUE_TEMPFILES\scripts\background_music.exe
+Run, %A_Temp%\@DIDMM_TEMPFILES\scripts\background_music.exe
 return
 
 playmusic_no:
@@ -714,11 +713,11 @@ submit_Vanilla_weather:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Weather set to vanilla (default),
@@ -730,11 +729,11 @@ submit_just_night_weather:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Just_night.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Spawn overide set to ""Butchers""`n(May god have mercy on you) `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -746,11 +745,11 @@ submit_Rain_day_weather:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Rain_day.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Spawn overide set to ""Rammers"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -762,11 +761,11 @@ submit_Rain_night_weather:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Rain_night.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Spawn overide set to ""Bloaters"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -778,11 +777,11 @@ submit_Storm_day_weather:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_storm_day.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -794,11 +793,11 @@ submit_Storm_night_weather:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_storm_night.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Spawn overide set to ""Thugs"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -810,11 +809,11 @@ submit_Just_night_Darker_weather:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Just_night_darker.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Spawn overide set to ""Suiciders""`nNote: They really like to explode...`nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -826,11 +825,11 @@ submit_Rain_darker_weather:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Rain_night_darker.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Zombies spawns set to Normal (default),
@@ -842,11 +841,11 @@ submit_storm_Darker_weather:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_storm_night_darker.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Zombies spawns set to Normal (default),
@@ -881,8 +880,8 @@ submit_norm_zom_spawn:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Default_spawns.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies spawns set to Normal (default),
@@ -894,8 +893,8 @@ submit_Butcher_zom_spawn:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\force_butcher_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Butchers""`n(May god have mercy on you) `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -907,8 +906,8 @@ submit_Ram_zom_spawn:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_ram_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Rammers"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -920,8 +919,8 @@ submit_Bloater_zom_spawn:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bloater_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bloaters"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -933,8 +932,8 @@ submit_bandit_zom_spawn:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bandits_spawn_with_guns.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -946,8 +945,8 @@ submit_bandit_no_guns_zom_spawn:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bandits_spawn_with_no_guns.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -959,8 +958,8 @@ submit_Thug_zom_spawn:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_thug_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Thugs"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -972,8 +971,8 @@ submit_suicide_zom_spawn:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_suicide_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Suiciders""`nNote: They really like to explode...`nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
@@ -999,8 +998,8 @@ submit_norm_zom:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileRemoveDir, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\ai_norm.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Normal (default),
@@ -1012,8 +1011,8 @@ submit_1hit_zom:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileRemoveDir, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\ai_Onehit.zip", "EXTRACTED_DATA0\data")
 ;TF_ReplaceLine(AI_Zombie_vessel,"854",854,"ParamBool(""one_shot"", 1) //default value: 0 modified by FireEyeEian--")
 SplashTextOff
@@ -1026,8 +1025,8 @@ submit_hard_zom:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileRemoveDir, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\ai_hard.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Hard (30`% increase to health,Damage,and stamina multiplier also 60`% decrease to damage influences),
@@ -1039,8 +1038,8 @@ submit_headshot_zom:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileRemoveDir, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\ai_Headshot.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Headshot only mode,
@@ -1066,11 +1065,11 @@ submit_NORMSIZEZOM:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\PRESETS_NORM_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to Normal (default),
@@ -1081,11 +1080,11 @@ submit_extrasmallzom:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\PRESETS_XTRASMOL_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to extra small,
@@ -1096,11 +1095,11 @@ submit_MIDGETZOM:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\PRESETS_MIDGET_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to midget,
@@ -1111,11 +1110,11 @@ submit_LARGESIZEZOM:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\PRESETS_LARGE_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to large,
@@ -1126,11 +1125,11 @@ submit_SUPASIZEZOM:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai_pre.def
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai.pre
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.def
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\PRESETS_SUPASIZE_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to Supersize,
@@ -1425,16 +1424,16 @@ GOTO, write_mods_to_file
 return
 
 write_mods_to_file:
-FileCreateDir, %A_Temp%\@DIUE_TEMPFILES\compiled_mod
+FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\compiled_mod
 SplashTextOn, 700,105,UN-PACKING PROGRAM,Please wait... `nUNzipping Data0.pak`nNOTE: This could take up to 3 minutes, If you have a slow hard drive this might take longer.`n if you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
  WinSet, AlwaysOnTop, Off, UN-PACKING PROGRAM
-SetWorkingDir %A_Temp%\@DIUE_TEMPFILES
-;RunWait, %A_Temp%\@DIUE_TEMPFILES\FileZipUp.exe,,Hide, Runwait_zip_OutputVar ;depreciated
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+;RunWait, %A_Temp%\@DIDMM_TEMPFILES\FileZipUp.exe,,Hide, Runwait_zip_OutputVar ;depreciated
 SmartZip("EXTRACTED_DATA0\data", "compiled_mod\Data0.zip")
 Sleep, 300 ;whynot.jpg
-FileCopy, %A_Temp%\@DIUE_TEMPFILES\compiled_mod\Data0.zip, %Deadisland_dir%\DIR\Data0.pak ,1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\compiled_mod\Data0.zip, %Deadisland_dir%\DIR\Data0.pak ,1
 Sleep, 200
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\compiled_mod\Data0.zip
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\compiled_mod\Data0.zip
 play_click_sound_func()
 SplashTextOff
 play_final_sound_func()
@@ -2039,8 +2038,8 @@ Remove_reverb_sound_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr
-FileCopy, %A_Temp%\@DIUE_TEMPFILES\loose_files\gameaudioeffects.scr.modded , %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr,1
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.modded , %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr,1
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 MsgBox,4160,Reverb?,➤Reverb disabled.
@@ -2051,8 +2050,8 @@ Remove_reverb_sound_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-FileDelete, %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr
-FileCopy, %A_Temp%\@DIUE_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , %A_Temp%\@DIUE_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr,1
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr,1
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 MsgBox,4160,Reverb?,➤Reverb enabled.

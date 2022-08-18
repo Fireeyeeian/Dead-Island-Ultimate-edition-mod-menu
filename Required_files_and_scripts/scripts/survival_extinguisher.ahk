@@ -83,7 +83,7 @@ return
 Process, close,Background_music.exe
 ;MsgBox, Application closed(`#2)
 cleanup()
-if (FileExist("%A_Temp%\@DIUE_TEMPFILES\")) {
+if (FileExist("%A_Temp%\@DIDMM_TEMPFILES\")) {
 	failed_1()
 	}
 else{
@@ -93,7 +93,7 @@ else{
 failed_1(){
 	msgbox failed to delete temp files press (ok) to try again.
 	cleanup()
-	if (FileExist("%A_Temp%\@DIUE_TEMPFILES\")) {
+	if (FileExist("%A_Temp%\@DIDMM_TEMPFILES\")) {
 		failed_2()
 	}			
 	else{
@@ -107,7 +107,7 @@ cleanup(){
 	SplashTextOn,400,30,Deleting Tempory files,Deleting Tempory files...
 	Process, close,Background_music.exe
 	Process, close,play_scream_sound_then_quit.exe ;shouldn't be running but whatever
-	FileRemoveDir,%A_Temp%\@DIUE_TEMPFILES\,1
+	FileRemoveDir,%A_Temp%\@DIDMM_TEMPFILES\,1
 	SplashTextOff
 }
 
@@ -117,7 +117,7 @@ allgood(){
 }
 
 failed_2(){
-	MsgBox, failed to delete tempfiles? `n`nshit brok??`n`n(maybe try manually deleting @DIUE_TEMPFILES folder in temp folder located in C:\Users\{username}\AppData\Local\Temp)
+	MsgBox, failed to delete tempfiles? `n`nshit brok??`n`n(maybe try manually deleting @DIDMM_TEMPFILES folder in temp folder located in C:\Users\{username}\AppData\Local\Temp)
 	Self_destruct_on_reboot()
 }
 
