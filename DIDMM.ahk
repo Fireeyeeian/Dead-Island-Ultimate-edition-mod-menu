@@ -398,10 +398,6 @@ Gui, Add, CheckBox, x405 y454 w190 h30 vbetter_wep_upgrades_var gbetter_wep_upgr
 GuiControlGet, WEP_UPGRADES_HWND, Hwnd, better_wep_upgrades_var
 AddTooltip(WEP_UPGRADES_HWND,"Adds more functionality to the (firearms) weapon upgrade system.`nFirearms stats such as:`n•Reload speed`n•How fast it will fire`n•Recoil impulse`nWill get better with every upgrade you apply to the firearm.`n`nPLEASE NOTE: ONLY THE AUTOMATIC RELOAD SPEED IS AFFECTED (this is due to how dead island handles weapons generation its kinda out of my hands.`nJust know that the reload speed will be default if you hit the reload key manually) ")
 
-;Gui, Add, CheckBox, x600 y524 w190 h30 vNightTime_var gnightTIME ,Night-time paradise
-;GuiControlGet, NIGHT_HWND, Hwnd, NightTime_var
-;AddTooltip(NIGHT_HWND,"Originally part of my ""Night-time paradise"" mod`n•Sets game time to night`nPLEASE NOTE: As of now I have been unsuccessful in making the flashlight infinite as well as being able to make the truck headlights work`nAlso night time can be extremely dark in jungle/laboratories areas")
-
 Gui, Font, S8 BOLD Cblack , Segoe ui
 
 Gui, Add, CheckBox, x405 y489 w190 h30 vRemove_reverb_sound_var gremovereverb,Remove the weird reverb/echo sound (You know the one)
@@ -519,8 +515,8 @@ return
 ;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK
 selectfolder_button:
 play_click_sound_func()
-;FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
-FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
+FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
+;FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
 SetWorkingDir, %Deadisland_dir%
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\data ;don't really need this I don't think so but it doesn't seem to hurt things.
 if FileExist("DeadIslandGame.exe")
@@ -633,47 +629,6 @@ return
 
 playmusic_no:
 Process, close,background_music.exe
-return
-
-nightTIME:
-play_click_sound_func()
-gui,Submit,nohide
-GuiControlGet,NightTime_var
-IfEqual, NightTime_var, 1
-goto, NightTime_var_yes
-IfEqual,NightTime_var,0
-goto, NightTime_var_no
-return
-NightTime_var_yes:
-DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(var_weather,"11",11," float time = TIME * 0.0; //Modified_by_FireEyeEian")
-TF_ReplaceLine(var_weather,"12",12," Set(""f_game_time"", (time - floor(time)) * 1.0); // time format hh.mmss h <00.0-23.0>, m <0.00-0.99>, s<0.0000-0.0099> //Modified_by_FireEyeEian")
-;TF_ReplaceLine(var_amb_scd,"11",11,"VarFloat(""f_pp_lighting_indirect_factor"", 1.0)")
-;TF_ReplaceLine(var_amb_scd,"11",11,"VarFloat(""f_pp_lighting_indirect_on"", 1.0)")
-;TF_ReplaceLine(var_amb_scr,"4",4,"VarFloat(""f_lighting_indirect_factor"", 0.45)")
-TF_ReplaceLine(var_amb_scr,"5",5,"VarFloat(""f_engine_envprobe_factor"", 0.0099)")
-SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-MsgBox,4160,Night time?,➤Night time ENABLED`n`n    PLEASE NOTE:`n`n1)--As of now I have been unsuccessful in making the flashlight infinite/have a longer life as well as being able to make the truck headlights work like they did in the now very out dated og mods`n`n    2)--I recommend playing around with your gamma until you find a nice balance of dark and being able to see`n`n    3)--It can be especially dark in the jungle/laboratory areas as I can't seem to figure out how the other .PAKs loads the maps time/weather files (_light.scr files). This means I can only make changes that effect all maps/areas and not on a per map basis.`n`n **If anyone can help with these issues please let me know by contacting me through my profile on nexus mods or by leaving a post on the mod page.
-Enable_BUTTONS_Function()
-return
-
-NightTime_var_no:
-DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(var_weather,"11",11," //float time = TIME * 0.0; //Modified_by_FireEyeEian //this_is_the_default_value")
-TF_ReplaceLine(var_weather,"12",12," //Set(""f_game_time"", (time - floor(time)) * 24.0); // time format hh.mmss h <00.0-23.0>, m <0.00-0.99>, s<0.0000-0.0099> //Modified_by_FireEyeEian //this_is_the_default_value")
-;TF_ReplaceLine(var_amb_scd,"11",11,"VarFloat(""f_pp_lighting_indirect_factor"", 1.0)")
-;TF_ReplaceLine(var_amb_scd,"11",11,"VarFloat(""f_pp_lighting_indirect_on"", 1.0)")
-;TF_ReplaceLine(var_amb_scr,"4",4,"VarFloat(""f_lighting_indirect_factor"", 0.45)")
-TF_ReplaceLine(var_amb_scr,"5",5,"VarFloat(""f_engine_envprobe_factor"", 1.0) //Modified_by_FireEyeEian //this_is_the_default_value")
-SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-MsgBox,4160,Night time?,➤Night time DISABLED
-Enable_BUTTONS_Function()
 return
 
 
