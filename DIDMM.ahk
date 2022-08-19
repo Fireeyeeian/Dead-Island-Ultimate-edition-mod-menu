@@ -1312,8 +1312,8 @@ goto, reduce_stamina_no
 reduce_stamina_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"214",214,"	<prop n=""MoveSprintStaminaConsumption"" v=""0.03""/>	<!--  Modified by FireEyeEian-->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"199",199,"	<prop n=""MoveSprintStaminaConsumption"" v=""0.03""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Stamina option,➤Sprint stamina cost set to reduced (0.03)
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
@@ -1322,8 +1322,8 @@ return
 reduce_stamina_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"214",214,"	<prop n=""MoveSprintStaminaConsumption"" v=""0.05""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"199",199,"	<prop n=""MoveSprintStaminaConsumption"" v=""0.05""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Stamina option,➤Sprint stamina cost set to default (0.05),
 Enable_BUTTONS_Function()
@@ -1409,8 +1409,8 @@ return
 Bullet_pen_var_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"49",49,"    <prop n=""BulletPenetrationChance"" v=""0.98""/> <!-- Modified_by_FireEyeEian -->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"48",48,"    <prop n=""BulletPenetrationChance"" v=""0.98""/> <!-- Modified_by_FireEyeEian -->")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 MsgBox,4160,Bullet penetration?,➤Bullet penetration enabled`n(98`% chance)
@@ -1419,8 +1419,8 @@ return
 Bullet_pen_var_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"49",49,"    <prop n=""BulletPenetrationChance"" v=""0.""/> <!-- this_is_the_default_value (yeah i know)-->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"48",48,"    <prop n=""BulletPenetrationChance"" v=""0.""/> <!-- this_is_the_default_value -->")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 MsgBox,4160,Bullet penetration?,➤Bullet penetration disabled
@@ -2349,20 +2349,17 @@ DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;logan
-TF_ReplaceLine(logan_skills,"170",170,"        <skill id=""DeeperPockets"" cat=""Tree3"" skill_id=""152"" max_level=""3"" tier=""1"" desc_params=""6;12;18"">")
-TF_ReplaceLine(logan_skills,"172",172,"            <effect id=""InventorySize"" change=""6""/>")
+TF_ReplaceLine(logan_skills,"165",165,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""1"" desc_params=""6;12;18"">")
+TF_ReplaceLine(logan_skills,"167",167,"            <effect id=""InventorySize"" change=""6""/>")
 ;purna
-TF_ReplaceLine(purna_skills,"174",174,"        <skill id=""DeeperPockets"" cat=""Tree3"" skill_id=""68"" max_level=""3"" tier=""1"" desc_params=""6;12;18"">")
-TF_ReplaceLine(purna_skills,"176",176,"            <effect id=""InventorySize"" change=""6""/>")
+TF_ReplaceLine(purna_skills,"170",170,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""1"" desc_params=""6;12;18"">")
+TF_ReplaceLine(purna_skills,"172",172,"            <effect id=""InventorySize"" change=""6""/>")
 ;samb
- TF_ReplaceLine(samb_skills,"166",166,"        <skill id=""DeeperPockets"" cat=""Tree3"" skill_id=""36"" max_level=""3"" tier=""2"" desc_params=""6;12;18"">")
- TF_ReplaceLine(samb_skills,"168",168,"            <effect id=""InventorySize"" change=""6""/>")
+ TF_ReplaceLine(samb_skills,"162",162,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""2"" desc_params=""6;12;18"">")
+ TF_ReplaceLine(samb_skills,"164",164,"            <effect id=""InventorySize"" change=""6""/>")
 ;xian
- TF_ReplaceLine(xian_skills,"123",123,"        <skill id=""DeeperPockets"" cat=""Tree3"" skill_id=""103"" max_level=""3"" tier=""2"" desc_params=""6;12;18"">")
- TF_ReplaceLine(xian_skills,"125",125,"            <effect id=""InventorySize"" change=""6""/>")
- ;John
- TF_ReplaceLine(John_skills,"146",146,"        <skill id=""DeeperPockets"" cat=""Tree3"" skill_id=""235"" max_level=""3"" tier=""1"" desc_params=""6;12;18"">")
- TF_ReplaceLine(John_skills,"148",148,"            <effect id=""InventorySize"" change=""6""/>")
+ TF_ReplaceLine(xian_skills,"119",119,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""2"" desc_params=""6;12;18"">")
+ TF_ReplaceLine(xian_skills,"121",121,"            <effect id=""InventorySize"" change=""6""/>")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 MsgBox,4160,Even Deeper pockets,➤Even deeper pockets enabled`n  To use: Please purchase `"deeper pockets`" skill.`n`nPLEASE NOTE: If you are not starting a new play through (new character) then`n make sure you haven't got any of the ""Deeper pockets"" skills unlocked yet otherwise this is pointless to enable
@@ -2373,20 +2370,17 @@ DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;logan
-TF_ReplaceLine(logan_skills,"170",170,"        <skill id=""DeeperPockets"" cat=""Tree3"" skill_id=""152"" max_level=""3"" tier=""1"" desc_params=""2;4;6"">")
-TF_ReplaceLine(logan_skills,"172",172,"            <effect id=""InventorySize"" change=""2""/>")
+TF_ReplaceLine(logan_skills,"165",165,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""1"" desc_params=""2;4;6"">")
+TF_ReplaceLine(logan_skills,"167",167,"            <effect id=""InventorySize"" change=""2""/>")
 ;purna
-TF_ReplaceLine(purna_skills,"174",174,"        <skill id=""DeeperPockets"" cat=""Tree3"" skill_id=""68"" max_level=""3"" tier=""1"" desc_params=""2;4;6"">")
-TF_ReplaceLine(purna_skills,"176",176,"            <effect id=""InventorySize"" change=""2""/>")
+TF_ReplaceLine(purna_skills,"170",170,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""1"" desc_params=""2;4;6"">")
+TF_ReplaceLine(purna_skills,"172",172,"            <effect id=""InventorySize"" change=""2""/>")
 ;samb
- TF_ReplaceLine(samb_skills,"166",166,"        <skill id=""DeeperPockets"" cat=""Tree3"" skill_id=""36"" max_level=""3"" tier=""2"" desc_params=""2;4;6"">")
- TF_ReplaceLine(samb_skills,"168",168,"            <effect id=""InventorySize"" change=""2""/>")
+ TF_ReplaceLine(samb_skills,"162",162,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""2"" desc_params=""2;4;6"">")
+ TF_ReplaceLine(samb_skills,"164",164,"            <effect id=""InventorySize"" change=""2""/>")
 ;xian
- TF_ReplaceLine(xian_skills,"123",123,"        <skill id=""DeeperPockets"" cat=""Tree3"" skill_id=""103"" max_level=""3"" tier=""2"" desc_params=""2;4;6"">")
- TF_ReplaceLine(xian_skills,"125",125,"            <effect id=""InventorySize"" change=""2""/>")
- ;John
- TF_ReplaceLine(John_skills,"146",146,"        <skill id=""DeeperPockets"" cat=""Tree3"" skill_id=""235"" max_level=""3"" tier=""1"" desc_params=""2;4;6"">")
- TF_ReplaceLine(John_skills,"148",148,"            <effect id=""InventorySize"" change=""2""/>")
+ TF_ReplaceLine(xian_skills,"119",119,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""2"" desc_params=""2;4;6"">")
+ TF_ReplaceLine(xian_skills,"121",121,"            <effect id=""InventorySize"" change=""2""/>")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 MsgBox,4160,Even Deeper pockets,➤Even deeper pockets disabled.
@@ -3827,17 +3821,17 @@ TF_ReplaceLine(def_loot,"95",95,"		ColorWeight(Color_Blue, 33.0);  //Modified_by
 TF_ReplaceLine(def_loot,"96",96,"		ColorWeight(Color_Violet, 14.0); //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"97",97,"		ColorWeight(Color_Orange, 16.0); //Modified_by_FireEyeEian")
 ;Ram
-TF_ReplaceLine(def_loot,"110",110,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"111",111,"		ColorWeight(Color_Green, 5.0);   //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"112",112,"		ColorWeight(Color_Blue, 30.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"113",113,"		ColorWeight(Color_Violet, 50.0); //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"114",114,"		ColorWeight(Color_Orange, 15.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"111",111,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"112",112,"		ColorWeight(Color_Green, 5.0);   //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"113",113,"		ColorWeight(Color_Violet, 30.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"114",114,"		ColorWeight(Color_Yellow, 50.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"115",115,"		ColorWeight(Color_Orange, 15.0); //Modified_by_FireEyeEian")
 ;MeleeFighter
-TF_ReplaceLine(def_loot,"137",137,"		ColorWeight(Color_White, 0.0);    //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"138",138,"		ColorWeight(Color_Green, 6.0);    //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"139",139,"		ColorWeight(Color_Blue, 31.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"140",140,"		ColorWeight(Color_Violet, 52.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Orange, 11.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"138",138,"		ColorWeight(Color_White, 0.0);    //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"139",139,"		ColorWeight(Color_Green, 6.0);    //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"140",140,"		ColorWeight(Color_Violet, 31.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Yellow, 52.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 11.0);  //Modified_by_FireEyeEian")
 SplashTextOff
 MsgBox,4160,Improved loot option,➤Loot will be improved (Chests/Butchers/Rams).
 Enable_BUTTONS_Function()
@@ -3848,42 +3842,42 @@ DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;default chest
-TF_ReplaceLine(def_loot,"66",66,"		ColorWeight(Color_White, 91.0); //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"67",67,"		ColorWeight(Color_Green, 7.0);  //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"68",68,"		ColorWeight(Color_Blue, 2.0);	//this_is_the_default_value")
-TF_ReplaceLine(def_loot,"69",69,"		ColorWeight(Color_Violet, 0.0);	//this_is_the_default_value")
+TF_ReplaceLine(def_loot,"66",66,"		ColorWeight(Color_White, 92.0); //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"67",67,"		ColorWeight(Color_Green, 5.0);  //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"68",68,"		ColorWeight(Color_Violet, 2.0);	//this_is_the_default_value")
+TF_ReplaceLine(def_loot,"69",69,"		ColorWeight(Color_Yellow, 1.0);	//this_is_the_default_value")
 TF_ReplaceLine(def_loot,"70",70,"		ColorWeight(Color_Orange, 0.0);	//this_is_the_default_value")
 ;lockpick1
 TF_ReplaceLine(def_loot,"75",75,"		ColorWeight(Color_White, 0.0);  //this_is_the_default_value")
 TF_ReplaceLine(def_loot,"76",76,"		ColorWeight(Color_Green, 92.0); //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"77",77,"		ColorWeight(Color_Blue, 6.0);  //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"78",78,"		ColorWeight(Color_Violet, 1.0); //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"79",79,"		ColorWeight(Color_Orange, 0.0); //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"77",77,"		ColorWeight(Color_Violet, 5.0); //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"78",78,"		ColorWeight(Color_Yellow, 2.0); //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"79",79,"		ColorWeight(Color_Orange, 1.0); //this_is_the_default_value")
 ;lockpick2
 TF_ReplaceLine(def_loot,"84",84,"		ColorWeight(Color_White, 0.0);   //this_is_the_default_value")
 TF_ReplaceLine(def_loot,"85",85,"		ColorWeight(Color_Green, 85.0);  //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"86",86,"		ColorWeight(Color_Blue, 11.0); //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"87",87,"		ColorWeight(Color_Violet, 3.0);  //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"86",86,"		ColorWeight(Color_Violet, 10.0); //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"87",87,"		ColorWeight(Color_Yellow, 4.0);  //this_is_the_default_value")
 TF_ReplaceLine(def_loot,"88",88,"		ColorWeight(Color_Orange, 1.0);  //this_is_the_default_value")
 ;lockpick3
 TF_ReplaceLine(def_loot,"93",93,"		ColorWeight(Color_White, 0.0);   //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"94",94,"		ColorWeight(Color_Green, 72.0);  //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"95",95,"		ColorWeight(Color_Blue, 21.0); //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"96",96,"		ColorWeight(Color_Violet, 5.0);  //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"94",94,"		ColorWeight(Color_Green, 77.0);  //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"95",95,"		ColorWeight(Color_Violet, 15.0); //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"96",96,"		ColorWeight(Color_Yellow, 6.0);  //this_is_the_default_value")
 TF_ReplaceLine(def_loot,"97",97,"		ColorWeight(Color_Orange, 2.0);  //this_is_the_default_value")
 ;Ram
-TF_ReplaceLine(def_loot,"110",110,"		ColorWeight(Color_White, 0.0);   //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"111",111,"		ColorWeight(Color_Green, 10.0);  //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"112",112,"		ColorWeight(Color_Blue, 67.0);  //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"113",113,"		ColorWeight(Color_Violet, 20.0); //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"114",114,"		ColorWeight(Color_Orange, 3.0); //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"111",111,"		ColorWeight(Color_White, 0.0);   //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"112",112,"		ColorWeight(Color_Green, 10.0);  //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"113",113,"		ColorWeight(Color_Violet, 30.0); //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"114",114,"		ColorWeight(Color_Yellow, 50.0); //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"115",115,"		ColorWeight(Color_Orange, 10.0); //this_is_the_default_value")
 ;MeleeFighter
-TF_ReplaceLine(def_loot,"137",137,"		ColorWeight(Color_White, 0.0);    //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"138",138,"		ColorWeight(Color_Green, 65.0);   //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"139",139,"		ColorWeight(Color_Blue, 35.0);  //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"140",140,"		ColorWeight(Color_Violet, 0.0);  //this_is_the_default_value")
-TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Orange, 0.0);  //this_is_the_default_value")
-SplashTextOff
+TF_ReplaceLine(def_loot,"138",138,"		ColorWeight(Color_White, 0.0);    //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"139",139,"		ColorWeight(Color_Green, 10.0);   //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"140",140,"		ColorWeight(Color_Violet, 30.0);  //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Yellow, 50.0);  //this_is_the_default_value")
+TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 10.0);  //this_is_the_default_value")
+SplashTextOfff
 MsgBox,4160,Improved loot option,➤Loot will be default.
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
@@ -3944,8 +3938,8 @@ goto, reduce_jump_stamina_no
 reduce_jump_stamina_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"251",251,"	<prop n=""JumpStaminaCost"" v=""0.03""/>	<!--  Modified by FireEyeEian-->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"236",236,"	<prop n=""JumpStaminaCost"" v=""0.03""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Jump stamina option,➤Jump stamina cost set to 50`% (0.03)
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
@@ -3954,8 +3948,8 @@ return
 reduce_jump_stamina_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"251",251,"	<prop n=""JumpStaminaCost"" v=""0.06""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"236",236,"	<prop n=""JumpStaminaCost"" v=""0.06""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Jump stamina option,➤Jump stamina cost set to default (0.06),
 Enable_BUTTONS_Function()
@@ -3973,8 +3967,8 @@ goto, Run_WITH_WEP_no
 Run_WITH_WEP_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"77",77,"	<prop n=""HideWeaponsDuringSprint"" v=""0.0""/>	<!--  Modified by FireEyeEian-->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"63",63,"	<prop n=""HideWeaponsDuringSprint"" v=""0.0""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Run w/weps,➤Weapons will be shown when sprinting
 Enable_BUTTONS_Function()
@@ -3983,8 +3977,8 @@ return
 Run_WITH_WEP_no:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"77",77,"	<prop n=""HideWeaponsDuringSprint"" v=""1.0""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"63",63,"	<prop n=""HideWeaponsDuringSprint"" v=""1.0""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Run w/weps,➤Weapons will be hidden when sprinting (vanilla),
 Enable_BUTTONS_Function()
@@ -3995,36 +3989,36 @@ movment_tweaks:
 play_click_sound_func()
 gui,Submit,nohide
 GuiControlGet,better_movement_var
-IfEqual, better_movement_var, 1s
+IfEqual, better_movement_var, 1
 goto, better_movement_yes
 IfEqual,better_movement_var,0
 goto, better_movement_no
 better_movement_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;Strafing will no longer slow you down increase by 1.2 (48%)
-TF_ReplaceLine(Def_lev,"212",212,"	<prop n=""MoveStrafeMaxSpeed"" v=""3.70""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
-;instant acceleration also increases acceleration by 5.0
-TF_ReplaceLine(Def_lev,"215",215,"	<prop n=""MoveAcceleration"" v=""12.00""/>  	    <!-- Converted //Modified_by_FireEyeEian-->")
-TF_ReplaceLine(Def_lev,"216",216,"	<prop n=""MoveDeceleration"" v=""12.00""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
-;slighty faster walking (+0.20) also makes walking backwards slightly faster (+0.20)
-TF_ReplaceLine(Def_lev,"208",208,"	<prop n=""MoveForwardMaxSpeed"" v=""3.70""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
-TF_ReplaceLine(Def_lev,"210",210,"	<prop n=""MoveBackwardMaxSpeed"" v=""2.70""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"197",197,"	<prop n=""MoveStrafeMaxSpeed"" v=""3.70""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
+;instant acceleration also increases acceleration by 2.0
+TF_ReplaceLine(Def_lev,"200",200,"	<prop n=""MoveAcceleration"" v=""12.00""/>  	    <!-- Converted //Modified_by_FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"201",201,"	<prop n=""MoveDeceleration"" v=""12.00""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
+;slighty faster walking (+0.20) also makes walking backwards slighty faster (+0.20)
+TF_ReplaceLine(Def_lev,"193",193,"	<prop n=""MoveForwardMaxSpeed"" v=""3.70""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"195",195,"	<prop n=""MoveBackwardMaxSpeed"" v=""2.70""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Movement option,➤Strafing will no longer slow you down(`+1.2, 48`% increase)`n➤Acceleration increases by 5.0 (71.4`% increase) and instant acceleration`n➤Slighty faster walking `+0.20 (5.71`% increase)`n➤Slighty faster backwards `+0.20 (8`% increase),
+MsgBox,4160,Movement option,➤Strafing will no longer slow you down(`+1.2, 48`% increase)`n➤Acceleration increases by 2.0 (20`% increase) and instant acceleration`n➤Slighty faster walking `+0.20 (5.7`% increase)`n➤Slighty faster backwards `+0.20 (5.7`% increase),
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
 better_movement_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"212",212,"  <prop n=""MoveStrafeMaxSpeed"" v=""2.5""/>    <!-- Converted--> <!-- this_is_the_default_value-->")
-TF_ReplaceLine(Def_lev,"215",215,"	<prop n=""MoveAcceleration"" v=""7.0""/>  	    <!-- Converted--> <!-- this_is_the_default_value-->")
-TF_ReplaceLine(Def_lev,"216",216,"	<prop n=""MoveDeceleration"" v=""10.0""/>	    <!-- Converted--> <!-- this_is_the_default_value-->")
-TF_ReplaceLine(Def_lev,"208",208,"	<prop n=""MoveForwardMaxSpeed"" v=""3.5""/>	    <!-- Converted--> <!-- this_is_the_default_value-->")
-TF_ReplaceLine(Def_lev,"210",210,"	<prop n=""MoveBackwardMaxSpeed"" v=""2.5""/>	    <!-- Converted--> <!-- this_is_the_default_value-->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"197",197,"  <prop n=""MoveStrafeMaxSpeed"" v=""2.50""/>    <!-- Converted--> <!-- this_is_the_default_value-->")
+TF_ReplaceLine(Def_lev,"200",200,"	<prop n=""MoveAcceleration"" v=""7.00""/>  	    <!-- Converted--> <!-- this_is_the_default_value-->")
+TF_ReplaceLine(Def_lev,"201",201,"	<prop n=""MoveDeceleration"" v=""10.00""/>	    <!-- Converted--> <!-- this_is_the_default_value-->")
+TF_ReplaceLine(Def_lev,"193",193,"	<prop n=""MoveForwardMaxSpeed"" v=""3.50""/>	    <!-- Converted--> <!-- this_is_the_default_value-->")
+TF_ReplaceLine(Def_lev,"195",195,"	<prop n=""MoveBackwardMaxSpeed"" v=""2.50""/>	    <!-- Converted--> <!-- this_is_the_default_value-->")
 SplashTextOff
 MsgBox,4160,Movement option,➤Movement set to vanilla values,
 Enable_BUTTONS_Function()
