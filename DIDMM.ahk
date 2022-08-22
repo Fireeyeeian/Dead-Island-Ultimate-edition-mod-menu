@@ -376,7 +376,7 @@ AddTooltip(JUMP_STAM_HWND,"Allows you to jump more times before exhaustion")
 
 Gui, Add, CheckBox, x210 y489 w190 h30 vRun_WITH_WEP_VAR gEnableRunningwithwep,Enable running w/weapons
 GuiControlGet, SPRINT_WEP_HWND, Hwnd, Run_WITH_WEP_VAR
-AddTooltip(SPRINT_WEP_HWND,"Keeps weapons in hand visible in hand when sprinting (Does not apply to firearms)")
+AddTooltip(SPRINT_WEP_HWND,"Keeps weapons in hand visible in hand when sprinting (Firearms might be held weird when running)")
 
 Gui, Add, CheckBox, x210 y454 w190 h30 vimproved_loot_var gimproved_loot,Improved Loot
 GuiControlGet, LOOT_HWND, Hwnd, improved_loot_var
@@ -390,9 +390,9 @@ Gui, Add, CheckBox, x405 y419 w190 h30 vbetter_wep_pov_var gbetterweppov,Better 
 GuiControlGet, WEPPOV_HWND, Hwnd, better_wep_pov_var
 AddTooltip(WEPPOV_HWND,"Originally part of my ""Firearms overhaul"" mod`n•fixes blur on weapons (removes blur from sights)`n•Pushes weapons out to more realistic positions (Also improves hip-fire holding position)`n•Fixes iron sight misalignment bug")
 
-;Gui, Add, CheckBox, x405 y w190 h30 vcustom_wep_var gadd_weps, add custom weapons
-;GuiControlGet, CUST_WEP_HWND, Hwnd, custom_wep_var
-;AddTooltip(CUST_WEP_HWND,"Adds in the following weapons:`n•M72 launcher (With rigged animations)`n•M60 (with rigged animations)`n•Gives the users the option to reskin deo-bomb to look like a beach ball`n•Gives the user the option to add in explosive ammo mod for firearms (With this mod you can make the infamous Explosive crowd-pleaser)`n•Adds in a mod to craft ammo for M72 and M60`n•Also makes The Defender of the motherland & Crowd pleaser a bit more unique")
+Gui, Add, CheckBox, x210 y524 w190 h30 vcustom_wep_var gadd_weps, add custom weapons
+GuiControlGet, CUST_WEP_HWND, Hwnd, custom_wep_var
+AddTooltip(CUST_WEP_HWND,"Adds in the following weapons:`n•M72 launcher (With rigged animations)`n•M60 (with rigged animations)`n•Gives the users the option to reskin deo-bomb to look like a beach ball`n•Gives the user the option to add in explosive ammo mod for firearms (With this mod you can make the infamous Explosive crowd-pleaser)`n•Adds in a mod to craft ammo for M72 and M60`n•Also makes The Defender of the motherland & Crowd pleaser a bit more unique")
 
 Gui, Add, CheckBox, x405 y454 w190 h30 vbetter_wep_upgrades_var gbetter_wep_upgrades,better firearms upgrading
 GuiControlGet, WEP_UPGRADES_HWND, Hwnd, better_wep_upgrades_var
@@ -408,7 +408,7 @@ Gui, Font, S10 BOLD Cblack , Segoe ui
 
 Gui, Add, CheckBox, x600 y419 w190 h30 vEven_Deeper_pockets_var gdeeper_pockets,Even Deeper pockets
 GuiControlGet, DP_HWND, Hwnd, Even_Deeper_pockets_var
-AddTooltip(DP_HWND,"Buffs the Deeper pockets skill`nGives more inventory slots per upgrade of the ""Deeper pockets skill""(max 30)`nPLEASE NOTE: If you are not starting a new play through (new character) then`n make sure you haven't got any of the ""Deeper pockets"" skills unlocked yet otherwise this is pointless to enable")
+AddTooltip(DP_HWND,"Buffs the Deeper pockets skill`nGives more inventory slots per upgrade of the ""Deeper pockets skill""(max 30)`nPLEASE NOTE: If you are not starting a new play through (new character) then make sure you haven't got any of the ""Deeper pockets"" skills unlocked yet or this will not work properly")
 
 Gui, Add, CheckBox, x795 y419 w190 h30 vnoclip_truck_var gnoclip_truck,NoClip vehicles
 GuiControlGet, NOCLP_HWND, Hwnd, noclip_truck_var
@@ -580,7 +580,7 @@ goto,SETUP_TEMPORARY_ENVIRONMENT
 return
 
 SETUP_TEMPORARY_ENVIRONMENT:
-SetWorkingDir %Deadisland_dir%/DIR ;I feel better with this here ;I was going to remove this but tbh I do feel safer leaving this here.. I mean what is it hurting...
+SetWorkingDir %Deadisland_dir%/DI ;I feel better with this here ;I was going to remove this but tbh I do feel safer leaving this here.. I mean what is it hurting...
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 SplashTextOn, 700,105,UN-PACKING PROGRAM,Please wait... `nUNzipping Data0.pak`nNOTE: This could take up to 3 minutes, If you have a slow hard drive this might take longer.`n if you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES ;Yup, I know....
@@ -594,7 +594,7 @@ else
 	MsgBox,8240,ERROR?, you shouldnt be seeing this error...`nData pak failed to copy?? maybe restart application and try again. if issue persists contact developer..
 return
 yes_data0_in_temp:
-	SetWorkingDir %Deadisland_dir%/DIR ;again.. imma set it back... just to be safe...ya know?, right?
+	SetWorkingDir %Deadisland_dir%/DI ;again.. imma set it back... just to be safe...ya know?, right?
 ;RunWait, %A_Temp%\@DIDMM_TEMPFILES\Data0_unzipper.exse,,Hide, Runwait_Unzip_OutputVar ;depreciated
 SplashTextOff
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\game.ini
@@ -1118,73 +1118,73 @@ fov_set_72:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"75",75,"	<prop n=""CameraDefaultFOV"" v=""72""/>	<!--  Modified by FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""72""/>	<!--  Modified by FireEyeEian-->")
 ;shotguns_recoilfov_fix
 	;Shotgun_shortgen
-	TF_ReplaceLine(INV_GEN,"21398",21398,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21452",21452,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21484",21484,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21516",21516,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21548",21548,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"17303",17303,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17347",17347,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17377",17377,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17407",17407,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17437",17437,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_gen
-	TF_ReplaceLine(INV_GEN,"21597",21597,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21651",21651,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21680",21680,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21709",21709,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21738",21738,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"17485",17485,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17535",17535,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17564",17564,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17593",17593,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17622",17622,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_bgen
-	TF_ReplaceLine(INV_GEN,"21785",21785,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21839",21839,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21868",21868,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21897",21897,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21926",21926,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"17669",17669,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17719",17719,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17748",17748,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17777",17777,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17806",17806,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_cgen
-	TF_ReplaceLine(INV_GEN,"21973",21973,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22027",22027,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22056",22056,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22085",22085,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22114",22114,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"17853",17853,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17903",17903,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17932",17932,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17961",17961,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17990",17990,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_dGen
-	TF_ReplaceLine(INV_GEN,"22161",22161,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22215",22215,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22244",22244,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22273",22273,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22302",22302,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"18037",18037,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18087",18087,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18116",18116,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18145",18145,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18174",18174,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_EGen
-	TF_ReplaceLine(INV_GEN,"22349",22349,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22403",22403,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22432",22432,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22461",22461,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22490",22490,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"18221",18221,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18271",18271,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18300",18300,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18329",18329,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18358",18358,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_FGen
-	TF_ReplaceLine(INV_GEN,"22537",22537,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22591",22591,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22620",22620,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22649",22649,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22678",22678,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"18405",18405,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18455",18455,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18484",18484,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18513",18513,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18542",18542,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;leg_crowd_pleaser
-	TF_ReplaceLine(INV_GEN,"24890",24890,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"24943",24943,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"24974",24974,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"25005",25005,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"25036",25036,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"20684",20684,"        ShootVertRecoil(0.06);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"20730",20730,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"20761",20761,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"20792",20792,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"20823",20823,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 ;pistols-recoilfov_fix
 ;deag_hipfire_recoilfov_fix
-	TF_ReplaceLine(INV_GEN,"21183",21183,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"17095",17095,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"21238",21238,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"21275",21275,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"21312",21312,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"21349",21349,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
 ;MAG_hipfire_recoilfov_fix
-	TF_ReplaceLine(INV_GEN,"20747",20747,"        ShootVertRecoil(0.017); //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"16674",16674,"        ShootVertRecoil(0.017); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"20802",20802,"        ShootVertRecoil(0.01); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"20839",20839,"        ShootVertRecoil(0.01); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"20876",20876,"        ShootVertRecoil(0.01); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"20914",20914,"        ShootVertRecoil(0.01); //Modified_by_FireEyeEian --fov_EDIT")
 ;m9_hipfire_recoilfov_fix
-	TF_ReplaceLine(INV_GEN,"20965",20965,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"16884",16884,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 ;mcalls_hipfire_recoilfov_fix
-	TF_ReplaceLine(INV_GEN,"24673",24673,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"20474",20474,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV changed to 72 (+10)`n➤Pistol & shotgun +Recoil scaled to fov`n`nPlease note: as fov increases so does bullet spread when hip-firing.`nAlso I highly recomended enabling "Better weapon POV" as it fixes clipping and other issues when at a higher fov and in general.,
 Enable_BUTTONS_Function()
@@ -1198,76 +1198,76 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 TF_ReplaceLine(Def_lev,"75",75,"	<prop n=""CameraDefaultFOV"" v=""82""/>	<!--  Modified by FireEyeEian-->")
 ;shotguns_recoilfov_fix
 	;Shotgun_shortgen
-	TF_ReplaceLine(INV_GEN,"21398",21398,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21452",21452,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21484",21484,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21516",21516,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21548",21548,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"17303",17303,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17347",17347,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17377",17377,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17407",17407,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17437",17437,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_gen
-	TF_ReplaceLine(INV_GEN,"21597",21597,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21651",21651,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21680",21680,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21709",21709,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21738",21738,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"17485",17485,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17535",17535,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17564",17564,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17593",17593,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17622",17622,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_bgen
-	TF_ReplaceLine(INV_GEN,"21785",21785,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21839",21839,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21868",21868,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21897",21897,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"21926",21926,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"17669",17669,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17719",17719,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17748",17748,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17777",17777,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17806",17806,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_cgen
-	TF_ReplaceLine(INV_GEN,"21973",21973,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22027",22027,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22056",22056,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22085",22085,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22114",22114,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"17853",17853,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17903",17903,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17932",17932,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17961",17961,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"17990",17990,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_dGen
-	TF_ReplaceLine(INV_GEN,"22161",22161,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22215",22215,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22244",22244,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22273",22273,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22302",22302,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"18037",18037,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18087",18087,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18116",18116,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18145",18145,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18174",18174,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_EGen
-	TF_ReplaceLine(INV_GEN,"22349",22349,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22403",22403,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22432",22432,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22461",22461,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22490",22490,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"18221",18221,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18271",18271,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18300",18300,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18329",18329,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18358",18358,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;Shotgun_FGen
-	TF_ReplaceLine(INV_GEN,"22537",22537,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22591",22591,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22620",22620,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22649",22649,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"22678",22678,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"18405",18405,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18455",18455,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18484",18484,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18513",18513,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"18542",18542,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 	;leg_crowd_pleaser
-	TF_ReplaceLine(INV_GEN,"24890",24890,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"24943",24943,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"24974",24974,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"25005",25005,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
-		TF_ReplaceLine(INV_GEN,"25036",25036,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"20684",20684,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"20730",20730,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"20761",20761,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"20792",20792,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
+		TF_ReplaceLine(INV_GEN,"20823",20823,"        ShootVertRecoil(0.14);       //Modified_by_FireEyeEian --fov_EDIT")
 ;pistols-recoilfov_fix
 ;deag_hipfire_recoilfov_fix
-	TF_ReplaceLine(INV_GEN,"21183",21183,"        ShootVertRecoil(0.008); //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"17095",17095,"        ShootVertRecoil(0.008); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"21238",21238,"        ShootVertRecoil(0.03); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"21275",21275,"        ShootVertRecoil(0.03); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"21312",21312,"        ShootVertRecoil(0.03); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"21349",21349,"        ShootVertRecoil(0.03); //Modified_by_FireEyeEian --fov_EDIT")
 ;MAG_hipfire_recoilfov_fix
-	TF_ReplaceLine(INV_GEN,"20747",20747,"        ShootVertRecoil(0.010); //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"16674",16674,"        ShootVertRecoil(0.010); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"20802",20802,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"20839",20839,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"20876",20876,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"20914",20914,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
 ;m9_hipfire_recoilfov_fix
-	TF_ReplaceLine(INV_GEN,"20965",20965,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"16884",16884,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 ;mcalls_hipfire_recoilfov_fix
-	TF_ReplaceLine(INV_GEN,"24673",24673,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"20474",20474,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 ;colt_hipfire_recoilfov_fix
-	TF_ReplaceLine(INV_GEN,"20528",20528,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
+	TF_ReplaceLine(INV_GEN,"16463",16463,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV changed to 82 (+20)`n➤Pistol & shotgun Recoil scaled to fov`n`nPlease note: as fov increases so does bullet spread when hip-firing.`nAlso I highly recomended enabling "Better weapon POV" as it fixes clipping and other issues when at a higher fov and in general.,
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian")) 
 return
 
 
@@ -1373,8 +1373,8 @@ Enable_BUTTONS_Function()
     return
 mergedatapak_steam:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-FileDelete, %Deadisland_dir%/DIR/data0.pak
-SetWorkingDir %Deadisland_dir%/DIR
+FileDelete, %Deadisland_dir%/DI/data0.pak
+SetWorkingDir %Deadisland_dir%/DI
 GOTO, write_mods_to_file
 return
 
@@ -1386,7 +1386,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 ;RunWait, %A_Temp%\@DIDMM_TEMPFILES\FileZipUp.exe,,Hide, Runwait_zip_OutputVar ;depreciated
 SmartZip("EXTRACTED_DATA0\data", "compiled_mod\Data0.zip")
 Sleep, 300 ;whynot.jpg
-FileCopy, %A_Temp%\@DIDMM_TEMPFILES\compiled_mod\Data0.zip, %Deadisland_dir%\DIR\Data0.pak ,1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\compiled_mod\Data0.zip, %Deadisland_dir%\DI\Data0.pak ,1
 Sleep, 200
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\compiled_mod\Data0.zip
 play_click_sound_func()
@@ -1442,265 +1442,265 @@ DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;;;colt_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"20504",20504,"        ShotTime(1.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"20596",20596,"        ShotTime(0.94); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"20597",20597,"        ReloadTime(3.8); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"20623",20623,"        ShootVertRecoil(0.0095); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16439",16439,"        ShotTime(1.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16523",16523,"        ShotTime(0.94); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16524",16524,"        ReloadTime(3.8); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16550",16550,"        ShootVertRecoil(0.0095); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;colt_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"20633",20633,"        ShotTime(0.88); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"20634",20634,"        ReloadTime(3.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"20660",20660,"        ShootVertRecoil(0.0090); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16560",16560,"        ShotTime(0.88); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16561",16561,"        ReloadTime(3.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16587",16587,"        ShootVertRecoil(0.0090); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;colt_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"20670",20670,"        ShotTime(0.82); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"20671",20671,"        ReloadTime(3.2); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"20697",20697,"        ShootVertRecoil(0.0085); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16597",16597,"        ShotTime(0.82); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16598",16598,"        ReloadTime(3.2); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16624",16624,"        ShootVertRecoil(0.0085); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 			;;;Magnum_gen_upgrade_1		//made magnum have deagle recoil
-			TF_ReplaceLine(INV_GEN,"20812",20812,"        ShotTime(0.96); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"20813",20813,"        ReloadTime(3.8); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"20839",20839,"        ShootVertRecoil(0.048); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"16732",16732,"        ShotTime(0.96); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"16733",16733,"        ReloadTime(3.8); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"16759",16759,"        ShootVertRecoil(0.048); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 			;;;magnum_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"20849",20849,"        ShotTime(0.90); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"20850",20850,"        ReloadTime(3.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"20876",20876,"        ShootVertRecoil(0.047); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"16769",16769,"        ShotTime(0.90); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"16770",16770,"        ReloadTime(3.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"16796",16796,"        ShootVertRecoil(0.047); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 			;;;Magnum_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"20887",20887,"        ShotTime(0.82); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"20888",20888,"        ReloadTime(3.2); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"20914",20914,"        ShootVertRecoil(0.046); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"16806",16806,"        ShotTime(0.82); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"16807",16807,"        ReloadTime(3.2); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"16833",16833,"        ShootVertRecoil(0.046); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;M9_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"21031",21031,"        ShotTime(0.28); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21032",21032,"        ReloadTime(1.2); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21058",21058,"        ShootVertRecoil(0.008); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16943",16943,"        ShotTime(0.28); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16944",16944,"        ReloadTime(1.2); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16970",16970,"        ShootVertRecoil(0.008); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;m9_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"21068",21068,"        ShotTime(0.27); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21069",21069,"        ReloadTime(1.1); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21095",21095,"        ShootVertRecoil(0.007); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16980",16980,"        ShotTime(0.27); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"16981",16981,"        ReloadTime(1.1); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17007",17007,"        ShootVertRecoil(0.007); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;M9_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"21105",21105,"        ShotTime(0.26); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21106",21106,"        ReloadTime(1.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21132",21132,"        ShootVertRecoil(0.006); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17017",17017,"        ShotTime(0.26); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17018",17018,"        ReloadTime(1.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17044",17044,"        ShootVertRecoil(0.006); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 			;;;mccall_gen_upgrade_1
-			TF_ReplaceLine(INV_GEN,"24739",24739,"        ShotTime(0.28); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"24740",24740,"        ReloadTime(1.3); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"24766",24766,"        ShootVertRecoil(0.008); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"20533",20533,"        ShotTime(0.28); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"20534",20534,"        ReloadTime(1.3); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"20560",20560,"        ShootVertRecoil(0.008); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 			;;;mccall_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"24776",24776,"        ShotTime(0.27); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"24777",24777,"        ReloadTime(1.1); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"24803",24803,"        ShootVertRecoil(0.007); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"20570",20570,"        ShotTime(0.27); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"20571",20571,"        ReloadTime(1.1); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"20597",20597,"        ShootVertRecoil(0.007); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 			;;;mccall_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"24813",24813,"        ShotTime(0.26); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"24814",24814,"        ReloadTime(0.9); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"24840",24840,"        ShootVertRecoil(0.006); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"20607",20607,"        ShotTime(0.26); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"20608",20608,"        ReloadTime(0.9); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"20634",20634,"        ShootVertRecoil(0.006); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;Deag_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"21248",21248,"        ShotTime(0.38); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21249",21249,"        ReloadTime(1.2); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21275",21275,"        ShootVertRecoil(0.012); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17153",17153,"        ShotTime(0.38); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17154",17154,"        ReloadTime(1.2); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17180",17180,"        ShootVertRecoil(0.012); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;Deag_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"21285",21285,"        ShotTime(0.37); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21286",21286,"        ReloadTime(1.1); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21312",21312,"        ShootVertRecoil(0.010); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17190",17190,"        ShotTime(0.37); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17191",17191,"        ReloadTime(1.1); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17217",17217,"        ShootVertRecoil(0.010); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;Deag_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"21322",21322,"        ShotTime(0.36); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21323",21323,"        ReloadTime(1.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"21349",21349,"        ShootVertRecoil(0.008); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17227",17227,"        ShotTime(0.36); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17228",17228,"        ReloadTime(1.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17254",17254,"        ShootVertRecoil(0.008); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 			;;;Auto_gen_upgrade_1
 			;TF_ReplaceLine(INV_GEN,"18647",18647,"        ShotTime(0.09); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-			TF_ReplaceLine(INV_GEN,"22791",22791,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
-			TF_ReplaceLine(INV_GEN,"22816",22816,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"22813",22813,"        ShootMaxAngle(0.069); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"18648",18648,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			TF_ReplaceLine(INV_GEN,"18670",18670,"        ShootMaxAngle(0.069); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"18673",18673,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 			;;;Auto_gen_upgrade_2 
 			;TF_ReplaceLine(INV_GEN,"18682",18682,"        ShotTime(0.08); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")     
-			TF_ReplaceLine(INV_GEN,"22826",22826,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
-			TF_ReplaceLine(INV_GEN,"22851",22851,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"22848",22848,"        ShootMaxAngle(0.064); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"18683",18683,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			TF_ReplaceLine(INV_GEN,"18705",18705,"        ShootMaxAngle(0.064); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"18708",18708,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 			;;;Auto_gen_upgrade_3
 			;TF_ReplaceLine(INV_GEN,"18717",18717,"        ShotTime(0.07); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-			TF_ReplaceLine(INV_GEN,"22861",22861,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
-			TF_ReplaceLine(INV_GEN,"22886",22886,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"22883",22883,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"18718",18718,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			TF_ReplaceLine(INV_GEN,"18740",18740,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"18743",18743,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;Auto_gen_B_upgrade_1
 ;TF_ReplaceLine(INV_GEN,"18849",18849,"        ShotTime(0.09); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-TF_ReplaceLine(INV_GEN,"23000",23000,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
-TF_ReplaceLine(INV_GEN,"23025",23025,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"23022",23022,"        ShootMaxAngle(0.069); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"18850",18850,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+TF_ReplaceLine(INV_GEN,"18872",18872,"        ShootMaxAngle(0.069); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"18875",18875,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;Auto_gen_B_upgrade_2
 ;TF_ReplaceLine(INV_GEN,"18884",18884,"        ShotTime(0.08); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-TF_ReplaceLine(INV_GEN,"23035",23035,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
-TF_ReplaceLine(INV_GEN,"23060",23060,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"23057",23057,"        ShootMaxAngle(0.064); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+TF_ReplaceLine(INV_GEN,"18885",18885,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+TF_ReplaceLine(INV_GEN,"18907",18907,"        ShootMaxAngle(0.064); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"18910",18910,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 ;;;Auto_gen_B_upgrade_3
 ;TF_ReplaceLine(INV_GEN,"18919",18919,"        ShotTime(0.07); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-TF_ReplaceLine(INV_GEN,"23070",23070,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
-TF_ReplaceLine(INV_GEN,"23095",23095,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"23092",23092,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+TF_ReplaceLine(INV_GEN,"18920",18920,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"18945",18945,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;Auto_gen_c_upgrade_1
 			;TF_ReplaceLine(INV_GEN,"19051",19051,"        ShotTime(0.09); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"23209",23209,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
-			TF_ReplaceLine(INV_GEN,"23234",23234,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"23231",23231,"        ShootMaxAngle(0.069); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+			TF_ReplaceLine(INV_GEN,"19052",19052,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			TF_ReplaceLine(INV_GEN,"19074",19074,"        ShootMaxAngle(0.069); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")   
+			TF_ReplaceLine(INV_GEN,"19077",19077,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;Auto_gen_c_upgrade_2
 			;TF_ReplaceLine(INV_GEN,"19086",19086,"        ShotTime(0.08); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"23244",23244,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-			TF_ReplaceLine(INV_GEN,"23269",23269,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"23266",23266,"        ShootMaxAngle(0.064); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+			TF_ReplaceLine(INV_GEN,"19087",19087,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			TF_ReplaceLine(INV_GEN,"19109",19109,"        ShootMaxAngle(0.064); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+			TF_ReplaceLine(INV_GEN,"19112",19112,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;Auto_gen_c_upgrade_3
 			;TF_ReplaceLine(INV_GEN,"19121",19121,"        ShotTime(0.07); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"23279",23279,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-			TF_ReplaceLine(INV_GEN,"23304",23304,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"23301",23301,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+			TF_ReplaceLine(INV_GEN,"19122",19122,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			TF_ReplaceLine(INV_GEN,"19144",19144,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+			TF_ReplaceLine(INV_GEN,"19147",19147,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 ;;;Auto_gen_d_upgrade_1
 ;TF_ReplaceLine(INV_GEN,"19253",19253,"        ShotTime(0.09); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"23418",23418,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
-TF_ReplaceLine(INV_GEN,"23443",23443,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"23440",23440,"        ShootMaxAngle(0.069); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+TF_ReplaceLine(INV_GEN,"19254",19254,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+TF_ReplaceLine(INV_GEN,"19276",19276,"        ShootMaxAngle(0.069); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")   
+TF_ReplaceLine(INV_GEN,"19279",19279,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 ;;;Auto_gen_d_upgrade_2
 ;TF_ReplaceLine(INV_GEN,"19288",19288,"        ShotTime(0.08); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"23453",23453,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-TF_ReplaceLine(INV_GEN,"23478",23478,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"23475",23475,"        ShootMaxAngle(0.064); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+TF_ReplaceLine(INV_GEN,"19289",19289,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+TF_ReplaceLine(INV_GEN,"19311",19311,"        ShootMaxAngle(0.064); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+TF_ReplaceLine(INV_GEN,"19314",19314,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 ;;;Auto_gen_d_upgrade_3
 ;TF_ReplaceLine(INV_GEN,"19323",19323,"        ShotTime(0.07); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"23488",23488,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-TF_ReplaceLine(INV_GEN,"23513",23513,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-TF_ReplaceLine(INV_GEN,"23510",23510,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+TF_ReplaceLine(INV_GEN,"19324",19324,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+TF_ReplaceLine(INV_GEN,"19346",19346,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+TF_ReplaceLine(INV_GEN,"19349",19349,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;Auto_gen_e_upgrade_1
 			;TF_ReplaceLine(INV_GEN,"19455",19455,"        ShotTime(0.09); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"23627",23627,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
-			TF_ReplaceLine(INV_GEN,"23652",23652,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"23649",23649,"        ShootMaxAngle(0.069); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+			TF_ReplaceLine(INV_GEN,"19456",19456,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			TF_ReplaceLine(INV_GEN,"19478",19478,"        ShootMaxAngle(0.069); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")   
+			TF_ReplaceLine(INV_GEN,"19481",19481,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;Auto_gen_e_upgrade_2
 			;TF_ReplaceLine(INV_GEN,"19490",19490,"        ShotTime(0.08); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"23662",23662,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-			TF_ReplaceLine(INV_GEN,"23687",23687,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"23684",23684,"        ShootMaxAngle(0.064); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+			TF_ReplaceLine(INV_GEN,"19491",19491,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			TF_ReplaceLine(INV_GEN,"19513",19513,"        ShootMaxAngle(0.064); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+			TF_ReplaceLine(INV_GEN,"19516",19516,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;Auto_gen_e_upgrade_3
 			;TF_ReplaceLine(INV_GEN,"19525",19525,"        ShotTime(0.07); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"23697",23697,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-			TF_ReplaceLine(INV_GEN,"23722",23722,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			TF_ReplaceLine(INV_GEN,"23719",23719,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+			TF_ReplaceLine(INV_GEN,"19526",19526,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			TF_ReplaceLine(INV_GEN,"19548",19548,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+			TF_ReplaceLine(INV_GEN,"19551",19551,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 ;;;Burst_gen_upgrade_1
 ;TF_ReplaceLine(INV_GEN,"19661",19661,"        ShotTime(0.09); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"23840",23840,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
-TF_ReplaceLine(INV_GEN,"23862",23862,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+TF_ReplaceLine(INV_GEN,"19662",19662,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")   
+TF_ReplaceLine(INV_GEN,"19684",19684,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 ;;;Burst_gen_upgrade_2
 ;TF_ReplaceLine(INV_GEN,"19700",19700,"        ShotTime(0.08); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"23879",23879,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-TF_ReplaceLine(INV_GEN,"23901",23901,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+TF_ReplaceLine(INV_GEN,"19701",19701,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+TF_ReplaceLine(INV_GEN,"19723",19723,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 ;;;Burts_gen_upgrade_3
 ;TF_ReplaceLine(INV_GEN,"19739",19739,"        ShotTime(0.07); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"23918",23918,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-TF_ReplaceLine(INV_GEN,"23940",23940,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+TF_ReplaceLine(INV_GEN,"19740",19740,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+TF_ReplaceLine(INV_GEN,"19762",19762,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;Burst_gen_b_upgrade_1
 			;TF_ReplaceLine(INV_GEN,"19879",19879,"        ShotTime(0.09); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"24065",24065,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
-			TF_ReplaceLine(INV_GEN,"24087",24087,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+			TF_ReplaceLine(INV_GEN,"19880",19880,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")   
+			TF_ReplaceLine(INV_GEN,"19902",19902,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;Burst_gen_b_upgrade_2
 			;TF_ReplaceLine(INV_GEN,"19918",19918,"        ShotTime(0.08); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"24104",24104,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-			TF_ReplaceLine(INV_GEN,"24126",24126,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+			TF_ReplaceLine(INV_GEN,"19919",19919,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+			TF_ReplaceLine(INV_GEN,"19941",19941,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;Burts_gen_b_upgrade_3
 			;TF_ReplaceLine(INV_GEN,"19957",19957,"        ShotTime(0.07); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"24143",24143,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-			TF_ReplaceLine(INV_GEN,"24165",24165,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+			TF_ReplaceLine(INV_GEN,"19958",19958,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+			TF_ReplaceLine(INV_GEN,"19980",19980,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 ;;;singleshot_gen_upgrade_1
 ;TF_ReplaceLine(INV_GEN,"20097",20097,"        ShotTime(0.095); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"24290",24290,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
-TF_ReplaceLine(INV_GEN,"24312",24312,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+TF_ReplaceLine(INV_GEN,"20098",20098,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")   
+TF_ReplaceLine(INV_GEN,"20120",20120,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 ;;;singleshot_gen_upgrade_2
 ;TF_ReplaceLine(INV_GEN,"20136",20136,"        ShotTime(0.08); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"24329",24329,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-TF_ReplaceLine(INV_GEN,"24351",24351,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+TF_ReplaceLine(INV_GEN,"20137",20137,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+TF_ReplaceLine(INV_GEN,"20159",20159,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 ;;;singleshot_gen_upgrade_3
 ;TF_ReplaceLine(INV_GEN,"20175",20175,"        ShotTime(0.07); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"24368",24368,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-TF_ReplaceLine(INV_GEN,"24390",24390,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+TF_ReplaceLine(INV_GEN,"20176",20176,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+TF_ReplaceLine(INV_GEN,"20198",20198,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;singleshot_gen_b_upgrade_1
 			;TF_ReplaceLine(INV_GEN,"20097",20097,"        ShotTime(0.095); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"24515",24515,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
-			TF_ReplaceLine(INV_GEN,"24537",24537,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+			TF_ReplaceLine(INV_GEN,"20316",20316,"        ReloadTime(2.95); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")   
+			TF_ReplaceLine(INV_GEN,"20338",20338,"        ShootVertRecoil(0.035); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;singleshot_gen_b_upgrade_2
 			;TF_ReplaceLine(INV_GEN,"20136",20136,"        ShotTime(0.08); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"24554",24554,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-			TF_ReplaceLine(INV_GEN,"24576",24576,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
+			TF_ReplaceLine(INV_GEN,"20355",20355,"        ReloadTime(2.65); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+			TF_ReplaceLine(INV_GEN,"20377",20377,"        ShootVertRecoil(0.030); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES") 
 			;;;singleshot_gen_b_upgrade_3
 			;TF_ReplaceLine(INV_GEN,"20175",20175,"        ShotTime(0.07); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"24593",24593,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
-			TF_ReplaceLine(INV_GEN,"24615",24615,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"20394",20394,"        ReloadTime(2.35); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")      
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")  
+			TF_ReplaceLine(INV_GEN,"20416",20416,"        ShootVertRecoil(0.025); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;;;;Shottys
 			;;;ShortyShotgun_gen_upgrade_1
-			TF_ReplaceLine(INV_GEN,"21462",21462,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"21463",21463,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+			TF_ReplaceLine(INV_GEN,"17356",17356,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"17357",17357,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 			;;;ShortyShotgun_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"21494",21494,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"21495",21495,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
+			TF_ReplaceLine(INV_GEN,"17386",17386,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"17387",17387,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
 			;;;ShortyShotgun_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"21526",21526,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"21527",21527,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
+			TF_ReplaceLine(INV_GEN,"17416",17416,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"17417",17417,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")        
 ;;;Shotgun_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"21659",21659,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"21660",21660,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+TF_ReplaceLine(INV_GEN,"17543",17543,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+TF_ReplaceLine(INV_GEN,"17544",17544,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 ;;;Shotgun_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"21688",21688,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"21689",21689,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+TF_ReplaceLine(INV_GEN,"17572",17572,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+TF_ReplaceLine(INV_GEN,"17573",17573,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 ;;;Shotgun_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"21717",21717,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"21718",21718,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+TF_ReplaceLine(INV_GEN,"17601",17601,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+TF_ReplaceLine(INV_GEN,"17602",17602,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 			;;;Shotgun_b_gen_upgrade_1
-			TF_ReplaceLine(INV_GEN,"21847",21847,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"21848",21848,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+			TF_ReplaceLine(INV_GEN,"17727",17727,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"17728",17728,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 			;;;Shotgun_b_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"21876",21876,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"21877",21877,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+			TF_ReplaceLine(INV_GEN,"17756",17756,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"17757",17757,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 			;;;Shotgun_b_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"21905",21905,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"21906",21906,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"17785",17785,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"17786",17786,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
 ;;;Shotgun_c_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"22035",22035,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"22036",22036,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+TF_ReplaceLine(INV_GEN,"17911",17911,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+TF_ReplaceLine(INV_GEN,"17912",17912,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 ;;;Shotgun_c_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"22064",22064,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"22065",22065,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+TF_ReplaceLine(INV_GEN,"17940",17940,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+TF_ReplaceLine(INV_GEN,"17941",17941,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 ;;;Shotgun_c_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"22093",22093,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"22094",22094,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"17969",17969,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+TF_ReplaceLine(INV_GEN,"17970",17970,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 			;;;Shotgun_d_gen_upgrade_1
-			TF_ReplaceLine(INV_GEN,"22223",22223,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"22224",22224,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+			TF_ReplaceLine(INV_GEN,"18095",18095,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"18096",18096,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 			;;;Shotgun_d_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"22252",22252,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"22253",22253,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+			TF_ReplaceLine(INV_GEN,"18124",18124,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"18125",18125,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 			;;;Shotgun_d_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"22281",22281,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"22282",22282,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"18153",18153,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"18154",18154,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 ;;;Shotgun_e_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"22411",22411,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"22412",22412,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+TF_ReplaceLine(INV_GEN,"18279",18279,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+TF_ReplaceLine(INV_GEN,"18280",18280,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 ;;;Shotgun_e_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"22440",22440,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"22441",22441,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+TF_ReplaceLine(INV_GEN,"18308",18308,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+TF_ReplaceLine(INV_GEN,"18309",18309,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 ;;;Shotgun_e_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"22469",22469,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-TF_ReplaceLine(INV_GEN,"22470",22470,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+TF_ReplaceLine(INV_GEN,"18337",18337,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+TF_ReplaceLine(INV_GEN,"18338",18338,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 			;;;Shotgun_f_gen_upgrade_1
-			TF_ReplaceLine(INV_GEN,"22599",22599,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"22600",22600,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+			TF_ReplaceLine(INV_GEN,"18463",18463,"        ShotTime(1.14); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"18464",18464,"        ReloadTime(5.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 			;;;Shotgun_f_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"22628",22628,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"22629",22629,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
+			TF_ReplaceLine(INV_GEN,"18492",18492,"        ShotTime(1.13); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"18493",18493,"        ReloadTime(5.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")         
 			;;;Shotgun_f_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"22657",22657,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
-			TF_ReplaceLine(INV_GEN,"22658",22658,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
+			TF_ReplaceLine(INV_GEN,"18521",18521,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
+			TF_ReplaceLine(INV_GEN,"18522",18522,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 MsgBox,4160,betterweapupgrades?,➤Better weapon upgrades enabled`n`nPLEASE NOTE: ONLY THE AUTOMATIC RELOAD SPEED IS AFFECTED (this is due to how dead island handles weapons generation its kinda out of my hands.`nJust know that the reload speed will be default if you hit the reload key manually
@@ -1712,265 +1712,265 @@ DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;;;colt_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"20504",20504,"        ShotTime(0.6); //this_is_the_default_value")
-TF_ReplaceLine(INV_GEN,"20596",20596,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"20597",20597,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"20623",20623,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+TF_ReplaceLine(INV_GEN,"16439",16439,"        ShotTime(0.6); //this_is_the_default_value")
+TF_ReplaceLine(INV_GEN,"16523",16523,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"16524",16524,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"16550",16550,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 ;;;colt_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"20633",20633,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"20634",20634,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"20660",20660,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+TF_ReplaceLine(INV_GEN,"16560",16560,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"16561",16561,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"16587",16587,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 ;;;colt_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"20670",20670,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"20671",20671,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"20697",20697,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+TF_ReplaceLine(INV_GEN,"16597",16597,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"16598",16598,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"16624",16624,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 			;;;Magnum_gen_upgrade_1
-			TF_ReplaceLine(INV_GEN,"20812",20812,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"20813",20813,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"20839",20839,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+			TF_ReplaceLine(INV_GEN,"16732",16732,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"16733",16733,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"16759",16759,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 			;;;magnum_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"20849",20849,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"20850",20850,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"20876",20876,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+			TF_ReplaceLine(INV_GEN,"16769",16769,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"16770",16770,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"16796",16796,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 			;;;Magnum_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"20887",20887,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"20888",20888,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"20914",20914,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+			TF_ReplaceLine(INV_GEN,"16806",16806,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"16807",16807,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"16833",16833,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 ;;;M9_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"21031",21031,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21032",21032,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21058",21058,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+TF_ReplaceLine(INV_GEN,"16943",16943,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"16944",16944,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"16970",16970,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 ;;;m9_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"21068",21068,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21069",21069,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21095",21095,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+TF_ReplaceLine(INV_GEN,"16980",16980,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"16981",16981,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"17007",17007,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 ;;;M9_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"21105",21105,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21106",21106,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21132",21132,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+TF_ReplaceLine(INV_GEN,"17017",17017,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"17018",17018,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"17044",17044,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 			;;;mccall_gen_upgrade_1
-			TF_ReplaceLine(INV_GEN,"24739",24739,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"24740",24740,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"24766",24766,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+			TF_ReplaceLine(INV_GEN,"20533",20533,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"20534",20534,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"20560",20560,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 			;;;mccall_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"24776",24776,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"24777",24777,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"24803",24803,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+			TF_ReplaceLine(INV_GEN,"20570",20570,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"20571",20571,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"20597",20597,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 			;;;mccall_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"24813",24813,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"24814",24814,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-			TF_ReplaceLine(INV_GEN,"24840",24840,"        ShootVertRecoil(0.01); //this_is_the_default_value")
+			TF_ReplaceLine(INV_GEN,"20607",20607,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"20608",20608,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"20634",20634,"        ShootVertRecoil(0.01); //this_is_the_default_value")
 ;;;Deag_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"21248",21248,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21249",21249,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21275",21275,"        ShootVertRecoil(0.05); //this_is_the_default_value")
+TF_ReplaceLine(INV_GEN,"17153",17153,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"17154",17154,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"17180",17180,"        ShootVertRecoil(0.05); //this_is_the_default_value")
 ;;;Deag_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"21285",21285,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21286",21286,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21312",21312,"        ShootVertRecoil(0.05); //this_is_the_default_value")
+TF_ReplaceLine(INV_GEN,"17190",17190,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"17191",17191,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"17217",17217,"        ShootVertRecoil(0.05); //this_is_the_default_value")
 ;;;Deag_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"21322",21322,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21323",21323,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
-TF_ReplaceLine(INV_GEN,"21349",21349,"        ShootVertRecoil(0.05); //this_is_the_default_value")
+TF_ReplaceLine(INV_GEN,"17227",17227,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"17228",17228,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"17254",17254,"        ShootVertRecoil(0.05); //this_is_the_default_value")
 			;;;Auto_gen_upgrade_1
-			;TF_ReplaceLine(INV_GEN,"18647",18647,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-			TF_ReplaceLine(INV_GEN,"22791",22791,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")      
-			TF_ReplaceLine(INV_GEN,"22816",22816,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-			TF_ReplaceLine(INV_GEN,"22813",22813,"        ShootMaxAngle(0.074); //this_is_the_default_value")
+			;TF_ReplaceLine(INV_GEN,"18647",18647,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")        
+			TF_ReplaceLine(INV_GEN,"18648",18648,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"18670",18670,"        ShootMaxAngle(0.074); //this_is_the_default_value")      
+			TF_ReplaceLine(INV_GEN,"18673",18673,"        ShootVertRecoil(0.045); //this_is_the_default_value")
 			;;;Auto_gen_upgrade_2
-			;TF_ReplaceLine(INV_GEN,"18682",18682,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")     
-			TF_ReplaceLine(INV_GEN,"22826",22826,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")      
-			TF_ReplaceLine(INV_GEN,"22851",22851,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-			TF_ReplaceLine(INV_GEN,"22848",22848,"        ShootMaxAngle(0.074); //this_is_the_default_value")
+			;TF_ReplaceLine(INV_GEN,"18682",18682,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")     
+			TF_ReplaceLine(INV_GEN,"18683",18683,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"18705",18705,"        ShootMaxAngle(0.074); //this_is_the_default_value")      
+			TF_ReplaceLine(INV_GEN,"18708",18708,"        ShootVertRecoil(0.045); //this_is_the_default_value")
 			;;;Auto_gen_upgrade_3
-			;TF_ReplaceLine(INV_GEN,"18717",18717,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")       
-			TF_ReplaceLine(INV_GEN,"22861",22861,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")      
-			TF_ReplaceLine(INV_GEN,"22886",22886,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-			TF_ReplaceLine(INV_GEN,"22883",22883,"        ShootMaxAngle(0.074); //this_is_the_default_value")
+			;TF_ReplaceLine(INV_GEN,"18717",18717,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")       
+			TF_ReplaceLine(INV_GEN,"18718",18718,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"18740",18740,"        ShootMaxAngle(0.074); //this_is_the_default_value")      
+			TF_ReplaceLine(INV_GEN,"18743",18743,"        ShootVertRecoil(0.045); //this_is_the_default_value")
 ;;;Auto_gen_B_upgrade_1
-;TF_ReplaceLine(INV_GEN,"18849",18849,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-TF_ReplaceLine(INV_GEN,"23000",23000,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")     
-TF_ReplaceLine(INV_GEN,"23025",23025,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-TF_ReplaceLine(INV_GEN,"23022",23022,"        ShootMaxAngle(0.074); //this_is_the_default_value")
+;TF_ReplaceLine(INV_GEN,"18849",18849,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")        
+TF_ReplaceLine(INV_GEN,"18850",18850,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"18872",18872,"        ShootMaxAngle(0.074); //this_is_the_default_value")     
+TF_ReplaceLine(INV_GEN,"18875",18875,"        ShootVertRecoil(0.045); //this_is_the_default_value")
 ;;;Auto_gen_B_upgrade_2
-;TF_ReplaceLine(INV_GEN,"18884",18884,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-TF_ReplaceLine(INV_GEN,"23035",23035,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")      
-TF_ReplaceLine(INV_GEN,"23060",23060,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-TF_ReplaceLine(INV_GEN,"23057",23057,"        ShootMaxAngle(0.074); //this_is_the_default_value") 
+;TF_ReplaceLine(INV_GEN,"18884",18884,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")        
+TF_ReplaceLine(INV_GEN,"18885",18885,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"18907",18907,"        ShootMaxAngle(0.074); //this_is_the_default_value")      
+TF_ReplaceLine(INV_GEN,"18910",18910,"        ShootVertRecoil(0.045); //this_is_the_default_value") 
 ;;;Auto_gen_B_upgrade_3
-;TF_ReplaceLine(INV_GEN,"18919",18919,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-TF_ReplaceLine(INV_GEN,"23070",23070,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")      
-TF_ReplaceLine(INV_GEN,"23095",23095,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-TF_ReplaceLine(INV_GEN,"23092",23092,"        ShootMaxAngle(0.074); //this_is_the_default_value") 
+;TF_ReplaceLine(INV_GEN,"18919",18919,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")        
+TF_ReplaceLine(INV_GEN,"18920",18920,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.074); //this_is_the_default_value")      
+TF_ReplaceLine(INV_GEN,"18945",18945,"        ShootVertRecoil(0.045); //this_is_the_default_value") 
 			;;;Auto_gen_c_upgrade_1
-			;TF_ReplaceLine(INV_GEN,"19051",19051,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"23209",23209,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
-			TF_ReplaceLine(INV_GEN,"23234",23234,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-			TF_ReplaceLine(INV_GEN,"23231",23231,"        ShootMaxAngle(0.074); //this_is_the_default_value") 
+			;TF_ReplaceLine(INV_GEN,"19051",19051,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"19052",19052,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"19074",19074,"        ShootMaxAngle(0.074); //this_is_the_default_value")         
+			TF_ReplaceLine(INV_GEN,"19077",19077,"        ShootVertRecoil(0.045); //this_is_the_default_value") 
 			;;;Auto_gen_c_upgrade_2
-			;TF_ReplaceLine(INV_GEN,"19086",19086,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"23244",23244,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-			TF_ReplaceLine(INV_GEN,"23269",23269,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-			TF_ReplaceLine(INV_GEN,"23266",23266,"        ShootMaxAngle(0.074); //this_is_the_default_value") 
+			;TF_ReplaceLine(INV_GEN,"19086",19086,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"19087",19087,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"19109",19109,"        ShootMaxAngle(0.074); //this_is_the_default_value")        
+			TF_ReplaceLine(INV_GEN,"19112",19112,"        ShootVertRecoil(0.045); //this_is_the_default_value") 
 			;;;Auto_gen_c_upgrade_3
-			;TF_ReplaceLine(INV_GEN,"19121",19121,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"23279",23279,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-			TF_ReplaceLine(INV_GEN,"23304",23304,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-			TF_ReplaceLine(INV_GEN,"23301",23301,"        ShootMaxAngle(0.074); //this_is_the_default_value") 
+			;TF_ReplaceLine(INV_GEN,"19121",19121,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"19122",19122,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"19144",19144,"        ShootMaxAngle(0.074); //this_is_the_default_value")        
+			TF_ReplaceLine(INV_GEN,"19147",19147,"        ShootVertRecoil(0.045); //this_is_the_default_value") 
 ;;;Auto_gen_d_upgrade_1
-;TF_ReplaceLine(INV_GEN,"19253",19253,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"23418",23418,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
-TF_ReplaceLine(INV_GEN,"23443",23443,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-TF_ReplaceLine(INV_GEN,"23440",23440,"        ShootMaxAngle(0.074); //this_is_the_default_value") 
+;TF_ReplaceLine(INV_GEN,"19253",19253,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"19254",19254,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"19276",19276,"        ShootMaxAngle(0.074); //this_is_the_default_value")         
+TF_ReplaceLine(INV_GEN,"19279",19279,"        ShootVertRecoil(0.045); //this_is_the_default_value") 
 ;;;Auto_gen_d_upgrade_2
-;TF_ReplaceLine(INV_GEN,"19288",19288,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"23453",23453,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")       
-TF_ReplaceLine(INV_GEN,"23478",23478,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-TF_ReplaceLine(INV_GEN,"23475",23475,"        ShootMaxAngle(0.074); //this_is_the_default_value") 
+;TF_ReplaceLine(INV_GEN,"19288",19288,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"19289",19289,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"19311",19311,"        ShootMaxAngle(0.074); //this_is_the_default_value")       
+TF_ReplaceLine(INV_GEN,"19314",19314,"        ShootVertRecoil(0.045); //this_is_the_default_value") 
 ;;;Auto_gen_d_upgrade_3
-;TF_ReplaceLine(INV_GEN,"19323",19323,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"23488",23488,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")       
-TF_ReplaceLine(INV_GEN,"23513",23513,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-TF_ReplaceLine(INV_GEN,"23510",23510,"        ShootMaxAngle(0.074); //this_is_the_default_value") 
+;TF_ReplaceLine(INV_GEN,"19323",19323,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"19324",19324,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+TF_ReplaceLine(INV_GEN,"19346",19346,"        ShootMaxAngle(0.074); //this_is_the_default_value")       
+TF_ReplaceLine(INV_GEN,"19349",19349,"        ShootVertRecoil(0.045); //this_is_the_default_value") 
 			;;;Auto_gen_e_upgrade_1
-			;TF_ReplaceLine(INV_GEN,"19455",19455,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"23627",23627,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
-			TF_ReplaceLine(INV_GEN,"23652",23652,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-			TF_ReplaceLine(INV_GEN,"23649",23649,"        ShootMaxAngle(0.074); //this_is_the_default_value") 
+			;TF_ReplaceLine(INV_GEN,"19455",19455,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"19456",19456,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"19478",19478,"        ShootMaxAngle(0.074); //this_is_the_default_value")         
+			TF_ReplaceLine(INV_GEN,"19481",19481,"        ShootVertRecoil(0.045); //this_is_the_default_value") 
 			;;;Auto_gen_e_upgrade_2
-			;TF_ReplaceLine(INV_GEN,"19490",19490,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
-			TF_ReplaceLine(INV_GEN,"23662",23662,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-			TF_ReplaceLine(INV_GEN,"23687",23687,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-			TF_ReplaceLine(INV_GEN,"23684",23684,"        ShootMaxAngle(0.074); //this_is_the_default_value") 
+			;TF_ReplaceLine(INV_GEN,"19490",19490,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
+			TF_ReplaceLine(INV_GEN,"19491",19491,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"19513",19513,"        ShootMaxAngle(0.074); //this_is_the_default_value")        
+			TF_ReplaceLine(INV_GEN,"19516",19516,"        ShootVertRecoil(0.045); //this_is_the_default_value") 
 			;;;Auto_gen_e_upgrade_3
-			;TF_ReplaceLine(INV_GEN,"19525",19525,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"23697",23697,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-			TF_ReplaceLine(INV_GEN,"23722",23722,"        ShootVertRecoil(0.045); //this_is_the_default_value")
-			TF_ReplaceLine(INV_GEN,"23719",23719,"        ShootMaxAngle(0.074); //this_is_the_default_value") 
+			;TF_ReplaceLine(INV_GEN,"19525",19525,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"19526",19526,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			TF_ReplaceLine(INV_GEN,"19548",19548,"        ShootMaxAngle(0.074); //this_is_the_default_value")        
+			TF_ReplaceLine(INV_GEN,"19551",19551,"        ShootVertRecoil(0.045); //this_is_the_default_value") 
 ;;;Burst_gen_upgrade_1
-;TF_ReplaceLine(INV_GEN,"19661",19661,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"23840",23840,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
-TF_ReplaceLine(INV_GEN,"23862",23862,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value") 
+;TF_ReplaceLine(INV_GEN,"19661",19661,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"19662",19662,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")         
+TF_ReplaceLine(INV_GEN,"19684",19684,"        ShootVertRecoil(0.015); //this_is_the_default_value") 
 ;;;Burst_gen_upgrade_2
-;TF_ReplaceLine(INV_GEN,"19700",19700,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"23879",23879,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-TF_ReplaceLine(INV_GEN,"23901",23901,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value") 
+;TF_ReplaceLine(INV_GEN,"19700",19700,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"19701",19701,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")        
+TF_ReplaceLine(INV_GEN,"19723",19723,"        ShootVertRecoil(0.015); //this_is_the_default_value") 
 ;;;Burts_gen_upgrade_3
-;TF_ReplaceLine(INV_GEN,"19739",19739,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"23918",23918,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-TF_ReplaceLine(INV_GEN,"23940",23940,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value") 
+;TF_ReplaceLine(INV_GEN,"19739",19739,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"19740",19740,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")        
+TF_ReplaceLine(INV_GEN,"19762",19762,"        ShootVertRecoil(0.015); //this_is_the_default_value") 
 			;;;Burst_gen_b_upgrade_1
-			;TF_ReplaceLine(INV_GEN,"19879",19879,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"24065",24065,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
-			TF_ReplaceLine(INV_GEN,"24087",24087,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value") 
+			;TF_ReplaceLine(INV_GEN,"19879",19879,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"19880",19880,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")         
+			TF_ReplaceLine(INV_GEN,"19902",19902,"        ShootVertRecoil(0.015); //this_is_the_default_value") 
 			;;;Burst_gen_b_upgrade_2
-			;TF_ReplaceLine(INV_GEN,"19918",19918,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"24104",24104,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-			TF_ReplaceLine(INV_GEN,"24126",24126,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value") 
+			;TF_ReplaceLine(INV_GEN,"19918",19918,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"19919",19919,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")        
+			TF_ReplaceLine(INV_GEN,"19941",19941,"        ShootVertRecoil(0.015); //this_is_the_default_value") 
 			;;;Burts_gen_b_upgrade_3
-			;TF_ReplaceLine(INV_GEN,"19957",19957,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"24143",24143,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-			TF_ReplaceLine(INV_GEN,"24165",24165,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value") 
+			;TF_ReplaceLine(INV_GEN,"19957",19957,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"19958",19958,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")        
+			TF_ReplaceLine(INV_GEN,"19980",19980,"        ShootVertRecoil(0.015); //this_is_the_default_value") 
 ;;;singleshot_gen_upgrade_1
-;TF_ReplaceLine(INV_GEN,"20097",20097,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"24290",24290,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
-TF_ReplaceLine(INV_GEN,"24312",24312,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value") 
+;TF_ReplaceLine(INV_GEN,"20097",20097,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"20098",20098,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")         
+TF_ReplaceLine(INV_GEN,"20120",20120,"        ShootVertRecoil(0.015); //this_is_the_default_value") 
 ;;;singleshot_gen_upgrade_2
-;TF_ReplaceLine(INV_GEN,"20136",20136,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"24329",24329,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-TF_ReplaceLine(INV_GEN,"24351",24351,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value") 
+;TF_ReplaceLine(INV_GEN,"20136",20136,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"20137",20137,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")        
+TF_ReplaceLine(INV_GEN,"20159",20159,"        ShootVertRecoil(0.015); //this_is_the_default_value") 
 ;;;singleshot_gen_upgrade_3
-;TF_ReplaceLine(INV_GEN,"20175",20175,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"24368",24368,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-TF_ReplaceLine(INV_GEN,"24390",24390,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value") 
+;TF_ReplaceLine(INV_GEN,"20175",20175,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"20176",20176,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")        
+TF_ReplaceLine(INV_GEN,"20198",20198,"        ShootVertRecoil(0.015); //this_is_the_default_value") 
 			;;;singleshot_gen_b_upgrade_1
-			;TF_ReplaceLine(INV_GEN,"20097",20097,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"24515",24515,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
-			TF_ReplaceLine(INV_GEN,"24537",24537,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value") 
+			;TF_ReplaceLine(INV_GEN,"20097",20097,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"20316",20316,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")         
+			TF_ReplaceLine(INV_GEN,"20338",20338,"        ShootVertRecoil(0.015); //this_is_the_default_value") 
 			;;;singleshot_gen_b_upgrade_2
-			;TF_ReplaceLine(INV_GEN,"20136",20136,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"24554",24554,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-			TF_ReplaceLine(INV_GEN,"24576",24576,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value") 
+			;TF_ReplaceLine(INV_GEN,"20136",20136,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"20355",20355,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")        
+			TF_ReplaceLine(INV_GEN,"20377",20377,"        ShootVertRecoil(0.015); //this_is_the_default_value") 
 			;;;singleshot_gen_b_upgrade_3
-			;TF_ReplaceLine(INV_GEN,"20175",20175,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"24593",24593,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
-			TF_ReplaceLine(INV_GEN,"24615",24615,"        ShootVertRecoil(0.015); //this_is_the_default_value")
-			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")
+			;TF_ReplaceLine(INV_GEN,"20175",20175,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"20394",20394,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
+			;TF_ReplaceLine(INV_GEN,"18942",18942,"        ShootMaxAngle(0.059); //this_is_the_default_value")        
+			TF_ReplaceLine(INV_GEN,"20416",20416,"        ShootVertRecoil(0.015); //this_is_the_default_value")
 ;;;;;;Shottys
 			;;;ShortyShotgun_gen_upgrade_1
-			TF_ReplaceLine(INV_GEN,"21462",21462,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
-			TF_ReplaceLine(INV_GEN,"21463",21463,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
+			TF_ReplaceLine(INV_GEN,"17356",17356,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
+			TF_ReplaceLine(INV_GEN,"17357",17357,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")        
 			;;;ShortyShotgun_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"21494",21494,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"21495",21495,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
+			TF_ReplaceLine(INV_GEN,"17386",17386,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"17387",17387,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")        
 			;;;ShortyShotgun_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"21526",21526,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"21527",21527,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")        
+			TF_ReplaceLine(INV_GEN,"17416",17416,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"17417",17417,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")        
 ;;;Shotgun_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"21659",21659,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"21660",21660,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+TF_ReplaceLine(INV_GEN,"17543",17543,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"17544",17544,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 ;;;Shotgun_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"21688",21688,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"21689",21689,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+TF_ReplaceLine(INV_GEN,"17572",17572,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"17573",17573,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 ;;;Shotgun_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"21717",21717,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"21718",21718,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+TF_ReplaceLine(INV_GEN,"17601",17601,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"17602",17602,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 			;;;Shotgun_b_gen_upgrade_1
-			TF_ReplaceLine(INV_GEN,"21847",21847,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"21848",21848,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+			TF_ReplaceLine(INV_GEN,"17727",17727,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"17728",17728,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 			;;;Shotgun_b_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"21876",21876,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"21877",21877,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+			TF_ReplaceLine(INV_GEN,"17756",17756,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"17757",17757,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 			;;;Shotgun_b_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"21905",21905,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"21906",21906,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
+			TF_ReplaceLine(INV_GEN,"17785",17785,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"17786",17786,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
 ;;;Shotgun_c_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"22035",22035,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"22036",22036,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+TF_ReplaceLine(INV_GEN,"17911",17911,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"17912",17912,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 ;;;Shotgun_c_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"22064",22064,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"22065",22065,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+TF_ReplaceLine(INV_GEN,"17940",17940,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"17941",17941,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 ;;;Shotgun_c_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"22093",22093,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"22094",22094,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
+TF_ReplaceLine(INV_GEN,"17969",17969,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"17970",17970,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
 			;;;Shotgun_d_gen_upgrade_1
-			TF_ReplaceLine(INV_GEN,"22223",22223,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"22224",22224,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+			TF_ReplaceLine(INV_GEN,"18095",18095,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"18096",18096,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 			;;;Shotgun_d_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"22252",22252,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"22253",22253,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+			TF_ReplaceLine(INV_GEN,"18124",18124,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"18125",18125,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 			;;;Shotgun_d_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"22281",22281,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"22282",22282,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
+			TF_ReplaceLine(INV_GEN,"18153",18153,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"18154",18154,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
 ;;;Shotgun_e_gen_upgrade_1
-TF_ReplaceLine(INV_GEN,"22411",22411,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"22412",22412,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+TF_ReplaceLine(INV_GEN,"18279",18279,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"18280",18280,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 ;;;Shotgun_e_gen_upgrade_2
-TF_ReplaceLine(INV_GEN,"22440",22440,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"22441",22441,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+TF_ReplaceLine(INV_GEN,"18308",18308,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"18309",18309,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 ;;;Shotgun_e_gen_upgrade_3
-TF_ReplaceLine(INV_GEN,"22469",22469,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-TF_ReplaceLine(INV_GEN,"22470",22470,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
+TF_ReplaceLine(INV_GEN,"18337",18337,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+TF_ReplaceLine(INV_GEN,"18338",18338,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
 			;;;Shotgun_f_gen_upgrade_1
-			TF_ReplaceLine(INV_GEN,"22599",22599,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"22600",22600,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+			TF_ReplaceLine(INV_GEN,"18463",18463,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"18464",18464,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 			;;;Shotgun_f_gen_upgrade_2
-			TF_ReplaceLine(INV_GEN,"22628",22628,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"22629",22629,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")         
+			TF_ReplaceLine(INV_GEN,"18492",18492,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"18493",18493,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 			;;;Shotgun_f_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"22657",22657,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")          
-			TF_ReplaceLine(INV_GEN,"22658",22658,"        //placeholderforwepupgrades //Modified_by_FireEyeEian -----------")
+			TF_ReplaceLine(INV_GEN,"18521",18521,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(INV_GEN,"18522",18522,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 MsgBox,4160,betterweapupgrades?,➤Better weapon upgrades disabled.
@@ -2013,6 +2013,7 @@ MsgBox,4160,Reverb?,➤Reverb enabled.
 Enable_BUTTONS_Function()
 return
 
+
 add_weps:
 play_click_sound_func()
 gui,Submit,nohide
@@ -2026,7 +2027,7 @@ return
 custom_wep_var_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;Defender-----------------------------////////Defender\\\\\\\\\--------------------------------------------------------------------------------------------------
 ;better reload speed
 	;TF_ReplaceLine(INV_GEN,"20853",20853,"        ReloadTime(2.65);")
@@ -2066,12 +2067,12 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 	;TF_ReplaceLine(INV_GEN,"20790",20790,"        ShootMaxAngle(0.04);")
 	;TF_ReplaceLine(INV_GEN,"20821",20821,"        ShootMaxAngle(0.04);")
 ;M72-----------------------------////////m72\\\\\\\\\------------------------------------------------------------------------------------------
-	;TF_ReplaceLine(INV_patch,"1901",1901,"        AnimPrefix(""Anaconda"");")
-	;TF_ReplaceLine(INV_patch,"1903",1903,"        ShotTime(2.6);")
-	;TF_ReplaceLine(INV_patch,"1908",1908,"        ReloadTime(3.4);")
-	;TF_ReplaceLine(INV_patch,"1936",1936,"        AimFov(1.5);")
-	;TF_ReplaceLine(INV_patch,"1940",1940,"        Price(5000);")
-	;TF_ReplaceLine(INV_patch,"1961",1961,"        PriceMult(0.9);")
+TF_ReplaceLine(INV_patch,"1901",1901,"        AnimPrefix(""Anaconda"");")
+TF_ReplaceLine(INV_patch,"1903",1903,"        ShotTime(2.6);")
+TF_ReplaceLine(INV_patch,"1908",1908,"        ReloadTime(3.4);")
+TF_ReplaceLine(INV_patch,"1936",1936,"        AimFov(1.5);")
+TF_ReplaceLine(INV_patch,"1940",1940,"        Price(5000);")
+TF_ReplaceLine(INV_patch,"1961",1961,"        PriceMult(0.9);")
 ;m60-----------------------------////////m60\\\\\\\\\------------------------------------------------------------------------------------------
 TF_ReplaceLine(INV_patch,"1811",1811,"        AnimPrefix(""m16"");")
 TF_ReplaceLine(INV_patch,"1813",1813,"        ShotTime(0.12);")
@@ -2187,7 +2188,7 @@ IfMsgBox, yes
     Goto, Add_beachBall_bomb_cust_wep
 return
 Add_beachBall_bomb_cust_wep:
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(inv_scr,"4899",4899,"        Mesh(""beach_ball_a.msh"");")
 goto,Continue_on_cust_wep
 return
@@ -2200,7 +2201,7 @@ IfMsgBox, yes
     Goto, Continue_on_cust_wep_final
     return
 Add_Cheat_ammo_no:
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(DLC_shop,"91",91,"	//Item(""Craftplan_HE_Rounds"", )")
 goto, Continue_on_cust_wep_final
 Continue_on_cust_wep_final:
@@ -2214,7 +2215,7 @@ return
 custom_wep_var_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;Defender-----------------------------////////Defender\\\\\\\\\--------------------------------------------------------------------------------------------------
 ;better reload speed
 TF_ReplaceLine(INV_GEN,"20853",20853,"        ReloadTime(3.25);")
@@ -2277,10 +2278,10 @@ goto, more_ammo_var_and_cust_wep_no_yes
 goto, more_ammo_var_and_cust_wep_no_no
 	return
 more_ammo_var_and_cust_wep_no_yes:
-TF_ReplaceLine(Def_lev,"264",264,"	<prop n=""MaxAmmoSniper"" v=""200""/>")
+TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""200""/>")
 goto, custwepcont
 more_ammo_var_and_cust_wep_no_no:
-TF_ReplaceLine(Def_lev,"264",264,"	<prop n=""MaxAmmoSniper"" v=""15""/>")
+TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""15""/>")
 goto, custwepcont_no
 custwepcont_no:
 ;--------remove m60ammo+he-rounds+m72ammo from DLC_SHOP + re-add ------------
@@ -2307,13 +2308,30 @@ goto, more_ammo_var_no
 more_ammo_var_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"261",261,"	<prop n=""MaxAmmoPistol"" v=""200""/> <!-- Modified_by_FireEyeEian-->")
-TF_ReplaceLine(Def_lev,"262",262,"	<prop n=""MaxAmmoRifle"" v=""150""/> <!-- Modified_by_FireEyeEian-->")
-TF_ReplaceLine(Def_lev,"263",263,"	<prop n=""MaxAmmoShotgun"" v=""90""/> <!-- Modified_by_FireEyeEian-->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"246",246,"	<prop n=""MaxAmmoPistol"" v=""200""/>")
+TF_ReplaceLine(Def_lev,"247",247,"	<prop n=""MaxAmmoRifle"" v=""150""/>")
+TF_ReplaceLine(Def_lev,"248",248,"	<prop n=""MaxAmmoShotgun"" v=""90""/>")
+;checks more ammo option to see what to set m60 ammo to and fix amount of m60 ammo available to craft
+gui,Submit,nohide
+GuiControlGet,custom_wep_var
+	IfEqual, custom_wep_var, 1
+goto, is_cust_wep_enabled_yes
+	IfEqual,custom_wep_var,0
+goto, is_cust_wep_enabled_no
+	return
+is_cust_wep_enabled_yes:
+TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""400""/>")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 MsgBox,4160,more ammo,➤Hold more ammo enabled.`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90
+Enable_BUTTONS_Function()
+return        
+is_cust_wep_enabled_no:
+;TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""400""/>") ;not needed as no other weapon uses sniper ammo besides the m60 and the m60 is only enabled if custom weapons is enabled so it really doesn't matter
+SplashTextOff
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+MsgBox,4160,more ammo,➤Hold more ammo enabled.
 Enable_BUTTONS_Function()
 return        
 
@@ -2321,10 +2339,27 @@ return
 more_ammo_var_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"261",261,"	<prop n=""MaxAmmoPistol"" v=""50""/>")
-TF_ReplaceLine(Def_lev,"262",262,"	<prop n=""MaxAmmoRifle"" v=""60""/>")
-TF_ReplaceLine(Def_lev,"263",263,"	<prop n=""MaxAmmoShotgun"" v=""20""/>")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"246",246,"	<prop n=""MaxAmmoPistol"" v=""50""/>")
+TF_ReplaceLine(Def_lev,"247",247,"	<prop n=""MaxAmmoRifle"" v=""60""/>")
+TF_ReplaceLine(Def_lev,"248",248,"	<prop n=""MaxAmmoShotgun"" v=""20""/>")
+;checks more ammo option to see what to set m60 ammo to and fix amount of m60 ammo available to craft
+gui,Submit,nohide
+GuiControlGet,custom_wep_var
+	IfEqual, custom_wep_var, 1
+goto, no_is_cust_wep_enabled_yes
+	IfEqual,custom_wep_var,0
+goto, no_is_cust_wep_enabled_no
+	return ;shouldn't be needed but why not ... looks good I guess
+no_is_cust_wep_enabled_yes:
+TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""200""/>")
+SplashTextOff
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+MsgBox,4160,more ammo,➤Hold more ammo Disabled.
+Enable_BUTTONS_Function()
+return        
+no_is_cust_wep_enabled_no:
+TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""15""/>")
 SplashTextOff
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 MsgBox,4160,more ammo,➤Hold more ammo Disabled.
@@ -3877,7 +3912,7 @@ TF_ReplaceLine(def_loot,"139",139,"		ColorWeight(Color_Green, 10.0);   //this_is
 TF_ReplaceLine(def_loot,"140",140,"		ColorWeight(Color_Violet, 30.0);  //this_is_the_default_value")
 TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Yellow, 50.0);  //this_is_the_default_value")
 TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 10.0);  //this_is_the_default_value")
-SplashTextOfff
+SplashTextOff
 MsgBox,4160,Improved loot option,➤Loot will be default.
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
@@ -3895,32 +3930,26 @@ goto, noclip_truck_no
 noclip_truck_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(cardi_phx,"77",77,"    Ignore(1) //Modified_by_FireEyeEian")
 TF_ReplaceLine(cardi_phx,"91",91,"    Ignore(1) //Modified_by_FireEyeEian")
-;boat
-TF_ReplaceLine(oldboat_phx,"64",64,"    Ignore(1) //Modified_by_FireEyeEian")
-TF_ReplaceLine(oldboat_phx,"78",78,"    Ignore(1) //Modified_by_FireEyeEian")
 ;TF_ReplaceLine(truckdi_phx,"73",73,"    Ignore(1) //Modified_by_FireEyeEian")
 ;TF_ReplaceLine(truckdi_phx,"87",87,"    Ignore(1) //Modified_by_FireEyeEian")
 SplashTextOff
-MsgBox,4160,Noclip trucks,➤Noclip vehicles enabled. `nPlease note:`n This is fun and working but not tested throughout the game.
+MsgBox,4160,Noclip trucks,➤Noclip trucks enabled. `nPlease note:`n 		The armored truck will not be affected because it will fall halfway through the ground after getting out of the hotel preventing you from getting inside.`n`nAlso note that the jeep will fall through the first bridge in the jungle.. You've been warned..
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
 noclip_truck_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(cardi_phx,"77",77,"    Ignore(0) //Modified_by_FireEyeEian //default value")
-TF_ReplaceLine(cardi_phx,"91",91,"    Ignore(0) //Modified_by_FireEyeEian  //default value")
-;boat
-TF_ReplaceLine(oldboat_phx,"64",64,"    Ignore(0) //Modified_by_FireEyeEian //default value")
-TF_ReplaceLine(oldboat_phx,"78",78,"    Ignore(0) //Modified_by_FireEyeEian //default value")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(cardi_phx,"77",77,"    Ignore(0) //Modified_by_FireEyeEian")
+TF_ReplaceLine(cardi_phx,"91",91,"    Ignore(0) //Modified_by_FireEyeEian")
 ;TF_ReplaceLine(truckdi_phx,"73",73,"    Ignore(0) //Modified_by_FireEyeEian")
 ;TF_ReplaceLine(truckdi_phx,"87",87,"    Ignore(0) //Modified_by_FireEyeEian")
 SplashTextOff
-MsgBox,4160,Noclip trucks,➤Noclip vehicles disabled.
+MsgBox,4160,Noclip trucks,➤Noclip trucks disabled.
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
@@ -4038,24 +4067,24 @@ goto, better_durability_no
 better_durability_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"119",119,"    <prop n=""BluntWpnDurabilityLoss"" v=""-9.0""/>	<!--  Modified by FireEyeEian-->")
-TF_ReplaceLine(Def_lev,"128",128,"    <prop n=""CutWpnDurabilityLoss"" v=""-9.0""/>	<!--  Modified by FireEyeEian-->")
-TF_ReplaceLine(Def_lev,"138",138,"    <prop n=""RangedWpnDurabilityLoss"" v=""-9.0""/>	<!--  Modified by FireEyeEian-->")
-TF_ReplaceLine(Def_lev,"148",148,"    <prop n=""BulletWpnDurabilityLoss"" v=""-9.0""/>	<!--  Modified by FireEyeEian-->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"104",104,"    <prop n=""BluntWpnDurabilityLoss"" v=""-2.0""/>	<!--  Modified by FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"113",113,"    <prop n=""CutWpnDurabilityLoss"" v=""-2.0""/>	<!--  Modified by FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"123",123,"    <prop n=""RangedWpnDurabilityLoss"" v=""-2.0""/>	<!--  Modified by FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"133",133,"    <prop n=""BulletWpnDurabilityLoss"" v=""-2.0""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Wep durability,➤Weapons deteriorate at a slower rate`nChanged from 1.0 durability loss to -9.0,
+MsgBox,4160,Wep durability,➤Weapons deteriorate at a slower rate`nChanged from 1.0 durability loss to -6.0,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
 better_durability_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"119",119,"    <prop n=""BluntWpnDurabilityLoss"" v=""1.0""/>	")
-TF_ReplaceLine(Def_lev,"128",128,"    <prop n=""CutWpnDurabilityLoss"" v=""1.0""/>	")
-TF_ReplaceLine(Def_lev,"138",138,"    <prop n=""RangedWpnDurabilityLoss"" v=""0.1""/>	")
-TF_ReplaceLine(Def_lev,"148",148,"    <prop n=""BulletWpnDurabilityLoss"" v=""0.1""/>	")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"104",104,"    <prop n=""BluntWpnDurabilityLoss"" v=""1.0""/>	")
+TF_ReplaceLine(Def_lev,"113",113,"    <prop n=""CutWpnDurabilityLoss"" v=""1.0""/>	")
+TF_ReplaceLine(Def_lev,"123",123,"    <prop n=""RangedWpnDurabilityLoss"" v=""1.0""/>	")
+TF_ReplaceLine(Def_lev,"133",133,"    <prop n=""BulletWpnDurabilityLoss"" v=""1.0""/>	")
 SplashTextOff
 MsgBox,4160,Wep durability,➤Weapons deteriorate at vanilla rate,
 Enable_BUTTONS_Function()
@@ -4075,8 +4104,8 @@ goto, Instant_breakdoor_no
 Instant_breakdoor_yes:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"114",114,"	<prop n=""BreakDoorEffectivens"" v=""99""/>	<!--  Modified by FireEyeEian-->")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"100",100,"	<prop n=""BreakDoorEffectivens"" v=""1""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Break door,➤breaking doors set to quick/easy,
 Enable_BUTTONS_Function()
@@ -4085,8 +4114,8 @@ return
 Instant_breakdoor_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"114",114,"	<prop n=""BreakDoorEffectivens"" v=""0""/>	")
+SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"100",100,"	<prop n=""BreakDoorEffectivens"" v=""0""/>	")
 SplashTextOff
 MsgBox,4160,Break doors,➤breaking doors set to vanilla,
 Enable_BUTTONS_Function()
