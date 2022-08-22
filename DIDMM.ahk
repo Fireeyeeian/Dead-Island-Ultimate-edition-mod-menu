@@ -2218,42 +2218,42 @@ DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;Defender-----------------------------////////Defender\\\\\\\\\--------------------------------------------------------------------------------------------------
 ;better reload speed
-TF_ReplaceLine(INV_GEN,"20853",20853,"        ReloadTime(3.25);")
+;TF_ReplaceLine(INV_GEN,"20853",20853,"        ReloadTime(3.25);")
 ;better crit chance
-TF_ReplaceLine(INV_GEN,"20889",20889,"        CriticalProb(0.05);")
-TF_ReplaceLine(INV_GEN,"20890",20890,"        CriticalDamage(100.0);")
-TF_ReplaceLine(INV_GEN,"20838",20838,"        HeadSmashProb(0.2);")
+;TF_ReplaceLine(INV_GEN,"20889",20889,"        CriticalProb(0.05);")
+;TF_ReplaceLine(INV_GEN,"20890",20890,"        CriticalDamage(100.0);")
+;TF_ReplaceLine(INV_GEN,"20838",20838,"        HeadSmashProb(0.2);")
 ;more ammo capacity
-TF_ReplaceLine(INV_GEN,"20852",20852,"        AmmoCount(30);")
+;TF_ReplaceLine(INV_GEN,"20852",20852,"        AmmoCount(30);")
 ;make defender chug
-TF_ReplaceLine(INV_GEN,"20848",20848,"        ShotTime(0.1); //this_is_the_default_value")
+;TF_ReplaceLine(INV_GEN,"20848",20848,"        ShotTime(0.1); //this_is_the_default_value")
 ;make a bit more accurate with new chug setting
-TF_ReplaceLine(INV_GEN,"20917",20917,"        ShootMaxAngle(0.074);")
-TF_ReplaceLine(INV_GEN,"20952",20952,"        ShootMaxAngle(0.074);")
-TF_ReplaceLine(INV_GEN,"20987",20987,"        ShootMaxAngle(0.074);")
-TF_ReplaceLine(INV_GEN,"21022",21022,"        ShootMaxAngle(0.074);")
+;TF_ReplaceLine(INV_GEN,"20917",20917,"        ShootMaxAngle(0.074);")
+;TF_ReplaceLine(INV_GEN,"20952",20952,"        ShootMaxAngle(0.074);")
+;TF_ReplaceLine(INV_GEN,"20987",20987,"        ShootMaxAngle(0.074);")
+;TF_ReplaceLine(INV_GEN,"21022",21022,"        ShootMaxAngle(0.074);")
 ;crowdpleaser-----------------------------////////crowdpleaser\\\\\\\\\------------------------------------------------------------------------------------------
 ;better reload speed
-TF_ReplaceLine(INV_GEN,"20666",20666,"        ReloadTime(6.0);")
+;TF_ReplaceLine(INV_GEN,"20666",20666,"        ReloadTime(6.0);")
 ;better crit chance
-TF_ReplaceLine(INV_GEN,"20702",20702,"        CriticalProb(0.05);")
-TF_ReplaceLine(INV_GEN,"20703",20703,"        CriticalDamage(100.0);")
-TF_ReplaceLine(INV_GEN,"20651",20651,"        HeadSmashProb(1.0);")
-TF_ReplaceLine(INV_GEN,"20653",20653,"        ArmsCutProb(1.0);")
-TF_ReplaceLine(INV_GEN,"20654",20654,"        LegsCutProb(1.0);")
+;TF_ReplaceLine(INV_GEN,"20702",20702,"        CriticalProb(0.05);")
+;TF_ReplaceLine(INV_GEN,"20703",20703,"        CriticalDamage(100.0);")
+;TF_ReplaceLine(INV_GEN,"20651",20651,"        HeadSmashProb(1.0);")
+;TF_ReplaceLine(INV_GEN,"20653",20653,"        ArmsCutProb(1.0);")
+;TF_ReplaceLine(INV_GEN,"20654",20654,"        LegsCutProb(1.0);")
 ;more ammo capacity
-TF_ReplaceLine(INV_GEN,"20665",20665,"        AmmoCount(8);")
+;TF_ReplaceLine(INV_GEN,"20665",20665,"        AmmoCount(8);")
 ;more shot per shot
-TF_ReplaceLine(INV_GEN,"20690",20690,"        BulletsPerShot(12);")
+;TF_ReplaceLine(INV_GEN,"20690",20690,"        BulletsPerShot(12);")
 ;make spread smaller
 ;hipfire
-TF_ReplaceLine(INV_GEN,"20680",20680,"        ShootMinAngle(0.04);")
-TF_ReplaceLine(INV_GEN,"20681",20681,"        ShootMaxAngle(0.08);")
+;TF_ReplaceLine(INV_GEN,"20680",20680,"        ShootMinAngle(0.04);")
+;TF_ReplaceLine(INV_GEN,"20681",20681,"        ShootMaxAngle(0.08);")
 ;ads
-TF_ReplaceLine(INV_GEN,"20728 ",20728 ,"        ShootMaxAngle(0.05);")
-TF_ReplaceLine(INV_GEN,"20759 ",20759 ,"        ShootMaxAngle(0.05);")
-TF_ReplaceLine(INV_GEN,"20790 ",20790 ,"        ShootMaxAngle(0.05);")
-TF_ReplaceLine(INV_GEN,"20821 ",20821 ,"        ShootMaxAngle(0.05);")
+;TF_ReplaceLine(INV_GEN,"20728 ",20728 ,"        ShootMaxAngle(0.05);")
+;TF_ReplaceLine(INV_GEN,"20759 ",20759 ,"        ShootMaxAngle(0.05);")
+;TF_ReplaceLine(INV_GEN,"20790 ",20790 ,"        ShootMaxAngle(0.05);")
+;TF_ReplaceLine(INV_GEN,"20821 ",20821 ,"        ShootMaxAngle(0.05);")
 ;M72-----------------------------////////m72\\\\\\\\\------------------------------------------------------------------------------------------
 TF_ReplaceLine(INV_patch,"1901",1901,"        AnimPrefix(""M72"");")
 TF_ReplaceLine(INV_patch,"1903",1903,"        ShotTime(1.0);")
