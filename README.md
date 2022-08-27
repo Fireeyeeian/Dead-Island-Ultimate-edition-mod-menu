@@ -1,5 +1,5 @@
 This program installs mods for Dead Island Riptide Definitive edition :)
-![alt text](https://i.imgur.com/NBClJBt.png)
+![alt text](https://staticdelivery.nexusmods.com/mods/1539/images/14/14-1575083930-113271049.png)
 
 # >DEAD ISLAND Definitive MOD MENU v3 alpha<
 
