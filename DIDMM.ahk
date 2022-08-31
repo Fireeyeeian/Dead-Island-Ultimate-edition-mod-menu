@@ -1110,7 +1110,7 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"75",75,"	<prop n=""CameraDefaultFOV"" v=""62.5""/>	<!--  This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
-MsgBox, 4160, FOV CHANGE, ➤FOV set to 62.5 (default)`n`nPlease note: I highly recomended enabling "Better weapon POV" as it fixes bugs with firearms,
+MsgBox, 4160, FOV CHANGE, ➤FOV set to 62.5 (default)`n`nPlease note: I highly recomended enabling "Better weapon POV" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
