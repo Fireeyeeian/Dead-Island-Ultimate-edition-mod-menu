@@ -452,7 +452,7 @@ GuiControlGet, ZOM_HWND, Hwnd, Zombie_tweaks_var
 AddTooltip(ZOM_HWND,"Select zombie difficulty")
 Gui, Add, button, x360 y372 w120 h21 vconfirm_zom_var gSubmit_zombies,Confirm zombies
 
-zom_spawn_list:="Normal spawns||Butchers|Rams|Bloaters|Thugs|Suiciders|bandits w/guns|bandits w/melee|"
+zom_spawn_list:="Normal spawns||Butchers|Rams|Bloaters|Thugs|Suiciders|bandits(Firearms)|bandits(melee)|bandits|"
 Gui, Add, DropDownList, x770 y372 w120 h200 vZombie_spawn_var, % zom_spawn_list
 GuiControlGet, ZOM_spawn_HWND, Hwnd, Zombie_spawn_var
 AddTooltip(ZOM_spawn_HWND,"force a specific zombie to spawn")
@@ -907,7 +907,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bandits(firearms).zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(firearms)"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
@@ -920,7 +920,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bandits(melee).zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(Melee)"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
@@ -1203,7 +1203,7 @@ TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""72""/>	<!--  M
 ;mcalls_hipfire_recoilfov_fix
 	TF_ReplaceLine(INV_GEN,"20474",20474,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 SplashTextOff
-MsgBox, 4160, FOV CHANGE, ➤FOV changed to 72 (+10)`n➤Pistol & shotgun +Recoil scaled to fov`n`nPlease note: as fov increases so does bullet spread when hip-firing.`nAlso I highly recomended enabling "Better weapon POV" as it fixes clipping and other issues when at a higher fov and in general.,
+MsgBox, 4160, FOV CHANGE, ➤FOV changed to 72 (+10)`n➤Pistol & shotgun +Recoil scaled to fov`n`nPlease note: I highly recomended enabling "Better weapon POV" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
@@ -1282,7 +1282,7 @@ TF_ReplaceLine(Def_lev,"75",75,"	<prop n=""CameraDefaultFOV"" v=""82""/>	<!--  M
 ;colt_hipfire_recoilfov_fix
 	TF_ReplaceLine(INV_GEN,"16463",16463,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 SplashTextOff
-MsgBox, 4160, FOV CHANGE, ➤FOV changed to 82 (+20)`n➤Pistol & shotgun Recoil scaled to fov`n`nPlease note: as fov increases so does bullet spread when hip-firing.`nAlso I highly recomended enabling "Better weapon POV" as it fixes clipping and other issues when at a higher fov and in general.,
+MsgBox, 4160, FOV CHANGE, ➤FOV changed to 82 (+20)`n➤Pistol & shotgun Recoil scaled to fov`n`nPlease note: I highly recomended enabling "Better weapon POV" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian")) 
 return
