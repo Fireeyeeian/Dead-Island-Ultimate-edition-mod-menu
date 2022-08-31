@@ -141,8 +141,9 @@ FileInstall, Required_files_and_scripts\force_butcher_spawn.zip, %A_Temp%\@DIDMM
 FileInstall, Required_files_and_scripts\Force_thug_spawn.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_thug_spawn.zip,1
 FileInstall, Required_files_and_scripts\Force_suicide_spawn.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_suicide_spawn.zip,1
 FileInstall, Required_files_and_scripts\Force_ram_spawn.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_ram_spawn.zip,1
-FileInstall, Required_files_and_scripts\Force_bandits_spawn_with_guns.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_bandits_spawn_with_guns.zip,1
-FileInstall, Required_files_and_scripts\Force_bandits_spawn_with_no_guns.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_bandits_spawn_with_no_guns.zip,1
+FileInstall, Required_files_and_scripts\Force_bandits(firearms).zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_bandits(firearms).zip,1
+FileInstall, Required_files_and_scripts\Force_bandits(melee).zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_bandits(melee).zip,1
+FileInstall, Required_files_and_scripts\Force_bandits_spawn.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_bandits_spawn.zip,1
 FileInstall, Required_files_and_scripts\Default_spawns.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Default_spawns.zip,1
 FileInstall, Required_files_and_scripts\gameaudioeffects.scr.modded, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.modded , 1
 FileInstall, Required_files_and_scripts\gameaudioeffects.scr.nomod, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , 1
@@ -825,10 +826,12 @@ If (Zombie_spawn_var = "Thugs")
 Goto,submit_Thug_zom_spawn
 If (Zombie_spawn_var = "Suiciders")
 Goto,submit_suicide_zom_spawn
-If (Zombie_spawn_var = "bandits w/guns")
-Goto,submit_bandit_zom_spawn
-If (Zombie_spawn_var = "bandits w/melee")
+If (Zombie_spawn_var = "bandits(Firearms)")
+Goto,submit_bandit_gun_zom_spawn
+If (Zombie_spawn_var = "bandits(melee)")
 Goto,submit_bandit_no_guns_zom_spawn
+If (Zombie_spawn_var = "bandits")
+Goto,submit_bandit_both_zom_spawn
 return
 
 submit_norm_zom_spawn:
@@ -883,13 +886,26 @@ Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
 
-submit_bandit_zom_spawn:
+submit_bandit_both_zom_spawn:
 DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
-SmartZip("loose_files\Force_bandits_spawn_with_guns.zip", "EXTRACTED_DATA0\data\presets")
+SmartZip("loose_files\Force_bandits_spawn.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+return
+
+submit_bandit_gun_zom_spawn:
+DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SmartZip("loose_files\Force_bandits(firearms).zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
@@ -902,7 +918,7 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
-SmartZip("loose_files\Force_bandits_spawn_with_no_guns.zip", "EXTRACTED_DATA0\data\presets")
+SmartZip("loose_files\Force_bandits(melee).zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
