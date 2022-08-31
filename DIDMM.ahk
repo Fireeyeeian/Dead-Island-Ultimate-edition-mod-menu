@@ -604,6 +604,7 @@ FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\menumain_pc.xui, %A_Temp%\@DIDMM
 ;TF_ReplaceInLines(gameini,"15","","0","1")
 TF_ReplaceLine(DLC_shop,"12 ",12,"	ColorItem(""Melee_AxeUniversalGen"", 1, 4, 1)")
 MsgBox,4160,NOTICE,Thank you for downloading and using my mod for Dead Island definitive edition. This mod is the way I enjoy playing. I also have a version for Dead island Riptide definitive edition and I plan on eventually porting to the OG versions of the games. I write these mods in my free time and I'd like to give a huge thank you to everyone who enjoys them, It means a lot!`n`nIf you encounter any bugs please report them on the mods nexus page in the Bugs tab thank you. 
+MsgBox,4160,NOTICE,If you plan to play Co-op: It is highly recomended that all players have the same Dat0.pak`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.
 ;MsgBox,4160,NOTICE,Please note:`nIt is highly recomended to start a new`nplaythrough (new character ) to use some of theses mods but it is not required ;removed because only one or two require this
 GuiControl, enable,confirm_fov
 GuiControl, enabled,DDL
