@@ -20,7 +20,7 @@ SetBatchLines, -1
 ; ------ ------ CONFIGURATION SECTION ------ ------
 
 ; Program Titles
-ProgWinTitle1 = DeadIslandUltimateEdition_By_FireEyeEian
+ProgWinTitle1 = Dead_Island_Definitive_mod_menu_by_FireEyeEian
 ;ProgWinTitle2 = Calculator
 
 ; SetTimer Period
