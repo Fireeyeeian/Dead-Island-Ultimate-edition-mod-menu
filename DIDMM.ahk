@@ -3337,30 +3337,30 @@ return
 
 swayfix_72:
 ;M9
-TF_ReplaceLine(INV_GEN,"21016",21016,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"21053",21053,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"21090",21090,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"21127",21127,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"16928",16928,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"16965",16965,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"17002",17002,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"17039",17039,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
 ;Colt
-TF_ReplaceLine(INV_GEN,"20581",20581,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"20618",20618,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"20655",20655,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"20692",20692,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"16508",16508,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"16545",16545,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"16582",16582,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"16619",16619,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
 ;Deagle
-TF_ReplaceLine(INV_GEN,"21233",21233,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"21270",21270,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"21307",21307,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"21344",21344,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"17138",17138,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"17175",17175,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"17212",17212,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"17249",17249,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
 ;Magnum
-TF_ReplaceLine(INV_GEN,"20797",20797,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"20834",20834,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"20871",20871,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"20909",20909,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"16717",16717,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"16754",16754,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"16791",16791,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"16828",16828,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
 ;Mcall's
-TF_ReplaceLine(INV_GEN,"24724",24724,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"24761",24761,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"24798",24798,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
-TF_ReplaceLine(INV_GEN,"24835",24835,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"20518",20518,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"20555",20555,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"20592",20592,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
+TF_ReplaceLine(INV_GEN,"20629",20629,"        SwayMaxAngle(0.005); //Modified_by_FireEyeEian --wep_pov_EDIT")
 ;;;;;
 ;;;;;
 ;shotgun_gen
