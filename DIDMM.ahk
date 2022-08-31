@@ -474,14 +474,11 @@ Gui, Add, Text, x22 y300 w950 h50 +BackgroundTrans, 4. Select which modification
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, CYellow
 ;;;;;;;;;;;;;;;;;;;;;;;;VERSION NUMBER;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-Gui, Add, Text, x750 y64 w100 h30 +BackgroundTrans,Version 1.2 ;REMEMBER TO UPDATE VERSION XML FOR MAIN MENU
+Gui, Add, Text, x750 y64 w100 h30 +BackgroundTrans,Version 3.0 ;REMEMBER TO UPDATE VERSION XML FOR MAIN MENU
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;Gui, Show, x127 y87 h581 w1014, New GUI Window ;old method
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 DISABLE_BUTTONS_Function()
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;Gui, Show, x127 y87 h577 w1010, DeadIslandUltimateEdition_By_FireEyeEian ;old method
 ;---------GET CENTER OF CURRENT MONITOR---------
 	;get current monitor index
 	CurrentMonitorIndex:=GetCurrentMonitorIndex()
@@ -498,7 +495,7 @@ DISABLE_BUTTONS_Function()
 	GUI_Y:=CoordYCenterScreen(GUI_Height,CurrentMonitorIndex)
 ;------- / GET CENTER OF CURRENT MONITOR--------- 
 ;SHOW GUI AT CENTER OF CURRENT SCREEN
-Gui, Show, % "x" GUI_X " y" GUI_Y, DeadIslandUltimateEdition_By_FireEyeEian
+Gui, Show, % "x" GUI_X " y" GUI_Y, Dead_Island_Definitive_mod_menu_by_FireEyeEian
 ;Run,%A_Temp%\@overseer.ahk,,, ;fuck overseer all my homies use survival_extinguisher.exe
 Run,%A_Temp%\@survival_extinguisher.exe,,,
 Sleep, 1092 ;to sync up end of scream sound with click sound
@@ -582,7 +579,7 @@ return
 
 SETUP_TEMPORARY_ENVIRONMENT:
 SetWorkingDir %Deadisland_dir%/DI ;I feel better with this here ;I was going to remove this but tbh I do feel safer leaving this here.. I mean what is it hurting...
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,UN-PACKING PROGRAM,Please wait... `nUNzipping Data0.pak`nNOTE: This could take up to 3 minutes, If you have a slow hard drive this might take longer.`n if you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES ;Yup, I know....
 		SmartZip("Data0.zip", "EXTRACTED_DATA0")   ; Unpack
@@ -611,7 +608,7 @@ MsgBox,4160,NOTICE,Thank you for downloading and using my mod for Dead Island de
 GuiControl, enable,confirm_fov
 GuiControl, enabled,DDL
 GuiControl, Disable,select_folder_button
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 enable_music:
@@ -666,7 +663,7 @@ return
 
 
 submit_Vanilla_weather:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -678,11 +675,11 @@ SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Time/Weather set to vanilla (default),
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_just_night_weather:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -694,11 +691,11 @@ SmartZip("loose_files\time-weather_Just_night.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Time/Weather set to Night,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_Rain_day_weather:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -710,11 +707,11 @@ SmartZip("loose_files\time-weather_Rain_day.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Time/Weather set to Rainy day,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_Rain_night_weather:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -726,11 +723,11 @@ SmartZip("loose_files\time-weather_Rain_night.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Time/Weather set to Rainy night,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_Storm_day_weather:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -742,11 +739,11 @@ SmartZip("loose_files\time-weather_storm_day.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Time/Weather set to Stormy day,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_Storm_night_weather:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -758,11 +755,11 @@ SmartZip("loose_files\time-weather_storm_night.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Time/Weather set to Stormy night,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_Just_night_Darker_weather:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -774,11 +771,11 @@ SmartZip("loose_files\time-weather_Just_night_darker.zip", "EXTRACTED_DATA0\data
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Time/Weather set to Dark night,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_Rain_darker_weather:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -790,11 +787,11 @@ SmartZip("loose_files\time-weather_Rain_night_darker.zip", "EXTRACTED_DATA0\data
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Time/Weather set to Dark rainy night,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_storm_Darker_weather:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -806,7 +803,7 @@ SmartZip("loose_files\time-weather_storm_night_darker.zip", "EXTRACTED_DATA0\dat
 SplashTextOff
 MsgBox, 4160, timeweather, ➤Time/Weather set to Dark stormy night,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 
@@ -835,7 +832,7 @@ Goto,submit_bandit_both_zom_spawn
 return
 
 submit_norm_zom_spawn:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -844,11 +841,11 @@ SmartZip("loose_files\Default_spawns.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies spawns set to Normal (default),
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_Butcher_zom_spawn:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -857,11 +854,11 @@ SmartZip("loose_files\force_butcher_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Butchers""`n(May god have mercy on you) `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_Ram_zom_spawn:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -870,11 +867,11 @@ SmartZip("loose_files\Force_ram_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Rammers"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_Bloater_zom_spawn:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -883,11 +880,11 @@ SmartZip("loose_files\Force_bloater_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bloaters"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_bandit_both_zom_spawn:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -896,11 +893,11 @@ SmartZip("loose_files\Force_bandits_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_bandit_gun_zom_spawn:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -909,11 +906,11 @@ SmartZip("loose_files\Force_bandits(firearms).zip", "EXTRACTED_DATA0\data\preset
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(firearms)"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_bandit_no_guns_zom_spawn:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -922,11 +919,11 @@ SmartZip("loose_files\Force_bandits(melee).zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(Melee)"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_Thug_zom_spawn:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -935,11 +932,11 @@ SmartZip("loose_files\Force_thug_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Thugs"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_suicide_zom_spawn:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
@@ -948,7 +945,7 @@ SmartZip("loose_files\Force_suicide_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Suiciders""`nNote: They really like to explode...`nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 
@@ -966,7 +963,7 @@ If (Zombie_tweaks_var = "Headshot only zombies")
 Goto,submit_headshot_zom
 return
 submit_norm_zom:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
@@ -975,11 +972,11 @@ SmartZip("loose_files\ai_norm.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Normal (default),
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_1hit_zom:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
@@ -989,11 +986,11 @@ SmartZip("loose_files\ai_Onehit.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, Zombie_difficulty, ➤Zombies set to One-hit mode,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_hard_zom:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
@@ -1002,11 +999,11 @@ SmartZip("loose_files\ai_hard.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Hard (30`% increase to health,Damage,and stamina multiplier also 60`% decrease to damage influences),
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_headshot_zom:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
@@ -1015,7 +1012,7 @@ SmartZip("loose_files\ai_Headshot.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
 MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Headshot only mode,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 Submit_zombies_size:
@@ -1033,7 +1030,7 @@ If (Zombie_size_var = "Supersize zombies")
 Goto,submit_SUPASIZEZOM
 return
 submit_NORMSIZEZOM:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
@@ -1045,10 +1042,10 @@ SmartZip("loose_files\PRESETS_NORM_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to Normal (default),
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 submit_extrasmallzom:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
@@ -1060,10 +1057,10 @@ SmartZip("loose_files\PRESETS_XTRASMOL_ZOMSIZE.zip", "EXTRACTED_DATA0\data\prese
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to extra small,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 submit_MIDGETZOM:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
@@ -1075,10 +1072,10 @@ SmartZip("loose_files\PRESETS_MIDGET_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to midget,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 submit_LARGESIZEZOM:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
@@ -1090,10 +1087,10 @@ SmartZip("loose_files\PRESETS_LARGE_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets"
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to large,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 submit_SUPASIZEZOM:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\infectedai.pre
@@ -1105,7 +1102,7 @@ SmartZip("loose_files\PRESETS_SUPASIZE_ZOMSIZE.zip", "EXTRACTED_DATA0\data\prese
 SplashTextOff
 MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to Supersize,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 Submit_fov:
@@ -1121,19 +1118,19 @@ If (ddl = "82")
 return
 
 fov_set_62:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"75",75,"	<prop n=""CameraDefaultFOV"" v=""62.5""/>	<!--  This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV set to 62.5 (default)`n`nPlease note: I highly recomended enabling "Better weapon POV" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 fov_set_72:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""72""/>	<!--  Modified by FireEyeEian-->")
 ;shotguns_recoilfov_fix
@@ -1205,12 +1202,12 @@ TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""72""/>	<!--  M
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV changed to 72 (+10)`n➤Pistol & shotgun +Recoil scaled to fov`n`nPlease note: I highly recomended enabling "Better weapon POV" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 fov_set_82:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"75",75,"	<prop n=""CameraDefaultFOV"" v=""82""/>	<!--  Modified by FireEyeEian-->")
 ;shotguns_recoilfov_fix
@@ -1284,7 +1281,7 @@ TF_ReplaceLine(Def_lev,"75",75,"	<prop n=""CameraDefaultFOV"" v=""82""/>	<!--  M
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV changed to 82 (+20)`n➤Pistol & shotgun Recoil scaled to fov`n`nPlease note: I highly recomended enabling "Better weapon POV" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian")) 
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian")) 
 return
 
 
@@ -1298,23 +1295,23 @@ goto, skip_intro_yes
 IfEqual,Skip_intros_var,0
 goto, skip_intro_no
 skip_intro_yes:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_InsertPrefix(INTRO_MOV,15,25, "//")
 SplashTextOff
 MsgBox,4160,Intro vid option,➤Intro videos will be disabled,
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
 skip_intro_no:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceInLines(INTRO_MOV,"15,16,17,18,19,20,21,22,23,24,25","","//","")
 SplashTextOff
 MsgBox,4160,Intro vid option,➤Intro videos wll play,
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
 
@@ -1328,23 +1325,23 @@ IfEqual,Reducesprint_stamina_cost_var,0
 goto, reduce_stamina_no
 reduce_stamina_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"199",199,"	<prop n=""MoveSprintStaminaConsumption"" v=""0.03""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Stamina option,➤Sprint stamina cost set to reduced (0.03)
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
 reduce_stamina_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"199",199,"	<prop n=""MoveSprintStaminaConsumption"" v=""0.05""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Stamina option,➤Sprint stamina cost set to default (0.05),
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 reducethesunflare:
@@ -1357,24 +1354,24 @@ IfEqual,Reduce_sun_var,0
 goto, reduce_sun_no
 reduce_sun_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(sunglow_scd,"4",4,"VarFloat(""f_pp_glow_factor"", 0.1)	//  Modified by FireEyeEian")
 TF_ReplaceLine(sunglow_scr,"1",1,"VarFloat(""f_glow_factor"", 0.1)	//  Modified by FireEyeEian")
 SplashTextOff
 MsgBox,4160,sunflare option,➤Reduced sunflare to 90`%
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
 reduce_sun_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(sunglow_scd,"4",4,"VarFloat(""f_pp_glow_factor"", 1.0)	// This is the default value //Modified_by_FireEyeEian")
 TF_ReplaceLine(sunglow_scr,"1",1,"VarFloat(""f_glow_factor"", 1.0)	// This is the default value //Modified_by_FireEyeEian")
 SplashTextOff
 MsgBox,4160,sunflare option,➤Set sunflare to default (100`%)
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
 
@@ -1389,7 +1386,7 @@ IfMsgBox, Cancel
 Enable_BUTTONS_Function()
     return
 mergedatapak_steam:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 FileDelete, %Deadisland_dir%/DI/data0.pak
 SetWorkingDir %Deadisland_dir%/DI
 GOTO, write_mods_to_file
@@ -1410,7 +1407,7 @@ play_click_sound_func()
 SplashTextOff
 play_final_sound_func()
 MsgBox,Game has been Patched and is ready to play`n(You can close this application)
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 ;Enable_BUTTONS_Function()
 return
 
@@ -1425,21 +1422,21 @@ goto,Bullet_pen_var_no
 return
 Bullet_pen_var_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"48",48,"    <prop n=""BulletPenetrationChance"" v=""0.98""/> <!-- Modified_by_FireEyeEian -->")
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,Bullet penetration?,➤Bullet penetration enabled`n(98`% chance)
 Enable_BUTTONS_Function()
 return
 Bullet_pen_var_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"48",48,"    <prop n=""BulletPenetrationChance"" v=""0.""/> <!-- this_is_the_default_value -->")
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,Bullet penetration?,➤Bullet penetration disabled
 Enable_BUTTONS_Function()
 return
@@ -1456,7 +1453,7 @@ return
 
 better_wep_upgrades_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;;;colt_gen_upgrade_1
 TF_ReplaceLine(INV_GEN,"16439",16439,"        ShotTime(1.0); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
@@ -1719,14 +1716,14 @@ TF_ReplaceLine(INV_GEN,"18338",18338,"        ReloadTime(4.5); //Modified_by_Fir
 			TF_ReplaceLine(INV_GEN,"18521",18521,"        ShotTime(1.12); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")          
 			TF_ReplaceLine(INV_GEN,"18522",18522,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,betterweapupgrades?,➤Better weapon upgrades enabled`n`nPLEASE NOTE: ONLY THE AUTOMATIC RELOAD SPEED IS AFFECTED (this is due to how dead island handles weapons generation its kinda out of my hands.`nJust know that the reload speed will be default if you hit the reload key manually
 Enable_BUTTONS_Function()
 return
 
 better_wep_upgrades_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;;;colt_gen_upgrade_1
 TF_ReplaceLine(INV_GEN,"16439",16439,"        ShotTime(0.6); //this_is_the_default_value")
@@ -1989,7 +1986,7 @@ TF_ReplaceLine(INV_GEN,"18338",18338,"        //placeholderforwepupgrades //Modi
 			TF_ReplaceLine(INV_GEN,"18521",18521,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
 			TF_ReplaceLine(INV_GEN,"18522",18522,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,betterweapupgrades?,➤Better weapon upgrades disabled.
 Enable_BUTTONS_Function()
 return
@@ -2008,24 +2005,24 @@ return
 
 Remove_reverb_sound_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.modded , %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr,1
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,Reverb?,➤Reverb disabled.
 Enable_BUTTONS_Function()
 return
 
 Remove_reverb_sound_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr,1
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,Reverb?,➤Reverb enabled.
 Enable_BUTTONS_Function()
 return
@@ -2043,7 +2040,7 @@ return
 
 custom_wep_var_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;Defender-----------------------------////////Defender\\\\\\\\\--------------------------------------------------------------------------------------------------
 ;better reload speed
@@ -2223,7 +2220,7 @@ TF_ReplaceLine(DLC_shop,"91",91,"	//Item(""Craftplan_HE_Rounds"", )")
 goto, Continue_on_cust_wep_final
 Continue_on_cust_wep_final:
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,Custom weapons,➤Custom weapons enabled.`n`nWeapons added:`n	>M60`n	>M72`n`n `*`*`*Custom items can be purchased from Wes Tweddle in the areana lobby`*`*`*
 Enable_BUTTONS_Function()
 return
@@ -2231,7 +2228,7 @@ return
 
 custom_wep_var_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;Defender-----------------------------////////Defender\\\\\\\\\--------------------------------------------------------------------------------------------------
 ;better reload speed
@@ -2306,7 +2303,7 @@ TF_RemoveLines(DLC_shop,93,95)
 TF_RemoveLines(DLC_shop,10,11)
 
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,Custom weapons,➤Custom weapons Disabled.
 Enable_BUTTONS_Function()
 return        
@@ -2324,7 +2321,7 @@ goto, more_ammo_var_no
 
 more_ammo_var_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"246",246,"	<prop n=""MaxAmmoPistol"" v=""200""/>")
 TF_ReplaceLine(Def_lev,"247",247,"	<prop n=""MaxAmmoRifle"" v=""150""/>")
@@ -2340,14 +2337,14 @@ goto, is_cust_wep_enabled_no
 is_cust_wep_enabled_yes:
 TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""400""/>")
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,more ammo,➤Hold more ammo enabled.`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90
 Enable_BUTTONS_Function()
 return        
 is_cust_wep_enabled_no:
 ;TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""400""/>") ;not needed as no other weapon uses sniper ammo besides the m60 and the m60 is only enabled if custom weapons is enabled so it really doesn't matter
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,more ammo,➤Hold more ammo enabled.
 Enable_BUTTONS_Function()
 return        
@@ -2355,7 +2352,7 @@ return
 
 more_ammo_var_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"246",246,"	<prop n=""MaxAmmoPistol"" v=""50""/>")
 TF_ReplaceLine(Def_lev,"247",247,"	<prop n=""MaxAmmoRifle"" v=""60""/>")
@@ -2371,14 +2368,14 @@ goto, no_is_cust_wep_enabled_no
 no_is_cust_wep_enabled_yes:
 TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""200""/>")
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,more ammo,➤Hold more ammo Disabled.
 Enable_BUTTONS_Function()
 return        
 no_is_cust_wep_enabled_no:
 TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""15""/>")
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,more ammo,➤Hold more ammo Disabled.
 Enable_BUTTONS_Function()
 return        
@@ -2398,7 +2395,7 @@ goto, Even_Deeper_pockets_var_no
 
 Even_Deeper_pockets_var_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;logan
 TF_ReplaceLine(logan_skills,"165",165,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""1"" desc_params=""6;12;18"">")
@@ -2413,13 +2410,13 @@ TF_ReplaceLine(purna_skills,"172",172,"            <effect id=""InventorySize"" 
  TF_ReplaceLine(xian_skills,"119",119,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""2"" desc_params=""6;12;18"">")
  TF_ReplaceLine(xian_skills,"121",121,"            <effect id=""InventorySize"" change=""6""/>")
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,Even Deeper pockets,➤Even deeper pockets enabled`n  To use: Please purchase `"deeper pockets`" skill.`n`nPLEASE NOTE: If you are not starting a new play through (new character) then`n make sure you haven't got any of the ""Deeper pockets"" skills unlocked yet otherwise this is pointless to enable
 Enable_BUTTONS_Function()
 return
 Even_Deeper_pockets_var_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;logan
 TF_ReplaceLine(logan_skills,"165",165,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""1"" desc_params=""2;4;6"">")
@@ -2434,7 +2431,7 @@ TF_ReplaceLine(purna_skills,"172",172,"            <effect id=""InventorySize"" 
  TF_ReplaceLine(xian_skills,"119",119,"        <skill id=""DeeperPockets"" cat=""Tree3"" max_level=""3"" tier=""2"" desc_params=""2;4;6"">")
  TF_ReplaceLine(xian_skills,"121",121,"            <effect id=""InventorySize"" change=""2""/>")
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 MsgBox,4160,Even Deeper pockets,➤Even deeper pockets disabled.
 Enable_BUTTONS_Function()
 return 
@@ -2461,7 +2458,7 @@ If (ddl = "82")
 return
 
 betterweppov_62:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;---weapon positions 
 ;Fury_guns\\\\\\\\\\\\\\\\\\
@@ -2738,17 +2735,17 @@ return
 
 weppovfinal_62_final:
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 ;SetTitleMatchMode, 2
-;if (id := WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+;if (id := WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 ;	EnableCloseButton(id)
-;RedrawSysmenu(WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+;RedrawSysmenu(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 MsgBox,4160,Wep POV,➤Better weapon POV enabled (fov 62).
 Enable_BUTTONS_Function()
 return
 
 betterweppov_72:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;---weapon positions
 ;Fury_guns\\\\\\\\\\\\\\\\\\
@@ -3025,17 +3022,17 @@ return
 
 weppovfinal_72_final:
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 ;SetTitleMatchMode, 2
-;if (id := WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+;if (id := WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 ;	EnableCloseButton(id)
-;RedrawSysmenu(WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+;RedrawSysmenu(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 MsgBox,4160,Wep POV,➤Better weapon POV enabled (fov 72).
 Enable_BUTTONS_Function()
 return
 
 betterweppov_82:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;---weapon positions 
 ;Fury_guns\\\\\\\\\\\\\\\\\\
@@ -3314,11 +3311,11 @@ return
 
 weppovfinal_82_final:
 SplashTextOff
-EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 ;SetTitleMatchMode, 2
-;if (id := WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+;if (id := WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 ;	EnableCloseButton(id)
-;RedrawSysmenu(WinExist("DeadIslandUltimateEdition_By_FireEyeEian --wep_pov_EDIT"))
+;RedrawSysmenu(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 MsgBox,4160,Wep POV,➤Better weapon POV enabled (fov 82).
 Enable_BUTTONS_Function()
 return
@@ -3492,7 +3489,7 @@ return
 ;--------------------------------------------------set to NO -----\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////////////////////////////////////////////
 better_wep_pov_var_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;swayfix
 ;M9
@@ -3832,7 +3829,7 @@ TF_ReplaceLine(INV_GEN,"16790",16790,"        HandOffset(HandModification_Normal
 TF_ReplaceLine(INV_GEN,"16827",16827,"        HandOffset(HandModification_Normal, [0.00125,0.00125,0.16]); // Converted //this_is_the_default_value")
 SplashTextOff
 MsgBox,4160,Wep POV,➤Better weapon POV disabled.
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
 
@@ -3846,7 +3843,7 @@ IfEqual,improved_loot_var,0
 goto, improved_loot_no
 return
 improved_loot_yes:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;default chest
@@ -3888,11 +3885,11 @@ TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 11.0);  //Modifie
 SplashTextOff
 MsgBox,4160,Improved loot option,➤Loot will be improved (Chests/Butchers/Rams).
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 improved_loot_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;default chest
 TF_ReplaceLine(def_loot,"66",66,"		ColorWeight(Color_White, 92.0); //this_is_the_default_value")
@@ -3933,7 +3930,7 @@ TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 10.0);  //this_is
 SplashTextOff
 MsgBox,4160,Improved loot option,➤Loot will be default.
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 noclip_truck:
@@ -3947,7 +3944,7 @@ goto, noclip_truck_no
 	return
 noclip_truck_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(cardi_phx,"77",77,"    Ignore(1) //Modified_by_FireEyeEian")
 TF_ReplaceLine(cardi_phx,"91",91,"    Ignore(1) //Modified_by_FireEyeEian")
@@ -3956,11 +3953,11 @@ TF_ReplaceLine(cardi_phx,"91",91,"    Ignore(1) //Modified_by_FireEyeEian")
 SplashTextOff
 MsgBox,4160,Noclip trucks,➤Noclip trucks enabled. `nPlease note:`n 		The armored truck will not be affected because it will fall halfway through the ground after getting out of the hotel preventing you from getting inside.`n`nAlso note that the jeep will fall through the first bridge in the jungle.. You've been warned..
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 noclip_truck_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(cardi_phx,"77",77,"    Ignore(0) //Modified_by_FireEyeEian")
 TF_ReplaceLine(cardi_phx,"91",91,"    Ignore(0) //Modified_by_FireEyeEian")
@@ -3969,7 +3966,7 @@ TF_ReplaceLine(cardi_phx,"91",91,"    Ignore(0) //Modified_by_FireEyeEian")
 SplashTextOff
 MsgBox,4160,Noclip trucks,➤Noclip trucks disabled.
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 
@@ -3984,23 +3981,23 @@ IfEqual,Jump_stamina_var,0
 goto, reduce_jump_stamina_no
 reduce_jump_stamina_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"236",236,"	<prop n=""JumpStaminaCost"" v=""0.03""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Jump stamina option,➤Jump stamina cost set to 50`% (0.03)
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
 reduce_jump_stamina_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"236",236,"	<prop n=""JumpStaminaCost"" v=""0.06""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Jump stamina option,➤Jump stamina cost set to default (0.06),
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 EnableRunningwithwep:
@@ -4013,23 +4010,23 @@ IfEqual,Run_WITH_WEP_VAR,0
 goto, Run_WITH_WEP_no
 Run_WITH_WEP_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"63",63,"	<prop n=""HideWeaponsDuringSprint"" v=""0.0""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Run w/weps,➤Weapons will be shown when sprinting
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 Run_WITH_WEP_no:
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"63",63,"	<prop n=""HideWeaponsDuringSprint"" v=""1.0""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Run w/weps,➤Weapons will be hidden when sprinting (vanilla),
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 movment_tweaks:
@@ -4042,7 +4039,7 @@ IfEqual,better_movement_var,0
 goto, better_movement_no
 better_movement_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 ;Strafing will no longer slow you down increase by 1.2 (48%)
 TF_ReplaceLine(Def_lev,"197",197,"	<prop n=""MoveStrafeMaxSpeed"" v=""3.70""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
@@ -4055,11 +4052,11 @@ TF_ReplaceLine(Def_lev,"195",195,"	<prop n=""MoveBackwardMaxSpeed"" v=""2.70""/>
 SplashTextOff
 MsgBox,4160,Movement option,➤Strafing will no longer slow you down(`+1.2, 48`% increase)`n➤Acceleration increases by 2.0 (20`% increase) and instant acceleration`n➤Slighty faster walking `+0.20 (5.7`% increase)`n➤Slighty faster backwards `+0.20 (5.7`% increase),
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 better_movement_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"197",197,"  <prop n=""MoveStrafeMaxSpeed"" v=""2.50""/>    <!-- Converted--> <!-- this_is_the_default_value-->")
 TF_ReplaceLine(Def_lev,"200",200,"	<prop n=""MoveAcceleration"" v=""7.00""/>  	    <!-- Converted--> <!-- this_is_the_default_value-->")
@@ -4069,7 +4066,7 @@ TF_ReplaceLine(Def_lev,"195",195,"	<prop n=""MoveBackwardMaxSpeed"" v=""2.50""/>
 SplashTextOff
 MsgBox,4160,Movement option,➤Movement set to vanilla values,
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 
@@ -4084,7 +4081,7 @@ goto, better_durability_no
 
 better_durability_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"104",104,"    <prop n=""BluntWpnDurabilityLoss"" v=""-2.0""/>	<!--  Modified by FireEyeEian-->")
 TF_ReplaceLine(Def_lev,"113",113,"    <prop n=""CutWpnDurabilityLoss"" v=""-2.0""/>	<!--  Modified by FireEyeEian-->")
@@ -4093,11 +4090,11 @@ TF_ReplaceLine(Def_lev,"133",133,"    <prop n=""BulletWpnDurabilityLoss"" v=""-2
 SplashTextOff
 MsgBox,4160,Wep durability,➤Weapons deteriorate at a slower rate`nChanged from 1.0 durability loss to -6.0,
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 better_durability_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"104",104,"    <prop n=""BluntWpnDurabilityLoss"" v=""1.0""/>	")
 TF_ReplaceLine(Def_lev,"113",113,"    <prop n=""CutWpnDurabilityLoss"" v=""1.0""/>	")
@@ -4106,7 +4103,7 @@ TF_ReplaceLine(Def_lev,"133",133,"    <prop n=""BulletWpnDurabilityLoss"" v=""1.
 SplashTextOff
 MsgBox,4160,Wep durability,➤Weapons deteriorate at vanilla rate,
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 
@@ -4121,21 +4118,21 @@ goto, Instant_breakdoor_no
 
 Instant_breakdoor_yes:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"100",100,"	<prop n=""BreakDoorEffectivens"" v=""1""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
 MsgBox,4160,Break door,➤breaking doors set to quick/easy,
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 Instant_breakdoor_no:
 DISABLE_BUTTONS_Function()
-DisableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Writing to file,Please wait.... `n writing to files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"100",100,"	<prop n=""BreakDoorEffectivens"" v=""0""/>	")
 SplashTextOff
 MsgBox,4160,Break doors,➤breaking doors set to vanilla,
 Enable_BUTTONS_Function()
-enableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
