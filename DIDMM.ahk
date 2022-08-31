@@ -1091,6 +1091,7 @@ MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to Supersize,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("DeadIslandUltimateEdition_By_FireEyeEian"))
 return
+
 Submit_fov:
 play_click_sound_func()
 Enable_BUTTONS_Function()
