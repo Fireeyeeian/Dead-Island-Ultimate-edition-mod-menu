@@ -189,6 +189,9 @@ playerdi_pre=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\playerdi.pr
 aispawnbox_pre_def=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 
 AI_Zombie_vessel=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data.scr
+
+;AI_PROP
+AI_BEH=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\aibeh.scr
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -674,12 +677,7 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-MsgBox, not implemented yet
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
-;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;TF_ReplaceLine
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to vanilla (default),
 Enable_BUTTONS_Function()
@@ -691,12 +689,7 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-MsgBox, not implemented yet
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
-;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;TF_ReplaceLine
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "200`%",
 Enable_BUTTONS_Function()
@@ -708,12 +701,7 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-MsgBox, not implemented yet
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
-;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;TF_ReplaceLine
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "300`%",
 Enable_BUTTONS_Function()
@@ -725,12 +713,7 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-MsgBox, not implemented yet
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
-;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;TF_ReplaceLine
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "400`%",
 Enable_BUTTONS_Function()
@@ -742,12 +725,7 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-MsgBox, not implemented yet
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
-;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;TF_ReplaceLine
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "500`%",
 Enable_BUTTONS_Function()
@@ -759,12 +737,7 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-MsgBox, not implemented yet
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
-;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;TF_ReplaceLine
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "600`%",
 Enable_BUTTONS_Function()
@@ -776,12 +749,7 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-MsgBox, not implemented yet
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
-;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;TF_ReplaceLine
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "700`%",
 Enable_BUTTONS_Function()
@@ -793,12 +761,7 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-MsgBox, not implemented yet
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
-;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;TF_ReplaceLine
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "800`%",
 Enable_BUTTONS_Function()
@@ -810,12 +773,7 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-MsgBox, not implemented yet
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
-;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;TF_ReplaceLine
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "900`%",
 Enable_BUTTONS_Function()
@@ -827,14 +785,9 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-MsgBox, not implemented yet
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
-;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
-;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;TF_ReplaceLine
 ;SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "100`%",
+MsgBox, 4160, Density, ➤Density set to "1000`%",
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
