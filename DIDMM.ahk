@@ -387,7 +387,7 @@ Gui, Add, CheckBox, x210 y419 w190 h30 vbetter_movement_var gmovment_tweaks,bett
 GuiControlGet, MOVEMENT_HWND, Hwnd, better_movement_var
 AddTooltip(MOVEMENT_HWND,"No more sluggish movement, This tweak will make movement feel more responsive")
 
-Gui, Add, CheckBox, x405 y419 w190 h30 vbetter_wep_pov_var gbetterweppov,Better firearms POV
+Gui, Add, CheckBox, x405 y419 w190 h30 vbetter_wep_pov_var gbetterweppov,Firearms tweaks and fixes
 GuiControlGet, WEPPOV_HWND, Hwnd, better_wep_pov_var
 AddTooltip(WEPPOV_HWND,"Originally part of my ""Firearms overhaul"" mod`n•fixes blur on weapons (removes blur from sights)`n•Pushes weapons out to more realistic positions (Also improves hip-fire holding position)`n•Fixes iron sight misalignment bug")
 
@@ -604,7 +604,7 @@ FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\menumain_pc.xui, %A_Temp%\@DIDMM
 ;TF_ReplaceInLines(gameini,"15","","0","1")
 TF_ReplaceLine(DLC_shop,"12 ",12,"	ColorItem(""Melee_AxeUniversalGen"", 1, 4, 1)")
 MsgBox,4160,NOTICE,Thank you for downloading and using my mod for Dead Island definitive edition. This mod is the way I enjoy playing. I also have a version for Dead island Riptide definitive edition and I plan on eventually porting to the OG versions of the games. I write these mods in my free time and I'd like to give a huge thank you to everyone who enjoys them, It means a lot!`n`nIf you encounter any bugs please report them on the mods nexus page in the Bugs tab thank you. 
-MsgBox,4160,NOTICE,If you plan to play Co-op: It is highly recomended that all players have the same Dat0.pak`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.
+MsgBox,4160,NOTICE,If you plan to play Co-op: It is highly recomended that all players have the same Data0.pak`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.`n`nAlso note: Anitimalware programs could potentially prevent this applictaion from working correctly-I have contacted numorus malware detection companies and have gotten this whitlisted as a false postive BUT some might still have issues using this application. That being said !!I am not saying to disable your anti malware!! just be aware that if you have issues that could be the culprit.`n`n The source code is avalable on github if you want to view/compile the source code (Link to it is at the bottom of the mods page on nexus mods)
 ;MsgBox,4160,NOTICE,Please note:`nIt is highly recomended to start a new`nplaythrough (new character ) to use some of theses mods but it is not required ;removed because only one or two require this
 GuiControl, enable,confirm_fov
 GuiControl, enabled,DDL
@@ -1124,7 +1124,7 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"75",75,"	<prop n=""CameraDefaultFOV"" v=""62.5""/>	<!--  This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
-MsgBox, 4160, FOV CHANGE, ➤FOV set to 62.5 (default)`n`nPlease note: I highly recomended enabling "Better weapon POV" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
+MsgBox, 4160, FOV CHANGE, ➤FOV set to 62.5 (default)`n`nPlease note: I highly recomended enabling "Firearms tweaks and fixes" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1201,7 +1201,7 @@ TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""72""/>	<!--  M
 ;mcalls_hipfire_recoilfov_fix
 	TF_ReplaceLine(INV_GEN,"20474",20474,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 SplashTextOff
-MsgBox, 4160, FOV CHANGE, ➤FOV changed to 72 (+10)`n➤Pistol & shotgun +Recoil scaled to fov`n`nPlease note: I highly recomended enabling "Better weapon POV" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
+MsgBox, 4160, FOV CHANGE, ➤FOV changed to 72 (+10)`n➤Pistol & shotgun +Recoil scaled to fov`n`nPlease note: I highly recomended enabling "Firearms tweaks and fixes" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1280,7 +1280,7 @@ TF_ReplaceLine(Def_lev,"75",75,"	<prop n=""CameraDefaultFOV"" v=""82""/>	<!--  M
 ;colt_hipfire_recoilfov_fix
 	TF_ReplaceLine(INV_GEN,"16463",16463,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 SplashTextOff
-MsgBox, 4160, FOV CHANGE, ➤FOV changed to 82 (+20)`n➤Pistol & shotgun Recoil scaled to fov`n`nPlease note: I highly recomended enabling "Better weapon POV" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
+MsgBox, 4160, FOV CHANGE, ➤FOV changed to 82 (+20)`n➤Pistol & shotgun Recoil scaled to fov`n`nPlease note: I highly recomended enabling "Firearms tweaks and fixes" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian")) 
 return
@@ -2741,7 +2741,7 @@ EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep
 ;if (id := WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 ;	EnableCloseButton(id)
 ;RedrawSysmenu(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-MsgBox,4160,Wep POV,➤Better weapon POV enabled (fov 62).
+MsgBox,4160,Wep POV,➤Firearms tweaks and fixes enabled (fov 62).
 Enable_BUTTONS_Function()
 return
 
@@ -3028,7 +3028,7 @@ EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep
 ;if (id := WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 ;	EnableCloseButton(id)
 ;RedrawSysmenu(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-MsgBox,4160,Wep POV,➤Better weapon POV enabled (fov 72).
+MsgBox,4160,Wep POV,➤Firearms tweaks and fixes enabled (fov 72).
 Enable_BUTTONS_Function()
 return
 
@@ -3317,7 +3317,7 @@ EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep
 ;if (id := WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
 ;	EnableCloseButton(id)
 ;RedrawSysmenu(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-MsgBox,4160,Wep POV,➤Better weapon POV enabled (fov 82).
+MsgBox,4160,Wep POV,➤Firearms tweaks and fixes enabled (fov 82).
 Enable_BUTTONS_Function()
 return
 
@@ -3829,7 +3829,7 @@ TF_ReplaceLine(INV_GEN,"16753",16753,"        HandOffset(HandModification_Normal
 TF_ReplaceLine(INV_GEN,"16790",16790,"        HandOffset(HandModification_Normal, [0.00125,0.00125,0.16]); // Converted //this_is_the_default_value")
 TF_ReplaceLine(INV_GEN,"16827",16827,"        HandOffset(HandModification_Normal, [0.00125,0.00125,0.16]); // Converted //this_is_the_default_value")
 SplashTextOff
-MsgBox,4160,Wep POV,➤Better weapon POV disabled.
+MsgBox,4160,Wep POV,➤Firearms tweaks and fixes disabled.
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
