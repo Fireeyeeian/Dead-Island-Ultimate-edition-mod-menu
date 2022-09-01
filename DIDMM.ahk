@@ -105,10 +105,6 @@ ExitFunc(ExitReason, ExitCode)
 }
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;notes;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;notes;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;notes;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;Random fixes /changes: fixed magnum recoil to be less like the revolver and more like the heavy pistol (on account of the damage)
-;added hatchet(Melee_AxeUniversalGe) to shop: Wes Tweddle
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;notes;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;notes;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;notes;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 SetWorkingDir, %A_ScriptDir%
 ;setup temp files
@@ -609,7 +605,7 @@ FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\menumain_pc.xui, %A_Temp%\@DIDMM
 ;TF_ReplaceLine(gameini,"10",10,"GameName(""Dead Island - Definitive Edition, modded by FireEyeEian"");")
 ;TF_ReplaceInLines(gameini,"15","","//","") ;encoding issue, probably can be solved through some tf.ahk thing but whatever, instead copy pre-made file to datapak
 ;TF_ReplaceInLines(gameini,"15","","0","1")
-TF_ReplaceLine(DLC_shop,"12 ",12,"	ColorItem(""Melee_AxeUniversalGen"", 1, 4, 1)")
+;TF_ReplaceLine(DLC_shop,"12 ",12,"	ColorItem(""Melee_AxeUniversalGen"", 1, 4, 1)")
 MsgBox,4160,NOTICE,Thank you for downloading and using my mod for Dead Island definitive edition.This mod is the way I enjoy playing.`nI also have a version for Dead island Riptide definitive edition and I plan on eventually porting to the OG versions of the games.`n`n I write these mods in my free time and I'd like to give a huge thank you to everyone who enjoys them, It means a lot!`n`nIf you encounter any bugs please report them on the mods nexus page in the Bugs tab thank you. 
 MsgBox,4160,NOTICE,•If you plan to play Co-op: It is highly recomended that all players have the same Data0.pak`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.`n`n•Also note: Anitimalware programs could potentially prevent this applictaion from working correctly-I have contacted numorus malware detection companies and have gotten this whitlisted as a false postive BUT some might still have issues using this application.`n`nThat being said !! I am not saying to disable your antimalware!! just be aware that if you have issues that could be the culprit.`n`n The source code is avalable on github if you want to view/compile the source code (Link to it is at the bottom of the mods page on nexus mods)
 ;MsgBox,4160,NOTICE,Please note:`nIt is highly recomended to start a new`nplaythrough (new character ) to use some of theses mods but it is not required ;removed because only one or two require this
@@ -2424,7 +2420,7 @@ goto,Continue_on_cust_wep
 return
 Continue_on_cust_wep:
 SplashTextOff
-MsgBox,36, Add explosive cheat ammo?, Would you like to add in explosive ammo for all weapons?`n`n                          (THIS IS A CHEAT MOD)
+MsgBox,36, Add explosive cheat ammo?, Would you like to add a craft plan for explosive ammo for all weapons?`n`n                          (THIS IS A CHEAT MOD)
 IfMsgBox, No
 	Goto, Add_Cheat_ammo_no
 IfMsgBox, yes
