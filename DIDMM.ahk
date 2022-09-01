@@ -252,6 +252,8 @@ DllCall("DrawMenuBar","Int",hWnd)
 Return ""
 }
 DISABLE_BUTTONS_Function(){
+GuiControl,Disable,zombie_density_var
+GuiControl,Disable,confirm_density_var
 GuiControl,Disable,SUBMIT_FINAL
 GuiControl,Disable,Even_Deeper_pockets_var
 GuiControl,Disable,more_ammo_var
@@ -286,6 +288,8 @@ GuiControl,Disable,confirm_Weather_var
 
 }
 Enable_BUTTONS_Function(){
+GuiControl,Enabled,zombie_density_var
+GuiControl,Enabled,confirm_density_var
 GuiControl,Enabled,Weather_Override_var
 GuiControl,Enabled,confirm_Weather_var
 GuiControl,enabled,NightTime_var
@@ -440,11 +444,14 @@ Gui, Add, button, x670 y372 w90 h21 vconfirm_zom_size_var gSubmit_zombies_size,C
 weather_Override_list:="Default(vanilla)||just night|Rain(day)|Rain(night)|Storm(day)|Storm(night)|Just night(Darker)|Rain(Darker night)|Storm(Darker night)"
 Gui, Add, DropDownList, x22 y345 w170 h200 vWeather_Override_var, % weather_Override_list
 GuiControlGet, Weather_Override_HWND, Hwnd, Weather_Override_var
-AddTooltip(Weather_overide_HWND,"Override weather/time")
+AddTooltip(Weather_Override_HWND,"Force a specific weather/time")
 Gui, Add, button, x195 y345 w120 h21 vconfirm_Weather_var gSubmit_Weather,set weather/time
-GuiControlGet, weather_set_HWND, Hwnd, Weather_Override_var
-AddTooltip(weather_set_HWND,"force a specific weather")
 
+zombie_density_list:="100%(vanilla)||200% density|300% density|400% density|500% density|600% density|700% density|800% density|900% density|1000% density"
+Gui, Add, DropDownList, x325 y345 w113 h200 vzombie_density_var, % zombie_density_list
+GuiControlGet, zombie_density_HWND, Hwnd, zombie_density_var
+AddTooltip(zombie_density_HWND,"Increases the amount of zombies that spawn`n200%=2X")
+Gui, Add, button, x442 y345 w130 h21 vconfirm_density_var gSubmit_density,set zombie density
 
 zom_list:="Normal zombies||One hit kill zombies|hard zombies|Headshot only zombies|"
 Gui, Add, DropDownList, x180 y372 w170 h200 vZombie_tweaks_var, % zom_list
@@ -513,8 +520,8 @@ return
 ;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK
 selectfolder_button:
 play_click_sound_func()
-FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
-;FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
+;FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
+FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
 SetWorkingDir, %Deadisland_dir%
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\data ;don't really need this I don't think so but it doesn't seem to hurt things.
 if FileExist("DeadIslandGame.exe")
@@ -629,6 +636,214 @@ return
 playmusic_no:
 Process, close,background_music.exe
 return
+
+
+
+Submit_density:
+play_click_sound_func()
+Gui, Submit, NoHide
+If (zombie_density_var = "100%(vanilla)")
+	Goto,submit_Vanilla_density
+
+If (zombie_density_var = "200% density")
+	Goto,submit_200_density
+
+If (zombie_density_var = "300% density")
+	Goto,submit_300_density
+
+If (zombie_density_var = "400% density")
+	Goto,submit_400_density
+
+If (zombie_density_var = "500% density")
+	Goto,submit_500_density
+
+If (zombie_density_var = "600% density")
+	Goto,submit_600_density
+
+If (zombie_density_var = "700% density")
+	Goto,submit_700_density
+
+If (zombie_density_var = "800% density")
+	Goto,submit_800_density
+
+If (zombie_density_var = "900% density")
+	Goto,submit_900_density
+
+If (zombie_density_var = "1000% density")
+	Goto,submit_1000_density
+return
+
+submit_Vanilla_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+MsgBox, not implemented yet
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to vanilla (default),
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_200_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+MsgBox, not implemented yet
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "200`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_300_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+MsgBox, not implemented yet
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "300`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_400_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+MsgBox, not implemented yet
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "400`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_500_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+MsgBox, not implemented yet
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "500`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_600_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+MsgBox, not implemented yet
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "600`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_700_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+MsgBox, not implemented yet
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "700`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_800_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+MsgBox, not implemented yet
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "800`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_900_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+MsgBox, not implemented yet
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "900`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_1000_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+MsgBox, not implemented yet
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scd
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambient.scr
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
+;SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "100`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+
 
 
 Submit_Weather:
