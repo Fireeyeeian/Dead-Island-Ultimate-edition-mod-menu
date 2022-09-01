@@ -425,7 +425,7 @@ AddTooltip(breakdoor_HWND,"Makes the break door mini-game pretty much an instant
 
 Gui, Add, CheckBox, x795 y454 w190 h30 vbetter_durability_var gbetter_durability,Increase wep durability
 GuiControlGet, durab_HWND, Hwnd, better_durability_var
-AddTooltip(durab_HWND,"reduces durability loss from 1.0 to 0.5")
+AddTooltip(durab_HWND,"Changes durability loss from 1.0 durability loss to -2.0")
 
 Gui, Add, CheckBox, x600 y489 w190 h30 vBullet_pen_var gBullet_pen,Enable Bullet penetration (for enemies)
 GuiControlGet, BP_HWND, Hwnd, Bullet_pen_var
