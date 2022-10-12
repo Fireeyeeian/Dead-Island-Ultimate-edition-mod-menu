@@ -160,7 +160,7 @@ FileInstall, Required_files_and_scripts\time-weather_Rain_night_darker.zip, %A_T
 FileInstall, Required_files_and_scripts\time-weather_storm_day.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_day.zip,1
 FileInstall, Required_files_and_scripts\time-weather_storm_night.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_night.zip,1
 FileInstall, Required_files_and_scripts\time-weather_storm_night_darker.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_night_darker.zip,1
-FileInstall, Required_files_and_scripts\DP2_patch.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patch.zip,1
+FileInstall, Required_files_and_scripts\DP2_patched.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip,1
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -196,9 +196,7 @@ AI_Zombie_vessel=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vesse
 ;AI_PROP/BEH
 AI_BEH=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\aibeh.scr
 AI_PROP=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai_props.scr
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 GetCurrentMonitorIndex(){
 	CoordMode, Mouse, Screen
 	MouseGetPos, mx, my
@@ -323,6 +321,16 @@ GuiControl,Enabled,confirm_zom_size_var
 GuiControl,Enabled,Zombie_tweaks_var
 GuiControl,Enabled,better_durability_var
 }
+
+failed_to_mod(){
+	MsgBox Error: failed to mod-- shutting down scripts
+	ExitApp
+}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;functions/references;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;GUIv
 Gui, Font, S10 BOLD Normal Cblack , Segoe ui
 Gui, Font, S11 BOLD Cblack , Segoe ui
@@ -401,6 +409,11 @@ AddTooltip(WEPPOV_HWND,"Originally part of my ""Firearms overhaul"" mod`n•Remo
 Gui, Add, CheckBox, x210 y524 w190 h30 vcustom_wep_var gadd_weps, add custom weapons
 GuiControlGet, CUST_WEP_HWND, Hwnd, custom_wep_var
 AddTooltip(CUST_WEP_HWND,"Adds in the following weapons:`n•M72 launcher (With rigged animations)`n•M60 (with rigged animations)`n•Gives the users the option to reskin deo-bomb to look like a beach ball`n•Gives the user the option to add in explosive ammo mod for firearms (With this mod you can make the infamous Explosive crowd-pleaser)`n•Adds in a mod to craft ammo for M72 and M60`n`n•Custom items can be purchased from Wes Tweddle in the areana lobby")
+
+Gui, Add, CheckBox, x405 y524 w190 h30 vcarry_object_speed, increase carry object speed
+GuiControlGet, carry_obj_HWND, Hwnd, carry_object_speed
+AddTooltip(carry_object_speed,"Increases the speed you walk when carrying objects such as juice crates and propane tanks by 50%")
+
 
 Gui, Add, CheckBox, x405 y454 w190 h30 vbetter_wep_upgrades_var gbetter_wep_upgrades,better firearms upgrading
 GuiControlGet, WEP_UPGRADES_HWND, Hwnd, better_wep_upgrades_var
@@ -644,6 +657,34 @@ return
 
 Submit_density:
 play_click_sound_func()
+SetWorkingDir %Deadisland_dir%/DI
+if FileExist("Data2.pak")
+Goto, Data2_present
+else
+MsgBox data2 not present.`nTHIS SHOULDNT BE AN ISSUE BUT TRY VERIFYING FILES and RE MODDING IF YOU HAVE ISSUES.
+Goto, Continue_density_1
+return
+
+Data2_present:
+;MsgBox data2 found
+SetWorkingDir %Deadisland_dir%/DI
+FileDelete, Data2.pak
+Goto, data2_deleted
+return
+
+data2_deleted:
+;MsgBox data2 should be deleted
+SetWorkingDir %Deadisland_dir%/DI
+if FileExist("Data2.pak")
+Goto, somethings_wrong
+else
+Goto, Continue_density_1
+	return
+somethings_wrong:
+MsgBox Unable to delete data2.pak. modding failed
+failed_to_mod()
+return
+Continue_density_1:
 Gui, Submit, NoHide
 If (zombie_density_var = "100%(vanilla)")
 	Goto,submit_Vanilla_density
@@ -679,30 +720,6 @@ DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(10);")
-Goto, start_checking_data2
-return
-start_checking_data2:
-SetWorkingDir %Deadisland_dir%/DI
-if FileExist("Data2.pak")
-Goto, Data2_present
-else
-	Goto, data2_location_prepped
-return
-
-Data2_present:
-FileDelete, Data2.pak
-Goto, data2_deleted
-return
-
-data2_deleted:
-SetWorkingDir %Deadisland_dir%/DI
-if FileExist("Data2.pak")
-Goto, somthings_wrong
-else
-	Goto, start_checking_data2
-return
-
-data2_location_prepped:
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\Data2.zip, %Deadisland_dir%\DI\Data2.pak ,1
 ;SplashTextOff
 MsgBox, 4160, Density, ➤"Density set to 100`% vanilla (default)",
@@ -716,7 +733,7 @@ DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(20);")
-
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "200`%",
 Enable_BUTTONS_Function()
@@ -729,6 +746,7 @@ DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(40);")
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "400`%",
 Enable_BUTTONS_Function()
@@ -741,6 +759,7 @@ DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(60);")
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "600`%",
 Enable_BUTTONS_Function()
@@ -753,6 +772,7 @@ DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(80);")
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "800`%",
 Enable_BUTTONS_Function()
@@ -765,6 +785,7 @@ DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(100);")
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "1000`%",
 Enable_BUTTONS_Function()
@@ -777,6 +798,7 @@ DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(200);")
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "2000`%",
 Enable_BUTTONS_Function()
@@ -789,6 +811,7 @@ DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(400);")
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "4000`%",
 Enable_BUTTONS_Function()
@@ -801,6 +824,7 @@ DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(600);")
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "6000`%",
 Enable_BUTTONS_Function()
@@ -2265,7 +2289,7 @@ TF_ReplaceLine(INV_patch,"1901",1901,"        AnimPrefix(""Anaconda"");")
 TF_ReplaceLine(INV_patch,"1903",1903,"        ShotTime(2.6);")
 TF_ReplaceLine(INV_patch,"1908",1908,"        ReloadTime(3.4);")
 TF_ReplaceLine(INV_patch,"1936",1936,"        AimFov(1.5);")
-TF_ReplaceLine(INV_patch,"1940",1940,"        Price(5000);")
+TF_ReplaceLine(INV_patch,"1940",1940,"        Price(900);")
 TF_ReplaceLine(INV_patch,"1961",1961,"        PriceMult(0.9);")
 ;m60-----------------------------////////m60\\\\\\\\\------------------------------------------------------------------------------------------
 TF_ReplaceLine(INV_patch,"1811",1811,"        AnimPrefix(""m16"");")
@@ -2274,7 +2298,7 @@ TF_ReplaceLine(INV_patch,"1818",1818,"        ReloadTime(-1.7);")
 TF_ReplaceLine(INV_patch,"1845",1845,"        AimFov(1.8);")
 TF_ReplaceLine(INV_patch,"1826",1826,"        HandOffset(HandModification_Normal, [0.000,-0.15,0.300]); // Converted")
 TF_ReplaceLine(INV_patch,"1878",1878,"        HandOffset(HandModification_Normal, [0.085,-0.15,1.000]); // Converted")
-TF_ReplaceLine(INV_patch,"1849",1849,"        Price(3500);")
+TF_ReplaceLine(INV_patch,"1849",1849,"        Price(800);")
 TF_ReplaceLine(INV_patch,"1838",1838,"        ShootVertRecoil(0.025);")
 ;--------explosive wep craft-------------------
 TF_InsertLine(INV_spec,"830",830,"        ")
