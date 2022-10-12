@@ -545,8 +545,8 @@ return
 ;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK
 selectfolder_button:
 play_click_sound_func()
-FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
-;FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
+;FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
+FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
 SetWorkingDir, %Deadisland_dir%
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\data ;don't really need this I don't think so but it doesn't seem to hurt things.
 if FileExist("DeadIslandGame.exe")
