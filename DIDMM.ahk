@@ -489,7 +489,7 @@ Gui, Add, DropDownList, x770 y372 w120 h200 vZombie_spawn_var, % zom_spawn_list
 GuiControlGet, ZOM_spawn_HWND, Hwnd, Zombie_spawn_var
 AddTooltip(ZOM_spawn_HWND,"force a specific zombie to spawn")
 
-Gui, Add, button, x895 y372 w90 h34 vconfirm_zom_spawn_var gSubmit_zombies_spawn,set spawn overide
+Gui, Add, button, x895 y372 w90 h34 vconfirm_zom_spawn_var gSubmit_zombies_spawn,set spawn override
 Gui, Font, S13 BOLD CYellow, Segoe ui
 Gui, Add, Text, x22 y165 w950 h59 +BackgroundTrans, -Tip: hover mouse over options to get more info
 Gui, Font, CYellow,
@@ -814,7 +814,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(20);")
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "200`%",
+MsgBox, 4160, Density, ➤Density set to "200`%" `nPlease note: this is a little janky and untested throughout the whole game ,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -827,7 +827,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(40);")
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "400`%",
+MsgBox, 4160, Density, ➤Density set to "400`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -840,7 +840,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(60);")
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "600`%",
+MsgBox, 4160, Density, ➤Density set to "600`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -853,7 +853,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(80);")
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "800`%",
+MsgBox, 4160, Density, ➤Density set to "800`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -866,7 +866,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(100);")
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "1000`%",
+MsgBox, 4160, Density, ➤Density set to "1000`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -879,7 +879,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(200);")
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "2000`%",
+MsgBox, 4160, Density, ➤Density set to "2000`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -892,7 +892,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(400);")
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "4000`%",
+MsgBox, 4160, Density, ➤Density set to "4000`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -905,7 +905,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(600);")
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "6000`%",
+MsgBox, 4160, Density, ➤Density set to "6000`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
