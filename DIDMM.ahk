@@ -396,7 +396,7 @@ Gui, Add, CheckBox, x210 y489 w190 h30 vRun_WITH_WEP_VAR gEnableRunningwithwep,E
 GuiControlGet, SPRINT_WEP_HWND, Hwnd, Run_WITH_WEP_VAR
 AddTooltip(SPRINT_WEP_HWND,"Keeps weapons in hand visible in hand when sprinting (Firearms might be held weird when running)")
 
-Gui, Add, CheckBox, x210 y454 w190 h30 vimproved_loot_var gimproved_loot,Improved Loot
+Gui, Add, CheckBox, x210 y454 w190 h30 vimproved_loot_var gimproved_loot,Improved Loot/Cheat chests
 GuiControlGet, LOOT_HWND, Hwnd, improved_loot_var
 AddTooltip(LOOT_HWND,"Reduces the amount of ""white"" weapons you get from locked chests`nAlso give better odds for loot dropped by:`n•Butchers`n•Rams")
 
@@ -4079,6 +4079,13 @@ IfEqual,improved_loot_var,0
 goto, improved_loot_no
 return
 improved_loot_yes:
+MsgBox,36, To cheat or not cheat?, Would you like to enable cheat chest mode?`n(This will make all chests (including butchers and rams) have a drop rate of 100`% for legendary items)
+IfMsgBox, No
+	Goto, Continue_on_improved_loot
+IfMsgBox, yes
+    Goto, enable_cheat_chests
+return
+Continue_on_improved_loot:
 DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
@@ -4123,6 +4130,53 @@ MsgBox,4160,Improved loot option,➤Loot will be improved (Chests/Butchers/Rams)
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
+
+enable_cheat_chests:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+;default chest
+TF_ReplaceLine(def_loot,"66",66,"		ColorWeight(Color_White, 0.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"67",67,"		ColorWeight(Color_Green, 0.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"68",68,"		ColorWeight(Color_Blue, 0.0);	//Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"69",69,"		ColorWeight(Color_Violet, 0.0);	//Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"70",70,"		ColorWeight(Color_Orange, 100);	//Modified_by_FireEyeEian")
+;lockpick1
+TF_ReplaceLine(def_loot,"75",75,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"76",76,"		ColorWeight(Color_Green, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"77",77,"		ColorWeight(Color_Blue, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"78",78,"		ColorWeight(Color_Violet, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"79",79,"		ColorWeight(Color_Orange, 100);  //Modified_by_FireEyeEian")
+;lockpick2
+TF_ReplaceLine(def_loot,"84",84,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"85",85,"		ColorWeight(Color_Green, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"86",86,"		ColorWeight(Color_Blue, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"87",87,"		ColorWeight(Color_Violet, 0.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"88",88,"		ColorWeight(Color_Orange, 100); //Modified_by_FireEyeEian")
+;lockpick3
+TF_ReplaceLine(def_loot,"93",93,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"94",94,"		ColorWeight(Color_Green, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"95",95,"		ColorWeight(Color_Blue, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"96",96,"		ColorWeight(Color_Violet, 0.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"97",97,"		ColorWeight(Color_Orange, 100); //Modified_by_FireEyeEian")
+;Ram
+TF_ReplaceLine(def_loot,"111",111,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"112",112,"		ColorWeight(Color_Green, 0.0);   //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"113",113,"		ColorWeight(Color_Violet, 0.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"114",114,"		ColorWeight(Color_Yellow, 0.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"115",115,"		ColorWeight(Color_Orange, 100); //Modified_by_FireEyeEian")
+;MeleeFighter
+TF_ReplaceLine(def_loot,"138",138,"		ColorWeight(Color_White, 0.0);    //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"139",139,"		ColorWeight(Color_Green, 0.0);    //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"140",140,"		ColorWeight(Color_Violet, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Yellow, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 100);  //Modified_by_FireEyeEian")
+SplashTextOff
+MsgBox,4160,Improved loot option,➤Cheat chests enabled (Chests/Butchers/Rams will drop legendary items 100`% of the time).
+Enable_BUTTONS_Function()
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
 improved_loot_no:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
