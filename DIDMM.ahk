@@ -398,7 +398,7 @@ AddTooltip(SPRINT_WEP_HWND,"Keeps weapons in hand visible in hand when sprinting
 
 Gui, Add, CheckBox, x210 y454 w190 h30 vimproved_loot_var gimproved_loot,Improved Loot/Cheat chests
 GuiControlGet, LOOT_HWND, Hwnd, improved_loot_var
-AddTooltip(LOOT_HWND,"Reduces the amount of ""white"" weapons you get from locked chests`nAlso give better odds for loot dropped by:`n•Butchers`n•Rams")
+AddTooltip(LOOT_HWND,"Reduces the amount of ""white"" weapons you get from locked chests and gives option to enable cheat chests`nAlso gives better odds for loot dropped by:`n•Butchers`n•Rams")
 
 Gui, Add, CheckBox, x210 y419 w190 h30 vbetter_movement_var gmovment_tweaks,better movement tweaks
 GuiControlGet, MOVEMENT_HWND, Hwnd, better_movement_var
