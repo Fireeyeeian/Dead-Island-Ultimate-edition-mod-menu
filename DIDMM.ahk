@@ -253,6 +253,7 @@ DllCall("DrawMenuBar","Int",hWnd)
 Return ""
 }
 DISABLE_BUTTONS_Function(){
+GuiControl,Disable,carry_object_speed
 GuiControl,Disable,zombie_density_var
 GuiControl,Disable,confirm_density_var
 GuiControl,Disable,SUBMIT_FINAL
@@ -289,6 +290,7 @@ GuiControl,Disable,confirm_Weather_var
 
 }
 Enable_BUTTONS_Function(){
+GuiControl,Enabled,carry_object_speed
 GuiControl,Enabled,zombie_density_var
 GuiControl,Enabled,confirm_density_var
 GuiControl,Enabled,Weather_Override_var
@@ -410,7 +412,7 @@ Gui, Add, CheckBox, x210 y524 w190 h30 vcustom_wep_var gadd_weps, add custom wea
 GuiControlGet, CUST_WEP_HWND, Hwnd, custom_wep_var
 AddTooltip(CUST_WEP_HWND,"Adds in the following weapons:`n•M72 launcher (With rigged animations)`n•M60 (with rigged animations)`n•Gives the users the option to reskin deo-bomb to look like a beach ball`n•Gives the user the option to add in explosive ammo mod for firearms (With this mod you can make the infamous Explosive crowd-pleaser)`n•Adds in a mod to craft ammo for M72 and M60`n`n•Custom items can be purchased from Wes Tweddle in the areana lobby")
 
-Gui, Add, CheckBox, x405 y524 w190 h30 vcarry_object_speed, increase carry object speed
+Gui, Add, CheckBox, x405 y524 w190 h30 vcarry_object_speed_var gcarry_obj_spd, increase carry object speed
 GuiControlGet, carry_obj_HWND, Hwnd, carry_object_speed
 AddTooltip(carry_object_speed,"Increases the speed you walk when carrying objects such as juice crates and propane tanks by 50%")
 
@@ -653,6 +655,36 @@ playmusic_no:
 Process, close,background_music.exe
 return
 
+carry_obj_spd:
+play_click_sound_func()
+gui,Submit,nohide
+GuiControlGet,carry_object_speed_var
+IfEqual, carry_object_speed_var, 1
+goto, carry_object_speed_yes
+IfEqual,carry_object_speed_var,0
+goto, carry_object_speed_no
+carry_object_speed_yes:
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"52",52,"	<prop n=""MoveWhenCarryMaxSpeedFactor"" v=""1.05""/>	<!--  Modified by FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"53",53,"	<prop n=""MoveWhenCarryMinSpeedFactor"" v=""0.3""/>	<!--  Modified by FireEyeEian-->")
+SplashTextOff
+MsgBox,4160,carry speed option,➤max carry speed increased by 50`% (1.05)`n➤min carry speed increased by 50`% (0.3),
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+Enable_BUTTONS_Function()
+return
+carry_object_speed_no:
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(Def_lev,"52",52,"	<prop n=""MoveWhenCarryMaxSpeedFactor"" v=""0.7""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"53",53,"	<prop n=""MoveWhenCarryMinSpeedFactor"" v=""0.2""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
+SplashTextOff
+MsgBox,4160,carry speed option,➤max carry speed set to default (0.7)`n➤min carry speed set to default (0.2),
+Enable_BUTTONS_Function()
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
 
 
 Submit_density:
