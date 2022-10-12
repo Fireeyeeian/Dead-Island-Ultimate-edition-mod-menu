@@ -190,6 +190,7 @@ var_amb_scr=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambi
 var_weather=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\weather\weather.scr
 playerdi_pre=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\playerdi.pre
 aispawnbox_pre_def=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+odephysicswalkfly=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\odephysics\generic\odephysicswalkfly.phx
 
 AI_Zombie_vessel=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data.scr
 
@@ -253,6 +254,7 @@ DllCall("DrawMenuBar","Int",hWnd)
 Return ""
 }
 DISABLE_BUTTONS_Function(){
+GuiControl,Disable,noclip_player_var
 GuiControl,Disable,carry_object_speed_var
 GuiControl,Disable,zombie_density_var
 GuiControl,Disable,confirm_density_var
@@ -290,6 +292,7 @@ GuiControl,Disable,confirm_Weather_var
 
 }
 Enable_BUTTONS_Function(){
+GuiControl,Enabled,noclip_player_var
 GuiControl,Enabled,carry_object_speed_var
 GuiControl,Enabled,zombie_density_var
 GuiControl,Enabled,confirm_density_var
@@ -413,8 +416,8 @@ GuiControlGet, CUST_WEP_HWND, Hwnd, custom_wep_var
 AddTooltip(CUST_WEP_HWND,"Adds in the following weapons:`n•M72 launcher (With rigged animations)`n•M60 (with rigged animations)`n•Gives the users the option to reskin deo-bomb to look like a beach ball`n•Gives the user the option to add in explosive ammo mod for firearms (With this mod you can make the infamous Explosive crowd-pleaser)`n•Adds in a mod to craft ammo for M72 and M60`n`n•Custom items can be purchased from Wes Tweddle in the areana lobby")
 
 Gui, Add, CheckBox, x405 y524 w190 h30 vcarry_object_speed_var gcarry_obj_spd, increase carry object speed
-GuiControlGet, carry_obj_HWND, Hwnd, carry_object_speed
-AddTooltip(carry_object_speed,"Increases the speed you walk when carrying objects such as juice crates and propane tanks by 50%")
+GuiControlGet, carry_obj_HWND, Hwnd, carry_object_speed_var
+AddTooltip(carry_obj_HWND,"Increases the speed you walk when carrying objects such as juice crates and propane tanks by 50%")
 
 
 Gui, Add, CheckBox, x405 y454 w190 h30 vbetter_wep_upgrades_var gbetter_wep_upgrades,better firearms upgrading
@@ -437,6 +440,10 @@ Gui, Add, CheckBox, x795 y419 w190 h30 vnoclip_truck_var gnoclip_truck,NoClip ve
 GuiControlGet, NOCLP_HWND, Hwnd, noclip_truck_var
 AddTooltip(NOCLP_HWND,"Makes it so that you can drive through objects with the trucks")
 
+Gui, Add, CheckBox, x795 y454 w190 h30 vnoclip_player_var gnoclip_player,NoClip player
+GuiControlGet, NOCLP_player_HWND, Hwnd, noclip_player_var
+AddTooltip(NOCLP_player_HWND,"This will allow you to walk through objects")
+
 Gui, Add, CheckBox, x600 y454 w190 h30 vmore_ammo_var gMore_ammo ,Hold more ammo
 GuiControlGet, AMMO_HWND, Hwnd, more_ammo_var
 AddTooltip(AMMO_HWND,"Allows you character to carry more ammo`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90")
@@ -445,7 +452,7 @@ Gui, Add, CheckBox, x795 y489 w190 h30 vInstant_breakdoor_var gInstant_breakdoor
 GuiControlGet, breakdoor_HWND, Hwnd, Instant_breakdoor_var
 AddTooltip(breakdoor_HWND,"Makes the break door mini-game pretty much an instant break every time")
 
-Gui, Add, CheckBox, x795 y454 w190 h30 vbetter_durability_var gbetter_durability,Increase wep durability
+Gui, Add, CheckBox, x600 y524 w190 h30 vbetter_durability_var gbetter_durability,Increase wep durability
 GuiControlGet, durab_HWND, Hwnd, better_durability_var
 AddTooltip(durab_HWND,"Changes durability loss from 1.0 durability loss to -2.0")
 
@@ -4078,14 +4085,13 @@ goto, improved_loot_yes
 IfEqual,improved_loot_var,0
 goto, improved_loot_no
 return
-improved_loot_yes:
-MsgBox,36, To cheat or not cheat?, Would you like to enable cheat chest mode?`n(This will make all chests (including butchers and rams) have a drop rate of 100`% for legendary items)
-IfMsgBox, No
-	Goto, Continue_on_improved_loot
-IfMsgBox, yes
-    Goto, enable_cheat_chests
-return
 Continue_on_improved_loot:
+Enable_BUTTONS_Function()
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+
+improved_loot_yes:
 DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
@@ -4127,8 +4133,11 @@ TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Yellow, 52.0);  //Modifie
 TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 11.0);  //Modified_by_FireEyeEian")
 SplashTextOff
 MsgBox,4160,Improved loot option,➤Loot will be improved (Chests/Butchers/Rams).
-Enable_BUTTONS_Function()
-enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+MsgBox,36, To cheat or not cheat?, Would you like to enable cheat chest mode?`n(This will make all chests (including butchers and rams) have a drop rate of 100`% for legendary items)
+IfMsgBox, No
+	Goto, Continue_on_improved_loot
+IfMsgBox, yes
+    Goto, enable_cheat_chests
 return
 
 enable_cheat_chests:
@@ -4259,6 +4268,37 @@ Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
+noclip_player:
+play_click_sound_func()
+gui,Submit,nohide
+GuiControlGet,noclip_player_var
+	IfEqual,noclip_player_var, 1
+goto, noclip_player_yes
+	IfEqual,noclip_player_var,0
+goto, noclip_player_no
+	return
+noclip_player_yes:
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(odephysicswalkfly,"68",68,"    Ignore(1) //Modified_by_FireEyeEian")
+TF_ReplaceLine(odephysicswalkfly,"78",78,"    Ignore(1) //Modified_by_FireEyeEian")
+SplashTextOff
+MsgBox,4160,Noclip players,➤Noclip players enabled. `nPlease note:`n 		This will allow you to walk through certain objects but beware this is wonky and not tested throughout the whole game and you will probabbly need to un-mod and re-mod to get through certain parts... You've been warned..
+Enable_BUTTONS_Function()
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+noclip_player_no:
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(odephysicswalkfly,"68",68,"    Ignore(0) //Modified_by_FireEyeEian")
+TF_ReplaceLine(odephysicswalkfly,"78",78,"    Ignore(0) //Modified_by_FireEyeEian")
+SplashTextOff
+MsgBox,4160,Noclip players,➤Noclip players disabled.
+Enable_BUTTONS_Function()
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
 
 
 reducejumpstaminacost:
