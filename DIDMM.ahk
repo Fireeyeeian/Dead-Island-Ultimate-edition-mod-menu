@@ -253,7 +253,7 @@ DllCall("DrawMenuBar","Int",hWnd)
 Return ""
 }
 DISABLE_BUTTONS_Function(){
-GuiControl,Disable,carry_object_speed
+GuiControl,Disable,carry_object_speed_var
 GuiControl,Disable,zombie_density_var
 GuiControl,Disable,confirm_density_var
 GuiControl,Disable,SUBMIT_FINAL
@@ -290,7 +290,7 @@ GuiControl,Disable,confirm_Weather_var
 
 }
 Enable_BUTTONS_Function(){
-GuiControl,Enabled,carry_object_speed
+GuiControl,Enabled,carry_object_speed_var
 GuiControl,Enabled,zombie_density_var
 GuiControl,Enabled,confirm_density_var
 GuiControl,Enabled,Weather_Override_var
@@ -483,7 +483,7 @@ GuiControlGet, ZOM_spawn_HWND, Hwnd, Zombie_spawn_var
 AddTooltip(ZOM_spawn_HWND,"force a specific zombie to spawn")
 
 Gui, Add, button, x895 y372 w90 h34 vconfirm_zom_spawn_var gSubmit_zombies_spawn,set spawn overide
-Gui, Font, S13 BOLD cwhite, Segoe ui
+Gui, Font, S13 BOLD CYellow, Segoe ui
 Gui, Add, Text, x22 y165 w950 h59 +BackgroundTrans, -Tip: hover mouse over options to get more info
 Gui, Font, CYellow,
 Gui, Font, S16 Cwhite Bold Underline, Segoe ui
@@ -628,8 +628,8 @@ FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\menumain_pc.xui, %A_Temp%\@DIDMM
 ;TF_ReplaceInLines(gameini,"15","","//","") ;encoding issue, probably can be solved through some tf.ahk thing but whatever, instead copy pre-made file to datapak
 ;TF_ReplaceInLines(gameini,"15","","0","1")
 ;TF_ReplaceLine(DLC_shop,"12 ",12,"	ColorItem(""Melee_AxeUniversalGen"", 1, 4, 1)")
-MsgBox,4160,NOTICE,Thank you for downloading and using my mod for Dead Island definitive edition.This mod is the way I enjoy playing.`nI also have a version for Dead island Riptide definitive edition and I plan on eventually porting to the OG versions of the games.`n`n I write these mods in my free time and I'd like to give a huge thank you to everyone who enjoys them, It means a lot!`n`nIf you encounter any bugs please report them on the mods nexus page in the Bugs tab thank you. 
-MsgBox,4160,NOTICE,•If you plan to play Co-op: It is highly recomended that all players have the same Data0.pak`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.`n`n•Also note: Anitimalware programs could potentially prevent this applictaion from working correctly-I have contacted numorus malware detection companies and have gotten this whitlisted as a false postive BUT some might still have issues using this application.`n`nThat being said !! I am not saying to disable your antimalware!! just be aware that if you have issues that could be the culprit.`n`n The source code is avalable on github if you want to view/compile the source code (Link to it is at the bottom of the mods page on nexus mods)
+MsgBox,4160,NOTICE,Thank you for downloading and using my mod menu for Dead Island definitive edition.`nThis mod is the way I enjoy playing.`n`nAlso I have a version for Dead island Riptide definitive edition and I plan on eventually porting to the OG versions of the games.`n`n I write these mods in my free time and I'd like to give a huge thank you to everyone who enjoys them, It means a lot!`n`nIf you encounter any bugs please report them on the mods nexus page in the Bugs tab thank you. 
+MsgBox,4160,NOTICE,•If you plan to play Co-op: It is highly recomended that all players have the same Data0.pak`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.`n`n•The source code is avalable on github if you want to view/compile the source code (Link to it is at the bottom of the mods page on nexus mods)
 ;MsgBox,4160,NOTICE,Please note:`nIt is highly recomended to start a new`nplaythrough (new character ) to use some of theses mods but it is not required ;removed because only one or two require this
 GuiControl, enable,confirm_fov
 GuiControl, enabled,DDL
