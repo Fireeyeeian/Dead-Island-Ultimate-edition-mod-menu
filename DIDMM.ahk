@@ -606,7 +606,47 @@ else
 	MsgBox, please make sure game is installed correctly!`n Currently missing: Data0.pak`n`nPlease Verify game files or reinstall game
 	return
 Data0_present:
-goto,SETUP_TEMPORARY_ENVIRONMENT
+goto,check_data2_first_run
+return
+
+check_data2_first_run:
+SetWorkingDir %Deadisland_dir%/DI
+if FileExist("Data2.pak")
+Goto, Data2_present_first_run
+else
+MsgBox, please make sure game is installed correctly!`n Currently missing: Data2.pak`n`nPlease Verify game files or reinstall game
+return
+
+Data2_present_first_run:
+;MsgBox data2 found
+SetWorkingDir %Deadisland_dir%/DI
+FileDelete, Data2.pak
+Goto, data2_deleted_first_run
+return
+
+data2_deleted_first_run:
+;MsgBox data2 should be deleted
+SetWorkingDir %Deadisland_dir%/DI
+if FileExist("Data2.pak")
+Goto, somethings_wrong_first_run
+else
+Goto, data2_confirmed_deleted
+	return
+somethings_wrong_first_run:
+MsgBox Unable to delete data2.pak. modding failed -please make sure game is installed correctly!`n Currently missing: Data2.pak`n`nPlease Verify game files or reinstall game
+return
+
+data2_confirmed_deleted:
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\Data2.zip, %Deadisland_dir%\DI\Data2.pak ,1
+Goto, doublecheck_data2_after_copy
+return
+
+doublecheck_data2_after_copy:
+SetWorkingDir %Deadisland_dir%/DI
+if FileExist("Data2.pak")
+Goto, SETUP_TEMPORARY_ENVIRONMENT
+else
+MsgBox, Error copying files
 return
 
 SETUP_TEMPORARY_ENVIRONMENT:
