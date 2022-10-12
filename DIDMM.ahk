@@ -145,6 +145,7 @@ FileInstall, Required_files_and_scripts\gameaudioeffects.scr.modded, %A_Temp%\@D
 FileInstall, Required_files_and_scripts\gameaudioeffects.scr.nomod, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , 1
 FileInstall, UI\DIDMM_main.png, %A_Temp%\@DIDMM_TEMPFILES\DIDMM_main.png , 1
 FileInstall, Data0.pak, %A_Temp%\@DIDMM_TEMPFILES\Data0.zip,1
+FileInstall, Data2.pak, %A_Temp%\@DIDMM_TEMPFILES\Data2.zip,1
 FileInstall, Required_files_and_scripts\sounds\menu_click.wav, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_click.wav,1
 FileInstall, Required_files_and_scripts\sounds\DI_music.wav, %A_Temp%\@DIDMM_TEMPFILES\sounds\DI_music.wav,1
 FileInstall, Required_files_and_scripts\sounds\menu_highlight.wav, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_highlight.wav,1
@@ -159,6 +160,8 @@ FileInstall, Required_files_and_scripts\time-weather_Rain_night_darker.zip, %A_T
 FileInstall, Required_files_and_scripts\time-weather_storm_day.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_day.zip,1
 FileInstall, Required_files_and_scripts\time-weather_storm_night.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_night.zip,1
 FileInstall, Required_files_and_scripts\time-weather_storm_night_darker.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_night_darker.zip,1
+FileInstall, Required_files_and_scripts\DP2_patch.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patch.zip,1
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -190,8 +193,9 @@ aispawnbox_pre_def=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispa
 
 AI_Zombie_vessel=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data.scr
 
-;AI_PROP
+;AI_PROP/BEH
 AI_BEH=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\aibeh.scr
+AI_PROP=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai_props.scr
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -446,7 +450,7 @@ GuiControlGet, Weather_Override_HWND, Hwnd, Weather_Override_var
 AddTooltip(Weather_Override_HWND,"Force a specific weather/time")
 Gui, Add, button, x195 y345 w120 h21 vconfirm_Weather_var gSubmit_Weather,set weather/time
 
-zombie_density_list:="100%(vanilla)||200% density|300% density|400% density|500% density|600% density|700% density|800% density|900% density|1000% density"
+zombie_density_list:="100%(vanilla)||200% density|400% density|600% density|800% density|1000% density|2000% density|4000% density|6000% density"
 Gui, Add, DropDownList, x325 y345 w113 h200 vzombie_density_var, % zombie_density_list
 GuiControlGet, zombie_density_HWND, Hwnd, zombie_density_var
 AddTooltip(zombie_density_HWND,"Increases the amount of zombies that spawn`n200%=2X")
@@ -519,8 +523,8 @@ return
 ;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK
 selectfolder_button:
 play_click_sound_func()
-;FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
-FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
+FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
+;FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
 SetWorkingDir, %Deadisland_dir%
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\data ;don't really need this I don't think so but it doesn't seem to hurt things.
 if FileExist("DeadIslandGame.exe")
@@ -647,39 +651,61 @@ If (zombie_density_var = "100%(vanilla)")
 If (zombie_density_var = "200% density")
 	Goto,submit_200_density
 
-If (zombie_density_var = "300% density")
-	Goto,submit_300_density
-
 If (zombie_density_var = "400% density")
 	Goto,submit_400_density
-
-If (zombie_density_var = "500% density")
-	Goto,submit_500_density
 
 If (zombie_density_var = "600% density")
 	Goto,submit_600_density
 
-If (zombie_density_var = "700% density")
-	Goto,submit_700_density
-
 If (zombie_density_var = "800% density")
 	Goto,submit_800_density
 
-If (zombie_density_var = "900% density")
-	Goto,submit_900_density
-
 If (zombie_density_var = "1000% density")
 	Goto,submit_1000_density
-return
+
+If (zombie_density_var = "2000% density")
+	Goto,submit_2000_density
+
+If (zombie_density_var = "4000% density")
+	Goto,submit_4000_density
+
+If (zombie_density_var = "6000% density")
+	Goto,submit_6000_density
+
 
 submit_Vanilla_density:
 DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-;TF_ReplaceLine
+TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(10);")
+Goto, start_checking_data2
+return
+start_checking_data2:
+SetWorkingDir %Deadisland_dir%/DI
+if FileExist("Data2.pak")
+Goto, Data2_present
+else
+	Goto, data2_location_prepped
+return
+
+Data2_present:
+FileDelete, Data2.pak
+Goto, data2_deleted
+return
+
+data2_deleted:
+SetWorkingDir %Deadisland_dir%/DI
+if FileExist("Data2.pak")
+Goto, somthings_wrong
+else
+	Goto, start_checking_data2
+return
+
+data2_location_prepped:
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\Data2.zip, %Deadisland_dir%\DI\Data2.pak ,1
 ;SplashTextOff
-MsgBox, 4160, Density, ➤Density set to vanilla (default),
+MsgBox, 4160, Density, ➤"Density set to 100`% vanilla (default)",
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -689,21 +715,10 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-;TF_ReplaceLine
+TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(20);")
+
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "200`%",
-Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-return
-
-submit_300_density:
-DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-DISABLE_BUTTONS_Function()
-;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-;TF_ReplaceLine
-;SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "300`%",
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -713,21 +728,9 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-;TF_ReplaceLine
+TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(40);")
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "400`%",
-Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-return
-
-submit_500_density:
-DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-DISABLE_BUTTONS_Function()
-;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-;TF_ReplaceLine
-;SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "500`%",
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -737,21 +740,9 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-;TF_ReplaceLine
+TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(60);")
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "600`%",
-Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-return
-
-submit_700_density:
-DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-DISABLE_BUTTONS_Function()
-;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-;TF_ReplaceLine
-;SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "700`%",
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -761,21 +752,9 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-;TF_ReplaceLine
+TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(80);")
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "800`%",
-Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-return
-
-submit_900_density:
-DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-DISABLE_BUTTONS_Function()
-;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-;TF_ReplaceLine
-;SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "900`%",
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -785,9 +764,45 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 ;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-;TF_ReplaceLine
+TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(100);")
 ;SplashTextOff
 MsgBox, 4160, Density, ➤Density set to "1000`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_2000_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(200);")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "2000`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_4000_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(400);")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "4000`%",
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_6000_density:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+;SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(600);")
+;SplashTextOff
+MsgBox, 4160, Density, ➤Density set to "6000`%",
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
