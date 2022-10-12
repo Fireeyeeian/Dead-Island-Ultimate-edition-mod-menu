@@ -1088,7 +1088,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\force_butcher_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Butchers""`n(May god have mercy on you) `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Butchers""`n(May god have mercy on you) `nPlease note that the full game has not been testing using these option and such may cause weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1101,7 +1101,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_ram_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Rammers"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Rammers"" `nPlease note that the full game has not been testing using these option and such may cause weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1114,7 +1114,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bloater_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bloaters"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bloaters"" `nPlease note that the full game has not been testing using these option and such may cause weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1127,7 +1127,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bandits_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cause weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1140,7 +1140,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bandits(firearms).zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(firearms)"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(firearms)"" `nPlease note that the full game has not been testing using these option and such may cause weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1153,7 +1153,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bandits(melee).zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(Melee)"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(Melee)"" `nPlease note that the full game has not been testing using these option and such may cause weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1166,7 +1166,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_thug_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Thugs"" `nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Thugs"" `nPlease note that the full game has not been testing using these option and such may cause weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1179,7 +1179,7 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_suicide_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Suiciders""`nNote: They really like to explode...`nPlease note that the full game has not been testing using these option and such may cuase weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
+MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Suiciders""`nNote: They really like to explode...`nPlease note that the full game has not been testing using these option and such may cause weird things`, For example in the fight with "Wayne" you'll probabbly have to kill the zombies stuck behind the fences as these forced spawns might not be able to climb the fences,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
