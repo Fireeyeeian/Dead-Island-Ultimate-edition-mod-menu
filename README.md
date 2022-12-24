@@ -1,6 +1,3 @@
-
-!!!!!!THIS VERSION ON GITHUB IS CURRENTLY BEING UPGRADED TO V3 SO NOT EVERYTHING WILL WORK PLEASE WAIT FOR UPGRADE TO V3 OR USE THE VERSION ON NEXUS MODS FOR THE TIME BEING!!!!!
-
 This program installs mods for Dead Island Riptide Definitive edition :)
 ![alt text](https://staticdelivery.nexusmods.com/mods/1539/images/14/14-1575083930-113271049.png)
 
