@@ -124,9 +124,9 @@ FileInstall, Required_files_and_scripts\game.ini, %A_Temp%\@DIDMM_TEMPFILES\loos
 FileInstall, Required_files_and_scripts\menumain_pc.xui_version, %A_Temp%\@DIDMM_TEMPFILES\loose_files\menumain_pc.xui , 1
 ;FileInstall, Required_files_and_scripts\vessel_data.scr.oneshot_zombie, %A_Temp%\@DIDMM_TEMPFILES\loose_files\vessel_data.scr.oneshot_zombie , 1 ;unused?
 FileInstall, Required_files_and_scripts\ai_norm.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\ai_norm.zip,1
-FileInstall, Required_files_and_scripts\ai_hard.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\ai_hard.zip,1
-FileInstall, Required_files_and_scripts\ai_Headshot.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\ai_Headshot.zip,1
-FileInstall, Required_files_and_scripts\ai_Onehit.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\ai_Onehit.zip,1
+;FileInstall, Required_files_and_scripts\ai_hard.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\ai_hard.zip,1
+;FileInstall, Required_files_and_scripts\ai_Headshot.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\ai_Headshot.zip,1
+;FileInstall, Required_files_and_scripts\ai_Onehit.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\ai_Onehit.zip,1
 FileInstall, Required_files_and_scripts\PRESETS_LARGE_ZOMSIZE.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\PRESETS_LARGE_ZOMSIZE.zip,1
 FileInstall, Required_files_and_scripts\PRESETS_MIDGET_ZOMSIZE.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\PRESETS_MIDGET_ZOMSIZE.zip,1
 FileInstall, Required_files_and_scripts\PRESETS_NORM_ZOMSIZE.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\PRESETS_NORM_ZOMSIZE.zip,1
@@ -140,6 +140,8 @@ FileInstall, Required_files_and_scripts\Force_ram_spawn.zip, %A_Temp%\@DIDMM_TEM
 FileInstall, Required_files_and_scripts\Force_bandits(firearms).zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_bandits(firearms).zip,1
 FileInstall, Required_files_and_scripts\Force_bandits(melee).zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_bandits(melee).zip,1
 FileInstall, Required_files_and_scripts\Force_bandits_spawn.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Force_bandits_spawn.zip,1
+FileInstall, Required_files_and_scripts\force_ryder_spawns.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\force_ryder_spawns.zip,1
+FileInstall, Required_files_and_scripts\force_infected_ryder_white_spawns.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\force_infected_ryder_white_spawns.zip,1
 FileInstall, Required_files_and_scripts\Default_spawns.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\Default_spawns.zip,1
 FileInstall, Required_files_and_scripts\gameaudioeffects.scr.modded, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.modded , 1
 FileInstall, Required_files_and_scripts\gameaudioeffects.scr.nomod, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , 1
@@ -164,9 +166,11 @@ FileInstall, Required_files_and_scripts\DP2_patched.zip, %A_Temp%\@DIDMM_TEMPFIL
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;@@functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Run, %A_Temp%\@DIDMM_TEMPFILES\scripts\play_scream_sound_then_quit.exe,,,
+
+varlist_main=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_main.scr
 INV_GEN=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\inventory_gen.scr
 INV_spec=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\inventory_special.scr
 INV_patch=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\inventory_patch.scr
@@ -192,7 +196,25 @@ playerdi_pre=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\playerdi.pr
 aispawnbox_pre_def=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 odephysicswalkfly=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\odephysics\generic\odephysicswalkfly.phx
 
-AI_Zombie_vessel=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data.scr
+vessle_data=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data.scr
+vessle_data_custom_0=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data_preset_custom_0.scr
+vessle_data_custom_13=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data_preset_custom_13.scr
+vessle_data_custom_15=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data_preset_custom_15.scr
+vessle_data_custom_16=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data_preset_custom_16.scr
+vessle_data_custom_3=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data_preset_custom_3.scr
+vessle_data_custom_4=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data_preset_custom_4.scr
+vessle_data_custom_5=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\zombie\vessel_data_preset_custom_5.scr
+
+Infected_data=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\infected\infected_data.scr
+Infected_data_custom_0=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\infected\infected_data_preset_custom_0.scr
+Infected_data_custom_1=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\infected\infected_data_preset_custom_1.scr
+Infected_data_custom_2=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\infected\infected_data_preset_custom_2.scr
+Infected_data_custom_3=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\infected\infected_data_preset_custom_3.scr
+Infected_data_custom_4=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\infected\infected_data_preset_custom_4.scr
+Infected_data_custom_5=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\infected\infected_data_preset_custom_5.scr
+Infected_data_custom_6=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\infected\infected_data_preset_custom_6.scr
+Infected_data_custom_8=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\infected\infected_data_preset_custom_8.scr
+Infected_data_custom_9=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\infected\infected_data_preset_custom_9.scr
 
 ;AI_PROP/BEH
 AI_BEH=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\aibeh.scr
@@ -232,6 +254,7 @@ GetClientSize(hwnd, ByRef w, ByRef h)
     h := NumGet(rc, 12, "int")
 }
 
+
 play_click_sound_func(){
 SoundPlay, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_click.wav
 }
@@ -253,7 +276,16 @@ DllCall("GetSystemMenu","Int",hWnd,"Int",TRUE)
 DllCall("DrawMenuBar","Int",hWnd)
 Return ""
 }
+
 DISABLE_BUTTONS_Function(){
+GuiControl,Disable,diff_menu_done_var
+GuiControl,Disable,crit_done_button
+GuiControl,Disable,WRITE_ZOM_SETTINGS_TO_FILES_button_var
+GuiControl,Disable,confirm_chance_fists_var
+GuiControl,Disable,restrict_zombie_throwing_var
+GuiControl,Disable,zom_diff_MENU_var
+GuiControl,Disable,CRIT_CHANCE_MENU_var
+GuiControl,Disable,Chromatic_aberration_var
 GuiControl,Disable,noclip_player_var
 GuiControl,Disable,carry_object_speed_var
 GuiControl,Disable,zombie_density_var
@@ -289,224 +321,298 @@ GuiControl,Disable,better_durability_var
 GuiControl,Disable,Instant_breakdoor_var
 GuiControl,Disable,Weather_Override_var
 GuiControl,Disable,confirm_Weather_var
+GuiControl,Disable,crit_chance_fists_var
+GuiControl,Disable,crit_chance_blunt_var
+GuiControl,Disable,crit_chance_cut_var
+GuiControl,Disable,crit_chance_ranged_var
+GuiControl,Disable,crit_chance_bullet_var
+
 
 }
+
 Enable_BUTTONS_Function(){
-GuiControl,Enabled,noclip_player_var
-GuiControl,Enabled,carry_object_speed_var
-GuiControl,Enabled,zombie_density_var
-GuiControl,Enabled,confirm_density_var
-GuiControl,Enabled,Weather_Override_var
-GuiControl,Enabled,confirm_Weather_var
-GuiControl,enabled,NightTime_var
-GuiControl,Enabled,Zombie_spawn_var
-GuiControl,Enabled,confirm_zom_spawn_var
-GuiControl,Enabled,better_wep_pov_var
-GuiControl,Enabled,Instant_breakdoor_var
-GuiControl,Enabled,Even_Deeper_pockets_var
-GuiControl,Enabled,more_ammo_var
-GuiControl,Enabled,noclip_truck_var
-GuiControl,enable,better_wep_upgrades_var
-GuiControl,Enabled,SUBMIT_FINAL
-GuiControl,enabled,Remove_reverb_sound_var
-GuiControl,show,DI_LOC_TEXT
-GuiControl,Enabled,Bullet_pen_var
-GuiControl,Enabled,Recoil_hfov_fix
-GuiControl,Enabled,Skip_intros_var
-GuiControl,Enabled,Reduce_sun_var
-GuiControl,Enabled,Reducesprint_stamina_cost_var
-GuiControl,Enabled,Jump_stamina_var
-GuiControl,Enabled,Run_WITH_WEP_VAR
-GuiControl,Enabled,improved_loot_var
-GuiControl,Enabled,better_movement_var
-GuiControl,Enabled,custom_wep_var
-GuiControl,Enabled,Zombie_size_var
-GuiControl,Enabled,confirm_zom_var
-GuiControl,Enabled,confirm_zom_size_var
-GuiControl,Enabled,Zombie_tweaks_var
-GuiControl,Enabled,better_durability_var
+GuiControl 3: Enabled,diff_menu_done_var
+GuiControl 3: Enabled,WRITE_ZOM_SETTINGS_TO_FILES_button_var
+GuiControl 2: Enabled,crit_done_button
+GuiControl 3: Enabled,restrict_zombie_throwing_var
+GuiControl 1: Enabled,zom_diff_MENU_var
+GuiControl 1: Enabled,CRIT_CHANCE_MENU_var
+GuiControl 1: Enabled,Chromatic_aberration_var
+GuiControl 1: Enabled,noclip_player_var
+GuiControl 1: Enabled,carry_object_speed_var
+GuiControl 1: Enabled,zombie_density_var
+GuiControl 1: Enabled,confirm_density_var
+GuiControl 1: Enabled,Weather_Override_var
+GuiControl 1: Enabled,confirm_Weather_var
+GuiControl 1: Enabled,NightTime_var
+GuiControl 1: Enabled,Zombie_spawn_var
+GuiControl 1: Enabled,confirm_zom_spawn_var
+GuiControl 1: Enabled,better_wep_pov_var
+GuiControl 1: Enabled,Instant_breakdoor_var
+GuiControl 1: Enabled,Even_Deeper_pockets_var
+GuiControl 1: Enabled,more_ammo_var
+GuiControl 1: Enabled,noclip_truck_var
+GuiControl 1: Enabled,better_wep_upgrades_var
+GuiControl 1: Enabled,SUBMIT_FINAL
+GuiControl 1: Enabled,Remove_reverb_sound_var
+GuiControl 1: show,DI_LOC_TEXT
+GuiControl 1: Enabled,Bullet_pen_var
+GuiControl 1: Enabled,Recoil_hfov_fix
+GuiControl 1: Enabled,Skip_intros_var
+GuiControl 1: Enabled,Reduce_sun_var
+GuiControl 1: Enabled,Reducesprint_stamina_cost_var
+GuiControl 1: Enabled,Jump_stamina_var
+GuiControl 1: Enabled,Run_WITH_WEP_VAR
+GuiControl 1: Enabled,improved_loot_var
+GuiControl 1: Enabled,better_movement_var
+GuiControl 1: Enabled,custom_wep_var
+GuiControl 1: Enabled,Zombie_size_var
+GuiControl 1: Enabled,confirm_zom_var
+GuiControl 1: Enabled,confirm_zom_size_var
+GuiControl 3: Enabled,Zombie_tweaks_var
+GuiControl 1: Enabled,better_durability_var
 }
+
+Enable_BUTTONS_Function_only_gui3(){
+GuiControl 3: Enabled,diff_menu_done_var
+GuiControl 3: Enabled,WRITE_ZOM_SETTINGS_TO_FILES_button_var
+GuiControl 3: Enabled,restrict_zombie_throwing_var
+GuiControl 3: Enabled,Zombie_tweaks_var
+}
+
+Enable_BUTTONS_Function_only_gui2(){
+GuiControl 2: Enabled,confirm_chance_fists_var
+GuiControl 2: Enabled,crit_done_button
+GuiControl 2: Enabled,crit_chance_fists_var
+GuiControl 2: Enabled,crit_chance_blunt_var
+GuiControl 2: Enabled,crit_chance_cut_var
+GuiControl 2: Enabled,crit_chance_ranged_var
+GuiControl 2: Enabled,crit_chance_bullet_var
+
+
+;just need to add gui 2 variables here then add this func to the code blocks
+
+}
+
 
 failed_to_mod(){
 	MsgBox Error: failed to mod-- shutting down scripts
 	ExitApp
 }
 
+move_window_gui2(){
+
+	IfWinExist, gui 2
+		{
+		
+			WinGetPos, X1, Y1, , ,A
+			X2 := X1 + 600
+			Y2 := Y1 +345
+			gui,2:show, x%X2% y%Y2%
+	
+		}
+}
+
+move_window_gui3(){
+
+	IfWinExist, gui 3
+		{
+		
+			WinGetPos, X1, Y1, , ,A
+			X2 := X1 + 345
+			Y2 := Y1 +390
+			gui,3:show, x%X2% y%Y2%
+	
+		}
+}
+
+
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;functions/references;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;GUIv
-Gui, Font, S10 BOLD Normal Cblack , Segoe ui
-Gui, Font, S11 BOLD Cblack , Segoe ui
-Gui, Add, Picture, x2 y-1 w1000 h570 , %A_Temp%\@DIDMM_TEMPFILES\DIDMM_main.png
+gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
+gui,1: Font, S11 BOLD Cblack , Segoe ui
+gui,1: Add, Picture, x2 y-1 w1000 h570 , %A_Temp%\@DIDMM_TEMPFILES\DIDMM_main.png
 
-Gui, Add, Button, x602 y230 w120 h30 hWndhButton2 vselect_folder_button gselectfolder_button, SELECT FOLDER
+gui,1: Add, Button, x602 y230 w120 h30 hWndhButton2 vselect_folder_button gselectfolder_button, SELECT FOLDER
 GuiControlGet, SF_HWND, Hwnd, select_folder_button
 AddTooltip(SF_HWND,"select Your DIDE folder")
 
-Gui, Font, S10 BOLD Normal Cblack , Segoe ui
-Gui, Font, S7 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
+gui,1: Font, S7 BOLD Cblack , Segoe ui
 
-Gui, Add, text, x732 y220 w240 h50 vuser_Deadisland_DIRECTORY, [NO FOLDER SELECTED]
+gui,1: Add, text, x732 y220 w240 h50 vuser_Deadisland_DIRECTORY, [NO FOLDER SELECTED]
 
-Gui, Font, S10 BOLD Normal Cblack , Segoe ui
-Gui, Font, S11 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
+gui,1: Font, S11 BOLD Cblack , Segoe ui
 
-Gui, Add, CheckBox, x15 y419 w190 h30 vSkip_intros_var gskiptheintros,Skip intro videos
+gui,1: Add, CheckBox, x15 y419 w190 h30 vSkip_intros_var gskiptheintros,Skip intro videos
 GuiControlGet, SKP_INTRO_HWND, Hwnd, Skip_intros_var
 AddTooltip(SKP_INTRO_HWND,"Disables the Intro movies/logos that play when the game starts")
 
-Gui, Add, CheckBox, x15 y489 w190 h30 vReduce_sun_var greducethesunflare,Reduce sunflare by 90`%
+gui,1: Add, CheckBox, x15 y489 w190 h30 vReduce_sun_var greducethesunflare,Reduce sunflare by 90`%
 GuiControlGet, SUN_FLARE_HWND, Hwnd, Reduce_sun_var
 AddTooltip(SUN_FLARE_HWND,"Increases the transparency of the sun flare texture")
 
-Gui, Font, S10 BOLD Normal Cblack , Segoe ui
-Gui, Font, S10 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
+gui,1: Font, S10 BOLD Cblack , Segoe ui
 
-Gui, Add, CheckBox, x15 y454 w190 h30 vReducesprint_stamina_cost_var greducethesprintstaminacost,Reduce sprinting stamina cost
+gui,1: Add, CheckBox, x15 y454 w190 h30 vReducesprint_stamina_cost_var greducethesprintstaminacost,Reduce sprinting stamina cost
 GuiControlGet, SPRINT_STAM_HWND, Hwnd, Reducesprint_stamina_cost_var
 AddTooltip(SPRINT_STAM_HWND,"Allows you to sprint for a longer duration before exhaustion")
 
-Gui, Font, S10 BOLD Normal Cblack , Segoe ui
-Gui, Font, S8 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
+gui,1: Font, S8 BOLD Cblack , Segoe ui
 
 Fov_list:="62 default||72|82|"
-Gui, Add, DropDownList, x260 y268 w90 h70 vDDL, % Fov_list
+gui,1: Add, DropDownList, x260 y268 w90 h70 vDDL, % Fov_list
 GuiControlGet, DDL_HWND, Hwnd, DDL
 AddTooltip(DDL_HWND,"FOV stands for Field Of View`nBasically how wide your vision is`nA lower number zooms in the camera, while a higher number zooms out the camera")
-Gui, Add, button, x360 y268 w120 h21 vconfirm_fov gSubmit_fov, Confirm FOV
+gui,1: Add, button, x360 y268 w120 h21 vconfirm_fov gSubmit_fov, Confirm FOV
 
-Gui, Font, S10 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Cblack , Segoe ui
 
-Gui, Add, button, x862 y14 w120 h110 vSUBMIT_FINAL gSubmit_FINAL, CLICK TO CONFIRM MODIFICATIONS
+gui,1: Add, button, x862 y14 w120 h110 vSUBMIT_FINAL gSubmit_FINAL, CLICK TO CONFIRM MODIFICATIONS
 GuiControlGet, FINAL_HWND, Hwnd, SUBMIT_FINAL
 AddTooltip(FINAL_HWND,"Confirm selected mods/changes and write changes to a new Data0.pak")
 
-Gui, Add, CheckBox, Checked x862 y130 w120 h27 venable_music_var genable_music, Enable music?
+gui,1: Add, CheckBox, Checked x862 y130 w120 h27 venable_music_var genable_music, Enable music?
 GuiControlGet, MUSIC_HWND, Hwnd, enable_music_var
 AddTooltip(MUSIC_HWND,"toggles the playing of dead island music while running this application")
 
-;Gui, Add, CheckBox, x15 y524 w190 h30 vRecoil_hfov_fix gRecoil_hfov_fix,high fov recoil fix
+;gui,1: Add, CheckBox, x15 y524 w190 h30 vRecoil_hfov_fix gRecoil_hfov_fix,high fov recoil fix
 ;GuiControlGet, HFOV_HWND, Hwnd, Recoil_hfov_fix
 ;AddTooltip(HFOV_HWND,"Reduces recoil animations for`n•Shotguns`nThis option can help if you get motion sick easily or have a high field of view")
 
-Gui, Add, CheckBox, x15 y524 w190 h30 vJump_stamina_var greducejumpstaminacost,Reduce jump stamina cost
+gui,1: Add, CheckBox, x15 y524 w190 h30 vJump_stamina_var greducejumpstaminacost,Reduce jump stamina cost
 GuiControlGet, JUMP_STAM_HWND, Hwnd, Jump_stamina_var
 AddTooltip(JUMP_STAM_HWND,"Allows you to jump more times before exhaustion")
 
-Gui, Add, CheckBox, x210 y489 w190 h30 vRun_WITH_WEP_VAR gEnableRunningwithwep,Enable running w/weapons
+gui,1: Add, CheckBox, x210 y489 w190 h30 vRun_WITH_WEP_VAR gEnableRunningwithwep,Enable running w/weapons
 GuiControlGet, SPRINT_WEP_HWND, Hwnd, Run_WITH_WEP_VAR
 AddTooltip(SPRINT_WEP_HWND,"Keeps weapons in hand visible in hand when sprinting (Firearms might be held weird when running)")
 
-Gui, Add, CheckBox, x210 y454 w190 h30 vimproved_loot_var gimproved_loot,Improved Loot/Cheat chests
+gui,1: Add, CheckBox, x210 y454 w190 h30 vimproved_loot_var gimproved_loot,Improved Loot/Cheat chests
 GuiControlGet, LOOT_HWND, Hwnd, improved_loot_var
 AddTooltip(LOOT_HWND,"Reduces the amount of ""white"" weapons you get from locked chests and gives option to enable cheat chests`nAlso gives better odds for loot dropped by:`n•Butchers`n•Rams")
 
-Gui, Add, CheckBox, x210 y419 w190 h30 vbetter_movement_var gmovment_tweaks,better movement tweaks
+gui,1: Add, CheckBox, x210 y419 w190 h30 vbetter_movement_var gmovment_tweaks,better movement tweaks
 GuiControlGet, MOVEMENT_HWND, Hwnd, better_movement_var
 AddTooltip(MOVEMENT_HWND,"No more sluggish movement, This tweak will make movement feel more responsive")
 
-Gui, Add, CheckBox, x405 y419 w190 h30 vbetter_wep_pov_var gbetterweppov,Firearms tweaks and fixes
+gui,1: Add, CheckBox, x405 y419 w190 h30 vbetter_wep_pov_var gbetterweppov,Firearms tweaks and fixes
 GuiControlGet, WEPPOV_HWND, Hwnd, better_wep_pov_var
 AddTooltip(WEPPOV_HWND,"Originally part of my ""Firearms overhaul"" mod`n•Removes blur on weapon sights.`n•Pushes weapons out to more realistic positions.`n•Improves hip-fire holding position of rifles to a more low-right position allowing better field of view.`n•Fixes iron sight and red dot misalignment bug.`n•Fixes most clipping when at a high FOV (Scales with selected FOV).")
 
-Gui, Add, CheckBox, x210 y524 w190 h30 vcustom_wep_var gadd_weps, add custom weapons
+gui,1: Add, CheckBox, x210 y524 w190 h30 vcustom_wep_var gadd_weps, add custom weapons
 GuiControlGet, CUST_WEP_HWND, Hwnd, custom_wep_var
 AddTooltip(CUST_WEP_HWND,"Adds in the following weapons:`n•M72 launcher (With rigged animations)`n•M60 (with rigged animations)`n•Gives the users the option to reskin deo-bomb to look like a beach ball`n•Gives the user the option to add in explosive ammo mod for firearms (With this mod you can make the infamous Explosive crowd-pleaser)`n•Adds in a mod to craft ammo for M72 and M60`n`n•Custom items can be purchased from Wes Tweddle in the areana lobby")
 
-Gui, Add, CheckBox, x405 y524 w190 h30 vcarry_object_speed_var gcarry_obj_spd, increase carry object speed
+gui,1: Add, CheckBox, x405 y524 w190 h30 vcarry_object_speed_var gcarry_obj_spd, increase carry object speed
 GuiControlGet, carry_obj_HWND, Hwnd, carry_object_speed_var
 AddTooltip(carry_obj_HWND,"Increases the speed you walk when carrying objects such as juice crates and propane tanks by 50%")
 
 
-Gui, Add, CheckBox, x405 y454 w190 h30 vbetter_wep_upgrades_var gbetter_wep_upgrades,better firearms upgrading
+gui,1: Add, CheckBox, x405 y454 w190 h30 vbetter_wep_upgrades_var gbetter_wep_upgrades,better firearms upgrading
 GuiControlGet, WEP_UPGRADES_HWND, Hwnd, better_wep_upgrades_var
 AddTooltip(WEP_UPGRADES_HWND,"Adds more functionality to the (firearms) weapon upgrade system.`nFirearms stats such as:`n•Reload speed`n•How fast it will fire`n•Recoil impulse`nWill get better with every upgrade you apply to the firearm.`n`nPLEASE NOTE: ONLY THE AUTOMATIC RELOAD SPEED IS AFFECTED (this is due to how dead island handles weapons generation its kinda out of my hands.`nJust know that the reload speed will be default if you hit the reload key manually) ")
 
-Gui, Font, S8 BOLD Cblack , Segoe ui
+gui,1: Font, S8 BOLD Cblack , Segoe ui
 
-Gui, Add, CheckBox, x405 y489 w190 h30 vRemove_reverb_sound_var gremovereverb,Remove the weird reverb/echo sound (You know the one)
+gui,1: Add, CheckBox, x405 y489 w190 h30 vRemove_reverb_sound_var gremovereverb,Remove the weird reverb/echo sound (You know the one)
 GuiControlGet, REVERB_HWND, Hwnd, Remove_reverb_sound_var
 AddTooltip(REVERB_HWND,"If you know you know, I find the reverb sound to be jarring and it takes me out of the game`nIf you are not familiar with this sound its most prominent when shooting a firearm")
 
-Gui, Font, S10 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Cblack , Segoe ui
 
-Gui, Add, CheckBox, x600 y419 w190 h30 vEven_Deeper_pockets_var gdeeper_pockets,Even Deeper pockets
+gui,1: Add, CheckBox, x600 y419 w190 h30 vEven_Deeper_pockets_var gdeeper_pockets,Even Deeper pockets
 GuiControlGet, DP_HWND, Hwnd, Even_Deeper_pockets_var
 AddTooltip(DP_HWND,"Buffs the Deeper pockets skill`nGives more inventory slots per upgrade of the ""Deeper pockets skill""(max 30)`nPLEASE NOTE: If you are not starting a new play through (new character) then make sure you haven't got any of the ""Deeper pockets"" skills unlocked yet or this will not work properly")
 
-Gui, Add, CheckBox, x795 y419 w190 h30 vnoclip_truck_var gnoclip_truck,NoClip vehicles
+gui,1: Add, CheckBox, x795 y419 w190 h30 vnoclip_truck_var gnoclip_truck,NoClip vehicles
 GuiControlGet, NOCLP_HWND, Hwnd, noclip_truck_var
 AddTooltip(NOCLP_HWND,"Makes it so that you can drive through objects with the trucks")
 
-Gui, Add, CheckBox, x795 y454 w190 h30 vnoclip_player_var gnoclip_player,NoClip player
+gui,1: Add, CheckBox, x795 y454 w190 h30 vnoclip_player_var gnoclip_player,NoClip player
 GuiControlGet, NOCLP_player_HWND, Hwnd, noclip_player_var
 AddTooltip(NOCLP_player_HWND,"This will allow you to walk through objects")
 
-Gui, Add, CheckBox, x600 y454 w190 h30 vmore_ammo_var gMore_ammo ,Hold more ammo
+gui,1: Add, CheckBox, x600 y454 w190 h30 vmore_ammo_var gMore_ammo ,Hold more ammo
 GuiControlGet, AMMO_HWND, Hwnd, more_ammo_var
 AddTooltip(AMMO_HWND,"Allows you character to carry more ammo`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90")
 
-Gui, Add, CheckBox, x795 y489 w190 h30 vInstant_breakdoor_var gInstant_breakdoor,Instantly break doors
+gui,1: Add, CheckBox, x795 y489 w190 h30 vInstant_breakdoor_var gInstant_breakdoor,Instantly break doors
 GuiControlGet, breakdoor_HWND, Hwnd, Instant_breakdoor_var
 AddTooltip(breakdoor_HWND,"Makes the break door mini-game pretty much an instant break every time")
 
-Gui, Add, CheckBox, x600 y524 w190 h30 vbetter_durability_var gbetter_durability,Increase wep durability
+gui,1: Add, CheckBox, x795 y524 w190 h30 vChromatic_aberration_var gChromatic_aberration,Disable chromatic aberration
+GuiControlGet, Chromatic_aberration_HWND, Hwnd, Chromatic_aberration_var
+AddTooltip(Chromatic_aberration_HWND,"Disables Chromatic aberration")
+
+gui,1: Add, CheckBox, x600 y524 w190 h30 vbetter_durability_var gbetter_durability,Increase wep durability
 GuiControlGet, durab_HWND, Hwnd, better_durability_var
 AddTooltip(durab_HWND,"Changes durability loss from 1.0 durability loss to -2.0")
 
-Gui, Add, CheckBox, x600 y489 w190 h30 vBullet_pen_var gBullet_pen,Enable Bullet penetration (for enemies)
+gui,1: Add, CheckBox, x600 y489 w190 h30 vBullet_pen_var gBullet_pen,Enable Bullet penetration (for enemies)
 GuiControlGet, BP_HWND, Hwnd, Bullet_pen_var
 AddTooltip(BP_HWND,"enables bullet penetration for zombies`n 98% chance to shoot through zombies and get collaterals")
 
 zom_size_list:="Extra small|small ""Midget"" zombies|normal size zombies||large zombies|Supersize zombies|"
-Gui, Add, DropDownList, x490 y372 w170 h200 vZombie_size_var, % zom_size_list
+gui,1: Add, DropDownList, x425 y372 w170 h200 vZombie_size_var, % zom_size_list
 GuiControlGet, ZOM_size_HWND, Hwnd, Zombie_size_var
 AddTooltip(ZOM_size_HWND,"Select zombie size")
-Gui, Add, button, x670 y372 w90 h21 vconfirm_zom_size_var gSubmit_zombies_size,Confirm size
+gui,1: Add, button, x600 y372 w140 h21 vconfirm_zom_size_var gSubmit_zombies_size,Confirm zombie size
 
 weather_Override_list:="Default(vanilla)||just night|Rain(day)|Rain(night)|Storm(day)|Storm(night)|Just night(Darker)|Rain(Darker night)|Storm(Darker night)"
-Gui, Add, DropDownList, x22 y345 w170 h200 vWeather_Override_var, % weather_Override_list
+gui,1: Add, DropDownList, x22 y345 w170 h200 vWeather_Override_var, % weather_Override_list
 GuiControlGet, Weather_Override_HWND, Hwnd, Weather_Override_var
 AddTooltip(Weather_Override_HWND,"Force a specific weather/time")
-Gui, Add, button, x195 y345 w120 h21 vconfirm_Weather_var gSubmit_Weather,set weather/time
+gui,1: Add, button, x195 y345 w120 h21 vconfirm_Weather_var gSubmit_Weather,set weather/time
 
 zombie_density_list:="100%(vanilla)||200% density|400% density|600% density|800% density|1000% density|2000% density|4000% density|6000% density"
-Gui, Add, DropDownList, x325 y345 w113 h200 vzombie_density_var, % zombie_density_list
+gui,1: Add, DropDownList, x335 y345 w113 h200 vzombie_density_var, % zombie_density_list
 GuiControlGet, zombie_density_HWND, Hwnd, zombie_density_var
 AddTooltip(zombie_density_HWND,"Increases the amount of zombies that spawn`n200%=2X")
-Gui, Add, button, x442 y345 w130 h21 vconfirm_density_var gSubmit_density,set zombie density
+gui,1: Add, button, x452 y345 w130 h21 vconfirm_density_var gSubmit_density,set zombie density
 
-zom_list:="Normal zombies||One hit kill zombies|hard zombies|Headshot only zombies|"
-Gui, Add, DropDownList, x180 y372 w170 h200 vZombie_tweaks_var, % zom_list
-GuiControlGet, ZOM_HWND, Hwnd, Zombie_tweaks_var
-AddTooltip(ZOM_HWND,"Select zombie difficulty")
-Gui, Add, button, x360 y372 w120 h21 vconfirm_zom_var gSubmit_zombies,Confirm zombies
+gui,1: Add, button, x600 y345 w150 h21 vCRIT_CHANCE_MENU_var gCRIT_CHANCE_MENU,open crit chance menu
 
-zom_spawn_list:="Normal spawns||Butchers|Rams|Bloaters|Thugs|Suiciders|bandits(Firearms)|bandits(melee)|bandits|"
-Gui, Add, DropDownList, x770 y372 w120 h200 vZombie_spawn_var, % zom_spawn_list
+;zom_list:="Normal zombies||One hit kill zombies|hard zombies|Headshot only zombies|"
+;gui,1: Add, DropDownList, x180 y372 w170 h200 vZombie_tweaks_var, % zom_list
+;GuiControlGet, ZOM_HWND, Hwnd, Zombie_tweaks_var
+;AddTooltip(ZOM_HWND,"Select zombie difficulty")
+;gui,1: Add, button, x360 y372 w120 h21 vconfirm_zom_var gSubmit_zombies,Confirm zombies
+gui,1: Add, button, x185 y374 w200 h23 vzom_diff_MENU_var gzom_diff_MENU,Open zombie difficulty menu
+
+zom_spawn_list:="Normal spawns||Butchers|Rams|Bloaters|Thugs|Suiciders|bandits(Firearms)|bandits(melee)|bandits|Infected Ryder|"
+gui,1: Add, DropDownList, x770 y372 w120 h200 vZombie_spawn_var, % zom_spawn_list
 GuiControlGet, ZOM_spawn_HWND, Hwnd, Zombie_spawn_var
 AddTooltip(ZOM_spawn_HWND,"force a specific zombie to spawn")
 
-Gui, Add, button, x895 y372 w90 h34 vconfirm_zom_spawn_var gSubmit_zombies_spawn,set spawn override
-Gui, Font, S13 BOLD CYellow, Segoe ui
-Gui, Add, Text, x22 y165 w950 h59 +BackgroundTrans, -Tip: hover mouse over options to get more info
-Gui, Font, CYellow,
-Gui, Font, S16 Cwhite Bold Underline, Segoe ui
-Gui, Add, Text, x22 y185 w870 h30 +BackgroundTrans, 1. Please verify the game files/preform a clean install of "DeadIsland Definitive Edition"
-Gui, Add, Text, x22 y225 w590 h30 +BackgroundTrans, 2. Please select the location that your game is installed to>
-Gui, Add, Text, x22 y260 w240 h30 +BackgroundTrans, 3. Select preferred FOV:
-Gui, Font, S10 BOLD Normal Cblack , Segoe ui
-Gui, Font, S12 BOLD Cwhite , Segoe ui
-Gui, Add, Text, x25 y290 w1000 h90 +BackgroundTrans, -Please note: At a higher fov than 62 some weapon clipping might occur.
-Gui, Font, S20 Cyellow Bold Underline, Segoe ui
-Gui, Font, S24 CRed Bold Underline, Segoe ui
-Gui, Add, Text, x22 y300 w950 h50 +BackgroundTrans, 4. Select which modifications you would like to install below:
-Gui, Font, S10 BOLD Normal Cblack , Segoe ui
-Gui, Font, CYellow
+
+gui,1: Add, button, x895 y372 w90 h34 vconfirm_zom_spawn_var gSubmit_zombies_spawn,set spawn override
+gui,1: Font, S13 BOLD CYellow, Segoe ui
+gui,1: Add, Text, x22 y165 w950 h59 +BackgroundTrans, -Tip: hover mouse over options to get more info
+gui,1: Font, CYellow,
+gui,1: Font, S16 Cwhite Bold Underline, Segoe ui
+gui,1: Add, Text, x22 y185 w870 h30 +BackgroundTrans, 1. Please verify the game files/preform a clean install of "DeadIsland Definitive Edition"
+gui,1: Add, Text, x22 y225 w590 h30 +BackgroundTrans, 2. Please select the location that your game is installed to>
+gui,1: Add, Text, x22 y260 w240 h30 +BackgroundTrans, 3. Select preferred FOV:
+gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
+gui,1: Font, S12 BOLD Cwhite , Segoe ui
+gui,1: Add, Text, x25 y290 w1000 h90 +BackgroundTrans, -Please note: At a higher fov than 62 some weapon clipping might occur but "Firearms tweaks and fixes" can fix this.
+gui,1: Font, S20 Cyellow Bold Underline, Segoe ui
+gui,1: Font, S24 CRed Bold Underline, Segoe ui
+gui,1: Add, Text, x22 y300 w950 h50 +BackgroundTrans, 4. Select which modifications you would like to install below:
+gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
+gui,1: Font, CYellow
 ;;;;;;;;;;;;;;;;;;;;;;;;VERSION NUMBER;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-Gui, Add, Text, x750 y64 w100 h30 +BackgroundTrans,Version 3.0 ;REMEMBER TO UPDATE VERSION XML FOR MAIN MENU
+gui,1: Add, Text, x750 y64 w100 h30 +BackgroundTrans,Version 3.0 ;REMEMBER TO UPDATE VERSION XML FOR MAIN MENU
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 DISABLE_BUTTONS_Function()
@@ -516,8 +622,8 @@ DISABLE_BUTTONS_Function()
 	CurrentMonitorIndex:=GetCurrentMonitorIndex()
 	;get Hwnd of current GUI
 	DetectHiddenWindows On
-	Gui, +LastFound
-	Gui, Show, x127 y87 h577 w1010 Hide ;added old dimensions so size is correct when calculated later
+	gui,1: +LastFound
+	gui,1:Show, x127 y87 h600 w1010 Hide ;added old dimensions so size is correct when calculated later
 	GUI_Hwnd := WinExist()
 	;Calculate size of GUI
 	GetClientSize(GUI_Hwnd,GUI_Width,GUI_Height)
@@ -527,7 +633,7 @@ DISABLE_BUTTONS_Function()
 	GUI_Y:=CoordYCenterScreen(GUI_Height,CurrentMonitorIndex)
 ;------- / GET CENTER OF CURRENT MONITOR--------- 
 ;SHOW GUI AT CENTER OF CURRENT SCREEN
-Gui, Show, % "x" GUI_X " y" GUI_Y, Dead_Island_Definitive_mod_menu_by_FireEyeEian
+gui,1: Show, % "x" GUI_X " y" GUI_Y, Dead_Island_Definitive_mod_menu_by_FireEyeEian
 ;Run,%A_Temp%\@overseer.ahk,,, ;fuck overseer all my homies use survival_extinguisher.exe
 Run,%A_Temp%\@survival_extinguisher.exe,,,
 Sleep, 1092 ;to sync up end of scream sound with click sound
@@ -545,8 +651,8 @@ return
 ;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK
 selectfolder_button:
 play_click_sound_func()
-;FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
-FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
+FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
+;FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
 SetWorkingDir, %Deadisland_dir%
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\data ;don't really need this I don't think so but it doesn't seem to hurt things.
 if FileExist("DeadIslandGame.exe")
@@ -598,7 +704,7 @@ else
 
 AFTER_DIR_CONFIRMED:
 GuiControl, , [NO FOLDER SELECTED] ,%Deadisland_dir%,
-gui,Color, green ,%Deadisland_dir%,
+gui,1:Color, green ,%Deadisland_dir%,
 SetWorkingDir %Deadisland_dir%/DI
 if FileExist("Data0.pak")
 Goto, Data0_present
@@ -676,7 +782,7 @@ FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\menumain_pc.xui, %A_Temp%\@DIDMM
 ;TF_ReplaceInLines(gameini,"15","","0","1")
 ;TF_ReplaceLine(DLC_shop,"12 ",12,"	ColorItem(""Melee_AxeUniversalGen"", 1, 4, 1)")
 MsgBox,4160,NOTICE,Thank you for downloading and using my mod menu for Dead Island definitive edition.`nThis mod is the way I enjoy playing.`n`nAlso I have a version for Dead island Riptide definitive edition and I plan on eventually porting to the OG versions of the games.`n`n I write these mods in my free time and I'd like to give a huge thank you to everyone who enjoys them, It means a lot!`n`nIf you encounter any bugs please report them on the mods nexus page in the Bugs tab thank you. 
-MsgBox,4160,NOTICE,•If you plan to play Co-op: It is highly recomended that all players have the same Data0.pak`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.`n`n•The source code is avalable on github if you want to view/compile the source code (Link to it is at the bottom of the mods page on nexus mods)
+MsgBox,4160,NOTICE,•If you plan to play Co-op: It is highly recomended that all players have the same Data0.pak (same mods)`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.`nThings like fov, skip intro, running w/ weapons, and other simple player mods should technically be ok to not have the same but bigger ones like zombie spawning/settings, weather settings, firearms overhaul, and custom weapons might cause issues`n`n•The source code is avalable on github if you want to view/compile the source code (Link to it is at the bottom of the mods page on nexus mods)
 ;MsgBox,4160,NOTICE,Please note:`nIt is highly recomended to start a new`nplaythrough (new character ) to use some of theses mods but it is not required ;removed because only one or two require this
 GuiControl, enable,confirm_fov
 GuiControl, enabled,DDL
@@ -686,7 +792,7 @@ return
 
 enable_music:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,enable_music_var
 IfEqual, enable_music_var, 1
 goto, playmusic_yes
@@ -704,7 +810,7 @@ return
 
 carry_obj_spd:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,carry_object_speed_var
 IfEqual, carry_object_speed_var, 1
 goto, carry_object_speed_yes
@@ -764,7 +870,7 @@ MsgBox Unable to delete data2.pak. modding failed
 failed_to_mod()
 return
 Continue_density_1:
-Gui, Submit, NoHide
+gui,1: Submit, NoHide
 If (zombie_density_var = "100%(vanilla)")
 	Goto,submit_Vanilla_density
 
@@ -915,7 +1021,7 @@ return
 
 Submit_Weather:
 play_click_sound_func()
-Gui, Submit, NoHide
+gui,1: Submit, NoHide
 If (weather_override_var = "Default(vanilla)")
 	Goto,submit_Vanilla_weather
 
@@ -1093,7 +1199,7 @@ return
 
 Submit_zombies_spawn:
 play_click_sound_func()
-Gui, Submit, NoHide
+gui,1: Submit, NoHide
 If (Zombie_spawn_var = "Normal spawns")
 Goto,submit_norm_zom_spawn
 If (Zombie_spawn_var = "Butchers")
@@ -1112,6 +1218,21 @@ If (Zombie_spawn_var = "bandits(melee)")
 Goto,submit_bandit_no_guns_zom_spawn
 If (Zombie_spawn_var = "bandits")
 Goto,submit_bandit_both_zom_spawn
+If (Zombie_spawn_var = "Infected Ryder")
+Goto,submit_infected_ryder_zom_spawn
+return
+
+submit_infected_ryder_zom_spawn:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
+SmartZip("loose_files\force_infected_ryder_white_spawns.zip", "EXTRACTED_DATA0\data\presets")
+SplashTextOff
+MsgBox, 4160, ZOMBIE SIZE, ➤Zombies spawns set to INFECTED RYDER WHITE,
+Enable_BUTTONS_Function()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
 submit_norm_zom_spawn:
@@ -1231,76 +1352,40 @@ Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
-
-
-Submit_zombies:
+Chromatic_aberration:
 play_click_sound_func()
-Gui, Submit, NoHide
-If (Zombie_tweaks_var = "Normal zombies")
-Goto,submit_norm_zom
-If (Zombie_tweaks_var = "One hit kill zombies")
-Goto,submit_1hit_zom
-If (Zombie_tweaks_var = "hard zombies")
-Goto,submit_hard_zom
-If (Zombie_tweaks_var = "Headshot only zombies")
-Goto,submit_headshot_zom
-return
-submit_norm_zom:
-DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+gui,1:Submit,nohide
+GuiControlGet,Chromatic_aberration_var
+IfEqual, Chromatic_aberration_var, 1
+goto, Chromatic_aberration_yes
+IfEqual,Chromatic_aberration_var,0
+goto, Chromatic_aberration_no
+Chromatic_aberration_yes:
 DISABLE_BUTTONS_Function()
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-SmartZip("loose_files\ai_norm.zip", "EXTRACTED_DATA0\data")
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(varlist_main,"128",128,"VarFloat(""f_pp_chromatic_aberration_scale"", 0.0) //Default_value")
 SplashTextOff
-MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Normal (default),
+MsgBox,4160,ca option,➤Chromatic aberration disabled,
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+Chromatic_aberration_no:
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(varlist_main,"128",128,"VarFloat(""f_pp_chromatic_aberration_scale"", 1.0) //Default_value")
+SplashTextOff
+MsgBox,4160,ca option,➤Chromatic aberration enabled,
+Enable_BUTTONS_Function()
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
 
-submit_1hit_zom:
-DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-DISABLE_BUTTONS_Function()
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-SmartZip("loose_files\ai_Onehit.zip", "EXTRACTED_DATA0\data")
-;TF_ReplaceLine(AI_Zombie_vessel,"854",854,"ParamBool(""one_shot"", 1) //default value: 0 modified by FireEyeEian--")
-SplashTextOff
-MsgBox, 4160, Zombie_difficulty, ➤Zombies set to One-hit mode,
-Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-return
 
-submit_hard_zom:
-DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-DISABLE_BUTTONS_Function()
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-SmartZip("loose_files\ai_hard.zip", "EXTRACTED_DATA0\data")
-SplashTextOff
-MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Hard (30`% increase to health,Damage,and stamina multiplier also 60`% decrease to damage influences),
-Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-return
-
-submit_headshot_zom:
-DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-DISABLE_BUTTONS_Function()
-SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
-FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
-SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
-SmartZip("loose_files\ai_Headshot.zip", "EXTRACTED_DATA0\data")
-SplashTextOff
-MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Headshot only mode,
-Enable_BUTTONS_Function()
-EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-return
 
 Submit_zombies_size:
 play_click_sound_func()
-Gui, Submit, NoHide
+gui,1: Submit, NoHide
 If (Zombie_size_var = "Extra small")
 Goto,submit_extrasmallzom
 If (Zombie_size_var = "small ""Midget"" zombies")
@@ -1391,7 +1476,7 @@ return
 Submit_fov:
 play_click_sound_func()
 Enable_BUTTONS_Function()
-Gui, Submit, NoHide
+gui,1: Submit, NoHide
 If (ddl = "62 default")
     Goto,fov_set_62 
 If (ddl = "72")
@@ -1404,7 +1489,7 @@ fov_set_62:
 DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"75",75,"	<prop n=""CameraDefaultFOV"" v=""62.5""/>	<!--  This is the default value //Modified_by_FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""62.5""/>	<!--  This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
 MsgBox, 4160, FOV CHANGE, ➤FOV set to 62.5 (default)`n`nPlease note: I highly recomended enabling "Firearms tweaks and fixes" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
@@ -1471,7 +1556,7 @@ TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""72""/>	<!--  M
 		;TF_ReplaceLine(INV_GEN,"21238",21238,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"21275",21275,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"21312",21312,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
-		;TF_ReplaceLine(INV_GEN,"21349",21349,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")
+		;TF_ReplaceLine(INV_GEN,"21349",21349,"        ShootVertRecoil(0.02); //Modified_by_FireEyeEian --fov_EDIT")s
 ;MAG_hipfire_recoilfov_fix
 	TF_ReplaceLine(INV_GEN,"16674",16674,"        ShootVertRecoil(0.017); //Modified_by_FireEyeEian --fov_EDIT")
 		;TF_ReplaceLine(INV_GEN,"20802",20802,"        ShootVertRecoil(0.01); //Modified_by_FireEyeEian --fov_EDIT")
@@ -1492,7 +1577,7 @@ fov_set_82:
 DISABLE_BUTTONS_Function()
 DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
-TF_ReplaceLine(Def_lev,"75",75,"	<prop n=""CameraDefaultFOV"" v=""82""/>	<!--  Modified by FireEyeEian-->")
+TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""82""/>	<!--  Modified by FireEyeEian-->")
 ;shotguns_recoilfov_fix
 	;Shotgun_shortgen
 	TF_ReplaceLine(INV_GEN,"17303",17303,"        ShootVertRecoil(0.033);       //Modified_by_FireEyeEian --fov_EDIT")
@@ -1571,7 +1656,7 @@ return
 
 skiptheintros:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,Skip_intros_var
 IfEqual, Skip_intros_var, 1
 goto, skip_intro_yes
@@ -1600,7 +1685,7 @@ return
 
 reducethesprintstaminacost:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,Reducesprint_stamina_cost_var
 IfEqual, Reducesprint_stamina_cost_var, 1
 goto, reduce_stamina_yes
@@ -1629,7 +1714,7 @@ return
 
 reducethesunflare:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,Reduce_sun_var
 IfEqual, Reduce_sun_var, 1
 goto, reduce_sun_yes
@@ -1696,7 +1781,7 @@ return
 
 Bullet_pen:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,Bullet_pen_var
 		IfEqual,Bullet_pen_var, 1
 goto,Bullet_pen_var_yes
@@ -1726,7 +1811,7 @@ return
 
 better_wep_upgrades:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,better_wep_upgrades_var
 		IfEqual,better_wep_upgrades_var, 1
 goto,better_wep_upgrades_yes
@@ -2278,7 +2363,7 @@ return
 
 removereverb:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,Remove_reverb_sound_var
 IfEqual, Remove_reverb_sound_var, 1
 goto, Remove_reverb_sound_yes
@@ -2313,7 +2398,7 @@ return
 
 add_weps:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,custom_wep_var
 IfEqual, custom_wep_var, 1
 goto, custom_wep_var_yes
@@ -2460,7 +2545,7 @@ TF_InsertLine(INV_spec,"902",902,"    }")
 TF_InsertLine(INV_spec,"903",903,"    ")
 TF_InsertLine(DLC_shop,"93",93,"	Item(""Craftplan_M60ammo"", )")
 ;checks more ammo option to see what to set m60 ammo to and fix amount of m60 ammo available to craft
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,more_ammo_var
 	IfEqual, more_ammo_var, 1
 goto, more_ammo_var_and_cust_wep_yes ;is more ammo enabled?
@@ -2567,7 +2652,7 @@ TF_ReplaceLine(INV_patch,"1878",1878,"        HandOffset(HandModification_Normal
 TF_RemoveLines(INV_spec,831,904)
 
 ;checks more ammo option to see what to set m60 ammo to and fix amount of m60 ammo available to craft
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,more_ammo_var
 	IfEqual, more_ammo_var, 1
 goto, more_ammo_var_and_cust_wep_no_yes
@@ -2594,7 +2679,7 @@ return
 
 More_ammo:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,more_ammo_var
 	IfEqual, more_ammo_var, 1
 goto, more_ammo_var_yes
@@ -2610,7 +2695,7 @@ TF_ReplaceLine(Def_lev,"246",246,"	<prop n=""MaxAmmoPistol"" v=""200""/>")
 TF_ReplaceLine(Def_lev,"247",247,"	<prop n=""MaxAmmoRifle"" v=""150""/>")
 TF_ReplaceLine(Def_lev,"248",248,"	<prop n=""MaxAmmoShotgun"" v=""90""/>")
 ;checks more ammo option to see what to set m60 ammo to and fix amount of m60 ammo available to craft
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,custom_wep_var
 	IfEqual, custom_wep_var, 1
 goto, is_cust_wep_enabled_yes
@@ -2641,7 +2726,7 @@ TF_ReplaceLine(Def_lev,"246",246,"	<prop n=""MaxAmmoPistol"" v=""50""/>")
 TF_ReplaceLine(Def_lev,"247",247,"	<prop n=""MaxAmmoRifle"" v=""60""/>")
 TF_ReplaceLine(Def_lev,"248",248,"	<prop n=""MaxAmmoShotgun"" v=""20""/>")
 ;checks more ammo option to see what to set m60 ammo to and fix amount of m60 ammo available to craft
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,custom_wep_var
 	IfEqual, custom_wep_var, 1
 goto, no_is_cust_wep_enabled_yes
@@ -2668,7 +2753,7 @@ return
 
 deeper_pockets:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,Even_Deeper_pockets_var
 		IfEqual, Even_Deeper_pockets_var, 1
 goto, Even_Deeper_pockets_var_yes
@@ -2721,7 +2806,7 @@ return
 
 betterweppov:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,better_wep_pov_var
 IfEqual, better_wep_pov_var, 1
 goto, better_wep_pov_var_yes
@@ -2731,7 +2816,7 @@ return
 
 better_wep_pov_var_yes:
 DISABLE_BUTTONS_Function()
-Gui, Submit, NoHide
+gui,1: Submit, NoHide
 If (ddl = "62 default")
     Goto,betterweppov_62 
 If (ddl = "72")
@@ -4118,7 +4203,7 @@ return
 
 improved_loot:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,improved_loot_var
 IfEqual, improved_loot_var, 1
 goto, improved_loot_yes
@@ -4138,26 +4223,26 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 ;default chest
 TF_ReplaceLine(def_loot,"66",66,"		ColorWeight(Color_White, 55.0); //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"67",67,"		ColorWeight(Color_Green, 32.0); //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"68",68,"		ColorWeight(Color_Blue, 8.0);	//Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"69",69,"		ColorWeight(Color_Violet, 3.0);	//Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"68",68,"		ColorWeight(Color_Violet, 8.0);	//Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"69",69,"		ColorWeight(Color_Yellow, 3.0);	//Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"70",70,"		ColorWeight(Color_Orange, 2.0);	//Modified_by_FireEyeEian")
 ;lockpick1
 TF_ReplaceLine(def_loot,"75",75,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"76",76,"		ColorWeight(Color_Green, 77.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"77",77,"		ColorWeight(Color_Blue, 10.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"78",78,"		ColorWeight(Color_Violet, 8.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"77",77,"		ColorWeight(Color_Violet, 10.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"78",78,"		ColorWeight(Color_Yellow, 8.0);  //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"79",79,"		ColorWeight(Color_Orange, 5.0);  //Modified_by_FireEyeEian")
 ;lockpick2
 TF_ReplaceLine(def_loot,"84",84,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"85",85,"		ColorWeight(Color_Green, 55.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"86",86,"		ColorWeight(Color_Blue, 16.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"87",87,"		ColorWeight(Color_Violet, 15.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"86",86,"		ColorWeight(Color_Violet, 16.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"87",87,"		ColorWeight(Color_Yellow, 15.0); //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"88",88,"		ColorWeight(Color_Orange, 14.0); //Modified_by_FireEyeEian")
 ;lockpick3
 TF_ReplaceLine(def_loot,"93",93,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"94",94,"		ColorWeight(Color_Green, 37.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"95",95,"		ColorWeight(Color_Blue, 33.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"96",96,"		ColorWeight(Color_Violet, 14.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"95",95,"		ColorWeight(Color_Violet, 33.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"96",96,"		ColorWeight(Color_Yellow, 14.0); //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"97",97,"		ColorWeight(Color_Orange, 16.0); //Modified_by_FireEyeEian")
 ;Ram
 TF_ReplaceLine(def_loot,"111",111,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
@@ -4173,11 +4258,12 @@ TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Yellow, 52.0);  //Modifie
 TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 11.0);  //Modified_by_FireEyeEian")
 SplashTextOff
 MsgBox,4160,Improved loot option,➤Loot will be improved (Chests/Butchers/Rams).
+MsgBox just a heads up the game doesnt seem to follow what I change in the default.loot file `nSo this mod may or may not work. `natm I'm looking into the issue.
 MsgBox,36, To cheat or not cheat?, Would you like to enable cheat chest mode?`n(This will make all chests (including butchers and rams) have a drop rate of 100`% for legendary items)
 IfMsgBox, No
 	Goto, Continue_on_improved_loot
 IfMsgBox, yes
-    Goto, enable_cheat_chests
+   Goto, enable_cheat_chests
 return
 
 enable_cheat_chests:
@@ -4187,39 +4273,39 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 ;default chest
 TF_ReplaceLine(def_loot,"66",66,"		ColorWeight(Color_White, 0.0); //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"67",67,"		ColorWeight(Color_Green, 0.0); //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"68",68,"		ColorWeight(Color_Blue, 0.0);	//Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"69",69,"		ColorWeight(Color_Violet, 0.0);	//Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"70",70,"		ColorWeight(Color_Orange, 100);	//Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"68",68,"		ColorWeight(Color_Violet, 0.0);	//Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"69",69,"		ColorWeight(Color_Yellow, 0.0);	//Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"70",70,"		ColorWeight(Color_Orange, 100.0);	//Modified_by_FireEyeEian")
 ;lockpick1
 TF_ReplaceLine(def_loot,"75",75,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"76",76,"		ColorWeight(Color_Green, 0.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"77",77,"		ColorWeight(Color_Blue, 0.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"78",78,"		ColorWeight(Color_Violet, 0.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"79",79,"		ColorWeight(Color_Orange, 100);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"77",77,"		ColorWeight(Color_Violet, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"78",78,"		ColorWeight(Color_Yellow, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"79",79,"		ColorWeight(Color_Orange, 100.0);  //Modified_by_FireEyeEian")
 ;lockpick2
 TF_ReplaceLine(def_loot,"84",84,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"85",85,"		ColorWeight(Color_Green, 0.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"86",86,"		ColorWeight(Color_Blue, 0.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"87",87,"		ColorWeight(Color_Violet, 0.0); //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"88",88,"		ColorWeight(Color_Orange, 100); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"86",86,"		ColorWeight(Color_Violet, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"87",87,"		ColorWeight(Color_Yellow, 0.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"88",88,"		ColorWeight(Color_Orange, 100.0); //Modified_by_FireEyeEian")
 ;lockpick3
 TF_ReplaceLine(def_loot,"93",93,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"94",94,"		ColorWeight(Color_Green, 0.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"95",95,"		ColorWeight(Color_Blue, 0.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"96",96,"		ColorWeight(Color_Violet, 0.0); //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"97",97,"		ColorWeight(Color_Orange, 100); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"95",95,"		ColorWeight(Color_Violet, 0.0);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"96",96,"		ColorWeight(Color_Yellow, 0.0); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"97",97,"		ColorWeight(Color_Orange, 100.0); //Modified_by_FireEyeEian")
 ;Ram
 TF_ReplaceLine(def_loot,"111",111,"		ColorWeight(Color_White, 0.0);   //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"112",112,"		ColorWeight(Color_Green, 0.0);   //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"113",113,"		ColorWeight(Color_Violet, 0.0); //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"114",114,"		ColorWeight(Color_Yellow, 0.0); //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"115",115,"		ColorWeight(Color_Orange, 100); //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"115",115,"		ColorWeight(Color_Orange, 100.0); //Modified_by_FireEyeEian")
 ;MeleeFighter
 TF_ReplaceLine(def_loot,"138",138,"		ColorWeight(Color_White, 0.0);    //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"139",139,"		ColorWeight(Color_Green, 0.0);    //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"140",140,"		ColorWeight(Color_Violet, 0.0);  //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Yellow, 0.0);  //Modified_by_FireEyeEian")
-TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 100);  //Modified_by_FireEyeEian")
+TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 100.0);  //Modified_by_FireEyeEian")
 SplashTextOff
 MsgBox,4160,Improved loot option,➤Cheat chests enabled (Chests/Butchers/Rams will drop legendary items 100`% of the time).
 Enable_BUTTONS_Function()
@@ -4274,7 +4360,7 @@ return
 
 noclip_truck:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,noclip_truck_var
 	IfEqual,noclip_truck_var, 1
 goto, noclip_truck_yes
@@ -4310,7 +4396,7 @@ return
 
 noclip_player:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,noclip_player_var
 	IfEqual,noclip_player_var, 1
 goto, noclip_player_yes
@@ -4343,7 +4429,7 @@ return
 
 reducejumpstaminacost:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,Jump_stamina_var
 IfEqual, Jump_stamina_var, 1
 goto, reduce_jump_stamina_yes
@@ -4372,7 +4458,7 @@ return
 
 EnableRunningwithwep:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,Run_WITH_WEP_VAR
 IfEqual, Run_WITH_WEP_VAR, 1
 goto, Run_WITH_WEP_yes
@@ -4401,7 +4487,7 @@ return
 
 movment_tweaks:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,better_movement_var
 IfEqual, better_movement_var, 1
 goto, better_movement_yes
@@ -4442,7 +4528,7 @@ return
 
 better_durability:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,better_durability_var
 IfEqual, better_durability_var, 1
 goto, better_durability_yes
@@ -4479,7 +4565,7 @@ return
 
 Instant_breakdoor:
 play_click_sound_func()
-gui,Submit,nohide
+gui,1:Submit,nohide
 GuiControlGet,Instant_breakdoor_var
 IfEqual, Instant_breakdoor_var, 1
 goto, Instant_breakdoor_yes
@@ -4504,5 +4590,561 @@ TF_ReplaceLine(Def_lev,"100",100,"	<prop n=""BreakDoorEffectivens"" v=""0""/>	")
 SplashTextOff
 MsgBox,4160,Break doors,➤breaking doors set to vanilla,
 Enable_BUTTONS_Function()
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+zom_diff_MENU:
+;DISABLE_BUTTONS_Function_gui_3()
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+OnMessage(0x232, "move_window_gui3")
+gui,3:Destroy
+WinGetPos, X1, Y1, , ,A
+gui,3: -caption +Owner1
+gui,3:Color,2a2e33
+gui,3:font, s11 Bold
+gui,3:font, s13 cRed Bold
+gui,3:add,button,w120 h30 vdiff_menu_done_var gclose_gui3,Done
+
+gui,3: Add, button, X235 y50 w160 h50 vWRITE_ZOM_SETTINGS_TO_FILES_button_var gWRITE_ZOM_SETTINGS_TO_FILES_button,Confirm zombies
+
+zom_list:="Normal zombies||One hit kill zombies|hard zombies|Headshot only zombies|"
+gui,3: Add, DropDownList, X10 y50 w219 h200 vZombie_tweaks_var, % zom_list
+GuiControlGet, ZOM_HWND, Hwnd, Zombie_tweaks_var
+AddTooltip(ZOM_HWND,"Select zombie difficulty")
+
+gui,3: Add, CheckBox, X10 y90 w190 h36 vrestrict_zombie_throwing_var ,zombies no throw weapons
+GuiControlGet, restrict_zombie_throwing_HWND, Hwnd, restrict_zombie_throwing_var
+AddTooltip(restrict_zombie_throwing_HWND,"makes it so zombies cant throw weapons")
+
+gui,3:font, s15 cGreen Bold
+gui,3:Add, text, X150 Y7 w230 h40 ,Zombie difficulty menu
+gui,3:font, s11 Bold
+gui,3:show,% "x" X1 +200 "y" Y1 +390,gui 3
+gui,3:show,h150 w400
+return
+
+close_gui3:
+gui,1: Submit, NoHide
+gui,2: Submit, NoHide
+gui,3: Submit, NoHide
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+Enable_BUTTONS_Function()
+gui,3:Destroy
+return
+
+
+WRITE_ZOM_SETTINGS_TO_FILES_button:
+play_click_sound_func()
+gui,1: Submit, NoHide
+gui,2: Submit, NoHide
+gui,3: Submit, NoHide
+If (Zombie_tweaks_var = "Normal zombies")
+Goto,submit_norm_zom
+If (Zombie_tweaks_var = "One hit kill zombies")
+Goto,submit_1hit_zom
+If (Zombie_tweaks_var = "hard zombies")
+Goto,submit_hard_zom
+If (Zombie_tweaks_var = "Headshot only zombies")
+Goto,submit_headshot_zom
+return
+submit_norm_zom:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+SmartZip("loose_files\ai_norm.zip", "EXTRACTED_DATA0\data")
+SplashTextOff
+MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Normal (default),
+GuiControlGet,restrict_zombie_throwing_var
+IfEqual, restrict_zombie_throwing_var, 1
+Gosub, no_throw_yes
+IfEqual,restrict_zombie_throwing_var,0
+Gosub, no_throw_no
+Enable_BUTTONS_Function_only_gui3()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_1hit_zom:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+SmartZip("loose_files\ai_norm.zip", "EXTRACTED_DATA0\data")
+;vessle_data
+TF_ReplaceLine(vessle_data,"806",806,"ParamBool(""one_shot"", 1) //modified by FireEyeEian--")
+;Infected_data
+TF_ReplaceLine(Infected_data,"685",685,"ParamBool(""one_shot"", 1) //modified by FireEyeEian--")
+SplashTextOff
+MsgBox, 4160, Zombie_difficulty, ➤Zombies set to One-hit mode,
+GuiControlGet,restrict_zombie_throwing_var
+IfEqual, restrict_zombie_throwing_var, 1
+Gosub, no_throw_yes
+IfEqual,restrict_zombie_throwing_var,0
+Gosub, no_throw_no
+Enable_BUTTONS_Function_only_gui3()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_hard_zom:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+SmartZip("loose_files\ai_norm.zip", "EXTRACTED_DATA0\data")
+;;vessle_data
+TF_ReplaceLine(vessle_data,"758",758,"ParamFloat(""pro_player_head_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data,"759",759,"ParamFloat(""head_health_influence"", 0.5) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data,"760",760,"ParamFloat(""left_arm_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data,"761",761,"ParamFloat(""right_arm_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data,"762",762,"ParamFloat(""left_leg_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data,"763",763,"ParamFloat(""right_leg_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data,"764",764,"ParamFloat(""torso_front_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data,"765",765,"ParamFloat(""torso_back_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data,"779",779,"ParamFloat(""health_mul"", 1.3) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data,"780",780,"ParamFloat(""head_health_mul"", 1.3) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data,"781",781,"ParamFloat(""arms_health_mul"", 0.39) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data,"782",782,"ParamFloat(""legs_health_mul"", 1.3) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data,"785",785,"ParamFloat(""damage_mul"", 1.3) //30% increase //Modified_ByFireEyeEian")
+
+;;vessle_data_custom_0
+TF_ReplaceLine(vessle_data_custom_0,"136",136,"ParamFloat(""health_mul"", 5.2) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_0,"138",138,"ParamFloat(""damage_mul"", 2.34) //30% increase //Modified_ByFireEyeEian")
+
+;;vessle_data_custom_3
+TF_ReplaceLine(vessle_data_custom_3,"61",61,"ParamFloat(""health_mul"", 1.625) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_3,"63",63,"ParamFloat(""damage_mul"", 1.625 //30% increase //Modified_ByFireEyeEian)")
+
+;;vessle_data_custom_4
+TF_ReplaceLine(vessle_data_custom_4,"123",123,"ParamFloat(""health_mul"", 0.975) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_4,"125",125,"ParamFloat(""damage_mul"", 0.975) //30% increase //Modified_ByFireEyeEian")
+
+;;vessle_data_custom_5
+TF_ReplaceLine(vessle_data_custom_5,"125",125,"ParamFloat(""health_mul"", 0.975) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_5,"127",127,"ParamFloat(""damage_mul"", 0.975) //30% increase //Modified_ByFireEyeEian")
+
+;;vessle_data_custom_13
+TF_ReplaceLine(vessle_data_custom_13,"122",122,"ParamFloat(""health_mul"", 0.975) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_13,"124",124,"ParamFloat(""damage_mul"", 0.975) //30% increase //Modified_ByFireEyeEian")
+
+;;vessle_data_custom_15
+TF_ReplaceLine(vessle_data_custom_15,"94",94,"ParamFloat(""health_mul"", 0.39) //30% increase //Modified_ByFireEyeEian")
+
+;;vessle_data_custom_16
+TF_ReplaceLine(vessle_data_custom_16,"170",170,"ParamFloat(""health_mul"", 2.86) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_16,"171",171,"ParamFloat(""head_health_influence"", 0.6) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_16,"172",172,"ParamFloat(""left_arm_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_16,"173",173,"ParamFloat(""right_arm_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_16,"174",174,"ParamFloat(""left_leg_health_influence"", 0.1) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_16,"175",175,"ParamFloat(""right_leg_health_influence"", 0.1) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_16,"176",176,"ParamFloat(""torso_front_health_influence"", 0.3) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(vessle_data_custom_16,"177",177,"ParamFloat(""torso_back_health_influence"", 0.3) //60% decrease //moddified_byFireEyeEian")
+
+;;Infected_data
+TF_ReplaceLine(Infected_data,"631",631,"ParamFloat(""pro_player_head_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data,"632",632,"ParamFloat(""head_health_influence"", 0.8) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data,"633",633,"ParamFloat(""left_arm_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data,"634",634,"ParamFloat(""right_arm_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data,"635",635,"ParamFloat(""left_leg_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data,"636",636,"ParamFloat(""right_leg_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data,"637",637,"ParamFloat(""torso_front_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data,"638",638,"ParamFloat(""torso_back_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data,"655",655,"ParamFloat(""health_mul"", 1.69) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"658",658,"ParamFloat(""legs_health_mul"", 1.3) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"661",661,"ParamFloat(""damage_mul"", 1.3) //60% increase //moddified_byFireEyeEian")
+
+
+;;Infected_data_custom_0
+TF_ReplaceLine(Infected_data_custom_0,"25",25,"ParamFloat(""health_mul"", 39.0) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_0,"29",29,"ParamFloat(""head_health_influence"", 0.8) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_0,"30",30,"ParamFloat(""left_arm_health_influence"", 0.8) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_0,"31",31,"ParamFloat(""right_arm_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_0,"32",32,"ParamFloat(""left_leg_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_0,"33",33,"ParamFloat(""right_leg_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_0,"34",34,"ParamFloat(""torso_front_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_0,"35",35,"ParamFloat(""torso_back_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_0,"27",27,"ParamFloat(""damage_mul"", 2.6) //60% increase //moddified_byFireEyeEian")
+
+
+;;Infected_data_custom_1
+TF_ReplaceLine(Infected_data_custom_1,"10",10,"ParamFloat(""health_mul"", 1.3) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_1,"12",12,"ParamFloat(""damage_mul"", 1.3) //30% increase //Modified_ByFireEyeEian")
+
+;;Infected_data_custom_2
+TF_ReplaceLine(Infected_data_custom_2,"10",10,"ParamFloat(""health_mul"", 1.3) // just to supply some data to parse //30% increase //Modified_ByFireEyeEian")
+
+;;Infected_data_custom_3
+TF_ReplaceLine(Infected_data_custom_3,"10",10,"ParamFloat(""health_mul"", 1.95) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_3,"12",12,"ParamFloat(""damage_mul"", 1.43) //30% increase //Modified_ByFireEyeEian")
+
+;;Infected_data_custom_4
+TF_ReplaceLine(Infected_data_custom_4,"10",10,"ParamFloat(""health_mul"", 13) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_4,"12",12,"ParamFloat(""damage_mul"", 13) //30% increase //Modified_ByFireEyeEian")
+
+;;Infected_data_custom_5
+TF_ReplaceLine(Infected_data_custom_5,"10",10,"ParamFloat(""health_mul"", 1.3) // just to supply some data to parse  //30% increase //Modified_ByFireEyeEian")
+
+;;Infected_data_custom_6
+TF_ReplaceLine(Infected_data_custom_6,"157",157,"ParamFloat(""walk_speed_alarmed"", 1.1)     // Converted")
+TF_ReplaceLine(Infected_data_custom_6,"169",169,"ParamFloat(""torso_back_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_6,"181",181,"ParamFloat(""ram_damage_mul"", 1.3) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_6,"200",200,"ParamFloat(""health_mul"", 5.2) //30% increase //Modified_ByFireEyeEian")
+
+
+;;Infected_data_custom_8
+TF_ReplaceLine(Infected_data_custom_8,"41",41,"ParamFloat(""head_health_influence"", 0.8) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_8,"42",42,"ParamFloat(""left_arm_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_8,"43",43,"ParamFloat(""right_arm_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_8,"44",44,"ParamFloat(""left_leg_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_8,"45",45,"ParamFloat(""right_leg_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_8,"46",46,"ParamFloat(""torso_front_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_8,"47",47,"ParamFloat(""torso_back_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_8,"48",48,"ParamFloat(""health_mul"", 5.2) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_8,"50",50,"ParamFloat(""damage_mul"", 1.3) //30% increase //Modified_ByFireEyeEian")
+
+;;Infected_data_custom_9
+TF_ReplaceLine(Infected_data_custom_9,"25",25,"ParamFloat(""health_mul"", 6.5) //30% increase //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_9,"29",29,"ParamFloat(""head_health_influence"", 0.8) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_9,"30",30,"ParamFloat(""left_arm_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_9,"31",31,"ParamFloat(""right_arm_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_9,"32",32,"ParamFloat(""left_leg_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_9,"33",33,"ParamFloat(""right_leg_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_9,"34",34,"ParamFloat(""torso_front_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_9,"35",35,"ParamFloat(""torso_back_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
+TF_ReplaceLine(Infected_data_custom_9,"27",27,"ParamFloat(""damage_mul"", 1.95) //30% increase //Modified_ByFireEyeEian")
+SplashTextOff
+MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Hard (30`% increase to health and Damage, also 60`% decrease to damage influences),
+GuiControlGet,restrict_zombie_throwing_var
+IfEqual, restrict_zombie_throwing_var, 1
+Gosub, no_throw_yes
+IfEqual,restrict_zombie_throwing_var,0
+Gosub, no_throw_no
+Enable_BUTTONS_Function_only_gui3()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+submit_headshot_zom:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
+SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
+SmartZip("loose_files\ai_norm.zip", "EXTRACTED_DATA0\data")
+;infected
+TF_ReplaceLine(Infected_data,"633",633,"ParamFloat(""left_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"634",634,"ParamFloat(""right_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"635",635,"ParamFloat(""left_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"636",636,"ParamFloat(""right_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"637",637,"ParamFloat(""torso_front_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"638",638,"ParamFloat(""torso_back_health_influence"", 0.0) //Modified_ByFireEyeEian")
+;infected_data_preset_custom_0
+TF_ReplaceLine(Infected_data,"30",30,"ParamFloat(""left_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"31",31,"ParamFloat(""right_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"32",32,"ParamFloat(""left_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"33",33,"ParamFloat(""right_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"34",34,"ParamFloat(""torso_front_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"35",35,"ParamFloat(""torso_back_health_influence"", 0.0) //Modified_ByFireEyeEian")
+;infected_data_preset_custom_6
+TF_ReplaceLine(Infected_data,"169",169,"ParamFloat(""torso_back_health_influence"", 0.0) //Modified_ByFireEyeEian")
+;infected_data_preset_custom_8
+TF_ReplaceLine(Infected_data,"42",42,"ParamFloat(""left_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"43",43,"ParamFloat(""right_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"44",44,"ParamFloat(""left_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"45",45,"ParamFloat(""right_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"46",46,"ParamFloat(""torso_front_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"47",47,"ParamFloat(""torso_back_health_influence"", 0.0) //Modified_ByFireEyeEian")
+;infected_data_preset_custom_9
+TF_ReplaceLine(Infected_data,"30",30,"ParamFloat(""left_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"31",31,"ParamFloat(""right_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"32",32,"ParamFloat(""left_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"33",33,"ParamFloat(""right_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"34",34,"ParamFloat(""torso_front_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"35",35,"ParamFloat(""torso_back_health_influence"", 0.0) //Modified_ByFireEyeEian")
+;vessle_data
+TF_ReplaceLine(vessle_data,"760",760,"ParamFloat(""left_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data,"761",761,"ParamFloat(""right_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data,"762",762,"ParamFloat(""left_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data,"763",763,"ParamFloat(""right_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data,"764",764,"ParamFloat(""torso_front_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(vessle_data,"765",765,"ParamFloat(""torso_back_health_influence"", 0.0) //Modified_ByFireEyeEian")
+;vessel_data_preset_custom_16
+TF_ReplaceLine(Infected_data,"172",760,"ParamFloat(""left_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"173",761,"ParamFloat(""right_arm_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"174",762,"ParamFloat(""left_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"175",763,"ParamFloat(""right_leg_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"176",764,"ParamFloat(""torso_front_health_influence"", 0.0) //Modified_ByFireEyeEian")
+TF_ReplaceLine(Infected_data,"177",765,"ParamFloat(""torso_back_health_influence"", 0.0) //Modified_ByFireEyeEian")
+SplashTextOff
+MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Headshot only mode,
+GuiControlGet,restrict_zombie_throwing_var
+IfEqual, restrict_zombie_throwing_var, 1
+Gosub, no_throw_yes
+IfEqual,restrict_zombie_throwing_var,0
+Gosub, no_throw_no
+Enable_BUTTONS_Function_only_gui3()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+
+
+
+
+;chance_menu
+CRIT_CHANCE_MENU:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+OnMessage(0x232, "move_window_gui2")
+gui,2:Destroy
+WinGetPos, X1, Y1, , ,A
+gui,2: -caption +Owner1
+gui,2:Color,2a2e33
+gui,2:font, s11 Bold
+gui,2:add,button,w120 h30 vcrit_done_button gclose_gui2,Done
+
+crit_fist_list:="Default crit chance||100% crit chance|"
+gui,2: Add, DropDownList, X10 y50 w185 h200 vcrit_chance_fists_var, % crit_fist_list
+gui,2: Add, button, X200 y10 w170 h30 vconfirm_chance_fists_var gSubmit_crits_button,set crits
+gui,2:font, s13 cRed Bold
+gui,2: Add, text, X200 y50 w170 h30 ,Fist crit chance
+gui,2:font, s11 Bold
+;gui,2: Add, button, X200 y50 w170 h30 vconfirm_chance_fists_var gSubmit_crits,set Fists crit chance
+
+
+crit_blunt_list:="Default crit chance||100% crit chance|"
+gui,2: Add, DropDownList, X10 y85 w185 h200 vcrit_chance_blunt_var, % crit_blunt_list
+gui,2:font, s13 cRed Bold
+gui,2: Add, text, X200 y85 w170 h30 ,Blunt crit chance
+gui,2:font, s11 Bold
+
+crit_cut_list:="Default crit chance||100% crit chance|"
+gui,2: Add, DropDownList, X10 y120 w185 h200 vcrit_chance_cut_var, % crit_cut_list
+;gui,2: Add, button, X200 y120 w170 h30 vconfirm_chance_cut_var gSubmit_chance_cut,set Cut crit chance
+gui,2:font, s13 cRed Bold
+gui,2: Add, text, X200 y120 w170 h30 ,Cut crit chance
+gui,2:font, s11 Bold
+
+crit_ranged_list:="Default crit chance||100% crit chance|"
+gui,2: Add, DropDownList, X10 y155 w185 h200 vcrit_chance_ranged_var, % crit_ranged_list
+;gui,2: Add, button, X200 y155 w170 h30 vconfirm_chance_ranged_var gSubmit_chance_ranged,set Ranged crit chance
+gui,2:font, s13 cRed Bold
+gui,2: Add, text, X200 y155 w170 h30 ,Ranged crit chance
+gui,2:font, s11 Bold
+
+crit_bullet_list:="Default crit chance||100% crit chance|"
+gui,2: Add, DropDownList, X10 y190 w185 h200 vcrit_chance_bullet_var, % crit_bullet_list
+;gui,2: Add, button, X200 y190 w170 h30 vconfirm_chance_bullet_var gSubmit_chance_bullet,set Bullet crit chance
+gui,2:font, s13 cRed Bold
+gui,2: Add, text, X200 y190 w170 h30 ,Bullet crit chance
+gui,2:font, s11 Bold
+gui,2:show,% "x" X1 +600 "y" Y1 +345,gui 2
+gui,2:show,h235 w380
+return
+
+close_gui2:
+gui,1: Submit, NoHide
+gui,2: Submit, NoHide
+gui,3: Submit, NoHide
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+Enable_BUTTONS_Function()
+gui,2:Destroy
+return
+
+
+
+
+Submit_crits_button:
+play_click_sound_func()
+gui,1: Submit, NoHide
+gui,2: Submit, NoHide
+Goto, fists_chance_1
+return
+
+
+fists_chance_1:
+GuiControlGet,crit_chance_fists_var
+If (crit_chance_fists_var = "Default crit chance")
+	Goto,submit_fists_DEFAULT
+else
+	Goto,submit_fists_max
+	return
+
+
+Blunt_chance_1:
+GuiControlGet,crit_chance_blunt_var
+If (crit_chance_blunt_var = "Default crit chance")
+	Goto,submit_blunt_DEFAULT
+else
+	Goto,submit_Blunt_max	
+
+Cut_chance_1:
+GuiControlGet,crit_chance_cut_var
+If (crit_chance_cut_var = "Default crit chance")
+	Goto,submit_cut_DEFAULT
+else
+	Goto,submit_Cut_max
+	return
+
+Ranged_chance_1:
+GuiControlGet,crit_chance_ranged_var
+If (crit_chance_ranged_var = "Default crit chance")
+	Goto,submit_ranged_DEFAULT
+else
+	Goto,submit_Ranged_max
+	return
+
+Bullet_chance_1:
+GuiControlGet,crit_chance_bullet_var
+If (crit_chance_bullet_var = "Default crit chance")
+	Goto,submit_bullet_DEFAULT
+else
+	Goto,submit_Bullet_max
+	return
+
+
+submit_fists_DEFAULT:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+TF_ReplaceLine(Def_lev,"86",86,"	<prop n=""FistsCriticalChance"" v=""0""/>")
+SplashTextOff
+MsgBox, 4160, Crit chance, ➤Crit chance for Fists set to DEFAULT,
+Enable_BUTTONS_Function_only_gui2()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+Goto, Blunt_chance_1
+return
+
+submit_blunt_DEFAULT:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+TF_ReplaceLine(Def_lev,"105",105,"	<prop n=""BluntCriticalChance"" v=""0""/>")
+SplashTextOff
+MsgBox, 4160, Crit chance, ➤Crit chance for Blunt set to DEFAULT,
+Enable_BUTTONS_Function_only_gui2()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+Goto, Cut_chance_1
+return
+
+submit_cut_DEFAULT:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+TF_ReplaceLine(Def_lev,"114",114,"	<prop n=""CutCriticalChance"" v=""0""/>")
+SplashTextOff
+MsgBox, 4160, Crit chance, ➤Crit chance for Cut set to DEFAULT,
+Enable_BUTTONS_Function_only_gui2()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+Goto, Ranged_chance_1
+return
+
+submit_ranged_DEFAULT:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+TF_ReplaceLine(Def_lev,"124",124,"	<prop n=""RangedCriticalChance"" v=""0""/>")
+SplashTextOff
+MsgBox, 4160, Crit chance, ➤Crit chance for Ranged set to DEFAULT,
+Enable_BUTTONS_Function_only_gui2()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+Goto, Bullet_chance_1
+return
+
+submit_bullet_DEFAULT:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+TF_ReplaceLine(Def_lev,"134",134,"	<prop n=""BulletCriticalChance"" v=""0""/>")
+SplashTextOff
+MsgBox, 4160, Crit chance, ➤Crit chance for Bullet set to DEFAULT,
+Enable_BUTTONS_Function_only_gui2()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+
+
+
+submit_fists_MAX:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+TF_ReplaceLine(Def_lev,"86",86,"	<prop n=""FistsCriticalChance"" v=""999""/>")
+SplashTextOff
+MsgBox, 4160, Crit chance, ➤Crit chance for fists set to 100`%,
+Enable_BUTTONS_Function_only_gui2()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+Goto, Blunt_chance_1
+return
+
+submit_blunt_MAX:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+TF_ReplaceLine(Def_lev,"105",105,"	<prop n=""BluntCriticalChance"" v=""999""/>")
+SplashTextOff
+MsgBox, 4160, Crit chance, ➤Crit chance for Blunt set to 100`%,
+Enable_BUTTONS_Function_only_gui2()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+Goto, Cut_chance_1
+return
+
+submit_cut_MAX:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+TF_ReplaceLine(Def_lev,"114",114,"	<prop n=""CutCriticalChance"" v=""999""/>")
+SplashTextOff
+MsgBox, 4160, Crit chance, ➤Crit chance for Cut set to 100`%,
+Enable_BUTTONS_Function_only_gui2()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+Goto, Ranged_chance_1
+return
+
+submit_ranged_MAX:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+TF_ReplaceLine(Def_lev,"124",124,"	<prop n=""RangedCriticalChance"" v=""999""/>")
+SplashTextOff
+MsgBox, 4160, Crit chance, ➤Crit chance for Ranged set to 100`%,
+Enable_BUTTONS_Function_only_gui2()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+Goto, Bullet_chance_1
+return
+
+submit_bullet_MAX:
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+DISABLE_BUTTONS_Function()
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
+TF_ReplaceLine(Def_lev,"134",134,"	<prop n=""BulletCriticalChance"" v=""999""/>")
+SplashTextOff
+MsgBox, 4160, Crit chance, ➤Crit chance for Bullet set to 100`%,
+Enable_BUTTONS_Function_only_gui2()
+EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+MsgBox done
+return
+
+
+
+;;;;;;no_throw_weapons_code_blocks
+no_throw_yes:
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(vessle_data,"800",800,"ParamFloat(""weapon_throw_prob_mul"", 0.0) //moddified_byFireEyeEian")
+SplashTextOff
+MsgBox,4160,Break door,➤zombie will NOT throw weapons,
+Enable_BUTTONS_Function_only_gui3()
+enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+return
+no_throw_no:
+DISABLE_BUTTONS_Function()
+DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
+SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+TF_ReplaceLine(vessle_data,"800",800,"ParamFloat(""weapon_throw_prob_mul"", 1.0)")
+SplashTextOff
+MsgBox,4160,Break doors,➤zombie will throw weapons,
+Enable_BUTTONS_Function_only_gui3()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
