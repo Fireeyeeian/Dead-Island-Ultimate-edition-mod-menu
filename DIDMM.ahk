@@ -406,8 +406,8 @@ move_window_gui2(){
 		{
 		
 			WinGetPos, X1, Y1, , ,A
-			X2 := X1 + 600
-			Y2 := Y1 +345
+			X2 := X1 + 390
+			Y2 := Y1 +400
 			gui,2:show, x%X2% y%Y2%
 	
 		}
@@ -419,8 +419,8 @@ move_window_gui3(){
 		{
 		
 			WinGetPos, X1, Y1, , ,A
-			X2 := X1 + 345
-			Y2 := Y1 +390
+			X2 := X1 + 180 
+			Y2 := Y1 +400
 			gui,3:show, x%X2% y%Y2%
 	
 		}
@@ -563,10 +563,10 @@ GuiControlGet, BP_HWND, Hwnd, Bullet_pen_var
 AddTooltip(BP_HWND,"enables bullet penetration for zombies`n 98% chance to shoot through zombies and get collaterals")
 
 zom_size_list:="Extra small|small ""Midget"" zombies|normal size zombies||large zombies|Supersize zombies|"
-gui,1: Add, DropDownList, x425 y372 w170 h200 vZombie_size_var, % zom_size_list
+gui,1: Add, DropDownList, x600 y345 w170 h200 vZombie_size_var, % zom_size_list
 GuiControlGet, ZOM_size_HWND, Hwnd, Zombie_size_var
 AddTooltip(ZOM_size_HWND,"Select zombie size")
-gui,1: Add, button, x600 y372 w140 h21 vconfirm_zom_size_var gSubmit_zombies_size,Confirm zombie size
+gui,1: Add, button, x774 y345 w140 h21 vconfirm_zom_size_var gSubmit_zombies_size,Confirm zombie size
 
 weather_Override_list:="Default(vanilla)||just night|Rain(day)|Rain(night)|Storm(day)|Storm(night)|Just night(Darker)|Rain(Darker night)|Storm(Darker night)"
 gui,1: Add, DropDownList, x22 y345 w170 h200 vWeather_Override_var, % weather_Override_list
@@ -580,22 +580,22 @@ GuiControlGet, zombie_density_HWND, Hwnd, zombie_density_var
 AddTooltip(zombie_density_HWND,"Increases the amount of zombies that spawn`n200%=2X")
 gui,1: Add, button, x452 y345 w130 h21 vconfirm_density_var gSubmit_density,set zombie density
 
-gui,1: Add, button, x600 y345 w150 h21 vCRIT_CHANCE_MENU_var gCRIT_CHANCE_MENU,open crit chance menu
+gui,1: Add, button, x390 y375 w150 h23 vCRIT_CHANCE_MENU_var gCRIT_CHANCE_MENU,open crit chance menu
 
 ;zom_list:="Normal zombies||One hit kill zombies|hard zombies|Headshot only zombies|"
 ;gui,1: Add, DropDownList, x180 y372 w170 h200 vZombie_tweaks_var, % zom_list
 ;GuiControlGet, ZOM_HWND, Hwnd, Zombie_tweaks_var
 ;AddTooltip(ZOM_HWND,"Select zombie difficulty")
 ;gui,1: Add, button, x360 y372 w120 h21 vconfirm_zom_var gSubmit_zombies,Confirm zombies
-gui,1: Add, button, x185 y374 w200 h23 vzom_diff_MENU_var gzom_diff_MENU,Open zombie difficulty menu
+gui,1: Add, button, x180 y375 w200 h23 vzom_diff_MENU_var gzom_diff_MENU,Open zombie difficulty menu
 
 zom_spawn_list:="Normal spawns||Butchers|Rams|Bloaters|Thugs|Suiciders|bandits(Firearms)|bandits(melee)|bandits|Infected Ryder|"
-gui,1: Add, DropDownList, x770 y372 w120 h200 vZombie_spawn_var, % zom_spawn_list
+gui,1: Add, DropDownList, x560 y375 w120 h200 vZombie_spawn_var, % zom_spawn_list
 GuiControlGet, ZOM_spawn_HWND, Hwnd, Zombie_spawn_var
 AddTooltip(ZOM_spawn_HWND,"force a specific zombie to spawn")
 
 
-gui,1: Add, button, x895 y372 w90 h34 vconfirm_zom_spawn_var gSubmit_zombies_spawn,set spawn override
+gui,1: Add, button, x684 y375 w200 h21 vconfirm_zom_spawn_var gSubmit_zombies_spawn,set spawn override
 gui,1: Font, S13 BOLD CYellow, Segoe ui
 gui,1: Add, Text, x22 y165 w950 h59 +BackgroundTrans, -Tip: hover mouse over options to get more info
 gui,1: Font, CYellow,
@@ -4257,8 +4257,8 @@ TF_ReplaceLine(def_loot,"140",140,"		ColorWeight(Color_Violet, 31.0);  //Modifie
 TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Yellow, 52.0);  //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 11.0);  //Modified_by_FireEyeEian")
 SplashTextOff
+MsgBox just a heads up:  The game doesnt seem to follow what I change in the default.loot file `nSo this mod may or may not work. `n`nlooking into the issue.
 MsgBox,4160,Improved loot option,➤Loot will be improved (Chests/Butchers/Rams).
-MsgBox just a heads up the game doesnt seem to follow what I change in the default.loot file `nSo this mod may or may not work. `natm I'm looking into the issue.
 MsgBox,36, To cheat or not cheat?, Would you like to enable cheat chest mode?`n(This will make all chests (including butchers and rams) have a drop rate of 100`% for legendary items)
 IfMsgBox, No
 	Goto, Continue_on_improved_loot
@@ -4620,7 +4620,7 @@ AddTooltip(restrict_zombie_throwing_HWND,"makes it so zombies cant throw weapons
 gui,3:font, s15 cGreen Bold
 gui,3:Add, text, X150 Y7 w230 h40 ,Zombie difficulty menu
 gui,3:font, s11 Bold
-gui,3:show,% "x" X1 +200 "y" Y1 +390,gui 3
+gui,3:show,% "x" X1 +180 "y" Y1 +400,gui 3
 gui,3:show,h150 w400
 return
 
@@ -4939,7 +4939,7 @@ gui,2: Add, DropDownList, X10 y190 w185 h200 vcrit_chance_bullet_var, % crit_bul
 gui,2:font, s13 cRed Bold
 gui,2: Add, text, X200 y190 w170 h30 ,Bullet crit chance
 gui,2:font, s11 Bold
-gui,2:show,% "x" X1 +600 "y" Y1 +345,gui 2
+gui,2:show,% "x" X1 +390 "y" Y1 +400,gui 2  
 gui,2:show,h235 w380
 return
 
@@ -5122,7 +5122,6 @@ SplashTextOff
 MsgBox, 4160, Crit chance, ➤Crit chance for Bullet set to 100`%,
 Enable_BUTTONS_Function_only_gui2()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox done
 return
 
 
