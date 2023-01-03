@@ -5,6 +5,8 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 DetectHiddenWindows, On
 SetBatchLines, -1
+ListLines Off
+#KeyHistory 0
 #include tf.ahk
 #include smartzip.ahk
 #include AddTooltip.ahk
@@ -565,22 +567,30 @@ AddTooltip(BP_HWND,"enables bullet penetration for zombies`n 98% chance to shoot
 zom_size_list:="Extra small|small ""Midget"" zombies|normal size zombies||large zombies|Supersize zombies|"
 gui,1: Add, DropDownList, x600 y345 w170 h200 vZombie_size_var, % zom_size_list
 GuiControlGet, ZOM_size_HWND, Hwnd, Zombie_size_var
-AddTooltip(ZOM_size_HWND,"Select zombie size")
+AddTooltip(ZOM_size_HWND,"Confirm zombie size")
 gui,1: Add, button, x774 y345 w140 h21 vconfirm_zom_size_var gSubmit_zombies_size,Confirm zombie size
+GuiControlGet, confirm_zom_size_HWND, Hwnd, confirm_zom_size_var
+AddTooltip(confirm_zom_size_HWND,"Confirm zombie size")
 
 weather_Override_list:="Default(vanilla)||just night|Rain(day)|Rain(night)|Storm(day)|Storm(night)|Just night(Darker)|Rain(Darker night)|Storm(Darker night)"
 gui,1: Add, DropDownList, x22 y345 w170 h200 vWeather_Override_var, % weather_Override_list
 GuiControlGet, Weather_Override_HWND, Hwnd, Weather_Override_var
 AddTooltip(Weather_Override_HWND,"Force a specific weather/time")
 gui,1: Add, button, x195 y345 w120 h21 vconfirm_Weather_var gSubmit_Weather,set weather/time
+GuiControlGet, confirm_Weather_HWND, Hwnd, confirm_Weather_var
+AddTooltip(confirm_Weather_HWND,"Confirm weather/time")
 
 zombie_density_list:="100%(vanilla)||200% density|400% density|600% density|800% density|1000% density|2000% density|4000% density|6000% density"
 gui,1: Add, DropDownList, x335 y345 w113 h200 vzombie_density_var, % zombie_density_list
 GuiControlGet, zombie_density_HWND, Hwnd, zombie_density_var
 AddTooltip(zombie_density_HWND,"Increases the amount of zombies that spawn`n200%=2X")
 gui,1: Add, button, x452 y345 w130 h21 vconfirm_density_var gSubmit_density,set zombie density
+GuiControlGet, confirm_density_var_HWND, Hwnd, confirm_density_var
+AddTooltip(confirm_density_var_HWND,"Confirm density`n(200%=2X)")
 
 gui,1: Add, button, x390 y375 w150 h23 vCRIT_CHANCE_MENU_var gCRIT_CHANCE_MENU,open crit chance menu
+GuiControlGet, crit_menu_HWND, Hwnd, CRIT_CHANCE_MENU_var
+AddTooltip(crit_menu_HWND,"change crit chance for various conditions")
 
 ;zom_list:="Normal zombies||One hit kill zombies|hard zombies|Headshot only zombies|"
 ;gui,1: Add, DropDownList, x180 y372 w170 h200 vZombie_tweaks_var, % zom_list
@@ -588,14 +598,18 @@ gui,1: Add, button, x390 y375 w150 h23 vCRIT_CHANCE_MENU_var gCRIT_CHANCE_MENU,o
 ;AddTooltip(ZOM_HWND,"Select zombie difficulty")
 ;gui,1: Add, button, x360 y372 w120 h21 vconfirm_zom_var gSubmit_zombies,Confirm zombies
 gui,1: Add, button, x180 y375 w200 h23 vzom_diff_MENU_var gzom_diff_MENU,Open zombie difficulty menu
+GuiControlGet, diff_menu_HWND, Hwnd, zom_diff_MENU_var
+AddTooltip(diff_menu_HWND,"Select zombie difficulty and allow/disallow zombies to throw weapons")
 
 zom_spawn_list:="Normal spawns||Butchers|Rams|Bloaters|Thugs|Suiciders|bandits(Firearms)|bandits(melee)|bandits|Infected Ryder|"
 gui,1: Add, DropDownList, x560 y375 w120 h200 vZombie_spawn_var, % zom_spawn_list
 GuiControlGet, ZOM_spawn_HWND, Hwnd, Zombie_spawn_var
 AddTooltip(ZOM_spawn_HWND,"force a specific zombie to spawn")
+gui,1: Add, button, x684 y375 w125 h21 vconfirm_zom_spawn_var gSubmit_zombies_spawn,Confirm override
+GuiControlGet, confirm_zom_spawn_HWND, Hwnd, confirm_zom_spawn_var
+AddTooltip(confirm_zom_spawn_HWND,"Confirm spawn setting")
 
 
-gui,1: Add, button, x684 y375 w200 h21 vconfirm_zom_spawn_var gSubmit_zombies_spawn,set spawn override
 gui,1: Font, S13 BOLD CYellow, Segoe ui
 gui,1: Add, Text, x22 y165 w950 h59 +BackgroundTrans, -Tip: hover mouse over options to get more info
 gui,1: Font, CYellow,
@@ -612,7 +626,7 @@ gui,1: Add, Text, x22 y300 w950 h50 +BackgroundTrans, 4. Select which modificati
 gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
 gui,1: Font, CYellow
 ;;;;;;;;;;;;;;;;;;;;;;;;VERSION NUMBER;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-gui,1: Add, Text, x750 y64 w100 h30 +BackgroundTrans,Version 3.0 ;REMEMBER TO UPDATE VERSION XML FOR MAIN MENU
+gui,1: Add, Text, x750 y64 w100 h30 +BackgroundTrans,Version 3.1 ;REMEMBER TO UPDATE VERSION XML FOR MAIN MENU
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 DISABLE_BUTTONS_Function()
@@ -651,8 +665,8 @@ return
 ;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK
 selectfolder_button:
 play_click_sound_func()
-FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
-;FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
+;FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
+FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
 SetWorkingDir, %Deadisland_dir%
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\data ;don't really need this I don't think so but it doesn't seem to hurt things.
 if FileExist("DeadIslandGame.exe")
@@ -842,6 +856,7 @@ return
 
 Submit_density:
 play_click_sound_func()
+MsgBox, Just a heads up: There seems to be sort of a hard limit to how many zombies can be on screen at one time, so the larger numbers might not be fully represenitive to how many zombies will spawn.
 SetWorkingDir %Deadisland_dir%/DI
 if FileExist("Data2.pak")
 Goto, Data2_present
@@ -1094,7 +1109,7 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Rain_day.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Rainy day,
+MsgBox, 4160, timeweather, ➤Time/Weather set to Rainy day`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1110,7 +1125,7 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Rain_night.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Rainy night,
+MsgBox, 4160, timeweather, ➤Time/Weather set to Rainy night`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1126,7 +1141,7 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_storm_day.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Stormy day,
+MsgBox, 4160, timeweather, ➤Time/Weather set to Stormy day`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1142,7 +1157,7 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_storm_night.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Stormy night,
+MsgBox, 4160, timeweather, ➤Time/Weather set to Stormy night`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1174,7 +1189,7 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Rain_night_darker.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Dark rainy night,
+MsgBox, 4160, timeweather, ➤Time/Weather set to Dark rainy night`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1190,7 +1205,7 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_storm_night_darker.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Dark stormy night,
+MsgBox, 4160, timeweather, ➤Time/Weather set to Dark stormy night`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4544,7 +4559,7 @@ TF_ReplaceLine(Def_lev,"113",113,"    <prop n=""CutWpnDurabilityLoss"" v=""-2.0"
 TF_ReplaceLine(Def_lev,"123",123,"    <prop n=""RangedWpnDurabilityLoss"" v=""-2.0""/>	<!--  Modified by FireEyeEian-->")
 TF_ReplaceLine(Def_lev,"133",133,"    <prop n=""BulletWpnDurabilityLoss"" v=""-2.0""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Wep durability,➤Weapons deteriorate at a slower rate`nChanged from 1.0 durability loss to -2.0,
+MsgBox,4160,Wep durability,➤Weapons deteriorate at a slower rate`nChanged from 1.0 durability loss to -2.0`n`nPlease note: This can become very OP with Xians upgraded skills,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4610,12 +4625,12 @@ gui,3: Add, button, X235 y50 w160 h50 vWRITE_ZOM_SETTINGS_TO_FILES_button_var gW
 
 zom_list:="Normal zombies||One hit kill zombies|hard zombies|Headshot only zombies|"
 gui,3: Add, DropDownList, X10 y50 w219 h200 vZombie_tweaks_var, % zom_list
-GuiControlGet, ZOM_HWND, Hwnd, Zombie_tweaks_var
-AddTooltip(ZOM_HWND,"Select zombie difficulty")
+GuiControlGet, ZOM_HWND, Hwnd, Zombie_tweaks_var ;doesn't work on other guis for some reason.
+AddTooltip(ZOM_HWND,"Select zombie difficulty") ;doesn't work on other guis for some reason.
 
 gui,3: Add, CheckBox, X10 y90 w190 h36 vrestrict_zombie_throwing_var ,zombies no throw weapons
-GuiControlGet, restrict_zombie_throwing_HWND, Hwnd, restrict_zombie_throwing_var
-AddTooltip(restrict_zombie_throwing_HWND,"makes it so zombies cant throw weapons")
+GuiControlGet, restrict_zombie_throwing_HWND, Hwnd, restrict_zombie_throwing_var ;doesn't work on other guis for some reason.
+AddTooltip(restrict_zombie_throwing_HWND,"makes it so zombies cant throw weapons") ;doesn't work on other guis for some reason.
 
 gui,3:font, s15 cGreen Bold
 gui,3:Add, text, X150 Y7 w230 h40 ,Zombie difficulty menu
