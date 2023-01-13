@@ -707,7 +707,7 @@ else
 	;SplashTextOff
 	MsgBox, 8240,CAN'NOT CONFIRM INSTALLATION DIRECTORY,ERROR  engine_x64_rwdi.dll NOT found
 	if FileExist("engine_x86_rwdi.dll")
-	MsgBox, 8240,CAN'NOT CONFIRM INSTALLATION DIRECTORY, This mod will not work for OG DeadIsland please select DIRDE
+	MsgBox, 8240,CAN'NOT CONFIRM INSTALLATION DIRECTORY, This mod will not work for OG DeadIsland please select DIDE
 	return
 
 	ALL_PASS_CONFIRMED_DIDE_DIR:
