@@ -10,6 +10,8 @@ ListLines Off
 #include tf.ahk
 #include smartzip.ahk
 #include AddTooltip.ahk
+#Include gui_msgbox.ahk
+;#Include Class_CustomFont.ahk
 AddToolTip("AutoPopDelay",32)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;This program installs mods for Dead Island Definitive edition :)
@@ -71,9 +73,38 @@ AddToolTip("AutoPopDelay",32)
 ;This program installs mods for Dead Island Definitive edition :) 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;Clean-up on exit- Register a function to be called on exit:
+
+
+
+;tempDir := "%A_Temp%\@DIDMM_TEMPFILES\" ; Replace with your actual temp directory
+
+;OnExit("Cleanup")
+
+
+;Cleanup() {
+;    global tempDir
+;    
+;    ; Attempt to delete all temp files and directory
+;    if FileExist(tempDir) {
+;        FileRemoveDir, tempDir, 1
+;        ;FileRemoveDir(tempDir, 1) ; Recursively delete files and directory
+;        if FileExist(tempDir) {
+;            MsgBox, 16, Cleanup Failed, Temp files could not be deleted.`nPath: %tempDir%
+;        } else {
+;            MsgBox, 64, Cleanup Successful, All temp files were deleted successfully.
+;        }
+;    } else {
+;        MsgBox, 64, No Temp Files, No temp files found to delete.
+;    }
+;}
+
+
+;the above cleanup doesn't work and the below doesn't always work so ill just stick with the og below welp ¯\_(ツ)_/¯
+
+
+
 OnExit("ExitFunc")
-; Register an object to be called on exit:
+
 OnExit(ObjBindMethod(MyObject, "Exiting"))
 ExitFunc(ExitReason, ExitCode)
 {
@@ -89,19 +120,19 @@ ExitFunc(ExitReason, ExitCode)
 {
     Exiting()
     {
+    	SoundPlay, blank.wav
     	SplashTextOn, 400,50,Script Shutdown,Shutting down.....`n(Cleaning up files)
     	;Run,%A_Temp%\survival_extinguisher.ahk,,,
 		Process, close,background_music.exe
 		Process, close,play_scream_sound_then_quit.exe ;shouldn't be running but whatever
 		FileDelete, %A_Temp%\@DIDMM_TEMPFILES\scripts\play_scream_sound_then_quit.exe
-		Sleep, 1000
+		Sleep, 4500
 		FileDelete, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_click.wav
 		FileDelete, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_highlight.wav
 		FileDelete, %A_Temp%\@DIDMM_TEMPFILES\sounds\napalm.wav
 		FileDelete, %A_Temp%\@DIDMM_TEMPFILES\sounds\scream_final.wav
 		Disable_BUTTONS_Function()
-		;MsgBox,cleaning files
-		FileRemoveDir,%A_Temp%\@DIDMM_TEMPFILES\,1
+		FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\, 1
 		SplashTextOff
     }
 }
@@ -110,10 +141,16 @@ ExitFunc(ExitReason, ExitCode)
 
 SetWorkingDir, %A_ScriptDir%
 ;setup temp files
+FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\, 1
 FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\
 FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\loose_files\
+FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\
 FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\sounds\
 FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\scripts\
+FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\fonts\
+FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG
+FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -121,7 +158,7 @@ FileCreateDir, %A_Temp%\@DIDMM_TEMPFILES\scripts\
 
 FileInstall, Required_files_and_scripts\scripts\survival_extinguisher.exe, %A_Temp%\@survival_extinguisher.exe,1
 FileInstall, Required_files_and_scripts\scripts\background_music.exe, %A_Temp%\@DIDMM_TEMPFILES\scripts\background_music.exe,1
-FileInstall, Required_files_and_scripts\scripts\play_scream_sound_then_quit.exe, %A_Temp%\@DIDMM_TEMPFILES\scripts\play_scream_sound_then_quit.exe,1
+;FileInstall, Required_files_and_scripts\scripts\play_scream_sound_then_quit.exe, %A_Temp%\@DIDMM_TEMPFILES\scripts\play_scream_sound_then_quit.exe,1
 FileInstall, Required_files_and_scripts\game.ini, %A_Temp%\@DIDMM_TEMPFILES\loose_files\game.ini , 1
 FileInstall, Required_files_and_scripts\menumain_pc.xui_version, %A_Temp%\@DIDMM_TEMPFILES\loose_files\menumain_pc.xui , 1
 ;FileInstall, Required_files_and_scripts\vessel_data.scr.oneshot_zombie, %A_Temp%\@DIDMM_TEMPFILES\loose_files\vessel_data.scr.oneshot_zombie , 1 ;unused?
@@ -148,6 +185,13 @@ FileInstall, Required_files_and_scripts\Default_spawns.zip, %A_Temp%\@DIDMM_TEMP
 FileInstall, Required_files_and_scripts\gameaudioeffects.scr.modded, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.modded , 1
 FileInstall, Required_files_and_scripts\gameaudioeffects.scr.nomod, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , 1
 FileInstall, UI\DIDMM_main.png, %A_Temp%\@DIDMM_TEMPFILES\DIDMM_main.png , 1
+FileInstall, UI\SPLASH_SCREENSHOT.png, %A_Temp%\@DIDMM_TEMPFILES\SPLASH_SCREENSHOT.png , 1
+
+FileInstall, Required_files_and_scripts\fonts\BreadIsland-3lRry.ttf, %A_Temp%\@DIDMM_TEMPFILES\fonts\BreadIsland-3lRry.ttf,1
+FileInstall, Required_files_and_scripts\fonts\FiraSans-SemiBold.ttf, %A_Temp%\@DIDMM_TEMPFILES\fonts\FiraSans-SemiBold.ttf,1
+FileInstall, Required_files_and_scripts\fonts\RonysiswadiArchitect4-qZmp2.ttf, %A_Temp%\@DIDMM_TEMPFILES\fonts\RonysiswadiArchitect4-qZmp2.ttf,1
+
+
 FileInstall, Data0.pak, %A_Temp%\@DIDMM_TEMPFILES\Data0.zip,1
 FileInstall, Data2.pak, %A_Temp%\@DIDMM_TEMPFILES\Data2.zip,1
 FileInstall, Required_files_and_scripts\sounds\menu_click.wav, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_click.wav,1
@@ -164,13 +208,54 @@ FileInstall, Required_files_and_scripts\time-weather_Rain_night_darker.zip, %A_T
 FileInstall, Required_files_and_scripts\time-weather_storm_day.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_day.zip,1
 FileInstall, Required_files_and_scripts\time-weather_storm_night.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_night.zip,1
 FileInstall, Required_files_and_scripts\time-weather_storm_night_darker.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\time-weather_storm_night_darker.zip,1
-FileInstall, Required_files_and_scripts\DP2_patched.zip, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip,1
 
+
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act1a.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act1a.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act2a.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act2a.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act3a.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act3a.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act3b.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act3b.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act3c.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act3c.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act4a.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act4a.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act4b.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act4b.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\buildinginterior.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\buildinginterior.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\cityhallb.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\cityhallb.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\hotel.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\hotel.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\market.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\market.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\parkinglot.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\parkinglot.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\policestation.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\policestation.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\sewers.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\sewers.exp , 1
+
+
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act1a.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act1a.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act2a.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act2a.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3a.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3a.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3b.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3b.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3c.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3c.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4a.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4a.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4b.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4b.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\buildinginterior.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\buildinginterior.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\cityhallb.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\cityhallb.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\hotel.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\hotel.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\market.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\market.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\parkinglot.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\parkinglot.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\policestation.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\policestation.exp , 1
+FileInstall, Required_files_and_scripts\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\sewers.exp, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\sewers.exp , 1
+
+;;;;INTRO_LOADING_SPLASHSCREEN;;;;
+
+Gui,99: +AlwaysOnTop +ToolWindow -Caption  ; Creates a GUI that is always on top and has no title bar
+Gui,99: Add, Picture, x0 y0 w720 h300, %A_Temp%\@DIDMM_TEMPFILES\SPLASH_SCREENSHOT.png  ; Set your background image
+;Gui,99: Add, Text, x50 y50 w200 h50 Center cBlack, LOADING...  ; Add text on top of the background image
+Gui,99: Show, w720 h300, Splash Screen  ; Show the GUI with specific width and height
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;@@functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-Run, %A_Temp%\@DIDMM_TEMPFILES\scripts\play_scream_sound_then_quit.exe,,,
+;Run, %A_Temp%\@DIDMM_TEMPFILES\scripts\play_scream_sound_then_quit.exe,,, ;first launch scream sound
+SoundPlay, %A_Temp%\@DIDMM_TEMPFILES\sounds\scream_final.wav
 
 varlist_main=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_main.scr
 INV_GEN=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\inventory_gen.scr
@@ -221,7 +306,20 @@ Infected_data_custom_9=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai\infect
 ;AI_PROP/BEH
 AI_BEH=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\aibeh.scr
 AI_PROP=!%A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai_props.scr
+;-----------------------------------------------------------------------------------
+;define fonts here
 
+;intro_font
+fontname1 := New CustomFont(A_Temp "\@DIDMM_TEMPFILES\fonts\BreadIsland-3lRry.ttf") ; bread island
+;main_font
+fontname2 := New CustomFont(A_Temp "\@DIDMM_TEMPFILES\fonts\FiraSans-SemiBold.ttf") ; Fira sans SemiBold
+;ERROR_font
+fontname3 := New CustomFont(A_Temp "\@DIDMM_TEMPFILES\fonts\RonysiswadiArchitect4-qZmp2.ttf") ;' Ronysiswadi Architect 4
+
+error_font := "' Ronysiswadi Architect 4"
+intro_font := "Bread Island"
+main_font := "Fira sans SemiBold"
+;------------------------------------------------------------------------------------
 GetCurrentMonitorIndex(){
 	CoordMode, Mouse, Screen
 	MouseGetPos, mx, my
@@ -260,6 +358,7 @@ GetClientSize(hwnd, ByRef w, ByRef h)
 play_click_sound_func(){
 SoundPlay, %A_Temp%\@DIDMM_TEMPFILES\sounds\menu_click.wav
 }
+
 play_final_sound_func(){
 SoundPlay, %A_Temp%\@DIDMM_TEMPFILES\sounds\napalm.wav
 }
@@ -397,8 +496,17 @@ GuiControl 2: Enabled,crit_chance_bullet_var
 }
 
 
+CloseSplash(){
+    Gui,99: Destroy  ; Destroy the GUI after 3 seconds
+}
+
+
+
 failed_to_mod(){
-	MsgBox Error: failed to mod-- shutting down scripts
+	;set_font_Error()
+	;MsgBox Error: failed to mod-- shutting down scripts
+	CustomMsgBox("ERROR","⚠Error: failed to mod-- shutting down scripts",error_font,"cf22e30 s20 bold","202020")
+	;UnloadCustomFont(FontPath)
 	ExitApp
 }
 
@@ -430,28 +538,81 @@ move_window_gui3(){
 
 
 
+CheckFiles(Deadisland_dir, files)
+{
+    Loop, % files.MaxIndex() 
+    {
+        FilePath := Deadisland_dir . "\" . files[A_Index]
+        if (!FileExist(FilePath)) {
+            return false 
+        }
+    }
+    return true 
+}
+
+
+CheckDirectory(Deadisland_dir)
+{
+    
+    MainFiles := ["DeadIslandGame.exe", "engine_x64_rwdi.dll", "DI"]
+    OGFiles := ["DeadIslandGame.exe", "engine_x86_rwdi.dll", "DI"]
+    RipFiles := ["DeadIslandGame_x86_rwdi.exe", "engine_x86_rwdi.dll", "DI"]
+    RiptideFiles := ["DeadIslandRiptideGame.exe", "engine_x64_rwdi.dll", "DIR"]
+
+    
+    if (CheckFiles(Deadisland_dir, OGFiles)) {
+    	CustomMsgBox("ERROR","⚠ You've selected the OG Game.`nThis modmenu doesn't work for`nthe original Dead Island game.",error_font,"cf22e30 s20 bold","202020")
+        ;MsgBox, 16, Error, This mod doesn't work for the original Dead Island game.
+        return false
+    }
+
+    
+    if (CheckFiles(Deadisland_dir, MainFiles)) {
+    	CustomMsgBox("success","👍Dead island definitive edition directory confirmed! ",main_font,"c6ebc72 s20 bold","202020")
+        ;MsgBox, 64, Success, Correct directory selected for Dead Island.
+        return true
+    }
+
+    
+    if (CheckFiles(Deadisland_dir, RipFiles)) {
+    	CustomMsgBox("ERROR","⚠ You've selected the OG riptide Game.`nThis modmenu doesn't work for`nthe original Dead Island games.",error_font,"cf22e30 s20 bold","202020")
+        ;'MsgBox, 16, Error, This mod doesn't work for the original Dead Island rip game.
+        return false
+    }
+
+    
+    if (CheckFiles(Deadisland_dir, RiptideFiles)) {
+    	CustomMsgBox("ERROR","⚠ You've selected Riptide definitive edition.`nThis modmenu doesn't work for`nRiptide definitive,`nBut I do have a menu that works for riptide`non my nexus mods page..",error_font,"cf22e30 s20 bold","202020")
+        ;MsgBox, 16, Error, This mod doesn't work with Dead Island Riptide Edition.
+        return false
+    }
+
+    
+    CustomMsgBox("ERROR","⚠ This directory you selected is invalid. It doesn't match any known version.",error_font,"cf22e30 s20 bold","202020")
+    ;MsgBox, 16, Error, The directory you selected is invalid. It doesn't match any known version.
+    return false
+}
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;functions/references;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;GUIv
-gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
-gui,1: Font, S11 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Normal Cblack , %main_font%
+gui,1: Font, S11 BOLD Cblack , %main_font%
 gui,1: Add, Picture, x2 y-1 w1000 h570 , %A_Temp%\@DIDMM_TEMPFILES\DIDMM_main.png
 
-gui,1: Add, Button, x602 y230 w120 h30 hWndhButton2 vselect_folder_button gselectfolder_button, SELECT FOLDER
+gui,1: Add, Button, x655 y220 w95 h45 hWndhButton2 vselect_folder_button gselectfolder_button, SELECT FOLDER
 GuiControlGet, SF_HWND, Hwnd, select_folder_button
 AddTooltip(SF_HWND,"select Your DIDE folder")
 
-gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
-gui,1: Font, S7 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Normal Cblack , %main_font%
+gui,1: Font, S7 BOLD Cblack , %main_font%
 
-gui,1: Add, text, x732 y220 w240 h50 vuser_Deadisland_DIRECTORY, [NO FOLDER SELECTED]
+gui,1: Add, text, x770 y220 w200 h50 vuser_Deadisland_DIRECTORY, [NO FOLDER SELECTED]
 
-gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
-gui,1: Font, S11 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Normal Cblack , %main_font%
+gui,1: Font, S11 BOLD Cblack , %main_font%
 
 gui,1: Add, CheckBox, x15 y419 w190 h30 vSkip_intros_var gskiptheintros,Skip intro videos
 GuiControlGet, SKP_INTRO_HWND, Hwnd, Skip_intros_var
@@ -461,23 +622,23 @@ gui,1: Add, CheckBox, x15 y489 w190 h30 vReduce_sun_var greducethesunflare,Reduc
 GuiControlGet, SUN_FLARE_HWND, Hwnd, Reduce_sun_var
 AddTooltip(SUN_FLARE_HWND,"Increases the transparency of the sun flare texture")
 
-gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
-gui,1: Font, S10 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Normal Cblack , %main_font%
+gui,1: Font, S10 BOLD Cblack , %main_font%
 
 gui,1: Add, CheckBox, x15 y454 w190 h30 vReducesprint_stamina_cost_var greducethesprintstaminacost,Reduce sprinting stamina cost
 GuiControlGet, SPRINT_STAM_HWND, Hwnd, Reducesprint_stamina_cost_var
 AddTooltip(SPRINT_STAM_HWND,"Allows you to sprint for a longer duration before exhaustion")
 
-gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
-gui,1: Font, S8 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Normal Cblack , %main_font%
+gui,1: Font, S8 BOLD Cblack , %main_font%
 
 Fov_list:="62 default||72|82|"
-gui,1: Add, DropDownList, x260 y268 w90 h70 vDDL, % Fov_list
+gui,1: Add, DropDownList, x290 y265 w90 h30 vDDL, % Fov_list
 GuiControlGet, DDL_HWND, Hwnd, DDL
 AddTooltip(DDL_HWND,"FOV stands for Field Of View`nBasically how wide your vision is`nA lower number zooms in the camera, while a higher number zooms out the camera")
-gui,1: Add, button, x360 y268 w120 h21 vconfirm_fov gSubmit_fov, Confirm FOV
+gui,1: Add, button, x390 y265 w120 h20 vconfirm_fov gSubmit_fov, Confirm FOV
 
-gui,1: Font, S10 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Cblack , %main_font%
 
 gui,1: Add, button, x862 y14 w120 h110 vSUBMIT_FINAL gSubmit_FINAL, CLICK TO CONFIRM MODIFICATIONS
 GuiControlGet, FINAL_HWND, Hwnd, SUBMIT_FINAL
@@ -524,13 +685,13 @@ gui,1: Add, CheckBox, x405 y454 w190 h30 vbetter_wep_upgrades_var gbetter_wep_up
 GuiControlGet, WEP_UPGRADES_HWND, Hwnd, better_wep_upgrades_var
 AddTooltip(WEP_UPGRADES_HWND,"Adds more functionality to the (firearms) weapon upgrade system.`nFirearms stats such as:`n•Reload speed`n•How fast it will fire`n•Recoil impulse`nWill get better with every upgrade you apply to the firearm.`n`nPLEASE NOTE: ONLY THE AUTOMATIC RELOAD SPEED IS AFFECTED (this is due to how dead island handles weapons generation its kinda out of my hands.`nJust know that the reload speed will be default if you hit the reload key manually) ")
 
-gui,1: Font, S8 BOLD Cblack , Segoe ui
+gui,1: Font, S8 BOLD Cblack , %main_font%
 
 gui,1: Add, CheckBox, x405 y489 w190 h30 vRemove_reverb_sound_var gremovereverb,Remove the weird reverb/echo sound (You know the one)
 GuiControlGet, REVERB_HWND, Hwnd, Remove_reverb_sound_var
 AddTooltip(REVERB_HWND,"If you know you know, I find the reverb sound to be jarring and it takes me out of the game`nIf you are not familiar with this sound its most prominent when shooting a firearm")
 
-gui,1: Font, S10 BOLD Cblack , Segoe ui
+gui,1: Font, S10 BOLD Cblack , %main_font%
 
 gui,1: Add, CheckBox, x600 y419 w190 h30 vEven_Deeper_pockets_var gdeeper_pockets,Even Deeper pockets
 GuiControlGet, DP_HWND, Hwnd, Even_Deeper_pockets_var
@@ -610,22 +771,23 @@ GuiControlGet, confirm_zom_spawn_HWND, Hwnd, confirm_zom_spawn_var
 AddTooltip(confirm_zom_spawn_HWND,"Confirm spawn setting")
 
 
-gui,1: Font, S13 BOLD CYellow, Segoe ui
+gui,1: Font, S13 BOLD CYellow, %main_font%
 gui,1: Add, Text, x22 y165 w950 h59 +BackgroundTrans, -Tip: hover mouse over options to get more info
 gui,1: Font, CYellow,
-gui,1: Font, S16 Cwhite Bold Underline, Segoe ui
-gui,1: Add, Text, x22 y185 w870 h30 +BackgroundTrans, 1. Please verify the game files/preform a clean install of "DeadIsland Definitive Edition"
-gui,1: Add, Text, x22 y225 w590 h30 +BackgroundTrans, 2. Please select the location that your game is installed to>
-gui,1: Add, Text, x22 y260 w240 h30 +BackgroundTrans, 3. Select preferred FOV:
-gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
-gui,1: Font, S12 BOLD Cwhite , Segoe ui
+gui,1: Font, S16 Cwhite Bold Underline, %main_font%
+gui,1: Add, Text, x22 y185 w5500 h30 +BackgroundTrans, 1. Please verify the game files/preform a clean install of "DeadIsland Definitive Edition"
+gui,1: Add, Text, x22 y225 w5500 h30 +BackgroundTrans, 2. Please select the location that your game is installed to>
+gui,1: Add, Text, x22 y260 w5500 h30 +BackgroundTrans, 3. Select preferred FOV:
+gui,1: Font, S10 BOLD Normal Cblack , %main_font%
+gui,1: Font, S12 BOLD Cwhite , %main_font%
 gui,1: Add, Text, x25 y290 w1000 h90 +BackgroundTrans, -Please note: At a higher fov than 62 some weapon clipping might occur but "Firearms tweaks and fixes" can fix this.
-gui,1: Font, S20 Cyellow Bold Underline, Segoe ui
-gui,1: Font, S24 CRed Bold Underline, Segoe ui
-gui,1: Add, Text, x22 y300 w950 h50 +BackgroundTrans, 4. Select which modifications you would like to install below:
-gui,1: Font, S10 BOLD Normal Cblack , Segoe ui
+gui,1: Font, S20 Cyellow Bold Underline, %main_font%
+gui,1: Font, S24 CRed Bold Underline, %main_font%
+gui,1: Add, Text, x22 y305 w950 h50 +BackgroundTrans, 4. Select which modifications you would like to install below:
+gui,1: Font, S10 BOLD Normal Cblack , %main_font%
 gui,1: Font, CYellow
 ;;;;;;;;;;;;;;;;;;;;;;;;VERSION NUMBER;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+CloseSplash()
 gui,1: Add, Text, x750 y64 w100 h30 +BackgroundTrans,Version 3.1 ;REMEMBER TO UPDATE VERSION XML FOR MAIN MENU
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -648,72 +810,62 @@ DISABLE_BUTTONS_Function()
 ;------- / GET CENTER OF CURRENT MONITOR--------- 
 ;SHOW GUI AT CENTER OF CURRENT SCREEN
 gui,1: Show, % "x" GUI_X " y" GUI_Y, Dead_Island_Definitive_mod_menu_by_FireEyeEian
+GuiControl, Disable,select_folder_button
 ;Run,%A_Temp%\@overseer.ahk,,, ;fuck overseer all my homies use survival_extinguisher.exe
 Run,%A_Temp%\@survival_extinguisher.exe,,,
-Sleep, 1092 ;to sync up end of scream sound with click sound
-Goto, enable_music 
+;Sleep, 1092 ;to sync up end of scream sound with click sound
+;Gosub, enable_music
+;Goto, First_start ;enable this for release!! <<<<-----\--\--\--\--\---------------------<<<<<<<<<<<<<     enable this
+;CustomMsgBox("Welcome message","Thank you for downloading and using my  mod menu for Dead Island definitive edition!`nThis menu is the way I set up my Playthroughs.`n`nI also have a version for Dead island Riptide definitive edition and I want to eventually`n port these to the OG versions of the games.`n`nIf you encounter any bugs please report them on the mods nexus page in the Bugs tab, thank you`n`nAfter making my Firearms overhaul mod, I got many requests for features to add,`nSo I made this menu to let people create the experience they wanted in dead island.`n(kind of a way to teach myself programming as well)`nAnd with that I'm proud to announce Dead island Definitive mod menu`n`nI write these mods in my free time and I'd like to give a huge thank you to everyone`nwho enjoys them, It means a lot!.`nIf you enjoy this mod don't forget to track for updates and endorse.", "info", intro_font, "cf22e30 s17 bold", "202020", 64)
+Run, %A_Temp%\@DIDMM_TEMPFILES\scripts\background_music.exe
+CustomMsgBox("Welcome message","Thank you for downloading and using my  mod menu for Dead Island definitive edition!`nThis menu is the way I set up my Playthroughs.`n`nI also have a version for Dead island Riptide definitive edition and I want to eventually`n port these to the OG versions of the games.`n`nIf you encounter any bugs please report them on the mods nexus page in the Bugs tab, thank you.`n`n•The source code is available on GitHub if you want to view/compile the source code`n (Link to it is at the bottom of the mods page on nexus mods`n`nAfter making my Firearms overhaul mod, I got many requests for features to add,`nSo I made this menu to let people create the experience they wanted in dead island.`n(kind of a way to teach myself programming as well)`nAnd with that I'm proud to announce Dead island Definitive mod menu`n`nI write these mods in my free time and I'd like to give a huge thank you to everyone`nwho enjoys them, It means a lot!.`nIf you enjoy this mod don't forget to track for updates and endorse.",intro_font,"c6ebc72 s20 bold","202020")
+GuiControl, enabled,select_folder_button
 Return
+
 
 GuiClose:
 ExitApp
 return
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;^^code above recovered from overwritten save^^;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;^^some code above recovered from overwritten save^^;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 !del::ExitApp,
 ;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;DI_CHECK;;;;;;;;;;;;;;;;;;;DI_CHECK
 selectfolder_button:
+Deadisland_dir :=
+;MsgBox %Deadisland_dir%
 play_click_sound_func()
 ;FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
-FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
-SetWorkingDir, %Deadisland_dir%
-FileDelete, %A_Temp%\@DIDMM_TEMPFILES\data ;don't really need this I don't think so but it doesn't seem to hurt things.
-if FileExist("DeadIslandGame.exe")
-{	;MsgBox, success! DeadIslandGame.exe found :)
-	Goto, look_for_DIDE_folder
-	}
-else
-	MsgBox, 8240, CAN'NOT CONFIRM INSTALLATION DIRECTORY, Please select the directory containing -DeadIslandGame.exe-
-	if FileExist("DeadIslandGame.exe")
-	MsgBox, 8240,CAN'NOT CONFIRM INSTALLATION DIRECTORY, This mod will not work for DeadIsland(DE or og)`nPlease select DeadIsland Definitive Edition directory containing -DeadIslandGame.exe- `n(Please note I also have a mod for The first definitive edition game)
-	else
-	Goto, riptide_og_check
-	return
-riptide_og_check:
-if FileExist("DeadIslandGame_x86_rwdi.exe")
-MsgBox, 8240,CAN'NOT CONFIRM INSTALLATION DIRECTORY, This mod will not work for DeadIslandRiptide(DE or og)`nPlease select DeadIsland Definitive Edition directory containing -DeadIslandGame.exe-
+;FileSelectFolder, Deadisland_dir,, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;use this one for release version.
+;SetWorkingDir, %Deadisland_dir%
+;FileDelete, %A_Temp%\@DIDMM_TEMPFILES\data ;don't really need this I don't think so but it doesn't seem to hurt things.
+
+Loop {
+    ; Open FileSelectFolder and store selected directory
+    ;FileSelectFolder, Deadisland_dir, , 3, Select the Dead Island game folder.
+	FileSelectFolder, Deadisland_dir,E:\SteamLibrary\steamapps\common\DIDE, 1, PLease select the folder containing your "DeadIslandGame.exe" `n It should be called "DIDE" `n (This is where you installed the game) ;for testing
+
+    
+    ; If the user cancels the folder selection, stop the loop and show a message
+    if (Deadisland_dir = "") {
+        ;MsgBox, 48, Warning, No folder selected. Closing the folder select dialog.
+        CustomMsgBox("ERROR","⚠ No folder selected.",error_font,"cf22e30 s20 bold","202020")
+        break ; Exit the loop and close the dialog
+    }
+    
+    ; Change the working directory
+    SetWorkingDir, %Deadisland_dir%
+    
+    ; Check the selected directory
+    if (CheckDirectory(Deadisland_dir)) {
+        ;MsgBox, 64, Success, Directory is valid.
+        Goto, AFTER_DIR_CONFIRMED
+        break ; Exit the loop if the directory is correct
+    }
+    ; If the directory is not valid, continue asking for the correct directory
+}
 return
-look_for_DIDE_folder:
-;SplashTextOn, 400,300, directory check, scanning directory to confirm correct location
-if FileExist("DI")
-{	;SplashTextOff
-	;MsgBox,success! DI folder found
-	Goto, check_for_enginex64
-	}
-else 
-	;SplashTextOff
-	MsgBox, 8240,CAN'NOT CONFIRM INSTALLATION DIRECTORY, DI folder NOT found please make sure game is installed properly.
-	return
-
-check_for_enginex64:
-;SplashTextOn, 400,300, directory check, scanning directory to confirm correct location
-if FileExist("engine_x64_rwdi.dll")
-{	;SplashTextOff
-	;MsgBox, success! engine_x64_rwdi.dll found
-	Goto, ALL_PASS_CONFIRMED_DIDE_DIR
-	}
-else
-	;SplashTextOff
-	MsgBox, 8240,CAN'NOT CONFIRM INSTALLATION DIRECTORY,ERROR  engine_x64_rwdi.dll NOT found
-	if FileExist("engine_x86_rwdi.dll")
-	MsgBox, 8240,CAN'NOT CONFIRM INSTALLATION DIRECTORY, This mod will not work for OG DeadIsland please select DIDE
-	return
-
-	ALL_PASS_CONFIRMED_DIDE_DIR:
-	MsgBox ,4160,Installation directory confirmed :), success!-- DeadIslandGame.exe found `nsuccess!-- DI folder found `nsuccess!-- engine_x64_rwdi.dll found
-	Goto, AFTER_DIR_CONFIRMED
-	return
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;DIR_CHECK
 
 AFTER_DIR_CONFIRMED:
@@ -723,65 +875,76 @@ SetWorkingDir %Deadisland_dir%/DI
 if FileExist("Data0.pak")
 Goto, Data0_present
 else
-	MsgBox, please make sure game is installed correctly!`n Currently missing: Data0.pak`n`nPlease Verify game files or reinstall game
+	CustomMsgBox("ERROR","⚠ please make sure game is installed correctly!`n Currently missing: Data0.pak`n`nPlease Verify game files or reinstall game",error_font,"cf22e30 s20 bold","202020")
+	;MsgBox, please make sure game is installed correctly!`n Currently missing: Data0.pak`n`nPlease Verify game files or reinstall game
 	return
 Data0_present:
-goto,check_data2_first_run
+goto,SETUP_TEMPORARY_ENVIRONMENT
+;goto,check_data2_first_run
 return
 
-check_data2_first_run:
-SetWorkingDir %Deadisland_dir%/DI
-if FileExist("Data2.pak")
-Goto, Data2_present_first_run
-else
-MsgBox, please make sure game is installed correctly!`n Currently missing: Data2.pak`n`nPlease Verify game files or reinstall game
-return
 
-Data2_present_first_run:
-;MsgBox data2 found
-SetWorkingDir %Deadisland_dir%/DI
-FileDelete, Data2.pak
-Goto, data2_deleted_first_run
-return
 
-data2_deleted_first_run:
-;MsgBox data2 should be deleted
-SetWorkingDir %Deadisland_dir%/DI
-if FileExist("Data2.pak")
-Goto, somethings_wrong_first_run
-else
-Goto, data2_confirmed_deleted
-	return
-somethings_wrong_first_run:
-MsgBox Unable to delete data2.pak. modding failed -please make sure game is installed correctly!`n Currently missing: Data2.pak`n`nPlease Verify game files or reinstall game
-return
+;////////////////////////////DATA2.pak checking is unnecessary because when needed it will be overwritten
 
-data2_confirmed_deleted:
-FileCopy, %A_Temp%\@DIDMM_TEMPFILES\Data2.zip, %Deadisland_dir%\DI\Data2.pak ,1
-Goto, doublecheck_data2_after_copy
-return
 
-doublecheck_data2_after_copy:
-SetWorkingDir %Deadisland_dir%/DI
-if FileExist("Data2.pak")
-Goto, SETUP_TEMPORARY_ENVIRONMENT
-else
-MsgBox, Error copying files
-return
+
+;check_data2_first_run:
+;SetWorkingDir %Deadisland_dir%/DI
+;if FileExist("Data2.pak")
+;Goto, Data2_present_first_run
+;else
+;CustomMsgBox("ERROR","⚠ please make sure game is installed correctly!`n Currently missing: Data2.pak`n`nPlease Verify game files or reinstall game",error_font,"cf22e30 s20 bold","202020")
+;return
+
+;Data2_present_first_run:
+;SetWorkingDir %Deadisland_dir%/DI
+;FileDelete, Data2.pak
+;Goto, data2_deleted_first_run
+;return
+
+;data2_deleted_first_run:
+;SetWorkingDir %Deadisland_dir%/DI
+;if FileExist("Data2.pak")
+;Goto, somethings_wrong_first_run
+;else
+;Goto, data2_confirmed_deleted
+;	return
+;somethings_wrong_first_run:
+;CustomMsgBox("ERROR","⚠ Unable to delete data2.pak. modding failed -please make sure game is installed correctly!`n Currently missing: Data2.pak`n`nPlease Verify game files or reinstall game",error_font,"cf22e30 s20 bold","202020")
+;return
+
+;data2_confirmed_deleted:
+;FileCopy, %A_Temp%\@DIDMM_TEMPFILES\Data2.zip, %Deadisland_dir%\DI\Data2.pak ,1
+;Goto, doublecheck_data2_after_copy
+;return
+
+;doublecheck_data2_after_copy:
+;SetWorkingDir %Deadisland_dir%/DI
+;if FileExist("Data2.pak")
+;Goto, SETUP_TEMPORARY_ENVIRONMENT
+;else
+;CustomMsgBox("ERROR","⚠ Error copying files.`n`nError location: 'doublecheck_data2_after_copy'`n",error_font,"cf22e30 s20 bold","202020")
+;return
+
+;///////////////////////////////////////////////////
 
 SETUP_TEMPORARY_ENVIRONMENT:
 SetWorkingDir %Deadisland_dir%/DI ;I feel better with this here ;I was going to remove this but tbh I do feel safer leaving this here.. I mean what is it hurting...
 DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-SplashTextOn, 700,105,UN-PACKING PROGRAM,Please wait... `nUNzipping Data0.pak`nNOTE: This could take up to 3 minutes, If you have a slow hard drive this might take longer.`n if you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+SplashTextOn, 700,105,UN-PACKING PROGRAM,Please wait... `nUNzipping Data0.pak`nNOTE: This could take up to 3 minutes (You should see a copy progress dialogue pop up) `nIf you have a slow hard drive this might take longer.`n if you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES ;Yup, I know....
-		SmartZip("Data0.zip", "EXTRACTED_DATA0")   ; Unpack
+		SmartZip("Data0.zip", "EXTRACTED_DATA0", "UpdateProgress")
+SplashTextOn, 700,105,UN-PACKING PROGRAM,Please wait... `nUNzipping Data2.pak`nNOTE: This could take up to 3 minutes (You should see a copy progress dialogue pop up) `nIf you have a slow hard drive this might take longer.`n if you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
+		SmartZip("Data2.zip", "EXTRACTED_DATA2", "UpdateProgress")
 		Goto, check__temp_copy
 check__temp_copy:
 if FileExist("Data0.zip")
 	goto, yes_data0_in_temp
 ;YES THIS WAS ALSO HACKY BUT...if it works...
 else
-	MsgBox,8240,ERROR?, you shouldnt be seeing this error...`nData pak failed to copy?? maybe restart application and try again. if issue persists contact developer..
+	CustomMsgBox("ERROR","⚠ error checking temp copy.`n`nError location: 'check__temp_copy'",error_font,"cf22e30 s20 bold","202020")
+	;MsgBox,8240,ERROR?, you shouldnt be seeing this error...`nData pak failed to copy?? maybe restart application and try again. if issue persists contact developer..
 return
 yes_data0_in_temp:
 	SetWorkingDir %Deadisland_dir%/DI ;again.. imma set it back... just to be safe...ya know?, right?
@@ -795,8 +958,9 @@ FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\menumain_pc.xui, %A_Temp%\@DIDMM
 ;TF_ReplaceInLines(gameini,"15","","//","") ;encoding issue, probably can be solved through some tf.ahk thing but whatever, instead copy pre-made file to datapak
 ;TF_ReplaceInLines(gameini,"15","","0","1")
 ;TF_ReplaceLine(DLC_shop,"12 ",12,"	ColorItem(""Melee_AxeUniversalGen"", 1, 4, 1)")
-MsgBox,4160,NOTICE,Thank you for downloading and using my mod menu for Dead Island definitive edition.`nThis mod is the way I enjoy playing.`n`nAlso I have a version for Dead island Riptide definitive edition and I plan on eventually porting to the OG versions of the games.`n`n I write these mods in my free time and I'd like to give a huge thank you to everyone who enjoys them, It means a lot!`n`nIf you encounter any bugs please report them on the mods nexus page in the Bugs tab thank you. 
-MsgBox,4160,NOTICE,•If you plan to play Co-op: It is highly recomended that all players have the same Data0.pak (same mods)`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.`nThings like fov, skip intro, running w/ weapons, and other simple player mods should technically be ok to not have the same but bigger ones like zombie spawning/settings, weather settings, firearms overhaul, and custom weapons might cause issues`n`n•The source code is avalable on github if you want to view/compile the source code (Link to it is at the bottom of the mods page on nexus mods)
+CustomMsgBox("playing with friends?","⚠NOTICE: If you plan to play Co-op: `nIt is recommended that all players have the same Data0.pak (same mods)`n`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.`n`nThings like FOV, skip intro, player movement tweaks, running w/weapons, stamina based mods,`nand other mods that only affect your character should be safe to not have the same.`nbut bigger ones like zombie spawning/settings, weather settings, `nfirearms overhaul, and custom weapons might cause issues.`nYou could experiment and see what works and what doesn't, but I have not done this, so it's untested.)",main_font,"c6ebc72 s20 bold","202020")
+;ustomMsgBox("ERROR","⚠NOTICE: If you plan to play Co-op: It is highly recomended that all players have the same Data0.pak (same mods)`n`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.`n`nThings like fov, skip intro, running w/ weapons, and other simple player mods should technically be ok to not`nhave the same but bigger ones like zombie spawning/settings, weather settings, firearms overhaul, and custom weapons might cause issues`n`n•The source code is available on GitHub if you want to view/compile the source code (Link to it is at the bottom of the mods page on nexus mods)","error",main_font,"cf22e30 s20 bold","202020")
+;MsgBox,4160,NOTICE,•If you plan to play Co-op: It is highly recomended that all players have the same Data0.pak (same mods)`nIf only one player has a mod enabled then only that player can use the mod if that makes sense.`nThings like fov, skip intro, running w/ weapons, and other simple player mods should technically be ok to not have the same but bigger ones like zombie spawning/settings, weather settings, firearms overhaul, and custom weapons might cause issues`n`n•The source code is avalable on github if you want to view/compile the source code (Link to it is at the bottom of the mods page on nexus mods)
 ;MsgBox,4160,NOTICE,Please note:`nIt is highly recomended to start a new`nplaythrough (new character ) to use some of theses mods but it is not required ;removed because only one or two require this
 GuiControl, enable,confirm_fov
 GuiControl, enabled,DDL
@@ -837,7 +1001,8 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 TF_ReplaceLine(Def_lev,"52",52,"	<prop n=""MoveWhenCarryMaxSpeedFactor"" v=""1.05""/>	<!--  Modified by FireEyeEian-->")
 TF_ReplaceLine(Def_lev,"53",53,"	<prop n=""MoveWhenCarryMinSpeedFactor"" v=""0.3""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,carry speed option,➤max carry speed increased by 50`% (1.05)`n➤min carry speed increased by 50`% (0.3),
+CustomMsgBox("carry speed option","➤max carry speed increased by 50`% (1.05)`n➤min carry speed increased by 50`% (0.3)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,carry speed option,➤max carry speed increased by 50`% (1.05)`n➤min carry speed increased by 50`% (0.3),
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
@@ -848,7 +1013,8 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 TF_ReplaceLine(Def_lev,"52",52,"	<prop n=""MoveWhenCarryMaxSpeedFactor"" v=""0.7""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 TF_ReplaceLine(Def_lev,"53",53,"	<prop n=""MoveWhenCarryMinSpeedFactor"" v=""0.2""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,carry speed option,➤max carry speed set to default (0.7)`n➤min carry speed set to default (0.2),
+CustomMsgBox("carry speed option","➤max carry speed set to default (0.7)`n➤min carry speed set to default (0.2)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,carry speed option,➤max carry speed set to default (0.7)`n➤min carry speed set to default (0.2),
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -856,34 +1022,33 @@ return
 
 Submit_density:
 play_click_sound_func()
-MsgBox, Just a heads up: There seems to be sort of a hard limit to how many zombies can be on screen at one time, so the larger numbers might not be fully represenitive to how many zombies will spawn.
-SetWorkingDir %Deadisland_dir%/DI
-if FileExist("Data2.pak")
-Goto, Data2_present
-else
-MsgBox data2 not present.`nTHIS SHOULDNT BE AN ISSUE BUT TRY VERIFYING FILES and RE MODDING IF YOU HAVE ISSUES.
-Goto, Continue_density_1
-return
+CustomMsgBox("NOTICE","Just a heads up: There seems to be sort of a hard limit to how many zombies can be on screen at one time, `nso the larger numbers might not be fully representative to how many zombies will spawn.",main_font,"c6ebc72 s20 bold","202020")
 
-Data2_present:
-;MsgBox data2 found
-SetWorkingDir %Deadisland_dir%/DI
-FileDelete, Data2.pak
-Goto, data2_deleted
-return
+;SetWorkingDir %Deadisland_dir%/DI
+;if FileExist("Data2.pak")
+;Goto, Data2_present
+;else
+;CustomMsgBox("error","⚠ data2 not present.`nTHIS SHOULDNT BE AN ISSUE BUT TRY VERIFYING FILES and RE MODDING IF YOU HAVE ISSUES.",error_font,"c6ebc72 s20 bold","202020")
+;Goto, Continue_density_1
+;return
 
-data2_deleted:
-;MsgBox data2 should be deleted
-SetWorkingDir %Deadisland_dir%/DI
-if FileExist("Data2.pak")
-Goto, somethings_wrong
-else
+;Data2_present:
+;SetWorkingDir %Deadisland_dir%/DI
+;FileDelete, Data2.pak
+;Goto, data2_deleted
+;return
+
+;data2_deleted:
+;SetWorkingDir %Deadisland_dir%/DI
+;if FileExist("Data2.pak")
+;Goto, somethings_wrong
+;else
 Goto, Continue_density_1
 	return
-somethings_wrong:
-MsgBox Unable to delete data2.pak. modding failed
-failed_to_mod()
-return
+;somethings_wrong:
+;CustomMsgBox("Error","⚠Unable to delete data2.pak. modding failed",error_font,"cf22e30 s20 bold","202020")
+;failed_to_mod()
+;return
 Continue_density_1:
 gui,1: Submit, NoHide
 If (zombie_density_var = "100%(vanilla)")
@@ -920,9 +1085,23 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(10);")
-FileCopy, %A_Temp%\@DIDMM_TEMPFILES\Data2.zip, %Deadisland_dir%\DI\Data2.pak ,1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act1a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act1a\act1a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act2a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act2a\act2a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act3a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3a\act3a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act3b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3b\act3b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act3c.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3c\act3c.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act4a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4a\act4a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\act4b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4b\act4b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\buildinginterior.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\buildinginterior\buildinginterior.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\cityhallb.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\cityhallb\cityhallb.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\hotel.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\hotel\hotel.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\market.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\market\market.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\parkinglot.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\parkinglot\parkinglot.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\policestation.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\policestation\policestation.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\VANILLA_OG\sewers.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\sewers\sewers.exp , 1
 SplashTextOff
-MsgBox, 4160, Density, ➤"Density set to 100`% vanilla (default)",
+CustomMsgBox("zombie density","➤Density set to 100`% vanilla (default)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Density, ➤"Density set to 100`% vanilla (default)",
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -933,9 +1112,23 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(20);")
-FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act1a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act1a\act1a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act2a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act2a\act2a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3a\act3a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3b\act3b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3c.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3c\act3c.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4a\act4a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4b\act4b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\buildinginterior.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\buildinginterior\buildinginterior.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\cityhallb.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\cityhallb\cityhallb.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\hotel.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\hotel\hotel.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\market.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\market\market.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\parkinglot.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\parkinglot\parkinglot.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\policestation.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\policestation\policestation.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\sewers.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\sewers\sewers.exp , 1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "200`%" `nPlease note: this is a little janky and untested throughout the whole game ,
+CustomMsgBox("zombie density","➤Density set to 200`% `nPlease note: this is a little janky and untested throughout the whole game.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Density, ➤Density set to "200`%" `nPlease note: this is a little janky and untested throughout the whole game ,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -946,9 +1139,23 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(40);")
-FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act1a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act1a\act1a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act2a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act2a\act2a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3a\act3a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3b\act3b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3c.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3c\act3c.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4a\act4a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4b\act4b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\buildinginterior.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\buildinginterior\buildinginterior.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\cityhallb.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\cityhallb\cityhallb.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\hotel.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\hotel\hotel.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\market.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\market\market.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\parkinglot.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\parkinglot\parkinglot.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\policestation.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\policestation\policestation.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\sewers.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\sewers\sewers.exp , 1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "400`%" `nPlease note: this is a little janky and untested throughout the whole game,
+CustomMsgBox("zombie density","➤Density set to 400`% `nPlease note: this is a little janky and untested throughout the whole game",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Density, ➤Density set to "400`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -959,9 +1166,23 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(60);")
-FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act1a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act1a\act1a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act2a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act2a\act2a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3a\act3a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3b\act3b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3c.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3c\act3c.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4a\act4a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4b\act4b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\buildinginterior.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\buildinginterior\buildinginterior.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\cityhallb.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\cityhallb\cityhallb.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\hotel.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\hotel\hotel.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\market.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\market\market.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\parkinglot.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\parkinglot\parkinglot.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\policestation.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\policestation\policestation.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\sewers.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\sewers\sewers.exp , 1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "600`%" `nPlease note: this is a little janky and untested throughout the whole game,
+CustomMsgBox("zombie density","➤Density set to 600`% `nPlease note: this is a little janky and untested throughout the whole game",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Density, ➤Density set to "600`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -972,9 +1193,23 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(80);")
-FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act1a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act1a\act1a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act2a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act2a\act2a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3a\act3a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3b\act3b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3c.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3c\act3c.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4a\act4a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4b\act4b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\buildinginterior.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\buildinginterior\buildinginterior.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\cityhallb.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\cityhallb\cityhallb.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\hotel.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\hotel\hotel.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\market.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\market\market.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\parkinglot.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\parkinglot\parkinglot.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\policestation.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\policestation\policestation.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\sewers.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\sewers\sewers.exp , 1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "800`%" `nPlease note: this is a little janky and untested throughout the whole game,
+CustomMsgBox("zombie density","➤Density set to 400`% `nPlease note: this is a little janky and untested throughout the whole game",main_font,"c6ebc72 s20 bold","202020")
+;sgBox, 4160, Density, ➤Density set to "800`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -985,9 +1220,23 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(100);")
-FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act1a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act1a\act1a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act2a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act2a\act2a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3a\act3a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3b\act3b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3c.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3c\act3c.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4a\act4a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4b\act4b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\buildinginterior.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\buildinginterior\buildinginterior.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\cityhallb.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\cityhallb\cityhallb.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\hotel.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\hotel\hotel.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\market.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\market\market.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\parkinglot.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\parkinglot\parkinglot.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\policestation.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\policestation\policestation.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\sewers.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\sewers\sewers.exp , 1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "1000`%" `nPlease note: this is a little janky and untested throughout the whole game,
+CustomMsgBox("zombie density","➤Density set to 1000`% `nPlease note: this is a little janky and untested throughout the whole game",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Density, ➤Density set to "1000`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -998,9 +1247,23 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(200);")
-FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act1a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act1a\act1a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act2a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act2a\act2a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3a\act3a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3b\act3b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3c.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3c\act3c.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4a\act4a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4b\act4b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\buildinginterior.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\buildinginterior\buildinginterior.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\cityhallb.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\cityhallb\cityhallb.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\hotel.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\hotel\hotel.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\market.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\market\market.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\parkinglot.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\parkinglot\parkinglot.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\policestation.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\policestation\policestation.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\sewers.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\sewers\sewers.exp , 1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "2000`%" `nPlease note: this is a little janky and untested throughout the whole game,
+CustomMsgBox("zombie density","➤Density set to 2000`% `nPlease note: this is a little janky and untested throughout the whole game",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Density, ➤Density set to "2000`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1011,9 +1274,23 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(400);")
-FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act1a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act1a\act1a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act2a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act2a\act2a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3a\act3a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3b\act3b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3c.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3c\act3c.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4a\act4a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4b\act4b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\buildinginterior.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\buildinginterior\buildinginterior.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\cityhallb.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\cityhallb\cityhallb.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\hotel.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\hotel\hotel.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\market.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\market\market.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\parkinglot.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\parkinglot\parkinglot.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\policestation.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\policestation\policestation.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\sewers.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\sewers\sewers.exp , 1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "4000`%" `nPlease note: this is a little janky and untested throughout the whole game,
+CustomMsgBox("zombie density","➤Density set to 4000`% `nPlease note: this is a little janky and untested throughout the whole game",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Density, ➤Density set to "4000`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1024,9 +1301,23 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 TF_ReplaceLine(AI_PROP,"4 ",4,"	ZombieDensityMod(600);")
-FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\DP2_patched.zip, %Deadisland_dir%\DI\Data2.pak ,1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act1a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act1a\act1a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act2a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act2a\act2a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3a\act3a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3b\act3b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act3c.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act3c\act3c.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4a.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4a\act4a.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\act4b.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\act4b\act4b.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\buildinginterior.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\buildinginterior\buildinginterior.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\cityhallb.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\cityhallb\cityhallb.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\hotel.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\hotel\hotel.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\market.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\market\market.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\parkinglot.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\parkinglot\parkinglot.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\policestation.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\policestation\policestation.exp , 1
+FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\FILES_FOR_INCREASED_ZOM_DENSITY\PATCHED\sewers.exp, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA2\data\maps\sewers\sewers.exp , 1
 SplashTextOff
-MsgBox, 4160, Density, ➤Density set to "6000`%" `nPlease note: this is a little janky and untested throughout the whole game,
+CustomMsgBox("zombie density","➤Density set to 6000`% `nPlease note: this is a little janky and untested throughout the whole game",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Density, ➤Density set to "6000`%" `nPlease note: this is a little janky and untested throughout the whole game,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1077,7 +1368,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\Time-weather_vanilla.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to vanilla (default),
+CustomMsgBox("time/weather","➤Time/Weather set to vanilla (default)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, timeweather, ➤Time/Weather set to vanilla (default),
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1093,7 +1385,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Just_night.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Night,
+CustomMsgBox("time/weather","➤Time/Weather set to Night",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, timeweather, ➤Time/Weather set to Night,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1109,7 +1402,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Rain_day.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Rainy day`n`nNote: for unknown reasons weather sounds might not play,
+CustomMsgBox("time/weather","➤Time/Weather set to Rainy day`n`nNote: for unknown reasons weather sounds might not play",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, timeweather, ➤Time/Weather set to Rainy day`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1125,7 +1419,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Rain_night.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Rainy night`n`nNote: for unknown reasons weather sounds might not play,
+CustomMsgBox("time/weather","➤Time/Weather set to Rainy night`n`nNote: for unknown reasons weather sounds might not play",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, timeweather, ➤Time/Weather set to Rainy night`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1141,7 +1436,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_storm_day.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Stormy day`n`nNote: for unknown reasons weather sounds might not play,
+CustomMsgBox("time/weather","➤Time/Weather set to Stormy day`n`nNote: for unknown reasons weather sounds might not play",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, timeweather, ➤Time/Weather set to Stormy day`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1157,7 +1453,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_storm_night.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Stormy night`n`nNote: for unknown reasons weather sounds might not play,
+CustomMsgBox("time/weather","➤Time/Weather set to Stormy night`n`nNote: for unknown reasons weather sounds might not play",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, timeweather, ➤Time/Weather set to Stormy night`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1173,7 +1470,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Just_night_darker.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Dark night,
+CustomMsgBox("time/weather","➤Time/Weather set to Dark night",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, timeweather, ➤Time/Weather set to Dark night,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1189,7 +1487,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_Rain_night_darker.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Dark rainy night`n`nNote: for unknown reasons weather sounds might not play,
+CustomMsgBox("time/weather","➤Time/Weather set to Dark rainy night`n`nNote: for unknown reasons weather sounds might not play",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, timeweather, ➤Time/Weather set to Dark rainy night`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1205,7 +1504,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\varlist_ambie
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\scripts\logic_script.scr
 SmartZip("loose_files\time-weather_storm_night_darker.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, timeweather, ➤Time/Weather set to Dark stormy night`n`nNote: for unknown reasons weather sounds might not play,
+CustomMsgBox("time/weather","➤Time/Weather set to Dark stormy night`n`nNote: for unknown reasons weather sounds might not play",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, timeweather, ➤Time/Weather set to Dark stormy night`n`nNote: for unknown reasons weather sounds might not play,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1245,7 +1545,8 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\force_infected_ryder_white_spawns.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Zombies spawns set to INFECTED RYDER WHITE,
+CustomMsgBox("zombie preset","➤Zombies spawns set to INFECTED RYDER WHITE`nPlease note that the full game has not been testing using these option and such may cause weird things",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Zombies spawns set to INFECTED RYDER WHITE,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1258,7 +1559,8 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Default_spawns.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Zombies spawns set to Normal (default),
+CustomMsgBox("zombie preset","➤Zombies spawns set to Normal (default)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Zombies spawns set to Normal (default),
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1271,7 +1573,8 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\force_butcher_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Butchers""`n(May god have mercy on you) `nPlease note that the full game has not been testing using these option and such may cause weird things`,
+CustomMsgBox("zombie preset","➤Spawn overide set to ""Butchers""`n(May god have mercy on you) `nPlease note that the full game has not been testing using these option and such may cause weird things",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Butchers""`n(May god have mercy on you) `nPlease note that the full game has not been testing using these option and such may cause weird things`,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1284,7 +1587,8 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_ram_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Rammers"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
+CustomMsgBox("zombie preset","➤Spawn overide set to ""Rammers"" `nPlease note that the full game has not been testing using these option and such may cause weird things",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Rammers"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1297,7 +1601,8 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bloater_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bloaters"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
+CustomMsgBox("zombie preset","➤Spawn overide set to ""Bloaters"" `nPlease note that the full game has not been testing using these option and such may cause weird things",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bloaters"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1310,7 +1615,8 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bandits_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
+CustomMsgBox("zombie preset","➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cause weird things",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1323,7 +1629,8 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bandits(firearms).zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(firearms)"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
+CustomMsgBox("zombie preset","➤Spawn overide set to ""Bandits(firearms)"" `nPlease note that the full game has not been testing using these option and such may cause weird things",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(firearms)"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1336,7 +1643,8 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_bandits(melee).zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(Melee)"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
+CustomMsgBox("zombie preset","➤Spawn overide set to ""Bandits(Melee)"" `nPlease note that the full game has not been testing using these option and such may cause weird things",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Bandits(Melee)"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1349,7 +1657,8 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_thug_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Thugs"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
+CustomMsgBox("zombie preset","➤Spawn overide set to ""Thugs"" `nPlease note that the full game has not been testing using these option and such may cause weird things",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Thugs"" `nPlease note that the full game has not been testing using these option and such may cause weird things`,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1362,7 +1671,8 @@ SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\aispawnbox_pre.def
 SmartZip("loose_files\Force_suicide_spawn.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Suiciders""`nNote: They really like to explode...`nPlease note that the full game has not been testing using these option and such may cause weird things`,
+CustomMsgBox("zombie preset","➤Spawn overide set to ""Suiciders""`nNote: They really like to explode...`nPlease note that the full game has not been testing using these option and such may cause weird things",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Spawn overide set to ""Suiciders""`nNote: They really like to explode...`nPlease note that the full game has not been testing using these option and such may cause weird things`,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1381,7 +1691,8 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(varlist_main,"128",128,"VarFloat(""f_pp_chromatic_aberration_scale"", 0.0) //Default_value")
 SplashTextOff
-MsgBox,4160,ca option,➤Chromatic aberration disabled,
+CustomMsgBox("Chromatic aberration","➤Chromatic aberration disabled",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,ca option,➤Chromatic aberration disabled,
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
@@ -1391,7 +1702,8 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(varlist_main,"128",128,"VarFloat(""f_pp_chromatic_aberration_scale"", 1.0) //Default_value")
 SplashTextOff
-MsgBox,4160,ca option,➤Chromatic aberration enabled,
+CustomMsgBox("Chromatic aberration","➤Chromatic aberration enabled",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,ca option,➤Chromatic aberration enabled,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1423,7 +1735,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\PRESETS_NORM_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to Normal (default),
+CustomMsgBox("Zombie size","➤Zombies size set to Normal (default)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to Normal (default),
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1438,7 +1751,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\PRESETS_XTRASMOL_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to extra small,
+CustomMsgBox("Zombie size","➤Zombies size set to extra small",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to extra small,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1453,7 +1767,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\PRESETS_MIDGET_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to midget,
+CustomMsgBox("Zombie size","➤Zombies size set to midget",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to midget,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1468,7 +1783,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\PRESETS_LARGE_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to large,
+CustomMsgBox("Zombie size","➤Zombies size set to large",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to large,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1483,7 +1799,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\presets\zombieai_pre.
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\PRESETS_SUPASIZE_ZOMSIZE.zip", "EXTRACTED_DATA0\data\presets")
 SplashTextOff
-MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to Supersize,
+CustomMsgBox("Zombie size","➤Zombies size set to supersize",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, ZOMBIE SIZE, ➤Zombies size set to Supersize,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1506,7 +1823,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""62.5""/>	<!--  This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
-MsgBox, 4160, FOV CHANGE, ➤FOV set to 62.5 (default)`n`nPlease note: I highly recomended enabling "Firearms tweaks and fixes" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
+CustomMsgBox("fov","➤FOV set to 62.5 (default)`n`nPlease note: I highly recommend enabling ""Firearms tweaks and fixes"" and ""Better firearms upgrading"" `nas they fix bugs with firearms and make upgrading even more usefull.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, FOV CHANGE, ➤FOV set to 62.5 (default)`n`nPlease note: I highly recomended enabling ""Firearms tweaks and fixes"" and ""Better firearms upgrading"" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1583,7 +1901,8 @@ TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""72""/>	<!--  M
 ;mcalls_hipfire_recoilfov_fix
 	TF_ReplaceLine(INV_GEN,"20474",20474,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 SplashTextOff
-MsgBox, 4160, FOV CHANGE, ➤FOV changed to 72 (+10)`n➤Pistol & shotgun +Recoil scaled to fov`n`nPlease note: I highly recomended enabling "Firearms tweaks and fixes" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
+CustomMsgBox("fov","➤FOV changed to 72 (+10)`n➤Pistol & shotgun +Recoil scaled to fov`n`nPlease note: I highly recommend enabling ""Firearms tweaks and fixes"" and ""Better firearms upgrading"" `nas they fix bugs with firearms and make upgrading even more usefull.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, FOV CHANGE, ➤FOV changed to 72 (+10)`n➤Pistol & shotgun +Recoil scaled to fov`n`nPlease note: I highly recomended enabling ""Firearms tweaks and fixes"" and ""Better firearms upgrading"" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1662,7 +1981,8 @@ TF_ReplaceLine(Def_lev,"61",61,"	<prop n=""CameraDefaultFOV"" v=""82""/>	<!--  M
 ;colt_hipfire_recoilfov_fix
 	TF_ReplaceLine(INV_GEN,"16463",16463,"        ShootVertRecoil(0.015); //Modified_by_FireEyeEian --fov_EDIT")
 SplashTextOff
-MsgBox, 4160, FOV CHANGE, ➤FOV changed to 82 (+20)`n➤Pistol & shotgun Recoil scaled to fov`n`nPlease note: I highly recomended enabling "Firearms tweaks and fixes" and "Better firearms upgrading" as they fix bugs with firearms and make upgrading even more usefull.,
+CustomMsgBox("fov","➤FOV changed to 82 (+20)`n➤Pistol & shotgun +Recoil scaled to fov`n`nPlease note: I highly recommend enabling ""Firearms tweaks and fixes"" and ""Better firearms upgrading"" `nas they fix bugs with firearms and make upgrading even more usefull.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, FOV CHANGE, ➤FOV changed to 82 (+20)`n➤Pistol & shotgun Recoil scaled to fov`n`nPlease note: I highly recomended enabling ""Firearms tweaks and fixes"" and ""Better firearms upgrading"" as they fix bugs with firearms and make upgrading even more usefull.,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian")) 
 return
@@ -1683,7 +2003,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_InsertPrefix(INTRO_MOV,15,25, "//")
 SplashTextOff
-MsgBox,4160,Intro vid option,➤Intro videos will be disabled,
+CustomMsgBox("Intro movies","➤Intro videos will be disabled",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Intro vid option,➤Intro videos will be disabled,
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
@@ -1693,7 +2014,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceInLines(INTRO_MOV,"15,16,17,18,19,20,21,22,23,24,25","","//","")
 SplashTextOff
-MsgBox,4160,Intro vid option,➤Intro videos wll play,
+CustomMsgBox("intro movies","➤Intro videos will play",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Intro vid option,➤Intro videos wll play,
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
@@ -1712,7 +2034,8 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"199",199,"	<prop n=""MoveSprintStaminaConsumption"" v=""0.03""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Stamina option,➤Sprint stamina cost set to reduced (0.03)
+CustomMsgBox("Stamina options","➤Sprint stamina cost set to reduced (0.03)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Stamina option,➤Sprint stamina cost set to reduced (0.03)
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
@@ -1722,7 +2045,8 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"199",199,"	<prop n=""MoveSprintStaminaConsumption"" v=""0.05""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Stamina option,➤Sprint stamina cost set to default (0.05),
+CustomMsgBox("Stamina options","➤Sprint stamina cost set to default (0.05)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Stamina option,➤Sprint stamina cost set to default (0.05),
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -1742,7 +2066,8 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 TF_ReplaceLine(sunglow_scd,"4",4,"VarFloat(""f_pp_glow_factor"", 0.1)	//  Modified by FireEyeEian")
 TF_ReplaceLine(sunglow_scr,"1",1,"VarFloat(""f_glow_factor"", 0.1)	//  Modified by FireEyeEian")
 SplashTextOff
-MsgBox,4160,sunflare option,➤Reduced sunflare to 90`%
+CustomMsgBox("sunflare option","➤Reduced sunflare to 90`%",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,sunflare option,➤Reduced sunflare to 90`%
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
@@ -1753,7 +2078,8 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 TF_ReplaceLine(sunglow_scd,"4",4,"VarFloat(""f_pp_glow_factor"", 1.0)	// This is the default value //Modified_by_FireEyeEian")
 TF_ReplaceLine(sunglow_scr,"1",1,"VarFloat(""f_glow_factor"", 1.0)	// This is the default value //Modified_by_FireEyeEian")
 SplashTextOff
-MsgBox,4160,sunflare option,➤Set sunflare to default (100`%)
+CustomMsgBox("sunflare","➤Set sunflare to default (100`%)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,sunflare option,➤Set sunflare to default (100`%)
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
@@ -1781,7 +2107,7 @@ SplashTextOn, 700,105,UN-PACKING PROGRAM,Please wait... `nUNzipping Data0.pak`nN
  WinSet, AlwaysOnTop, Off, UN-PACKING PROGRAM
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 ;RunWait, %A_Temp%\@DIDMM_TEMPFILES\FileZipUp.exe,,Hide, Runwait_zip_OutputVar ;depreciated
-SmartZip("EXTRACTED_DATA0\data", "compiled_mod\Data0.zip")
+SmartZip("EXTRACTED_DATA0\data", "compiled_mod\Data0.zip", "UpdateProgress")
 Sleep, 300 ;whynot.jpg
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\compiled_mod\Data0.zip, %Deadisland_dir%\DI\Data0.pak ,1
 Sleep, 200
@@ -1789,7 +2115,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\compiled_mod\Data0.zip
 play_click_sound_func()
 SplashTextOff
 play_final_sound_func()
-MsgBox,Game has been Patched and is ready to play`n(You can close this application)
+CustomMsgBox("Stamina options","➤Game has been Patched and is ready to play`n(You can close this application)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,Game has been Patched and is ready to play`n(You can close this application)
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 ;Enable_BUTTONS_Function()
 return
@@ -1810,7 +2137,8 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 TF_ReplaceLine(Def_lev,"48",48,"    <prop n=""BulletPenetrationChance"" v=""0.98""/> <!-- Modified_by_FireEyeEian -->")
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,Bullet penetration?,➤Bullet penetration enabled`n(98`% chance)
+CustomMsgBox("Bullet penetration","➤Bullet penetration enabled`n(98`% chance)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Bullet penetration?,➤Bullet penetration enabled`n(98`% chance)
 Enable_BUTTONS_Function()
 return
 Bullet_pen_var_no:
@@ -1820,7 +2148,8 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 TF_ReplaceLine(Def_lev,"48",48,"    <prop n=""BulletPenetrationChance"" v=""0.""/> <!-- this_is_the_default_value -->")
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,Bullet penetration?,➤Bullet penetration disabled
+CustomMsgBox("Bullet penetration","➤Bullet penetration disabled",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Bullet penetration?,➤Bullet penetration disabled
 Enable_BUTTONS_Function()
 return
 
@@ -2100,7 +2429,8 @@ TF_ReplaceLine(INV_GEN,"18338",18338,"        ReloadTime(4.5); //Modified_by_Fir
 			TF_ReplaceLine(INV_GEN,"18522",18522,"        ReloadTime(4.5); //Modified_by_FireEyeEian //BETTER_WEP_UPGRADES")
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,betterweapupgrades?,➤Better weapon upgrades enabled`n`nPLEASE NOTE: ONLY THE AUTOMATIC RELOAD SPEED IS AFFECTED (this is due to how dead island handles weapons generation its kinda out of my hands.`nJust know that the reload speed will be default if you hit the reload key manually
+CustomMsgBox("weapon upgrades","➤Better weapon upgrades enabled`n`nPLEASE NOTE: ONLY THE AUTOMATIC RELOAD SPEED IS AFFECTED `n(this is due to how dead island handles weapons generation;`nThe reload speed will be default if you hit the reload key manually",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,betterweapupgrades?,➤Better weapon upgrades enabled`n`nPLEASE NOTE: ONLY THE AUTOMATIC RELOAD SPEED IS AFFECTED (this is due to how dead island handles weapons generation its kinda out of my hands.`nJust know that the reload speed will be default if you hit the reload key manually
 Enable_BUTTONS_Function()
 return
 
@@ -2366,11 +2696,12 @@ TF_ReplaceLine(INV_GEN,"18338",18338,"        //placeholderforwepupgrades //Modi
 			TF_ReplaceLine(INV_GEN,"18492",18492,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
 			TF_ReplaceLine(INV_GEN,"18493",18493,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")         
 			;;;Shotgun_f_gen_upgrade_3
-			TF_ReplaceLine(INV_GEN,"18521",18521,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
+			TF_ReplaceLine(I1NV_GEN,"18521",18521,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")          
 			TF_ReplaceLine(INV_GEN,"18522",18522,"        //placeholderforwepupgrades //Modified_by_FireEyeEian --Default value")
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,betterweapupgrades?,➤Better weapon upgrades disabled.
+CustomMsgBox("weapon upgrades","➤Better weapon upgrades disabled.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,betterweapupgrades?,➤Better weapon upgrades disabled.
 Enable_BUTTONS_Function()
 return
 
@@ -2394,7 +2725,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.modded , %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr,1
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,Reverb?,➤Reverb disabled.
+CustomMsgBox("Reverb sounds","➤Reverb disabled.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Reverb?,➤Reverb disabled.
 Enable_BUTTONS_Function()
 return
 
@@ -2406,7 +2738,8 @@ FileDelete, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr
 FileCopy, %A_Temp%\@DIDMM_TEMPFILES\loose_files\gameaudioeffects.scr.nomod , %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\gameaudioeffects.scr,1
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,Reverb?,➤Reverb enabled.
+CustomMsgBox("Reverb sounds","➤Reverb enabled.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Reverb?,➤Reverb enabled.
 Enable_BUTTONS_Function()
 return
 
@@ -2604,7 +2937,8 @@ goto, Continue_on_cust_wep_final
 Continue_on_cust_wep_final:
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,Custom weapons,➤Custom weapons enabled.`n`nWeapons added:`n	>M60`n	>M72`n`n `*`*`*Custom items can be purchased from Wes Tweddle in the areana lobby`*`*`*
+CustomMsgBox("Custom weapons","➤Custom weapons enabled.`n`nWeapons added:`n	>M60`n	>M72`n`n `*`*`*Custom items can be purchased from Wes Tweddle in the areana lobby`*`*`*",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Custom weapons,➤Custom weapons enabled.`n`nWeapons added:`n	>M60`n	>M72`n`n `*`*`*Custom items can be purchased from Wes Tweddle in the areana lobby`*`*`*
 Enable_BUTTONS_Function()
 return
         
@@ -2687,7 +3021,8 @@ TF_RemoveLines(DLC_shop,10,11)
 
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,Custom weapons,➤Custom weapons Disabled.
+CustomMsgBox("Custom weapons","➤Custom weapons Disabled..",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Custom weapons,➤Custom weapons Disabled.
 Enable_BUTTONS_Function()
 return        
     
@@ -2721,14 +3056,16 @@ is_cust_wep_enabled_yes:
 TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""400""/>")
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,more ammo,➤Hold more ammo enabled.`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90
+CustomMsgBox("more ammo","➤Hold more ammo enabled.`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,more ammo,➤Hold more ammo enabled.`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90
 Enable_BUTTONS_Function()
 return        
 is_cust_wep_enabled_no:
 ;TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""400""/>") ;not needed as no other weapon uses sniper ammo besides the m60 and the m60 is only enabled if custom weapons is enabled so it really doesn't matter
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,more ammo,➤Hold more ammo enabled.
+CustomMsgBox("more ammo","➤Hold more ammo enabled.`n•Max pistol ammo= 200`n•Max rifle ammo= 150`n•max shotgun ammo= 90",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,more ammo,➤Hold more ammo enabled.
 Enable_BUTTONS_Function()
 return        
 
@@ -2752,14 +3089,16 @@ no_is_cust_wep_enabled_yes:
 TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""200""/>")
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,more ammo,➤Hold more ammo Disabled.
+CustomMsgBox("more ammo","➤Hold more ammo disabled.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,more ammo,➤Hold more ammo Disabled.
 Enable_BUTTONS_Function()
 return        
 no_is_cust_wep_enabled_no:
 TF_ReplaceLine(Def_lev,"249",249,"	<prop n=""MaxAmmoSniper"" v=""15""/>")
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,more ammo,➤Hold more ammo Disabled.
+CustomMsgBox("more ammo","➤Hold more ammo disabled.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,more ammo,➤Hold more ammo Disabled.
 Enable_BUTTONS_Function()
 return        
 
@@ -2794,7 +3133,8 @@ TF_ReplaceLine(purna_skills,"172",172,"            <effect id=""InventorySize"" 
  TF_ReplaceLine(xian_skills,"121",121,"            <effect id=""InventorySize"" change=""6""/>")
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,Even Deeper pockets,➤Even deeper pockets enabled`n  To use: Please purchase `"deeper pockets`" skill.`n`nPLEASE NOTE: If you are not starting a new play through (new character) then`n make sure you haven't got any of the ""Deeper pockets"" skills unlocked yet otherwise this is pointless to enable
+CustomMsgBox("Even Deeper pockets","➤Even deeper pockets enabled`n  To use: Please purchase `""deeper pockets`"" skill.`n`nPLEASE NOTE: If you are not starting a new play through (new character) then`n make sure you haven't got any of the ""Deeper pockets"" skills unlocked yet `notherwise this is pointless to enable",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Even Deeper pockets,➤Even deeper pockets enabled`n  To use: Please purchase `"deeper pockets`" skill.`n`nPLEASE NOTE: If you are not starting a new play through (new character) then`n make sure you haven't got any of the ""Deeper pockets"" skills unlocked yet otherwise this is pointless to enable
 Enable_BUTTONS_Function()
 return
 Even_Deeper_pockets_var_no:
@@ -2815,7 +3155,8 @@ TF_ReplaceLine(purna_skills,"172",172,"            <effect id=""InventorySize"" 
  TF_ReplaceLine(xian_skills,"121",121,"            <effect id=""InventorySize"" change=""2""/>")
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
-MsgBox,4160,Even Deeper pockets,➤Even deeper pockets disabled.
+CustomMsgBox("Even Deeper pockets","➤Even deeper pockets disabled",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Even Deeper pockets,➤Even deeper pockets disabled.
 Enable_BUTTONS_Function()
 return 
 
@@ -3119,11 +3460,8 @@ return
 weppovfinal_62_final:
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-;SetTitleMatchMode, 2
-;if (id := WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-;	EnableCloseButton(id)
-;RedrawSysmenu(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-MsgBox,4160,Wep POV,➤Firearms tweaks and fixes enabled (fov 62).
+CustomMsgBox("Firearms overhaul","➤Firearms tweaks and fixes enabled (fov 62)`n•Removes blur on weapon sights.`n•Pushes weapons out to more realistic positions.`n•Improves hip-fire holding position of rifles to a more low-right position allowing better field of view.`n•Fixes iron sight and red dot misalignment bug.`n•Fixes most clipping when at a high FOV (Scales with selected FOV).",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Wep POV,➤Firearms tweaks and fixes enabled (fov 62).
 Enable_BUTTONS_Function()
 return
 
@@ -3406,11 +3744,8 @@ return
 weppovfinal_72_final:
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-;SetTitleMatchMode, 2
-;if (id := WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-;	EnableCloseButton(id)
-;RedrawSysmenu(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-MsgBox,4160,Wep POV,➤Firearms tweaks and fixes enabled (fov 72).
+CustomMsgBox("Firearms overhaul","➤Firearms tweaks and fixes enabled (fov 72).`n•Removes blur on weapon sights.`n•Pushes weapons out to more realistic positions.`n•Improves hip-fire holding position of rifles to a more low-right position allowing better field of view.`n•Fixes iron sight and red dot misalignment bug.`n•Fixes most clipping when at a high FOV (Scales with selected FOV).",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Wep POV,➤Firearms tweaks and fixes enabled (fov 72).
 Enable_BUTTONS_Function()
 return
 
@@ -3695,11 +4030,8 @@ return
 weppovfinal_82_final:
 SplashTextOff
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-;SetTitleMatchMode, 2
-;if (id := WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-;	EnableCloseButton(id)
-;RedrawSysmenu(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian --wep_pov_EDIT"))
-MsgBox,4160,Wep POV,➤Firearms tweaks and fixes enabled (fov 82).
+CustomMsgBox("Firearms overhaul","➤Firearms tweaks and fixes enabled (fov 82).`n•Removes blur on weapon sights.`n•Pushes weapons out to more realistic positions.`n•Improves hip-fire holding position of rifles to a more low-right position allowing better field of view.`n•Fixes iron sight and red dot misalignment bug.`n•Fixes most clipping when at a high FOV (Scale with selected FOV).",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Wep POV,➤Firearms tweaks and fixes enabled (fov 82).
 Enable_BUTTONS_Function()
 return
 
@@ -4211,7 +4543,8 @@ TF_ReplaceLine(INV_GEN,"16753",16753,"        HandOffset(HandModification_Normal
 TF_ReplaceLine(INV_GEN,"16790",16790,"        HandOffset(HandModification_Normal, [0.00125,0.00125,0.16]); // Converted //this_is_the_default_value")
 TF_ReplaceLine(INV_GEN,"16827",16827,"        HandOffset(HandModification_Normal, [0.00125,0.00125,0.16]); // Converted //this_is_the_default_value")
 SplashTextOff
-MsgBox,4160,Wep POV,➤Firearms tweaks and fixes disabled.
+CustomMsgBox("Firearms overhaul","➤Firearms tweaks and fixes Disabled.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Wep POV,➤Firearms tweaks and fixes disabled.
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
@@ -4272,8 +4605,10 @@ TF_ReplaceLine(def_loot,"140",140,"		ColorWeight(Color_Violet, 31.0);  //Modifie
 TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Yellow, 52.0);  //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 11.0);  //Modified_by_FireEyeEian")
 SplashTextOff
-MsgBox just a heads up:  The game doesnt seem to follow what I change in the default.loot file `nSo this mod may or may not work. `n`nlooking into the issue.
-MsgBox,4160,Improved loot option,➤Loot will be improved (Chests/Butchers/Rams).
+CustomMsgBox("Loot bug","*Just a heads up:  The game doesn't seem to follow what I change in the default.loot file `nSo this mod may or may not work. `n`nlooking into the issue.",error_font,"cf22e30 s20 bold","202020")
+;MsgBox just a heads up:  The game doesnt seem to follow what I change in the default.loot file `nSo this mod may or may not work. `n`nlooking into the issue.
+CustomMsgBox("Improved loot option","➤Loot will be improved (Chests/Butchers/Rams).",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Improved loot option,➤Loot will be improved (Chests/Butchers/Rams).
 MsgBox,36, To cheat or not cheat?, Would you like to enable cheat chest mode?`n(This will make all chests (including butchers and rams) have a drop rate of 100`% for legendary items)
 IfMsgBox, No
 	Goto, Continue_on_improved_loot
@@ -4322,7 +4657,8 @@ TF_ReplaceLine(def_loot,"140",140,"		ColorWeight(Color_Violet, 0.0);  //Modified
 TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Yellow, 0.0);  //Modified_by_FireEyeEian")
 TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 100.0);  //Modified_by_FireEyeEian")
 SplashTextOff
-MsgBox,4160,Improved loot option,➤Cheat chests enabled (Chests/Butchers/Rams will drop legendary items 100`% of the time).
+CustomMsgBox("Improved loot option","➤Cheat chests enabled (Chests/Butchers/Rams will drop legendary items 100`% of the time).",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Improved loot option,➤Cheat chests enabled (Chests/Butchers/Rams will drop legendary items 100`% of the time).
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4368,7 +4704,8 @@ TF_ReplaceLine(def_loot,"140",140,"		ColorWeight(Color_Violet, 30.0);  //this_is
 TF_ReplaceLine(def_loot,"141",141,"		ColorWeight(Color_Yellow, 50.0);  //this_is_the_default_value")
 TF_ReplaceLine(def_loot,"142",142,"		ColorWeight(Color_Orange, 10.0);  //this_is_the_default_value")
 SplashTextOff
-MsgBox,4160,Improved loot option,➤Loot will be default.
+CustomMsgBox("Improved loot option","➤Loot will be default.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Improved loot option,➤Loot will be default.
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4391,7 +4728,8 @@ TF_ReplaceLine(cardi_phx,"91",91,"    Ignore(1) //Modified_by_FireEyeEian")
 ;TF_ReplaceLine(truckdi_phx,"73",73,"    Ignore(1) //Modified_by_FireEyeEian")
 ;TF_ReplaceLine(truckdi_phx,"87",87,"    Ignore(1) //Modified_by_FireEyeEian")
 SplashTextOff
-MsgBox,4160,Noclip trucks,➤Noclip trucks enabled. `nPlease note:`n 		The armored truck will not be affected because it will fall halfway through the ground after getting out of the hotel preventing you from getting inside.`n`nAlso note that the jeep will fall through the first bridge in the jungle.. You've been warned..
+CustomMsgBox("Noclip trucks","➤Noclip trucks enabled. `nPlease note:`n The armored truck will not be affected because it will fall halfway through the `nground after getting out of the hotel preventing you from getting inside.`n`nAlso note that the jeep will fall through the first bridge in the jungle.. You've been warned..",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Noclip trucks,➤Noclip trucks enabled. `nPlease note:`n 		The armored truck will not be affected because it will fall halfway through the ground after getting out of the hotel preventing you from getting inside.`n`nAlso note that the jeep will fall through the first bridge in the jungle.. You've been warned..
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4404,7 +4742,8 @@ TF_ReplaceLine(cardi_phx,"91",91,"    Ignore(0) //Modified_by_FireEyeEian")
 ;TF_ReplaceLine(truckdi_phx,"73",73,"    Ignore(0) //Modified_by_FireEyeEian")
 ;TF_ReplaceLine(truckdi_phx,"87",87,"    Ignore(0) //Modified_by_FireEyeEian")
 SplashTextOff
-MsgBox,4160,Noclip trucks,➤Noclip trucks disabled.
+CustomMsgBox("Noclip trucks","➤Noclip trucks disabled.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Noclip trucks,➤Noclip trucks disabled.
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4425,7 +4764,8 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 TF_ReplaceLine(odephysicswalkfly,"68",68,"    Ignore(1) //Modified_by_FireEyeEian")
 TF_ReplaceLine(odephysicswalkfly,"78",78,"    Ignore(1) //Modified_by_FireEyeEian")
 SplashTextOff
-MsgBox,4160,Noclip players,➤Noclip players enabled. `nPlease note:`n 		This will allow you to walk through certain objects but beware this is wonky and not tested throughout the whole game and you will probabbly need to un-mod and re-mod to get through certain parts... You've been warned..
+CustomMsgBox("Noclip player","➤Noclip player enabled. `nPlease note:`n This will allow you to walk through certain objects but beware `nthis is wonky and not tested throughout the whole game and you will probabbly `nneed to un-mod and re-mod to get through certain parts... You've been warned..",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Noclip players,➤Noclip player enabled. `nPlease note:`n 		This will allow you to walk through certain objects but beware this is wonky and not tested throughout the whole game and you will probabbly need to un-mod and re-mod to get through certain parts... You've been warned..
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4436,7 +4776,8 @@ SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE
 TF_ReplaceLine(odephysicswalkfly,"68",68,"    Ignore(0) //Modified_by_FireEyeEian")
 TF_ReplaceLine(odephysicswalkfly,"78",78,"    Ignore(0) //Modified_by_FireEyeEian")
 SplashTextOff
-MsgBox,4160,Noclip players,➤Noclip players disabled.
+CustomMsgBox("Noclip players","➤Noclip players disabled.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Noclip players,➤Noclip players disabled.
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4456,7 +4797,8 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"236",236,"	<prop n=""JumpStaminaCost"" v=""0.03""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Jump stamina option,➤Jump stamina cost set to 50`% (0.03)
+CustomMsgBox("Jump stamina option","➤Jump stamina cost set to 50`% (0.03)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Jump stamina option,➤Jump stamina cost set to 50`% (0.03)
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Enable_BUTTONS_Function()
 return
@@ -4466,7 +4808,8 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"236",236,"	<prop n=""JumpStaminaCost"" v=""0.06""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Jump stamina option,➤Jump stamina cost set to default (0.06),
+CustomMsgBox("Jump stamina option","➤Jump stamina cost set to default (0.06)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Jump stamina option,➤Jump stamina cost set to default (0.06),
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4485,7 +4828,8 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"63",63,"	<prop n=""HideWeaponsDuringSprint"" v=""0.0""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Run w/weps,➤Weapons will be shown when sprinting
+CustomMsgBox("Run w/weps","➤Weapons will be shown when sprinting.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Run w/weps,➤Weapons will be shown when sprinting
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4495,7 +4839,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"63",63,"	<prop n=""HideWeaponsDuringSprint"" v=""1.0""/>	<!-- This is the default value //Modified_by_FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Run w/weps,➤Weapons will be hidden when sprinting (vanilla),
+CustomMsgBox("Run w/weps","➤Weapons will be hidden when sprinting (vanilla)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Run w/weps,➤Weapons will be hidden when sprinting (vanilla),
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4521,7 +4866,8 @@ TF_ReplaceLine(Def_lev,"201",201,"	<prop n=""MoveDeceleration"" v=""12.00""/>	  
 TF_ReplaceLine(Def_lev,"193",193,"	<prop n=""MoveForwardMaxSpeed"" v=""3.70""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
 TF_ReplaceLine(Def_lev,"195",195,"	<prop n=""MoveBackwardMaxSpeed"" v=""2.70""/>	    <!-- Converted //Modified_by_FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Movement option,➤Strafing will no longer slow you down(`+1.2, 48`% increase)`n➤Acceleration increases by 2.0 (20`% increase) and instant acceleration`n➤Slighty faster walking `+0.20 (5.7`% increase)`n➤Slighty faster backwards `+0.20 (5.7`% increase),
+CustomMsgBox("Movement option","➤Strafing will no longer slow you down(`+1.2, 48`% increase)`n➤Acceleration increases by 2.0 (20`% increase) and instant acceleration`n➤Slighty faster walking `+0.20 (5.7`% increase)`n➤Slighty faster backwards `+0.20 (5.7`% increase)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Movement option,➤Strafing will no longer slow you down(`+1.2, 48`% increase)`n➤Acceleration increases by 2.0 (20`% increase) and instant acceleration`n➤Slighty faster walking `+0.20 (5.7`% increase)`n➤Slighty faster backwards `+0.20 (5.7`% increase),
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4535,7 +4881,8 @@ TF_ReplaceLine(Def_lev,"201",201,"	<prop n=""MoveDeceleration"" v=""10.00""/>	  
 TF_ReplaceLine(Def_lev,"193",193,"	<prop n=""MoveForwardMaxSpeed"" v=""3.50""/>	    <!-- Converted--> <!-- this_is_the_default_value-->")
 TF_ReplaceLine(Def_lev,"195",195,"	<prop n=""MoveBackwardMaxSpeed"" v=""2.50""/>	    <!-- Converted--> <!-- this_is_the_default_value-->")
 SplashTextOff
-MsgBox,4160,Movement option,➤Movement set to vanilla values,
+CustomMsgBox("Movement option","➤Movement set to vanilla values.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Movement option,➤Movement set to vanilla values,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4559,7 +4906,8 @@ TF_ReplaceLine(Def_lev,"113",113,"    <prop n=""CutWpnDurabilityLoss"" v=""-2.0"
 TF_ReplaceLine(Def_lev,"123",123,"    <prop n=""RangedWpnDurabilityLoss"" v=""-2.0""/>	<!--  Modified by FireEyeEian-->")
 TF_ReplaceLine(Def_lev,"133",133,"    <prop n=""BulletWpnDurabilityLoss"" v=""-2.0""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Wep durability,➤Weapons deteriorate at a slower rate`nChanged from 1.0 durability loss to -2.0`n`nPlease note: This can become very OP with Xians upgraded skills,
+CustomMsgBox("Wep durability","➤Weapons deteriorate at a slower rate`nChanged from 1.0 durability loss to -2.0`n`nPlease note: This can become very OP with Xians upgraded skills",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Wep durability,➤Weapons deteriorate at a slower rate`nChanged from 1.0 durability loss to -2.0`n`nPlease note: This can become very OP with Xians upgraded skills,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4572,7 +4920,8 @@ TF_ReplaceLine(Def_lev,"113",113,"    <prop n=""CutWpnDurabilityLoss"" v=""1.0""
 TF_ReplaceLine(Def_lev,"123",123,"    <prop n=""RangedWpnDurabilityLoss"" v=""1.0""/>	")
 TF_ReplaceLine(Def_lev,"133",133,"    <prop n=""BulletWpnDurabilityLoss"" v=""1.0""/>	")
 SplashTextOff
-MsgBox,4160,Wep durability,➤Weapons deteriorate at vanilla rate,
+CustomMsgBox("wep durability","➤Weapons deteriorate at vanilla rate.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Wep durability,➤Weapons deteriorate at vanilla rate,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4593,7 +4942,8 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"100",100,"	<prop n=""BreakDoorEffectivens"" v=""1""/>	<!--  Modified by FireEyeEian-->")
 SplashTextOff
-MsgBox,4160,Break door,➤breaking doors set to quick/easy,
+CustomMsgBox("break doors","➤breaking doors set to quick/easy.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Break door,➤breaking doors set to quick/easy,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4603,7 +4953,8 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(Def_lev,"100",100,"	<prop n=""BreakDoorEffectivens"" v=""0""/>	")
 SplashTextOff
-MsgBox,4160,Break doors,➤breaking doors set to vanilla,
+CustomMsgBox("break doors","➤breaking doors set to vanilla.",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Break doors,➤breaking doors set to vanilla,
 Enable_BUTTONS_Function()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -4671,7 +5022,8 @@ FileRemoveDir, %A_Temp%\@DIDMM_TEMPFILES\EXTRACTED_DATA0\data\ai,1
 SetWorkingDir %A_Temp%\@DIDMM_TEMPFILES
 SmartZip("loose_files\ai_norm.zip", "EXTRACTED_DATA0\data")
 SplashTextOff
-MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Normal (default),
+CustomMsgBox("Zombie difficulty","➤Zombies set to Normal (default)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Normal (default),
 GuiControlGet,restrict_zombie_throwing_var
 IfEqual, restrict_zombie_throwing_var, 1
 Gosub, no_throw_yes
@@ -4693,7 +5045,8 @@ TF_ReplaceLine(vessle_data,"806",806,"ParamBool(""one_shot"", 1) //modified by F
 ;Infected_data
 TF_ReplaceLine(Infected_data,"685",685,"ParamBool(""one_shot"", 1) //modified by FireEyeEian--")
 SplashTextOff
-MsgBox, 4160, Zombie_difficulty, ➤Zombies set to One-hit mode,
+CustomMsgBox("Zombie difficulty","➤Zombies set to One-hit mode",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Zombie_difficulty, ➤Zombies set to One-hit mode,
 GuiControlGet,restrict_zombie_throwing_var
 IfEqual, restrict_zombie_throwing_var, 1
 Gosub, no_throw_yes
@@ -4831,7 +5184,8 @@ TF_ReplaceLine(Infected_data_custom_9,"34",34,"ParamFloat(""torso_front_health_i
 TF_ReplaceLine(Infected_data_custom_9,"35",35,"ParamFloat(""torso_back_health_influence"", 0.4) //60% decrease //moddified_byFireEyeEian")
 TF_ReplaceLine(Infected_data_custom_9,"27",27,"ParamFloat(""damage_mul"", 1.95) //30% increase //Modified_ByFireEyeEian")
 SplashTextOff
-MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Hard (30`% increase to health and Damage, also 60`% decrease to damage influences),
+CustomMsgBox("Zombie difficulty","➤Zombies set to Hard (30`% increase to health and Damage `nalso `n60`% decrease to damage influences)",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Hard (30`% increase to health and Damage, also 60`% decrease to damage influences),
 GuiControlGet,restrict_zombie_throwing_var
 IfEqual, restrict_zombie_throwing_var, 1
 Gosub, no_throw_yes
@@ -4893,7 +5247,8 @@ TF_ReplaceLine(Infected_data,"175",763,"ParamFloat(""right_leg_health_influence"
 TF_ReplaceLine(Infected_data,"176",764,"ParamFloat(""torso_front_health_influence"", 0.0) //Modified_ByFireEyeEian")
 TF_ReplaceLine(Infected_data,"177",765,"ParamFloat(""torso_back_health_influence"", 0.0) //Modified_ByFireEyeEian")
 SplashTextOff
-MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Headshot only mode,
+CustomMsgBox("Zombie difficulty","➤Zombies set to Headshot only mode",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Zombie_difficulty, ➤Zombies set to Headshot only mode,
 GuiControlGet,restrict_zombie_throwing_var
 IfEqual, restrict_zombie_throwing_var, 1
 Gosub, no_throw_yes
@@ -5025,7 +5380,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 TF_ReplaceLine(Def_lev,"86",86,"	<prop n=""FistsCriticalChance"" v=""0""/>")
 SplashTextOff
-MsgBox, 4160, Crit chance, ➤Crit chance for Fists set to DEFAULT,
+CustomMsgBox("Crit chance","➤Crit chance for Fists set to DEFAULT",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Crit chance, ➤Crit chance for Fists set to DEFAULT,
 Enable_BUTTONS_Function_only_gui2()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Goto, Blunt_chance_1
@@ -5037,7 +5393,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 TF_ReplaceLine(Def_lev,"105",105,"	<prop n=""BluntCriticalChance"" v=""0""/>")
 SplashTextOff
-MsgBox, 4160, Crit chance, ➤Crit chance for Blunt set to DEFAULT,
+CustomMsgBox("Crit chance","➤Crit chance for Blunt set to DEFAULT",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Crit chance, ➤Crit chance for Blunt set to DEFAULT,
 Enable_BUTTONS_Function_only_gui2()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Goto, Cut_chance_1
@@ -5049,7 +5406,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 TF_ReplaceLine(Def_lev,"114",114,"	<prop n=""CutCriticalChance"" v=""0""/>")
 SplashTextOff
-MsgBox, 4160, Crit chance, ➤Crit chance for Cut set to DEFAULT,
+CustomMsgBox("Crit chance","➤Crit chance for Cut set to DEFAULT",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Crit chance, ➤Crit chance for Cut set to DEFAULT,
 Enable_BUTTONS_Function_only_gui2()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Goto, Ranged_chance_1
@@ -5061,7 +5419,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 TF_ReplaceLine(Def_lev,"124",124,"	<prop n=""RangedCriticalChance"" v=""0""/>")
 SplashTextOff
-MsgBox, 4160, Crit chance, ➤Crit chance for Ranged set to DEFAULT,
+CustomMsgBox("Crit chance","➤Crit chance for Ranged set to DEFAULT",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Crit chance, ➤Crit chance for Ranged set to DEFAULT,
 Enable_BUTTONS_Function_only_gui2()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Goto, Bullet_chance_1
@@ -5073,7 +5432,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 TF_ReplaceLine(Def_lev,"134",134,"	<prop n=""BulletCriticalChance"" v=""0""/>")
 SplashTextOff
-MsgBox, 4160, Crit chance, ➤Crit chance for Bullet set to DEFAULT,
+CustomMsgBox("Crit chance","➤Crit chance for Bullet set to DEFAULT",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Crit chance, ➤Crit chance for Bullet set to DEFAULT,
 Enable_BUTTONS_Function_only_gui2()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -5086,7 +5446,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 TF_ReplaceLine(Def_lev,"86",86,"	<prop n=""FistsCriticalChance"" v=""999""/>")
 SplashTextOff
-MsgBox, 4160, Crit chance, ➤Crit chance for fists set to 100`%,
+CustomMsgBox("Crit chance","➤Crit chance for fists set to 100`%",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Crit chance, ➤Crit chance for fists set to 100`%,
 Enable_BUTTONS_Function_only_gui2()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Goto, Blunt_chance_1
@@ -5098,7 +5459,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 TF_ReplaceLine(Def_lev,"105",105,"	<prop n=""BluntCriticalChance"" v=""999""/>")
 SplashTextOff
-MsgBox, 4160, Crit chance, ➤Crit chance for Blunt set to 100`%,
+CustomMsgBox("Crit chance","➤Crit chance for Blunt set to 100`%",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Crit chance, ➤Crit chance for Blunt set to 100`%,
 Enable_BUTTONS_Function_only_gui2()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Goto, Cut_chance_1
@@ -5110,7 +5472,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 TF_ReplaceLine(Def_lev,"114",114,"	<prop n=""CutCriticalChance"" v=""999""/>")
 SplashTextOff
-MsgBox, 4160, Crit chance, ➤Crit chance for Cut set to 100`%,
+CustomMsgBox("Crit chance","➤Crit chance for Cut set to 100`%",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Crit chance, ➤Crit chance for Cut set to 100`%,
 Enable_BUTTONS_Function_only_gui2()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Goto, Ranged_chance_1
@@ -5122,7 +5485,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 TF_ReplaceLine(Def_lev,"124",124,"	<prop n=""RangedCriticalChance"" v=""999""/>")
 SplashTextOff
-MsgBox, 4160, Crit chance, ➤Crit chance for Ranged set to 100`%,
+CustomMsgBox("Crit chance","➤Crit chance for Ranged set to 100`%",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Crit chance, ➤Crit chance for Ranged set to 100`%,
 Enable_BUTTONS_Function_only_gui2()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 Goto, Bullet_chance_1
@@ -5134,7 +5498,8 @@ DISABLE_BUTTONS_Function()
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application`n       (EXTRACTING: AI folder contents)
 TF_ReplaceLine(Def_lev,"134",134,"	<prop n=""BulletCriticalChance"" v=""999""/>")
 SplashTextOff
-MsgBox, 4160, Crit chance, ➤Crit chance for Bullet set to 100`%,
+CustomMsgBox("Crit chance","➤Crit chance for Bullet set to 100`%",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox, 4160, Crit chance, ➤Crit chance for Bullet set to 100`%,
 Enable_BUTTONS_Function_only_gui2()
 EnableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -5148,7 +5513,8 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(vessle_data,"800",800,"ParamFloat(""weapon_throw_prob_mul"", 0.0) //moddified_byFireEyeEian")
 SplashTextOff
-MsgBox,4160,Break door,➤zombie will NOT throw weapons,
+CustomMsgBox("zombie throw","➤zombie will NOT throw weapons",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Break door,➤zombie will NOT throw weapons,
 Enable_BUTTONS_Function_only_gui3()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
@@ -5158,7 +5524,8 @@ DisableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 SplashTextOn, 700,105,Patching files,Please wait.... `n Patching files....`nNOTE: This could take up to 3 minutes, If you have a slow hard drive then your time might vary.`nif you think this is stuck, simply press `"Alt+Del`" on your keyboard or force close the application
 TF_ReplaceLine(vessle_data,"800",800,"ParamFloat(""weapon_throw_prob_mul"", 1.0)")
 SplashTextOff
-MsgBox,4160,Break doors,➤zombie will throw weapons,
+CustomMsgBox("zombie throw","➤zombie will throw weapons",main_font,"c6ebc72 s20 bold","202020")
+;MsgBox,4160,Break doors,➤zombie will throw weapons,
 Enable_BUTTONS_Function_only_gui3()
 enableCloseButton(WinExist("Dead_Island_Definitive_mod_menu_by_FireEyeEian"))
 return
